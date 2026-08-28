@@ -3,391 +3,433 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Mehr Direktbuchungen, weniger Provision: Wir bauen inhabergefuehrten Hotels mit 20 bis 35 Zimmern den eigenen Buchungskanal auf. Katrin und Martin Thun.">
+<meta name="description" content="Volles Haus, volle Marge: Wir bauen inhabergefuehrten Hotels mit 20 bis 35 Zimmern den eigenen Buchungskanal auf. Katrin und Martin Thun.">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#FBF6EC">
 <meta property="og:title" content="Thun Hotel Partner">
-<meta property="og:description" content="Mehr Direktbuchungen. Weniger Provision. Fuer inhabergefuehrte Hotels mit 20 bis 35 Zimmern.">
+<meta property="og:description" content="Volles Haus. Volle Marge. Mehr Direktbuchungen fuer inhabergefuehrte Hotels mit 20 bis 35 Zimmern.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hotel-partner.martinthun.com/">
 </head>
 <body><title>Hotel-Partner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&display=swap">
 
 <style>
 :root{
-  --paper:#F6F4EE;
-  --paper-2:#F1EEE6;
-  --surface:#FFFFFF;
-  --ink:#16232B;
-  --ink-2:#3F4C53;
-  --muted:#6E7276;
-  --ochre:#DFA23C;
-  --ochre-ink:#9C6B15;
-  --sea:#7FA0A3;
-  --sea-soft:#E8EEED;
-  --line:#DFD9CC;
-  --line-2:#C7BFAE;
-  --alarm:#A8431F;
+  --sand:#FBF6EC;
+  --sand-2:#F4EADA;
+  --ink:#12181C;
+  --ink-2:#414B51;
+  --muted:#77807F;
+  --flame:#F03D0F;
+  --flame-deep:#C42F08;
+  --sun:#FFC400;
+  --sea:#0E6E6E;
+  --line:#E0D4BE;
+  --line-2:#C9B99C;
   --shell:1140px;
   --rail:78px;
-  --r:3px;
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;background:var(--sand)}
 
 body{
   margin:0;
-  background:var(--paper);
+  background:var(--sand);
   color:var(--ink);
   font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
   font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
 }
 
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
 
-.shell{
-  position:relative;
-  max-width:var(--shell);
-  margin:0 auto;
-  padding:0 24px;
-}
-.col{max-width:none}
+#page{position:relative;overflow:clip}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 24px}
 @media (min-width:900px){ .col{padding-left:var(--rail)} }
 
-/* ---------- gemeinsame Typo ---------- */
+/* ---------- Typo ---------- */
 .display{
   font-family:"Fraunces",Georgia,"Times New Roman",serif;
-  font-weight:600;
-  letter-spacing:-.022em;
-  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-.035em;
+  line-height:.94;
   text-wrap:balance;
-  font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
   margin:0;
 }
-h1.display{font-size:clamp(2.5rem,6.4vw,4.4rem)}
-h2.display{font-size:clamp(1.9rem,4.2vw,2.9rem)}
-h3{font-family:"Archivo",Arial,sans-serif;font-size:1.06rem;font-weight:600;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1.display{font-size:clamp(3.4rem,10.5vw,7.4rem);letter-spacing:-.045em}
+h2.display{font-size:clamp(2.2rem,5.6vw,3.9rem)}
+h3{font-family:"Archivo",Arial,sans-serif;font-size:1.08rem;font-weight:700;letter-spacing:-.012em;margin:0;text-wrap:balance}
 p{margin:0}
 
 .kicker{
-  display:flex;align-items:center;gap:11px;
-  font-size:.74rem;font-weight:600;
-  letter-spacing:.15em;text-transform:uppercase;
-  color:var(--muted);
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.76rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  font-stretch:112%;
+  color:var(--flame-deep);
 }
-.kicker::before{content:"";width:26px;height:1px;background:var(--ochre);flex:none}
+.kicker::before{content:"";width:30px;height:3px;background:var(--flame);flex:none}
 
-.lead{font-size:clamp(1.02rem,1.6vw,1.16rem);line-height:1.66;color:var(--ink-2);max-width:60ch}
-.body{font-size:.99rem;line-height:1.68;color:var(--ink-2)}
+.lead{font-size:clamp(1.06rem,1.7vw,1.24rem);line-height:1.6;color:var(--ink-2);max-width:56ch}
 .tnum{font-variant-numeric:tabular-nums}
 
 .btn{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--ink);color:var(--paper);
-  font-size:.93rem;font-weight:600;
-  padding:15px 26px;border:1px solid var(--ink);border-radius:var(--r);
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--flame);color:#fff;
+  font-size:.96rem;font-weight:700;letter-spacing:-.005em;
+  padding:16px 28px;border:2px solid var(--flame);border-radius:2px;
   text-decoration:none;
-  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s ease,background .22s ease;
+  box-shadow:5px 5px 0 var(--ink);
+  transition:transform .16s cubic-bezier(.2,.7,.3,1),box-shadow .16s cubic-bezier(.2,.7,.3,1),background .16s ease;
 }
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(22,35,43,.7);background:#0F1A21}
-.btn .arw{transition:transform .22s cubic-bezier(.2,.7,.3,1)}
+.btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink);background:var(--flame-deep);border-color:var(--flame-deep)}
+.btn:active{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink)}
+.btn .arw{transition:transform .16s cubic-bezier(.2,.7,.3,1)}
 .btn:hover .arw{transform:translateX(4px)}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:8px;
-  font-size:.93rem;font-weight:600;color:var(--ink);
-  text-decoration:none;border-bottom:1px solid var(--ochre);
-  padding-bottom:3px;transition:border-color .2s ease,color .2s ease;
+  font-size:.96rem;font-weight:700;color:var(--ink);
+  text-decoration:none;
+  box-shadow:inset 0 -3px 0 var(--sun);
+  padding:2px 2px 3px;
+  transition:box-shadow .18s ease,color .18s ease;
 }
-.btn-ghost:hover{color:var(--ochre-ink);border-color:var(--ochre-ink)}
+.btn-ghost:hover{box-shadow:inset 0 -22px 0 var(--sun);color:var(--ink)}
 
 :where(a,button,input,textarea,summary):focus-visible{
-  outline:2px solid var(--ochre-ink);outline-offset:3px;border-radius:2px;
+  outline:3px solid var(--ink);outline-offset:3px;border-radius:2px;
 }
 
 /* ---------- Route ---------- */
-.route{position:absolute;left:24px;top:0;width:var(--rail);pointer-events:none;overflow:visible;display:none}
+.route{
+  position:absolute;top:0;
+  left:max(16px,calc(50% - 570px));
+  width:var(--rail);
+  pointer-events:none;overflow:visible;display:none;z-index:3;
+}
 @media (min-width:900px){ .route{display:block} }
-.route .bg{fill:none;stroke:var(--line-2);stroke-width:1.4;stroke-dasharray:5 7;stroke-linecap:round}
-.route .fg{fill:none;stroke:var(--ochre);stroke-width:1.8;stroke-linecap:round}
-.route .stn{fill:var(--paper);stroke:var(--line-2);stroke-width:1.4;transition:fill .45s ease,stroke .45s ease,r .45s ease}
-.route .stn.on{fill:var(--ochre);stroke:var(--ochre)}
-.route .halo{fill:none;stroke:var(--ochre);stroke-width:1;opacity:0;transition:opacity .5s ease}
-.route .halo.on{opacity:.4}
+.route .bg{fill:none;stroke:var(--line-2);stroke-width:2.6;stroke-dasharray:2 10;stroke-linecap:round}
+.route .fg{fill:none;stroke:var(--flame);stroke-width:3.4;stroke-linecap:round}
+.route .stn{fill:var(--sand);stroke:var(--line-2);stroke-width:2.6;transition:fill .4s ease,stroke .4s ease}
+.route .stn.on{fill:var(--sun);stroke:var(--flame)}
+.route .mrk{fill:var(--flame);stroke:var(--sand);stroke-width:3}
+.route .mrk-ring{fill:none;stroke:var(--flame);stroke-width:2;opacity:.35}
 
 /* ---------- Kopfzeile ---------- */
 .topbar{
   position:sticky;top:0;z-index:40;
-  background:rgba(246,244,238,.88);
-  backdrop-filter:saturate(150%) blur(10px);
-  border-bottom:1px solid transparent;
+  background:rgba(251,246,236,.92);
+  backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:2px solid transparent;
   transition:border-color .3s ease;
 }
-.topbar.stuck{border-bottom-color:var(--line)}
+.topbar.stuck{border-bottom-color:var(--ink)}
 .topbar .in{
-  max-width:var(--shell);margin:0 auto;padding:14px 24px;
+  max-width:var(--shell);margin:0 auto;padding:13px 24px;
   display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
-.brand{display:flex;align-items:baseline;gap:9px;text-decoration:none}
-.brand b{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.12rem;letter-spacing:-.02em;font-variation-settings:"SOFT" 45,"WONK" 1}
-.brand span{font-size:.74rem;color:var(--muted);letter-spacing:.04em}
-.topbar .btn{padding:11px 19px;font-size:.86rem}
-@media (max-width:620px){ .brand span{display:none} }
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand b{
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:1.16rem;
+  letter-spacing:-.035em;font-variation-settings:"SOFT" 30,"WONK" 1;
+}
+.brand span{font-size:.72rem;color:var(--muted);letter-spacing:.06em;font-stretch:88%;text-transform:uppercase;font-weight:600}
+.topbar .btn{padding:11px 20px;font-size:.87rem;box-shadow:3px 3px 0 var(--ink)}
+.topbar .btn:hover{box-shadow:1px 1px 0 var(--ink)}
+.prog{position:absolute;left:0;bottom:-2px;height:3px;width:0;background:var(--flame);z-index:2}
+@media (max-width:640px){ .brand span{display:none} }
 
 /* ---------- Hero ---------- */
-.hero{padding:76px 0 0}
-.hero .kicker{margin-bottom:26px}
-.hero h1{margin-bottom:0}
-.hero h1 .em{color:var(--ochre-ink)}
-.hero .lead{margin-top:26px}
-.hero .acts{display:flex;flex-wrap:wrap;align-items:center;gap:26px;margin-top:38px}
+/* padding-top einzeln, niemals als Kurzschreibweise: sonst kippt das
+   padding-left aus .col und die Route läuft durch den Text. */
+.hero{padding-top:70px;position:relative}
+.hero .kicker{margin-bottom:24px}
+.hero h1 .em{color:var(--flame)}
+.hero .lead{margin-top:30px}
+.hero .acts{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:40px}
 .hero .note{
-  margin-top:44px;padding-left:16px;border-left:2px solid var(--sea);
-  font-size:.9rem;color:var(--muted);max-width:46ch;
+  margin-top:46px;padding:18px 22px;
+  background:var(--sand-2);border-left:5px solid var(--sea);
+  font-size:.94rem;line-height:1.6;color:var(--ink-2);max-width:52ch;
+}
+.hero .note b{color:var(--ink);font-weight:700}
+
+.stamp{
+  display:inline-block;transform:rotate(-3.5deg);
+  background:var(--sun);color:var(--ink);
+  border:2px solid var(--ink);
+  font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  font-stretch:90%;padding:8px 14px;margin-bottom:22px;
+  box-shadow:4px 4px 0 var(--ink);
 }
 
-/* Zeilenweise Maske. Der Ausgangszustand hängt an .js, damit ohne
-   JavaScript nichts unsichtbar bleibt. */
-.rvl{display:block;overflow:hidden}
-.js .rvl > span{display:block;transform:translateY(105%);opacity:0}
-.js .ready .rvl > span{animation:riseIn .9s cubic-bezier(.16,.84,.32,1) forwards}
-.js .ready .rvl:nth-of-type(2) > span{animation-delay:.09s}
-.js .ready .rvl:nth-of-type(3) > span{animation-delay:.18s}
+/* Maske, Ausgangszustand nur mit JS */
+.rvl{display:block;overflow:hidden;padding-bottom:.06em}
+.js .rvl > span{display:block;transform:translateY(106%);opacity:0}
+.js .ready .rvl > span{animation:riseIn .95s cubic-bezier(.16,.84,.32,1) forwards}
+.js .ready .rvl:nth-of-type(2) > span{animation-delay:.1s}
 @keyframes riseIn{to{transform:translateY(0);opacity:1}}
 
-.js .fade{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,.84,.32,1)}
+.js .fade{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,.84,.32,1)}
 .js .fade.in{opacity:1;transform:none}
-.fade.d1{transition-delay:.08s}
-.fade.d2{transition-delay:.16s}
-.fade.d3{transition-delay:.24s}
+.fade.d1{transition-delay:.09s}
+.fade.d2{transition-delay:.18s}
+.fade.d3{transition-delay:.27s}
 
-/* ---------- Übergangsband ---------- */
+/* ---------- Zahlenband ---------- */
 .band{
-  margin-top:74px;
-  border-top:1px dashed var(--sea);
-  border-bottom:1px dashed var(--sea);
-  background:var(--paper-2);
+  margin-top:78px;
+  background:var(--flame);
+  border:3px solid var(--ink);
+  box-shadow:9px 9px 0 var(--ink);
   display:grid;grid-template-columns:repeat(3,1fr);
 }
-.band > div{padding:26px 28px;border-right:1px dashed var(--sea)}
+.band > div{padding:30px 30px 32px;border-right:3px solid var(--ink)}
 .band > div:last-child{border-right:0}
 .band b{
-  display:block;font-family:"Fraunces",Georgia,serif;font-weight:600;
-  font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1;letter-spacing:-.02em;
-  font-variation-settings:"SOFT" 45,"WONK" 1;
+  display:block;font-family:"Fraunces",Georgia,serif;font-weight:800;
+  font-size:clamp(2.4rem,5.4vw,3.6rem);line-height:.9;letter-spacing:-.045em;
+  color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1;
 }
-.band span{display:block;margin-top:7px;font-size:.85rem;color:var(--muted)}
-@media (max-width:700px){
-  .band{grid-template-columns:1fr}
-  .band > div{border-right:0;border-bottom:1px dashed var(--sea)}
+.band span{
+  display:block;margin-top:12px;font-size:.82rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;font-stretch:90%;color:var(--ink);
+}
+@media (max-width:760px){
+  .band{grid-template-columns:1fr;box-shadow:6px 6px 0 var(--ink)}
+  .band > div{border-right:0;border-bottom:3px solid var(--ink)}
   .band > div:last-child{border-bottom:0}
 }
 
 /* ---------- Sektionen ---------- */
 section{position:relative}
-.sec{padding:110px 0 0}
-.sec-head{max-width:56ch}
-.sec-head .kicker{margin-bottom:20px}
-.sec-head .lead{margin-top:20px}
+.sec{padding-top:118px}
+.sec-head{max-width:52ch}
+.sec-head .kicker{margin-bottom:22px}
+.sec-head .lead{margin-top:22px}
 
-/* Pain Points */
-.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);margin-top:52px;overflow:hidden}
-.pain{background:var(--surface);padding:32px 28px 34px;display:flex;flex-direction:column;gap:14px;transition:background .3s ease}
-.pain:hover{background:#FFFDF8}
-.pain .ic{width:34px;height:34px;color:var(--ochre-ink)}
-.pain h3{font-size:1.14rem}
-.pain p{font-size:.95rem;line-height:1.66;color:var(--ink-2)}
+/* Problem */
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:54px}
+.pain{
+  background:#fff;border:3px solid var(--ink);
+  padding:28px 26px 30px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:7px 7px 0 var(--ink);
+  transition:transform .18s cubic-bezier(.2,.7,.3,1),box-shadow .18s cubic-bezier(.2,.7,.3,1);
+}
+.pain:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--flame)}
+.pain .ic{width:40px;height:40px;color:var(--flame);flex:none}
+.pain h3{font-size:1.2rem;line-height:1.24}
+.pain p{font-size:.95rem;line-height:1.62;color:var(--ink-2)}
 .pain .fig{
-  margin-top:auto;padding-top:16px;border-top:1px solid var(--line);
-  font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.02rem;
-  color:var(--ink);font-variation-settings:"SOFT" 45,"WONK" 1;
+  margin-top:auto;padding-top:16px;border-top:2px dashed var(--line-2);
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.02rem;line-height:1.3;
+  color:var(--ink);font-variation-settings:"SOFT" 30,"WONK" 1;
 }
 @media (max-width:880px){ .pains{grid-template-columns:1fr} }
 
-/* Mechanismus */
-.steps{margin-top:54px;display:flex;flex-direction:column;gap:0}
+/* Weg */
+.steps{margin-top:56px;display:flex;flex-direction:column}
 .step{
-  display:grid;grid-template-columns:80px 1fr;gap:28px;
-  padding:34px 0;border-top:1px solid var(--line);align-items:start;
+  display:grid;grid-template-columns:120px 1fr;gap:30px;
+  padding:38px 0;border-top:3px solid var(--ink);align-items:start;
 }
-.step:last-child{border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:3px solid var(--ink)}
 .step .no{
-  font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:2.1rem;line-height:1;
-  color:var(--ochre);font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:3.4rem;line-height:.8;
+  color:var(--flame);letter-spacing:-.05em;font-variation-settings:"SOFT" 30,"WONK" 1;
 }
-.step .tx{display:flex;flex-direction:column;gap:10px}
-.step h3{font-size:1.3rem}
-.step p{font-size:1rem;line-height:1.68;color:var(--ink-2);max-width:62ch}
+.step .tx{display:flex;flex-direction:column;gap:12px}
+.step h3{font-size:1.5rem;line-height:1.16}
+.step p{font-size:1.02rem;line-height:1.62;color:var(--ink-2);max-width:60ch}
 .step .tag{
-  align-self:start;margin-top:4px;
-  font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--ochre-ink);background:#FBF2E1;border:1px solid #EFDFBE;
-  padding:4px 10px;border-radius:2px;
+  align-self:start;margin-top:2px;
+  font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-stretch:90%;
+  color:var(--ink);background:var(--sun);border:2px solid var(--ink);padding:5px 11px;
 }
-@media (max-width:700px){ .step{grid-template-columns:1fr;gap:12px} .step .no{font-size:1.6rem} }
+@media (max-width:700px){ .step{grid-template-columns:1fr;gap:10px} .step .no{font-size:2.4rem} }
 
 /* Rechner */
 .calc{
-  margin-top:52px;border:1px solid var(--line-2);border-radius:var(--r);
-  background:var(--surface);overflow:hidden;
-  box-shadow:0 1px 2px rgba(22,35,43,.04),0 24px 50px -34px rgba(22,35,43,.4);
+  margin-top:54px;background:var(--sun);
+  border:3px solid var(--ink);box-shadow:11px 11px 0 var(--ink);
 }
 .calc-grid{display:grid;grid-template-columns:1fr 1fr}
-.calc-in{padding:34px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:24px}
-.calc-out{padding:34px 32px;background:var(--paper-2);display:flex;flex-direction:column;gap:22px}
+.calc-in{padding:34px 32px;border-right:3px solid var(--ink);display:flex;flex-direction:column;gap:24px}
+.calc-out{padding:34px 32px;background:var(--ink);color:var(--sand);display:flex;flex-direction:column;gap:22px}
 @media (max-width:820px){
   .calc-grid{grid-template-columns:1fr}
-  .calc-in{border-right:0;border-bottom:1px solid var(--line)}
+  .calc-in{border-right:0;border-bottom:3px solid var(--ink)}
+  .calc{box-shadow:7px 7px 0 var(--ink)}
 }
 .fld{display:flex;flex-direction:column;gap:9px}
 .fld .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.fld label{font-size:.9rem;font-weight:500;color:var(--ink-2)}
-.fld output{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.12rem;font-variant-numeric:tabular-nums;font-variation-settings:"SOFT" 45,"WONK" 1}
-input[type=range]{
-  -webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:grab;margin:0;
+.fld label{font-size:.84rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-stretch:90%;color:var(--ink)}
+.fld output{
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:1.32rem;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
 }
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;background:transparent;cursor:grab;margin:0}
 input[type=range]:active{cursor:grabbing}
-input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--line-2);border-radius:2px}
-input[type=range]::-moz-range-track{height:3px;background:var(--line-2);border-radius:2px}
+input[type=range]::-webkit-slider-runnable-track{height:5px;background:var(--ink);border-radius:0}
+input[type=range]::-moz-range-track{height:5px;background:var(--ink)}
 input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;width:17px;height:17px;margin-top:-7px;border-radius:50%;
-  background:var(--surface);border:2px solid var(--ink);
-  transition:transform .18s ease,border-color .18s ease;
+  -webkit-appearance:none;width:22px;height:22px;margin-top:-9px;border-radius:0;
+  background:var(--flame);border:3px solid var(--ink);
+  transition:transform .16s ease,background .16s ease;
 }
-input[type=range]::-moz-range-thumb{
-  width:17px;height:17px;border-radius:50%;background:var(--surface);border:2px solid var(--ink);
-}
-input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.16);border-color:var(--ochre-ink)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:0;background:var(--flame);border:3px solid var(--ink)}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.14)}
 
-.out-main .lbl{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.out-lbl{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-stretch:90%;color:var(--sun)}
 .out-main .val{
-  font-family:"Fraunces",Georgia,serif;font-weight:600;
-  font-size:clamp(2.4rem,5.2vw,3.3rem);line-height:1;letter-spacing:-.025em;
-  color:var(--alarm);font-variant-numeric:tabular-nums;margin-top:8px;
-  font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-family:"Fraunces",Georgia,serif;font-weight:800;
+  font-size:clamp(2.7rem,6.4vw,4rem);line-height:.9;letter-spacing:-.045em;
+  color:#fff;font-variant-numeric:tabular-nums;margin-top:10px;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
 }
-.out-main .sub{margin-top:9px;font-size:.86rem;color:var(--muted)}
-.out-split{padding-top:20px;border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:6px}
-.out-split .lbl{font-size:.82rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.out-main .sub{margin-top:12px;font-size:.87rem;color:#B9C2C4;line-height:1.5}
+.out-split{padding-top:22px;border-top:2px dashed #3B464B;display:flex;flex-direction:column;gap:7px}
 .out-split .val{
-  font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.65rem;line-height:1.1;
-  color:var(--ink);font-variant-numeric:tabular-nums;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:1.85rem;line-height:1.05;
+  letter-spacing:-.035em;color:var(--sun);font-variant-numeric:tabular-nums;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
 }
-.out-note{font-size:.82rem;line-height:1.6;color:var(--muted);padding-top:16px;border-top:1px solid var(--line-2)}
-.calc-foot{padding:18px 32px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;background:var(--surface)}
-.calc-foot p{font-size:.84rem;color:var(--muted)}
+.out-note{font-size:.83rem;line-height:1.58;color:#98A2A5;padding-top:18px;border-top:2px dashed #3B464B}
+.calc-foot{padding:20px 32px;border-top:3px solid var(--ink);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.calc-foot p{font-size:.87rem;font-weight:600;color:var(--ink);max-width:52ch}
 
 /* Über uns */
-.person{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:56px}
-.person + .person{margin-top:64px}
+.person{display:grid;grid-template-columns:.85fr 1.15fr;gap:46px;align-items:center;margin-top:58px}
+.person + .person{margin-top:70px}
 .person .tx{display:flex;flex-direction:column;gap:16px}
-.person h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.85rem;letter-spacing:-.02em;font-variation-settings:"SOFT" 45,"WONK" 1}
-.person .role{font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ochre-ink)}
-.person p{font-size:1rem;line-height:1.7;color:var(--ink-2)}
+.person h3{
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:2.3rem;line-height:.98;
+  letter-spacing:-.04em;font-variation-settings:"SOFT" 30,"WONK" 1;
+}
+.person .role{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-stretch:96%;color:var(--flame-deep)}
+.person p{font-size:1.01rem;line-height:1.64;color:var(--ink-2)}
 .person blockquote{
-  margin:6px 0 0;padding-left:18px;border-left:2px solid var(--ochre);
-  font-family:"Fraunces",Georgia,serif;font-size:1.12rem;line-height:1.5;color:var(--ink);
-  font-variation-settings:"SOFT" 45,"WONK" 1;
+  margin:8px 0 0;padding:16px 20px;background:var(--sand-2);border-left:5px solid var(--flame);
+  font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.16rem;line-height:1.42;color:var(--ink);
+  font-variation-settings:"SOFT" 30,"WONK" 1;
 }
 .ph{
-  position:relative;aspect-ratio:4/5;background:var(--paper-2);
-  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  position:relative;aspect-ratio:4/5;background:var(--sand-2);
+  border:3px solid var(--ink);box-shadow:9px 9px 0 var(--flame);overflow:hidden;
 }
-.ph i{position:absolute;inset:18px;border:1px solid rgba(255,255,255,.7)}
+.person.flip .ph{box-shadow:-9px 9px 0 var(--sea)}
+.ph i{position:absolute;inset:16px;border:2px dashed var(--line-2)}
 .ph em{
-  position:absolute;left:0;right:0;bottom:20px;text-align:center;font-style:normal;
-  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#9A948A;
+  position:absolute;left:0;right:0;bottom:22px;text-align:center;font-style:normal;
+  font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#A2947C;
 }
-.ph::after{
-  content:"";position:absolute;inset:0;
-  background:repeating-linear-gradient(45deg,transparent 0 11px,rgba(199,191,174,.18) 11px 12px);
-}
-@media (max-width:820px){
-  .person{grid-template-columns:1fr;gap:24px}
-  .person.flip .ph{order:-1}
+@media (max-width:860px){
+  .person{grid-template-columns:1fr;gap:26px}
+  .person.flip .ph{order:-1;box-shadow:9px 9px 0 var(--sea)}
   .ph{aspect-ratio:3/2}
 }
 
 /* Vergleich */
-.cmp{margin-top:52px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
-.cmp-head{display:grid;grid-template-columns:1.1fr 1fr 1fr;background:var(--paper-2);border-bottom:1px solid var(--line)}
-.cmp-head div{padding:18px 22px;font-size:.8rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.cmp-head div:last-child{border-right:0;color:var(--ochre-ink)}
-.cmp-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid var(--line)}
-.js .cmp-row{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s cubic-bezier(.16,.84,.32,1)}
+.cmp{margin-top:54px;border:3px solid var(--ink);box-shadow:9px 9px 0 var(--ink);background:#fff}
+.cmp-head{display:grid;grid-template-columns:1fr 1fr 1.05fr;border-bottom:3px solid var(--ink)}
+.cmp-head div{
+  padding:16px 22px;font-size:.78rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;font-stretch:90%;border-right:3px solid var(--ink);background:var(--sand-2);
+}
+.cmp-head div:last-child{border-right:0;background:var(--flame);color:#fff}
+.cmp-row{display:grid;grid-template-columns:1fr 1fr 1.05fr;border-bottom:2px solid var(--line)}
+.js .cmp-row{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s cubic-bezier(.16,.84,.32,1)}
 .js .cmp-row.in{opacity:1;transform:none}
 .cmp-row:last-child{border-bottom:0}
-.cmp-row > div{padding:20px 22px;border-right:1px solid var(--line);font-size:.95rem;line-height:1.6}
+.cmp-row > div{padding:20px 22px;border-right:2px solid var(--line);font-size:.95rem;line-height:1.55}
 .cmp-row > div:last-child{border-right:0}
-.cmp-row .k{font-weight:600;color:var(--ink)}
+.cmp-row .k{font-weight:700;color:var(--ink)}
 .cmp-row .a{color:var(--muted)}
-.cmp-row .b{color:var(--ink);background:#FEFCF6}
-@media (max-width:820px){
+.cmp-row .b{color:var(--ink);background:#FFF8E3;font-weight:500}
+@media (max-width:860px){
   .cmp-head{display:none}
   .cmp-row{grid-template-columns:1fr}
-  .cmp-row > div{border-right:0;border-bottom:1px solid var(--line)}
+  .cmp-row > div{border-right:0;border-bottom:2px solid var(--line)}
   .cmp-row > div:last-child{border-bottom:0}
-  .cmp-row .a::before{content:"Übliche Agentur: ";font-weight:600;color:var(--ink)}
-  .cmp-row .b::before{content:"Bei uns: ";font-weight:600;color:var(--ochre-ink)}
+  .cmp-row .a::before{content:"Übliche Agentur: ";font-weight:700;color:var(--ink)}
+  .cmp-row .b::before{content:"Bei uns: ";font-weight:700;color:var(--flame-deep)}
 }
 
-.fit{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);margin-top:28px;overflow:hidden}
-.fit > div{background:var(--surface);padding:28px 26px;display:flex;flex-direction:column;gap:14px}
-.fit h3{font-size:1.06rem}
-.fit ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
-.fit li{font-size:.95rem;line-height:1.58;color:var(--ink-2);padding-left:26px;position:relative}
-.fit li::before{position:absolute;left:0;top:0;font-weight:700}
-.fit .yes li::before{content:"→";color:var(--ochre-ink)}
-.fit .no li::before{content:"×";color:var(--muted)}
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.fit > div{border:3px solid var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:15px;background:#fff}
+.fit > div.yes-box{box-shadow:7px 7px 0 var(--sun)}
+.fit > div.no-box{box-shadow:7px 7px 0 var(--line-2)}
+.fit h3{font-size:1.12rem}
+.fit ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.fit li{font-size:.95rem;line-height:1.52;color:var(--ink-2);padding-left:28px;position:relative}
+.fit li::before{position:absolute;left:0;top:-1px;font-weight:800;font-size:1.05rem}
+.fit .yes li::before{content:"✓";color:var(--flame)}
+.fit .no li::before{content:"✕";color:var(--muted)}
 @media (max-width:760px){ .fit{grid-template-columns:1fr} }
 
 /* Kontakt */
-.contact{margin-top:56px;display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;background:var(--surface)}
-.contact .side{padding:38px 34px;background:var(--paper-2);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:20px}
-.contact .side h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.6rem;letter-spacing:-.02em;font-variation-settings:"SOFT" 45,"WONK" 1}
-.contact .side p{font-size:.95rem;line-height:1.66;color:var(--ink-2)}
-.contact .side .direct{margin-top:auto;padding-top:20px;border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:5px}
-.contact .side .direct span{font-size:.78rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
-.contact .side .direct a{font-size:1rem;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ochre);align-self:start;padding-bottom:2px}
-.form{padding:38px 34px;display:flex;flex-direction:column;gap:18px}
+.contact{margin-top:58px;display:grid;grid-template-columns:.85fr 1.15fr;border:3px solid var(--ink);box-shadow:11px 11px 0 var(--flame);background:#fff}
+.contact .side{padding:36px 32px;background:var(--sand-2);border-right:3px solid var(--ink);display:flex;flex-direction:column;gap:18px}
+.contact .side h3{
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:1.8rem;line-height:1.02;
+  letter-spacing:-.035em;font-variation-settings:"SOFT" 30,"WONK" 1;
+}
+.contact .side p{font-size:.96rem;line-height:1.6;color:var(--ink-2)}
+.contact .side .direct{margin-top:auto;padding-top:20px;border-top:2px dashed var(--line-2);display:flex;flex-direction:column;gap:6px}
+.contact .side .direct span{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-stretch:90%;color:var(--muted)}
+.contact .side .direct a{font-size:1.05rem;font-weight:700;color:var(--ink);text-decoration:none;box-shadow:inset 0 -3px 0 var(--sun);align-self:start;padding-bottom:2px}
+.form{padding:36px 32px;display:flex;flex-direction:column;gap:18px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .f{display:flex;flex-direction:column;gap:7px}
-.f label{font-size:.83rem;font-weight:600;color:var(--ink-2)}
+.f label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-stretch:90%;color:var(--ink-2)}
 .f input,.f textarea{
-  font:inherit;font-size:.96rem;color:var(--ink);
-  background:var(--paper);border:1px solid var(--line-2);border-radius:2px;
-  padding:12px 13px;width:100%;transition:border-color .2s ease,background .2s ease;
+  font:inherit;font-size:.97rem;color:var(--ink);
+  background:var(--sand);border:2px solid var(--ink);border-radius:0;
+  padding:12px 13px;width:100%;transition:background .18s ease,box-shadow .18s ease;
 }
-.f input:focus,.f textarea:focus{border-color:var(--ink);background:var(--surface);outline:none}
+.f input:focus,.f textarea:focus{background:#fff;outline:none;box-shadow:4px 4px 0 var(--sun)}
 .f textarea{resize:vertical;min-height:96px}
-.consent{display:flex;gap:11px;align-items:flex-start;font-size:.83rem;line-height:1.55;color:var(--muted)}
-.consent input{margin-top:3px;accent-color:var(--ink);width:16px;height:16px;flex:none}
-.consent a{color:var(--ink)}
-.form .btn{align-self:start;border:none}
-.form-msg{font-size:.9rem;font-weight:500;display:none}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:.84rem;line-height:1.52;color:var(--ink-2)}
+.consent input{margin-top:3px;accent-color:var(--flame);width:17px;height:17px;flex:none}
+.form .btn{align-self:start}
+.form-msg{font-size:.92rem;font-weight:600;display:none}
 .form-msg.show{display:block}
-.form-msg.ok{color:#2C6E49}
-.form-msg.err{color:var(--alarm)}
-@media (max-width:820px){ .contact{grid-template-columns:1fr} .contact .side{border-right:0;border-bottom:1px solid var(--line)} .row2{grid-template-columns:1fr} }
+.form-msg.ok{color:var(--sea)}
+.form-msg.err{color:var(--flame-deep)}
+@media (max-width:860px){
+  .contact{grid-template-columns:1fr;box-shadow:7px 7px 0 var(--flame)}
+  .contact .side{border-right:0;border-bottom:3px solid var(--ink)}
+  .row2{grid-template-columns:1fr}
+}
 
 /* Fuß */
-footer{margin-top:110px;border-top:1px solid var(--line);background:var(--paper-2)}
-footer .in{max-width:var(--shell);margin:0 auto;padding:40px 24px 46px;display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
-footer .who{display:flex;flex-direction:column;gap:7px;max-width:38ch}
-footer .who b{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.1rem;font-variation-settings:"SOFT" 45,"WONK" 1}
-footer .who p{font-size:.88rem;color:var(--muted);line-height:1.6}
-footer nav{display:flex;flex-wrap:wrap;gap:22px}
-footer nav a{font-size:.88rem;color:var(--ink-2);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px}
-footer nav a:hover{border-bottom-color:var(--ochre)}
-footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:.78rem;color:var(--muted)}
+footer{margin-top:118px;border-top:3px solid var(--ink);background:var(--sand-2)}
+footer .in{
+  max-width:var(--shell);margin:0 auto;padding:44px 24px 46px;
+  display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start;
+}
+@media (min-width:900px){ footer .in{padding-left:calc(24px + var(--rail))} }
+footer .who{display:flex;flex-direction:column;gap:8px;max-width:38ch}
+footer .who b{
+  font-family:"Fraunces",Georgia,serif;font-weight:800;font-size:1.25rem;letter-spacing:-.035em;
+  font-variation-settings:"SOFT" 30,"WONK" 1;
+}
+footer .who p{font-size:.9rem;color:var(--ink-2);line-height:1.58}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer nav a{font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:none;box-shadow:inset 0 -2px 0 transparent;padding-bottom:2px;transition:box-shadow .18s ease}
+footer nav a:hover{box-shadow:inset 0 -2px 0 var(--flame)}
+footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 36px;font-size:.79rem;color:var(--muted);line-height:1.55}
+@media (min-width:900px){ footer .fine{padding-left:calc(24px + var(--rail))} }
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
@@ -408,343 +450,346 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       <b>Thun&nbsp;Hotel&nbsp;Partner</b>
       <span>Katrin &amp; Martin Thun</span>
     </a>
-    <a class="btn" href="#kontakt">Provisions-Check anfordern <span class="arw">→</span></a>
+    <a class="btn" href="#kontakt">Provisions-Check <span class="arw">→</span></a>
   </div>
+  <div class="prog" id="prog"></div>
 </header>
 
-<main class="shell" id="top">
+<div id="page">
 
   <svg class="route" id="route" aria-hidden="true" focusable="false">
     <path class="bg" id="routeBg"></path>
     <path class="fg" id="routeFg"></path>
     <g id="routeStations"></g>
+    <circle class="mrk-ring" id="mrkRing" r="12" cx="-99" cy="-99"></circle>
+    <circle class="mrk" id="mrk" r="6" cx="-99" cy="-99"></circle>
   </svg>
 
-  <!-- ================= 1 · Hero ================= -->
-  <section class="hero col" data-station>
-    <p class="kicker">Für inhabergeführte Hotels mit 20 bis 35 Zimmern</p>
-    <h1 class="display">
-      <span class="rvl"><span>Mehr Direktbuchungen.</span></span>
-      <span class="rvl"><span class="em">Weniger Provision.</span></span>
-    </h1>
-    <p class="lead fade d1">Wir bauen inhabergeführten Hotels den eigenen Buchungskanal auf, damit ein größerer Teil Ihrer Gäste direkt bei Ihnen bucht statt über ein Portal. Jede Buchung, die direkt kommt, behalten Sie vollständig.</p>
-    <div class="acts fade d2">
-      <a class="btn" href="#kontakt">Provisions-Check anfordern <span class="arw">→</span></a>
-      <a class="btn-ghost" href="#weg">So arbeiten wir</a>
-    </div>
-    <p class="note fade d3">Beraten von jemandem, der bei Booking.com selbst auf der anderen Seite des Tisches saß. Wir wissen, wie Portale Häuser wie Ihres behandeln, und was das für Ihre Marge bedeutet.</p>
+  <main class="shell" id="top">
 
-    <div class="band fade" id="band">
-      <div><b data-count="7" data-suffix="+">7+</b><span>Jahre Online-Marketing</span></div>
-      <div><b data-count="1000" data-suffix="+">1.000+</b><span>begleitete Kunden</span></div>
-      <div><b data-count="2" data-suffix="+">2+</b><span>Jahre OTA-Insiderwissen</span></div>
-    </div>
-  </section>
+    <!-- ================= 1 · Hero ================= -->
+    <section class="hero col" data-station>
+      <p class="kicker">Für inhabergeführte Häuser mit 20 bis 35 Zimmern</p>
+      <h1 class="display">
+        <span class="rvl"><span>Volles Haus.</span></span>
+        <span class="rvl"><span class="em">Volle Marge.</span></span>
+      </h1>
+      <p class="lead fade d1">Wir bauen Ihnen den eigenen Buchungskanal auf. Mehr Gäste buchen direkt bei Ihnen, und ein deutlich größerer Teil vom Zimmerpreis bleibt auch da, wo er hingehört.</p>
+      <div class="acts fade d2">
+        <a class="btn" href="#kontakt">Provisions-Check anfordern <span class="arw">→</span></a>
+        <a class="btn-ghost" href="#weg">So arbeiten wir</a>
+      </div>
+      <p class="note fade d3"><b>Beraten von jemandem, der bei Booking.com selbst auf der anderen Seite des Tisches saß.</b> Wir wissen ziemlich genau, wie Portale mit Häusern wie Ihrem umgehen, und was das jeden Monat kostet.</p>
 
-  <!-- ================= 2 · Pain Points ================= -->
-  <section class="sec col" data-station id="problem">
-    <div class="sec-head">
-      <p class="kicker">Das Problem</p>
-      <h2 class="display">Ihr Haus ist voll. Ihre Marge nicht.</h2>
-      <p class="lead">Drei Dinge kosten inhabergeführte Häuser jedes Jahr echtes Geld, und keines davon fällt im Tagesgeschäft auf. Es steht ja niemand an der Rezeption und sagt „ich hätte auch direkt gebucht".</p>
-    </div>
+      <div class="band fade" id="band">
+        <div><b data-count="7" data-suffix="+">7+</b><span>Jahre Online-Marketing</span></div>
+        <div><b data-count="1000" data-suffix="+">1.000+</b><span>begleitete Kunden</span></div>
+        <div><b data-count="2" data-suffix="+">2+</b><span>Jahre OTA-Insiderwissen</span></div>
+      </div>
+    </section>
 
-    <div class="pains">
-      <article class="pain fade">
-        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <path d="M4 26h24M8 26V14M14 26V8M20 26V17M26 26V11" stroke-linecap="round"/>
-          <path d="M6 6l7 5 5-4 8 3" stroke-dasharray="2 3" stroke-linecap="round"/>
-        </svg>
-        <h3>Die Provision läuft still mit</h3>
-        <p>Fünfzehn Prozent klingen verkraftbar, bis man sie aufs Jahr rechnet. Dazu kommen Zahlungsgebühr und Rabattprogramme. Der Betrag, der dabei herauskommt, ist bei den meisten Häusern kein Kostenpunkt mehr, sondern eine Personalstelle.</p>
-        <p class="fig">Rechnen Sie es unten selbst nach.</p>
+    <!-- ================= 2 · Problem ================= -->
+    <section class="sec col" data-station id="problem">
+      <div class="sec-head">
+        <p class="kicker">Das Problem</p>
+        <h2 class="display">Ihr Haus ist voll. Ihre Marge nicht.</h2>
+        <p class="lead">Drei Dinge kosten inhabergeführte Häuser jedes Jahr richtig Geld. Keines davon fällt im Tagesgeschäft auf, weil niemand an der Rezeption steht und sagt: „Ich hätte auch direkt gebucht."</p>
+      </div>
+
+      <div class="pains">
+        <article class="pain fade">
+          <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 26h24M8 26V14M14 26V7M20 26V17M26 26V11" stroke-linecap="round"/>
+          </svg>
+          <h3>Fünfzehn Prozent, die keiner laut ausspricht</h3>
+          <p>Auf eine einzelne Buchung wirkt das harmlos. Aufs Jahr gerechnet ist es keine Gebühr mehr, sondern eine Personalstelle. Zahlungsgebühr und Rabattprogramme kommen obendrauf, und die rechnet fast niemand mit.</p>
+          <p class="fig">Rechnen Sie es gleich selbst nach.</p>
+        </article>
+
+        <article class="pain fade d1">
+          <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="5" y="4" width="15" height="24"/>
+            <path d="M5 10h15M5 22h15"/>
+            <path d="M24 14l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Ihre eigene Seite hält niemanden</h3>
+          <p>Die meisten Gäste sehen Ihr Haus zuerst im Portal und schauen dann bei Ihnen nach. Was sie dort finden, entscheidet alles. Ist die Seite alt, langsam oder auf dem Handy unbedienbar, gehen sie zurück und buchen da, wo es leicht ist.</p>
+          <p class="fig">Der teuerste Klick ist der zurück.</p>
+        </article>
+
+        <article class="pain fade d2">
+          <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M16 27S6 20 6 13a5.6 5.6 0 0 1 10-3.4A5.6 5.6 0 0 1 26 13c0 7-10 14-10 14z" stroke-linejoin="round"/>
+          </svg>
+          <h3>Ihr Stammgast gehört dem Portal</h3>
+          <p>Wer einmal über ein Portal gebucht hat, bucht beim nächsten Mal wieder darüber. Sie haben keine Adresse, keinen Kontakt, keinen Weg, den Gast selbst zurückzuholen. Sie zahlen für denselben Menschen also zweimal.</p>
+          <p class="fig">Wiederkehrer wären Ihre günstigsten Gäste.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 3 · Weg ================= -->
+    <section class="sec col" data-station id="weg">
+      <div class="sec-head">
+        <p class="kicker">Unser Weg</p>
+        <h2 class="display">Vier Etappen zum eigenen Buchungskanal</h2>
+        <p class="lead">Wir verkaufen keine Einzelteile aus dem Katalog. Wir haben ein Ziel, den Anteil Ihrer Direktbuchungen, und suchen die Werkzeuge danach aus, was Ihr Haus wirklich braucht.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step fade">
+          <div class="no">01</div>
+          <div class="tx">
+            <h3>Gefunden werden, ohne Umweg</h3>
+            <p>Wer Ihr Haus mit Namen sucht, soll bei Ihnen landen. Nicht bei einem Portal, das auf Ihren Namen Anzeigen schaltet und Ihnen die Buchung danach in Rechnung stellt. Google-Eintrag, lokale Sichtbarkeit, die Suchbegriffe Ihrer Region. Die Etappe, die am schnellsten wirkt.</p>
+          </div>
+        </div>
+
+        <div class="step fade">
+          <div class="no">02</div>
+          <div class="tx">
+            <h3>Die Buchung lächerlich einfach machen</h3>
+            <p>Ihre Buchungsstrecke bleibt genau so, wie sie ist. Wir tauschen kein System aus und verkaufen Ihnen auch keines. Wir bauen alles davor neu: eine Seite, die auf dem Handy zuerst funktioniert, in unter zwei Sekunden lädt und genau einen Weg zum Kalender kennt.</p>
+            <span class="tag">Ihr System bleibt</span>
+          </div>
+        </div>
+
+        <div class="step fade">
+          <div class="no">03</div>
+          <div class="tx">
+            <h3>Den Gast behalten</h3>
+            <p>Wer einmal direkt gebucht hat, darf beim nächsten Mal nicht wieder über ein Portal kommen. Dafür braucht es keinen großen Aufwand, sondern einen sauberen Direktkontakt: Newsletter, ein Anlass zur Wiederbuchung, ein Grund, sich zu melden, bevor die Saison anfängt.</p>
+          </div>
+        </div>
+
+        <div class="step fade">
+          <div class="no">04</div>
+          <div class="tx">
+            <h3>Nachrechnen statt behaupten</h3>
+            <p>Wir messen genau eine Zahl: den Anteil der Buchungen, die direkt bei Ihnen ankommen. Alles andere ist Beiwerk. Sie sehen jeden Monat, wohin sich diese Zahl bewegt, und wir reden auch dann darüber, wenn sie sich mal nicht bewegt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 · Rechner ================= -->
+    <section class="sec col" data-station id="rechner">
+      <div class="sec-head">
+        <p class="kicker">Ihre Zahl</p>
+        <h2 class="display">Was Ihr Haus jedes Jahr an die Portale überweist</h2>
+        <p class="lead">Vier Angaben, die Sie im Kopf haben. Kein Formular, kein Login, keine E-Mail-Adresse. Wir rechnen mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme überhaupt dazukommen.</p>
+      </div>
+
+      <div class="calc fade">
+        <div class="calc-grid">
+          <div class="calc-in">
+            <div class="fld">
+              <div class="top"><label for="rooms">Zimmer</label><output id="oRooms" for="rooms">28</output></div>
+              <input type="range" id="rooms" min="5" max="80" step="1" value="28">
+            </div>
+            <div class="fld">
+              <div class="top"><label for="occ">Auslastung im Jahresschnitt</label><output id="oOcc" for="occ">65 %</output></div>
+              <input type="range" id="occ" min="30" max="95" step="1" value="65">
+            </div>
+            <div class="fld">
+              <div class="top"><label for="adr">Zimmerpreis im Schnitt</label><output id="oAdr" for="adr">120 €</output></div>
+              <input type="range" id="adr" min="50" max="300" step="5" value="120">
+            </div>
+            <div class="fld">
+              <div class="top"><label for="share">Anteil Buchungen über Portale</label><output id="oShare" for="share">55 %</output></div>
+              <input type="range" id="share" min="10" max="90" step="1" value="55">
+            </div>
+          </div>
+
+          <div class="calc-out">
+            <div class="out-main">
+              <p class="out-lbl">Provision pro Jahr, geschätzt</p>
+              <p class="val" id="oFee">65.766 €</p>
+              <p class="sub" id="oMonth">Im Schnitt 5.481 € pro Monat, saisonal sehr ungleich verteilt.</p>
+            </div>
+            <div class="out-split">
+              <p class="out-lbl">Davon realistisch verlagerbar</p>
+              <p class="val" id="oShift">6.577 bis 16.442 €</p>
+            </div>
+            <p class="out-note">Kein Haus verlagert alles, und das soll es auch gar nicht. Realistisch sind 10 bis 25 Prozent des Portalvolumens. Alle Werte sind Schätzungen auf Basis Ihrer Angaben.</p>
+          </div>
+        </div>
+        <div class="calc-foot">
+          <p>Die genaue Rechnung für Ihr Haus, mit Zahlungsgebühr und Programmen, machen wir im Gespräch.</p>
+          <a class="btn-ghost" href="#kontakt">Zahlen für mein Haus prüfen lassen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5 · Über uns ================= -->
+    <section class="sec col" data-station id="ueber-uns">
+      <div class="sec-head">
+        <p class="kicker">Wer wir sind</p>
+        <h2 class="display">Zwei Menschen. Kein Account Manager.</h2>
+        <p class="lead">Sie arbeiten mit uns beiden. Keine Weitergabe an ein Team, das Sie nie zu Gesicht bekommen, und keine Nummer in einem Ticketsystem.</p>
+      </div>
+
+      <article class="person fade">
+        <div class="ph"><i></i><em>Bild Katrin</em></div>
+        <div class="tx">
+          <p class="role">Hotellerie und Beratung</p>
+          <h3>Katrin Thun</h3>
+          <p>Katrin hat bei Booking.com gearbeitet und die Hotellerie von der Plattformseite kennengelernt. Sie weiß, wie Portale mit Häusern arbeiten, worauf dort geschaut wird, und warum so viele Betreiber das Gefühl haben, im eigenen Geschäft nur noch zu reagieren.</p>
+          <blockquote>„Ich habe lange auf der anderen Seite des Tisches gesessen. Deshalb weiß ich ziemlich genau, wo bei einem Haus wie Ihrem das Geld liegen bleibt."</blockquote>
+        </div>
       </article>
 
-      <article class="pain fade d1">
-        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <rect x="6" y="4" width="14" height="24" rx="2"/>
-          <path d="M6 9h14M6 23h14" stroke-dasharray="2 3"/>
-          <path d="M24 14l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3>Die eigene Seite hält niemanden</h3>
-        <p>Viele Gäste sehen Ihr Haus zuerst im Portal und schauen dann auf Ihrer Website nach. Was sie dort finden, entscheidet alles. Ist die Seite alt, langsam oder auf dem Handy unbedienbar, gehen sie zurück und buchen dort, wo es leicht ist.</p>
-        <p class="fig">Der teuerste Klick ist der zurück.</p>
+      <article class="person flip fade">
+        <div class="tx">
+          <p class="role">Website und Online-Marketing</p>
+          <h3>Martin Thun</h3>
+          <p>Martin baut seit sieben Jahren Websites und Kampagnen für Selbstständige und kleine Unternehmen und hat dabei über tausend Kunden begleitet. Er setzt alles selbst um, was auf Ihrer Seite passiert. Kein Zwischenhändler, keine Weiterreichung.</p>
+          <blockquote>„Diese Seite hier ist die Arbeitsprobe. Wenn Sie die gut finden, wissen Sie ungefähr, was Ihr Haus bekommt."</blockquote>
+        </div>
+        <div class="ph"><i></i><em>Bild Martin</em></div>
       </article>
+    </section>
 
-      <article class="pain fade d2">
-        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <path d="M16 27s-9-6-9-13a5.5 5.5 0 0 1 9-4.2A5.5 5.5 0 0 1 25 14c0 7-9 13-9 13z"/>
-          <path d="M2 8h5M2 12h3" stroke-linecap="round" stroke-dasharray="2 3"/>
-        </svg>
-        <h3>Der Stammgast gehört dem Portal</h3>
-        <p>Wer einmal über ein Portal gebucht hat, bucht beim nächsten Mal wieder darüber. Sie haben keine Adresse, keinen Kontakt, keine Möglichkeit, den Gast selbst zurückzuholen. Sie zahlen für denselben Menschen zweimal.</p>
-        <p class="fig">Wiederkehrer sind die günstigsten Gäste.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ================= 3 · Mechanismus ================= -->
-  <section class="sec col" data-station id="weg">
-    <div class="sec-head">
-      <p class="kicker">Unser Weg</p>
-      <h2 class="display">Vier Etappen zum eigenen Buchungskanal</h2>
-      <p class="lead">Wir verkaufen keine Einzelteile. Wir haben ein Ziel, den Anteil Ihrer Direktbuchungen, und wählen die Werkzeuge danach aus, was Ihr Haus tatsächlich braucht.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step fade">
-        <div class="no">01</div>
-        <div class="tx">
-          <h3>Gefunden werden, ohne Umweg</h3>
-          <p>Wer Ihr Haus mit Namen sucht, soll bei Ihnen landen und nicht bei einem Portal, das für Ihren Namen bezahlt. Wir bringen Ihren Google-Eintrag, Ihre lokale Sichtbarkeit und die Suchbegriffe Ihrer Region in Ordnung. Das ist die Etappe, die am schnellsten wirkt.</p>
-        </div>
+    <!-- ================= 6 · Vergleich ================= -->
+    <section class="sec col" data-station id="unterschied">
+      <div class="sec-head">
+        <p class="kicker">Der Unterschied</p>
+        <h2 class="display">Nicht die sechste Agentur mit derselben Mappe</h2>
       </div>
 
-      <div class="step fade">
-        <div class="no">02</div>
-        <div class="tx">
-          <h3>Die Buchung leicht machen</h3>
-          <p>Ihre Buchungsstrecke bleibt genau so, wie sie ist. Wir tauschen kein System aus und verkaufen Ihnen keines. Wir bauen alles davor neu: eine Website, die auf dem Handy zuerst funktioniert, in unter zwei Sekunden lädt und einen einzigen klaren Weg zum Kalender kennt.</p>
-          <span class="tag">Ihr System bleibt</span>
+      <div class="cmp">
+        <div class="cmp-head">
+          <div>&nbsp;</div>
+          <div>Übliche Hotel-Agentur</div>
+          <div>Thun Hotel Partner</div>
         </div>
+        <div class="cmp-row"><div class="k">Wer Sie berät</div><div class="a">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="b">Katrin, die die Branche von der Plattformseite kennt, und Martin, der es selbst baut</div></div>
+        <div class="cmp-row"><div class="k">Was verkauft wird</div><div class="a">Website, Ads und Social Media als getrennte Posten auf der Rechnung</div><div class="b">Ein Ziel: mehr Direktbuchungen. Die Werkzeuge folgen daraus, nicht umgekehrt</div></div>
+        <div class="cmp-row"><div class="k">Ihr Buchungssystem</div><div class="a">Soll gegen das System der Agentur getauscht werden</div><div class="b">Bleibt. Wir binden an, was Sie haben, und bauen alles davor neu</div></div>
+        <div class="cmp-row"><div class="k">Hausgröße</div><div class="a">Ausgelegt auf Häuser ab 30 bis 80 Zimmern samt Marketingabteilung</div><div class="b">Inhabergeführt, 20 bis 35 Zimmer, Entscheidung am Küchentisch</div></div>
+        <div class="cmp-row"><div class="k">Woran Erfolg gemessen wird</div><div class="a">Reichweite, Klicks und ein Bericht, den niemand liest</div><div class="b">Anteil der Direktbuchungen. Eine Zahl, jeden Monat</div></div>
       </div>
 
-      <div class="step fade">
-        <div class="no">03</div>
-        <div class="tx">
-          <h3>Den Gast behalten</h3>
-          <p>Ein Gast, der einmal direkt gebucht hat, darf beim nächsten Mal nicht wieder über ein Portal kommen. Dafür braucht es keinen Aufwand, sondern einen sauberen Direktkontakt: Newsletter, Wiederbuchungs-Anlässe, ein Grund, sich zu melden, bevor die Saison beginnt.</p>
+      <div class="fit">
+        <div class="yes-box">
+          <h3>Wir passen zu Ihnen, wenn</h3>
+          <ul class="yes">
+            <li>Sie Ihr Haus selbst führen und Entscheidungen selbst treffen</li>
+            <li>zwischen 20 und 35 Zimmer zu vermieten sind</li>
+            <li>die Übernachtung Ihr Hauptgeschäft ist, nicht Tagung oder Restaurant</li>
+            <li>Sie wissen, dass Portale bleiben, und trotzdem mehr selbst in der Hand haben wollen</li>
+          </ul>
+        </div>
+        <div class="no-box">
+          <h3>Wir passen nicht, wenn</h3>
+          <ul class="no">
+            <li>Sie zu einer Kette gehören oder eine Marketingabteilung mitredet</li>
+            <li>eine neue Website reichen soll und danach niemand weiterarbeitet</li>
+            <li>Ergebnisse schon im ersten Monat erwartet werden</li>
+            <li>der Preis das einzige Kriterium ist</li>
+          </ul>
         </div>
       </div>
+    </section>
 
-      <div class="step fade">
-        <div class="no">04</div>
-        <div class="tx">
-          <h3>Nachrechnen statt behaupten</h3>
-          <p>Wir messen eine einzige Zahl: den Anteil der Buchungen, die direkt bei Ihnen ankommen. Alles andere ist Beiwerk. Sie sehen jeden Monat, wohin sich diese Zahl bewegt, und wir sprechen darüber, auch wenn sie sich mal nicht bewegt.</p>
-        </div>
+    <!-- ================= 7 · Kontakt ================= -->
+    <section class="sec col" data-station id="kontakt">
+      <div class="sec-head">
+        <p class="kicker">Erster Schritt</p>
+        <h2 class="display">Der Provisions-Check</h2>
+        <p class="lead">Wir schauen uns Ihr Haus an, rechnen Ihre echten Portalkosten durch und sagen Ihnen, wie viel davon realistisch verlagerbar ist. Kostenlos. Und Sie bekommen die Zahlen auch dann, wenn wir nicht zusammenarbeiten.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- ================= 4 · Rechner ================= -->
-  <section class="sec col" data-station id="rechner">
-    <div class="sec-head">
-      <p class="kicker">Ihre Zahl</p>
-      <h2 class="display">Was Ihr Haus im Jahr an Portale zahlt</h2>
-      <p class="lead">Vier Angaben, die Sie im Kopf haben. Kein Formular, kein Login. Die Rechnung nutzt einen Provisionssatz von 15 Prozent, was der übliche Ausgangswert ist, bevor Programme und Zahlungsgebühren dazukommen.</p>
-    </div>
-
-    <div class="calc fade">
-      <div class="calc-grid">
-        <div class="calc-in">
-          <div class="fld">
-            <div class="top"><label for="rooms">Zimmer</label><output id="oRooms" for="rooms">28</output></div>
-            <input type="range" id="rooms" min="5" max="80" step="1" value="28">
-          </div>
-          <div class="fld">
-            <div class="top"><label for="occ">Auslastung im Jahresschnitt</label><output id="oOcc" for="occ">65 %</output></div>
-            <input type="range" id="occ" min="30" max="95" step="1" value="65">
-          </div>
-          <div class="fld">
-            <div class="top"><label for="adr">Durchschnittlicher Zimmerpreis</label><output id="oAdr" for="adr">120 €</output></div>
-            <input type="range" id="adr" min="50" max="300" step="5" value="120">
-          </div>
-          <div class="fld">
-            <div class="top"><label for="share">Anteil Buchungen über Portale</label><output id="oShare" for="share">55 %</output></div>
-            <input type="range" id="share" min="10" max="90" step="1" value="55">
+      <div class="contact fade">
+        <div class="side">
+          <h3>Was dann passiert</h3>
+          <p>Sie schicken uns die Eckdaten. Wir melden uns innerhalb von zwei Werktagen mit einer ersten Einschätzung und schlagen ein Gespräch von zwanzig Minuten vor. Kein Verkaufstermin, keine dreißig Folien.</p>
+          <p>Und wenn wir dabei merken, dass sich das für Ihr Haus nicht lohnt, sagen wir Ihnen das. Ist für alle billiger.</p>
+          <div class="direct">
+            <span>Lieber direkt</span>
+            <a href="mailto:mt@martinthun.com">mt@martinthun.com</a>
           </div>
         </div>
 
-        <div class="calc-out">
-          <div class="out-main">
-            <p class="lbl">Provision pro Jahr, geschätzt</p>
-            <p class="val" id="oFee">65.766 €</p>
-            <p class="sub" id="oMonth">Im Schnitt 5.481 € pro Monat, saisonal sehr ungleich verteilt.</p>
+        <form class="form" id="checkForm" novalidate>
+          <div class="row2">
+            <div class="f"><label for="hotel">Name des Hauses</label><input type="text" id="hotel" name="hotel" autocomplete="organization" required></div>
+            <div class="f"><label for="name">Ihr Name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
           </div>
-          <div class="out-split">
-            <p class="lbl">Davon realistisch verlagerbar</p>
-            <p class="val" id="oShift">6.577 bis 16.442 €</p>
+          <div class="row2">
+            <div class="f"><label for="mail">E-Mail</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
+            <div class="f"><label for="tel">Telefon, optional</label><input type="tel" id="tel" name="tel" autocomplete="tel"></div>
           </div>
-          <p class="out-note">Kein Haus verlagert alles, und das soll es auch nicht. Realistisch sind 10 bis 25 Prozent des Portalvolumens. Alle Werte sind Schätzungen auf Basis Ihrer Angaben.</p>
-        </div>
+          <div class="f"><label for="msg">Wo drückt es gerade am meisten?</label><textarea id="msg" name="msg" rows="4"></textarea></div>
+          <label class="consent"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span></label>
+          <button class="btn" type="submit">Provisions-Check anfordern <span class="arw">→</span></button>
+          <p class="form-msg" id="formMsg" role="status"></p>
+        </form>
       </div>
-      <div class="calc-foot">
-        <p>Die genaue Rechnung für Ihr Haus, inklusive Zahlungsgebühr und Programmen, machen wir im Gespräch.</p>
-        <a class="btn-ghost" href="#kontakt">Zahlen für mein Haus prüfen lassen</a>
+    </section>
+  </main>
+
+  <!-- ================= 8 · Fußzeile ================= -->
+  <footer data-station>
+    <div class="in">
+      <div class="who">
+        <b>Thun Hotel Partner</b>
+        <p>Direktbuchungen für inhabergeführte Häuser mit 20 bis 35 Zimmern im deutschsprachigen Raum. Katrin und Martin Thun.</p>
       </div>
+      <nav aria-label="Fußzeile">
+        <a href="#problem">Problem</a>
+        <a href="#weg">Unser Weg</a>
+        <a href="#rechner">Rechner</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#datenschutz">Datenschutz</a>
+      </nav>
     </div>
-  </section>
-
-  <!-- ================= 5 · Über uns ================= -->
-  <section class="sec col" data-station id="ueber-uns">
-    <div class="sec-head">
-      <p class="kicker">Wer wir sind</p>
-      <h2 class="display">Zwei Menschen, nicht zwölf Ansprechpartner</h2>
-      <p class="lead">Sie arbeiten mit uns beiden. Kein Account Manager, keine Weitergabe an ein Team, das Sie nie kennenlernen.</p>
-    </div>
-
-    <article class="person fade">
-      <div class="ph"><i></i><em>Bild Katrin</em></div>
-      <div class="tx">
-        <p class="role">Hotellerie und Vertrieb</p>
-        <h3>Katrin Thun</h3>
-        <p>Katrin hat bei Booking.com gearbeitet und die Hotellerie von der Plattformseite kennengelernt. Sie weiß, wie Portale mit Häusern arbeiten, worauf sie schauen, und warum viele Betreiber das Gefühl haben, im eigenen Geschäft nur noch zu reagieren.</p>
-        <blockquote>„Ich habe lange auf der anderen Seite des Tisches gesessen. Deshalb weiß ich ziemlich genau, wo bei einem Haus wie Ihrem das Geld liegen bleibt."</blockquote>
-      </div>
-    </article>
-
-    <article class="person flip fade">
-      <div class="tx">
-        <p class="role">Website und Online-Marketing</p>
-        <h3>Martin Thun</h3>
-        <p>Martin baut seit sieben Jahren Websites und Kampagnen für Selbstständige und kleine Unternehmen und hat dabei über tausend Kunden begleitet. Er setzt alles selbst um, was auf Ihrer Seite passiert. Was er Ihnen zeigt, hat er auch gebaut.</p>
-        <blockquote>„Diese Seite hier ist der Beweis. Wenn Sie die gut finden, wissen Sie ungefähr, was Ihr Haus bekommt."</blockquote>
-      </div>
-      <div class="ph"><i></i><em>Bild Martin</em></div>
-    </article>
-  </section>
-
-  <!-- ================= 6 · Vergleich ================= -->
-  <section class="sec col" data-station id="unterschied">
-    <div class="sec-head">
-      <p class="kicker">Der Unterschied</p>
-      <h2 class="display">Warum wir nicht die sechste Agentur mit derselben Mappe sind</h2>
-    </div>
-
-    <div class="cmp">
-      <div class="cmp-head">
-        <div>&nbsp;</div>
-        <div>Übliche Hotel-Agentur</div>
-        <div>Thun Hotel Partner</div>
-      </div>
-      <div class="cmp-row"><div class="k">Wer Sie berät</div><div class="a">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="b">Katrin, die die Branche von der Plattformseite kennt, und Martin, der es selbst baut</div></div>
-      <div class="cmp-row"><div class="k">Was verkauft wird</div><div class="a">Website, Ads und Social Media als getrennte Posten auf der Rechnung</div><div class="b">Ein Ziel, mehr Direktbuchungen. Die Werkzeuge folgen daraus, nicht umgekehrt</div></div>
-      <div class="cmp-row"><div class="k">Ihr Buchungssystem</div><div class="a">Soll gegen das System der Agentur getauscht werden</div><div class="b">Bleibt. Wir binden an, was Sie haben, und bauen alles davor neu</div></div>
-      <div class="cmp-row"><div class="k">Hausgröße</div><div class="a">Ausgelegt auf Häuser ab 30 bis 80 Zimmern und Marketingabteilung</div><div class="b">Inhabergeführt, 20 bis 35 Zimmer, Entscheidung am Küchentisch</div></div>
-      <div class="cmp-row"><div class="k">Woran Erfolg gemessen wird</div><div class="a">Reichweite, Klicks, Sichtbarkeits-Berichte</div><div class="b">Anteil der Direktbuchungen. Eine Zahl, jeden Monat</div></div>
-    </div>
-
-    <div class="fit">
-      <div>
-        <h3>Wir passen gut zu Ihnen, wenn</h3>
-        <ul class="yes">
-          <li>Sie Ihr Haus selbst führen und Entscheidungen selbst treffen</li>
-          <li>zwischen 20 und 35 Zimmer zu vermieten sind</li>
-          <li>die Übernachtung Ihr Hauptgeschäft ist, nicht Tagung oder Restaurant</li>
-          <li>Sie wissen, dass Portale bleiben, und trotzdem mehr selbst in der Hand haben wollen</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Wir passen nicht, wenn</h3>
-        <ul class="no">
-          <li>Sie zu einer Kette gehören oder eine Marketingabteilung mitentscheidet</li>
-          <li>eine neue Website reicht und danach niemand weiterarbeiten soll</li>
-          <li>Ergebnisse im ersten Monat erwartet werden</li>
-          <li>der Preis das einzige Kriterium ist</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 7 · Kontakt ================= -->
-  <section class="sec col" data-station id="kontakt">
-    <div class="sec-head">
-      <p class="kicker">Erster Schritt</p>
-      <h2 class="display">Der Provisions-Check</h2>
-      <p class="lead">Wir schauen uns Ihr Haus an, rechnen Ihre tatsächlichen Portalkosten durch und sagen Ihnen, welcher Anteil davon realistisch verlagerbar ist. Kostenlos, unverbindlich, und Sie bekommen das Ergebnis auch dann, wenn wir nicht zusammenarbeiten.</p>
-    </div>
-
-    <div class="contact fade">
-      <div class="side">
-        <h3>Was dann passiert</h3>
-        <p>Sie schicken uns die Eckdaten. Wir melden uns innerhalb von zwei Werktagen mit einer ersten Einschätzung und schlagen ein Gespräch von zwanzig Minuten vor. Kein Verkaufstermin, kein Bildschirm voller Folien.</p>
-        <p>Wenn wir dabei zu dem Schluss kommen, dass sich das für Ihr Haus nicht lohnt, sagen wir Ihnen das.</p>
-        <div class="direct">
-          <span>Lieber direkt</span>
-          <a href="mailto:mt@martinthun.com">mt@martinthun.com</a>
-        </div>
-      </div>
-
-      <form class="form" id="checkForm" novalidate>
-        <div class="row2">
-          <div class="f"><label for="hotel">Name des Hauses</label><input type="text" id="hotel" name="hotel" autocomplete="organization" required></div>
-          <div class="f"><label for="name">Ihr Name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
-        </div>
-        <div class="row2">
-          <div class="f"><label for="mail">E-Mail</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
-          <div class="f"><label for="tel">Telefon <span style="font-weight:400;color:var(--muted)">(optional)</span></label><input type="tel" id="tel" name="tel" autocomplete="tel"></div>
-        </div>
-        <div class="f"><label for="msg">Wo drückt es gerade am meisten?</label><textarea id="msg" name="msg" rows="4"></textarea></div>
-        <label class="consent"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span></label>
-        <button class="btn" type="submit">Provisions-Check anfordern <span class="arw">→</span></button>
-        <p class="form-msg" id="formMsg" role="status"></p>
-      </form>
-    </div>
-  </section>
-</main>
-
-<!-- ================= 8 · Fußzeile ================= -->
-<footer>
-  <div class="in">
-    <div class="who">
-      <b>Thun Hotel Partner</b>
-      <p>Direktbuchungen für inhabergeführte Häuser mit 20 bis 35 Zimmern im deutschsprachigen Raum. Katrin und Martin Thun.</p>
-    </div>
-    <nav aria-label="Fußzeile">
-      <a href="#problem">Problem</a>
-      <a href="#weg">Unser Weg</a>
-      <a href="#rechner">Rechner</a>
-      <a href="#ueber-uns">Über uns</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#impressum">Impressum</a>
-      <a href="#datenschutz">Datenschutz</a>
-    </nav>
-  </div>
-  <p class="fine">Alle Beträge im Rechner sind Schätzungen auf Basis der eingegebenen Werte und ersetzen keine betriebswirtschaftliche Auswertung. Booking.com ist eine Marke der Booking.com B.V., wir stehen in keiner Verbindung zu diesem Unternehmen.</p>
-</footer>
+    <p class="fine">Alle Beträge im Rechner sind Schätzungen auf Basis der eingegebenen Werte und ersetzen keine betriebswirtschaftliche Auswertung. Booking.com ist eine Marke der Booking.com B.V., wir stehen in keiner Verbindung zu diesem Unternehmen.</p>
+  </footer>
+</div>
 
 <script>
 (function(){
   "use strict";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Hero-Einblendung ---------- */
   document.body.classList.add("ready");
 
-  /* ---------- Sichtbarkeits-Reveals ---------- */
+  /* ---------- Reveals ---------- */
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
       e.target.classList.add("in");
       io.unobserve(e.target);
     });
-  },{ threshold:.16, rootMargin:"0px 0px -60px 0px" });
+  },{ threshold:.14, rootMargin:"0px 0px -60px 0px" });
   document.querySelectorAll(".fade").forEach(function(el){ io.observe(el); });
 
-  /* ---------- Vergleichszeilen nacheinander ---------- */
   var rows = Array.prototype.slice.call(document.querySelectorAll(".cmp-row"));
   var rowIo = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
-      var i = rows.indexOf(e.target);
-      e.target.style.transitionDelay = (i * 90) + "ms";
+      e.target.style.transitionDelay = (rows.indexOf(e.target) * 85) + "ms";
       e.target.classList.add("in");
       rowIo.unobserve(e.target);
     });
-  },{ threshold:.4 });
+  },{ threshold:.35 });
   rows.forEach(function(r){ rowIo.observe(r); });
 
-  /* ---------- Kopfzeile ---------- */
+  /* ---------- Kopfzeile und Fortschritt ---------- */
   var topbar = document.getElementById("topbar");
-  function onTop(){ topbar.classList.toggle("stuck", window.scrollY > 12); }
-  onTop();
-  window.addEventListener("scroll", onTop, { passive:true });
+  var prog = document.getElementById("prog");
+  function onTop(){
+    topbar.classList.toggle("stuck", window.scrollY > 12);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+  }
 
   /* ---------- Zahlen hochzählen ---------- */
   var nf0 = new Intl.NumberFormat("de-DE",{ maximumFractionDigits:0 });
-  var band = document.getElementById("band");
-  var counted = false;
+  var band = document.getElementById("band"), counted = false;
   var bandIo = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting || counted) return;
@@ -753,34 +798,36 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
         var target = parseFloat(el.getAttribute("data-count"));
         var suffix = el.getAttribute("data-suffix") || "";
         if(reduce){ el.textContent = nf0.format(target) + suffix; return; }
-        var t0 = performance.now(), dur = 1100;
+        var t0 = performance.now(), dur = 1200;
         (function tick(now){
           var p = Math.min(1,(now - t0)/dur);
-          var e2 = 1 - Math.pow(1 - p, 3);
-          el.textContent = nf0.format(Math.round(target * e2)) + suffix;
+          el.textContent = nf0.format(Math.round(target * (1 - Math.pow(1 - p, 3)))) + suffix;
           if(p < 1) requestAnimationFrame(tick);
         })(t0);
       });
     });
-  },{ threshold:.5 });
+  },{ threshold:.45 });
   if(band) bandIo.observe(band);
 
   /* ---------- Die Route ---------- */
-  var svg = document.getElementById("route"),
-      bg  = document.getElementById("routeBg"),
-      fg  = document.getElementById("routeFg"),
-      gSt = document.getElementById("routeStations"),
-      shell = document.querySelector(".shell"),
+  var svg  = document.getElementById("route"),
+      bg   = document.getElementById("routeBg"),
+      fg   = document.getElementById("routeFg"),
+      gSt  = document.getElementById("routeStations"),
+      mrk  = document.getElementById("mrk"),
+      ring = document.getElementById("mrkRing"),
+      page = document.getElementById("page"),
       W = 78, len = 0, H = 0;
 
-  function xAt(y){ return 40 + 21 * Math.sin(y / 168) + 5 * Math.sin(y / 61); }
+  function xAt(y){ return 39 + 17 * Math.sin(y / 172) + 6 * Math.sin(y / 63); }
 
   function buildRoute(){
-    if(!shell || getComputedStyle(svg).display === "none") return;
-    H = shell.offsetHeight;
-    if(H < 200) return;
+    if(!page || getComputedStyle(svg).display === "none") return;
+    H = page.offsetHeight;
+    if(H < 300) return;
+
     var d = "M " + xAt(0).toFixed(1) + " 0";
-    for(var y = 10; y <= H; y += 10) d += " L " + xAt(y).toFixed(1) + " " + y;
+    for(var y = 12; y <= H; y += 12) d += " L " + xAt(y).toFixed(1) + " " + y;
     svg.setAttribute("viewBox", "0 0 " + W + " " + H);
     svg.setAttribute("width", W);
     svg.setAttribute("height", H);
@@ -791,98 +838,93 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     fg.style.strokeDashoffset = len;
 
     gSt.innerHTML = "";
-    var top = shell.getBoundingClientRect().top + window.scrollY;
+    var top = page.getBoundingClientRect().top + window.scrollY;
     document.querySelectorAll("[data-station]").forEach(function(sec){
-      var y = sec.getBoundingClientRect().top + window.scrollY - top + 58;
-      if(y < 0 || y > H) return;
-      var x = xAt(y);
-      var halo = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      halo.setAttribute("class","halo"); halo.setAttribute("cx",x.toFixed(1));
-      halo.setAttribute("cy",y); halo.setAttribute("r","11");
-      var dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      dot.setAttribute("class","stn"); dot.setAttribute("cx",x.toFixed(1));
-      dot.setAttribute("cy",y); dot.setAttribute("r","4.5");
-      dot.setAttribute("data-y", y);
-      gSt.appendChild(halo); gSt.appendChild(dot);
+      var y = sec.getBoundingClientRect().top + window.scrollY - top + 62;
+      if(y < 6 || y > H - 6) return;
+      var c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      c.setAttribute("class","stn");
+      c.setAttribute("cx", xAt(y).toFixed(1));
+      c.setAttribute("cy", y);
+      c.setAttribute("r","7");
+      c.setAttribute("data-y", y);
+      gSt.appendChild(c);
     });
     drawRoute();
   }
 
   function drawRoute(){
     if(!len || !H) return;
-    var top = shell.getBoundingClientRect().top + window.scrollY;
-    var seen = window.scrollY + window.innerHeight * 0.62 - top;
+    var top = page.getBoundingClientRect().top + window.scrollY;
+    var seen = window.scrollY + window.innerHeight * 0.66 - top;
     var p = Math.max(0, Math.min(1, seen / H));
     fg.style.strokeDashoffset = len * (1 - p);
+
     var mark = p * H;
-    gSt.querySelectorAll(".stn").forEach(function(dot, i){
-      var on = parseFloat(dot.getAttribute("data-y")) <= mark;
-      dot.classList.toggle("on", on);
-      var halo = gSt.children[i * 2];
-      if(halo) halo.classList.toggle("on", on);
+    gSt.querySelectorAll(".stn").forEach(function(dot){
+      dot.classList.toggle("on", parseFloat(dot.getAttribute("data-y")) <= mark);
     });
+
+    if(p > 0.002 && p < 0.999){
+      var pt = fg.getPointAtLength(len * p);
+      mrk.setAttribute("cx", pt.x); mrk.setAttribute("cy", pt.y);
+      ring.setAttribute("cx", pt.x); ring.setAttribute("cy", pt.y);
+      mrk.style.opacity = 1; ring.style.opacity = .35;
+    } else {
+      mrk.style.opacity = 0; ring.style.opacity = 0;
+    }
   }
 
   var ticking = false;
   window.addEventListener("scroll", function(){
     if(ticking) return;
     ticking = true;
-    requestAnimationFrame(function(){ drawRoute(); ticking = false; });
+    requestAnimationFrame(function(){ onTop(); drawRoute(); ticking = false; });
   }, { passive:true });
 
   var rt;
-  window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(buildRoute, 180); });
+  window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(buildRoute, 160); });
   window.addEventListener("load", buildRoute);
-  buildRoute();
-  setTimeout(buildRoute, 700);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(buildRoute);
+  if(window.ResizeObserver) new ResizeObserver(function(){ buildRoute(); }).observe(page);
+  onTop(); buildRoute();
 
   /* ---------- Provisionsrechner ---------- */
   var euro = new Intl.NumberFormat("de-DE",{ style:"currency", currency:"EUR", maximumFractionDigits:0 });
-  var BASIS_PROVISION = 0.15;
-  var VERLAGERUNG_MIN = 0.10, VERLAGERUNG_MAX = 0.25;
+  var BASIS_PROVISION = 0.15, VERLAGERUNG_MIN = 0.10, VERLAGERUNG_MAX = 0.25;
 
   var inp = {
-    rooms:  document.getElementById("rooms"),
-    occ:    document.getElementById("occ"),
-    adr:    document.getElementById("adr"),
-    share:  document.getElementById("share")
+    rooms: document.getElementById("rooms"), occ: document.getElementById("occ"),
+    adr:   document.getElementById("adr"),   share: document.getElementById("share")
   };
   var out = {
-    rooms:  document.getElementById("oRooms"),
-    occ:    document.getElementById("oOcc"),
-    adr:    document.getElementById("oAdr"),
-    share:  document.getElementById("oShare"),
-    fee:    document.getElementById("oFee"),
-    month:  document.getElementById("oMonth"),
-    shift:  document.getElementById("oShift")
+    rooms: document.getElementById("oRooms"), occ: document.getElementById("oOcc"),
+    adr:   document.getElementById("oAdr"),   share: document.getElementById("oShare"),
+    fee:   document.getElementById("oFee"),   month: document.getElementById("oMonth"),
+    shift: document.getElementById("oShift")
   };
 
-  /* rechnen(28, 65, 120, 55)  -> fee  65.766 €
-     rechnen(12, 55, 90,  50)  -> fee  16.256 €
-     rechnen(45, 75, 160, 60)  -> fee 177.390 € */
+  /* rechnen(28, 65, 120, 55) -> fee  65.766 €
+     rechnen(12, 55, 90,  50) -> fee  16.256 €
+     rechnen(45, 75, 160, 60) -> fee 177.390 € */
   function rechnen(rooms, occ, adr, share){
-    var naechte = rooms * 365 * (occ / 100);
-    var brutto  = naechte * adr;
-    var ota     = brutto * (share / 100);
-    var fee     = ota * BASIS_PROVISION;
+    var ota = rooms * 365 * (occ/100) * adr * (share/100);
+    var fee = ota * BASIS_PROVISION;
     return { fee:fee, monat:fee/12, min:fee*VERLAGERUNG_MIN, max:fee*VERLAGERUNG_MAX };
   }
 
-  var anim = null;
-  function rollTo(el, from, to, fmt){
-    if(reduce || Math.abs(to - from) < 1){ el.textContent = fmt(to); return; }
-    var t0 = performance.now(), dur = 420;
-    function tick(now){
-      var p = Math.min(1,(now - t0)/dur);
-      var e = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt(from + (to - from) * e);
-      if(p < 1) anim = requestAnimationFrame(tick);
-    }
+  var anim = null, letzte = 0;
+  function rollTo(el, from, to){
+    if(reduce || Math.abs(to - from) < 1){ el.textContent = euro.format(to); return; }
+    var t0 = performance.now(), dur = 400;
     if(anim) cancelAnimationFrame(anim);
-    anim = requestAnimationFrame(tick);
+    anim = requestAnimationFrame(function tick(now){
+      var p = Math.min(1,(now - t0)/dur);
+      el.textContent = euro.format(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+      if(p < 1) anim = requestAnimationFrame(tick);
+    });
   }
 
-  var letzte = 0;
   function update(){
     if(!inp.rooms) return;
     var rooms = +inp.rooms.value, occ = +inp.occ.value, adr = +inp.adr.value, share = +inp.share.value;
@@ -892,28 +934,25 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     out.share.textContent = share + " %";
 
     var r = rechnen(rooms, occ, adr, share);
-    rollTo(out.fee, letzte, r.fee, function(v){ return euro.format(v); });
+    rollTo(out.fee, letzte, r.fee);
     letzte = r.fee;
     out.month.textContent = "Im Schnitt " + euro.format(r.monat) + " pro Monat, saisonal sehr ungleich verteilt.";
     out.shift.textContent = euro.format(r.min).replace(/\s?€$/,"") + " bis " + euro.format(r.max);
   }
-  Object.keys(inp).forEach(function(k){
-    if(inp[k]) inp[k].addEventListener("input", update);
-  });
+  Object.keys(inp).forEach(function(k){ if(inp[k]) inp[k].addEventListener("input", update); });
   update();
 
   /* ---------- Formular ----------
      TODO: FORM_ENDPOINT eintragen, sobald das Zielsystem steht. */
   var FORM_ENDPOINT = "";
-  var form = document.getElementById("checkForm");
-  var fmsg = document.getElementById("formMsg");
+  var form = document.getElementById("checkForm"), fmsg = document.getElementById("formMsg");
   if(form){
     form.addEventListener("submit", function(ev){
       ev.preventDefault();
       fmsg.className = "form-msg show";
       if(!form.checkValidity()){
         fmsg.classList.add("err");
-        fmsg.textContent = "Bitte füllen Sie Name, Haus und E-Mail aus und bestätigen Sie die Einwilligung.";
+        fmsg.textContent = "Bitte Name, Haus und E-Mail ausfüllen und die Einwilligung bestätigen.";
         return;
       }
       if(!FORM_ENDPOINT){
