@@ -6,18 +6,16 @@
 <meta name="description" content="Volles Haus, volle Marge: Wir bauen inhabergefuehrten Hotels mit 20 bis 35 Zimmern den eigenen Buchungskanal auf. Katrin und Martin Thun.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FCFAF7">
-<meta property="og:title" content="Thun Hotel Partner">
+<meta property="og:title" content="Katrin &amp; Martin Hotel Consulting">
 <meta property="og:description" content="Volles Haus. Volle Marge. Mehr Direktbuchungen fuer inhabergefuehrte Hotels mit 20 bis 35 Zimmern.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.hotel-partner.martinthun.com/">
-</head>
-<body>
-<title>Hotel-Partner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&display=swap">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&amp;family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..900,0..100,0..1&amp;display=swap">
+<title>Katrin &amp; Martin Hotel Consulting</title>
+</head>
+<body>
 <style>
 :root{
   --ground:#FCFAF7;
@@ -33,6 +31,9 @@
   --sun-wash:#FFF6DF;
   --line:#EAE3D9;
   --line-2:#D8CFC1;
+  --map-ink:#795536;
+  --map-path:#B99A70;
+  --map-route:#A83E2A;
 
   --shell:1080px;
   --r-lg:16px;
@@ -61,7 +62,25 @@ img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
 
-#page{position:relative;overflow:clip}
+#page{
+  position:relative;overflow:clip;
+  background:
+    radial-gradient(circle at 8% 9%,transparent 0 74px,rgba(121,85,54,.10) 75px 77px,transparent 78px 105px,rgba(121,85,54,.07) 106px 108px,transparent 109px),
+    radial-gradient(ellipse at 94% 34%,transparent 0 90px,rgba(121,85,54,.09) 91px 93px,transparent 94px 125px,rgba(121,85,54,.06) 126px 128px,transparent 129px),
+    radial-gradient(ellipse at 6% 73%,transparent 0 54px,rgba(121,85,54,.08) 55px 57px,transparent 58px 88px,rgba(121,85,54,.05) 89px 91px,transparent 92px),
+    linear-gradient(180deg,rgba(255,250,238,.28),rgba(238,221,190,.16));
+}
+#page::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.45;
+  background:
+    repeating-linear-gradient(112deg,transparent 0 92px,rgba(121,85,54,.025) 93px 94px,transparent 95px 186px),
+    repeating-linear-gradient(22deg,transparent 0 118px,rgba(121,85,54,.018) 119px 120px,transparent 121px 238px);
+}
+#page::after{
+  content:"✦";position:absolute;right:3.5%;top:18%;z-index:0;pointer-events:none;
+  color:rgba(121,85,54,.09);font-family:Georgia,serif;font-size:clamp(6rem,11vw,10rem);line-height:1;
+  transform:rotate(12deg);
+}
 .shell{position:relative;z-index:1;max-width:var(--shell);margin:0 auto;padding:0 24px}
 
 /* ---------- Typo ---------- */
@@ -78,14 +97,6 @@ h1.display{font-size:clamp(2.9rem,6.4vw,4.6rem);letter-spacing:-.038em;line-heig
 h2.display{font-size:clamp(2rem,4.4vw,3.1rem)}
 h3{font-family:"Archivo",Arial,sans-serif;font-size:1.06rem;font-weight:600;letter-spacing:-.012em;margin:0;text-wrap:balance}
 p{margin:0}
-
-.kicker{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:.75rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
-  font-stretch:105%;color:var(--flame-deep);
-  background:var(--flame-wash);border-radius:999px;padding:7px 15px;
-}
-.kicker i{width:6px;height:6px;border-radius:50%;background:var(--flame);flex:none}
 
 .lead{font-size:clamp(1.04rem,1.6vw,1.18rem);line-height:1.62;color:var(--ink-2);max-width:56ch}
 
@@ -113,136 +124,42 @@ p{margin:0}
   outline:2px solid var(--flame);outline-offset:3px;border-radius:var(--r-sm);
 }
 
-/* ---------- Reiseroute ---------- */
-.route{position:absolute;inset:0;width:100%;pointer-events:none;z-index:0;display:none;overflow:visible}
-.route .bg{fill:none;stroke:var(--line-2);stroke-width:2;stroke-dasharray:1 9;stroke-linecap:round;opacity:.85}
-.route .fg{fill:none;stroke:var(--flame);stroke-width:2.6;stroke-linecap:round;opacity:.9}
-.route .mrk{fill:var(--flame);stroke:var(--ground);stroke-width:3}
-
-.stations{position:absolute;inset:0;pointer-events:none;z-index:3;display:none}
-@media (min-width:1200px){ .route,.stations{display:block} }
-
-/* Haltepunkt auf der Route, dezent. Die Show macht die Szene. */
-.pin-dot{
-  position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
-  background:var(--surface);border:3px solid var(--line-2);
-  transition:border-color .4s ease,transform .5s cubic-bezier(.2,1.6,.4,1);
+/* ---------- Schatzkarten-Route ---------- */
+.map-route{
+  position:absolute;inset:0;width:100%;height:100%;z-index:2;
+  pointer-events:none;overflow:visible;
 }
-.pin-dot.on{border-color:var(--flame);transform:scale(1.25)}
-
-/* Bühne: volle Seitenbreite, sitzt im Zwischenraum zweier Sektionen */
-.scene{position:absolute;left:0;width:100%;height:190px;overflow:visible}
-.scene .o{position:absolute;top:50%;left:0;opacity:0;will-change:transform,opacity}
-.scene .o svg{display:block;overflow:visible}
-
-/* — Papierflieger, quer über die Seite — */
-.s-plane .streak{
-  position:absolute;top:50%;left:0;width:100%;height:2px;
-  background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 18px);
-  transform:scaleX(0);transform-origin:left;opacity:.9;
+.map-route .route-base{
+  fill:none;stroke:var(--map-path);stroke-width:3;stroke-dasharray:2 12;
+  stroke-linecap:round;opacity:.62;
 }
-.scene.on.s-plane .streak{animation:streakOut 3.1s cubic-bezier(.3,.5,.4,1) forwards}
-@keyframes streakOut{0%{transform:scaleX(0)}70%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
-.s-plane .plane{width:158px;margin-top:-50px}
-.scene.on.s-plane .plane{animation:planeCross 3.1s cubic-bezier(.3,.5,.4,1) forwards}
-@keyframes planeCross{
-  0%{opacity:0;transform:translate(-20vw,54px) rotate(9deg)}
-  9%{opacity:1}
-  88%{opacity:1}
-  100%{opacity:0;transform:translate(118vw,-56px) rotate(-9deg)}
+.map-route .route-ink{
+  fill:none;stroke:var(--map-route);stroke-width:3.5;stroke-linecap:round;
+  opacity:.94;will-change:stroke-dashoffset;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.45));
 }
-
-/* — Geldscheine, die wegwehen — */
-.s-money .note{width:112px;margin-top:-34px}
-.scene.on.s-money .note{animation:noteBlow 3.6s cubic-bezier(.35,.1,.5,1) forwards}
-@keyframes noteBlow{
-  0%{opacity:0;transform:translate(-16vw,52px) rotate(-10deg) scale(.85)}
-  10%{opacity:1}
-  85%{opacity:1}
-  100%{opacity:0;transform:translate(116vw,-104px) rotate(276deg) scale(1.08)}
+.map-route .route-stop line{
+  stroke:var(--map-ink);stroke-width:4.5;stroke-linecap:round;
+  opacity:.52;transition:stroke .25s ease,opacity .25s ease;
 }
-
-/* — Münze rollt quer durch und fällt raus — */
-.s-coin .coin{width:112px;margin-top:-56px}
-.scene.on.s-coin .coin{animation:coinRoll 3.4s cubic-bezier(.25,.5,.4,1) forwards}
-@keyframes coinRoll{
-  0%{opacity:0;transform:translate(-14vw,0) rotate(0)}
-  7%{opacity:1}
-  74%{opacity:1;transform:translate(88vw,0) rotate(1620deg)}
-  100%{opacity:0;transform:translate(112vw,180px) rotate(2040deg)}
+.map-route .route-stop circle{
+  fill:rgba(252,250,247,.82);stroke:var(--map-path);stroke-width:1.5;opacity:.72;
 }
-.s-coin .grnd{position:absolute;top:50%;left:0;width:100%;height:3px;border-radius:2px;background:var(--line);transform:scaleX(0);transform-origin:left;margin-top:38px}
-.scene.on.s-coin .grnd{animation:streakOut 3.4s ease-out forwards}
-
-/* — Rakete quer über den Bildschirm — */
-.s-rocket .rk{width:250px;margin-top:-67px}
-.scene.on.s-rocket .rk{animation:rocketCross 3.3s cubic-bezier(.42,.02,.45,1) forwards}
-@keyframes rocketCross{
-  0%{opacity:0;transform:translate(-24vw,132px) rotate(-19deg) scale(.72)}
-  8%{opacity:1}
-  88%{opacity:1}
-  100%{opacity:0;transform:translate(120vw,-148px) rotate(-19deg) scale(1.12)}
+.map-route .route-stop.reached line{stroke:var(--map-route);opacity:1}
+.map-route .route-stop.reached circle{stroke:var(--map-route);opacity:1}
+.map-route .route-traveler{opacity:0;transition:opacity .18s ease}
+.map-route .route-traveler.visible{opacity:1}
+.map-route .route-traveler .outer{
+  fill:rgba(255,197,49,.24);stroke:var(--map-route);stroke-width:2;
+  transform-box:fill-box;transform-origin:center;animation:mapPulse 1.8s ease-in-out infinite;
 }
-.s-rocket .puff{width:82px;height:82px;margin-top:-41px;border-radius:50%;background:var(--line);opacity:0}
-.scene.on.s-rocket .puff{animation:puffOut 1.5s ease-out forwards}
-@keyframes puffOut{
-  0%{opacity:0;transform:translateY(30px) scale(.3)}
-  25%{opacity:.55}
-  100%{opacity:0;transform:translateY(-10px) scale(1.5)}
+.map-route .route-traveler .inner{fill:var(--map-route);stroke:#FCFAF7;stroke-width:2}
+@keyframes mapPulse{50%{transform:scale(1.28);opacity:.45}}
+@media (max-width:1199px){
+  .map-route .route-base{stroke-width:2.5;opacity:.5}
+  .map-route .route-ink{stroke-width:3}
+  .map-route .route-stop line{stroke-width:4}
 }
-
-/* — Handschlag in der Mitte — */
-.s-shake .hand{width:250px;margin-top:-64px;left:50%}
-.scene.on.s-shake .hL{animation:shakeL 1.5s cubic-bezier(.2,1.15,.35,1) forwards}
-.scene.on.s-shake .hR{animation:shakeR 1.5s cubic-bezier(.2,1.15,.35,1) forwards}
-@keyframes shakeL{0%{opacity:0;transform:translateX(-62vw)}14%{opacity:1}100%{opacity:1;transform:translateX(-244px)}}
-@keyframes shakeR{0%{opacity:0;transform:translateX(62vw)}14%{opacity:1}100%{opacity:1;transform:translateX(-4px)}}
-.s-shake .burst{width:210px;height:210px;margin:-105px 0 0 -105px;left:50%;border-radius:50%;border:5px solid var(--sun)}
-.scene.on.s-shake .burst{animation:burstOut 1.1s .95s ease-out forwards}
-@keyframes burstOut{0%{opacity:.95;transform:scale(.24)}100%{opacity:0;transform:scale(1.75)}}
-
-/* — Waage, Gewichte kommen von beiden Rändern — */
-.s-scale .beam{width:420px;margin:-72px 0 0 -210px;left:50%;opacity:1}
-.scene.on.s-scale .beam .arm{animation:beamTip 1.3s .95s cubic-bezier(.3,1.5,.5,1) forwards;transform-origin:210px 42px}
-@keyframes beamTip{0%{transform:rotate(0)}100%{transform:rotate(9deg)}}
-.s-scale .wt{width:140px;margin-top:-40px}
-.scene.on.s-scale .wtL{animation:wtIn 1.2s cubic-bezier(.25,1.1,.4,1) forwards}
-.scene.on.s-scale .wtR{animation:wtInR 1.2s .18s cubic-bezier(.25,1.1,.4,1) forwards}
-@keyframes wtIn{0%{opacity:0;transform:translateX(-58vw)}18%{opacity:1}100%{opacity:1;transform:translate(calc(50vw - 330px),0)}}
-@keyframes wtInR{0%{opacity:0;transform:translateX(58vw)}18%{opacity:1}100%{opacity:1;transform:translate(calc(50vw + 196px),28px)}}
-
-/* — Brief fliegt quer durch — */
-.s-mail .env{width:186px;margin-top:-58px}
-.scene.on.s-mail .env{animation:mailCross 3s cubic-bezier(.3,.4,.4,1) forwards}
-@keyframes mailCross{
-  0%{opacity:0;transform:translate(-20vw,40px) rotate(-13deg)}
-  9%{opacity:1}
-  88%{opacity:1}
-  100%{opacity:0;transform:translate(118vw,-52px) rotate(9deg)}
-}
-.s-mail .zip{position:absolute;top:50%;left:0;height:5px;width:158px;border-radius:3px;background:var(--flame);opacity:0}
-.scene.on.s-mail .zip{animation:zipBy 3s cubic-bezier(.3,.4,.4,1) forwards}
-@keyframes zipBy{
-  0%{opacity:0;transform:translate(-26vw,44px) scaleX(.2)}
-  14%{opacity:.5}
-  88%{opacity:.5}
-  100%{opacity:0;transform:translate(112vw,-48px) scaleX(1.3)}
-}
-
-/* — Zielbanner rollt über die volle Breite auf — */
-.s-flag .banner{
-  position:absolute;top:50%;left:0;width:100%;height:62px;margin-top:-31px;
-  transform:scaleX(0);transform-origin:left;opacity:1;
-  background:
-    repeating-linear-gradient(90deg,var(--ink) 0 31px,#fff 31px 62px) 0 0/100% 31px no-repeat,
-    repeating-linear-gradient(90deg,#fff 0 31px,var(--ink) 31px 62px) 0 31px/100% 31px no-repeat;
-  border-radius:3px;
-}
-.scene.on.s-flag .banner{animation:unfurl 1.5s cubic-bezier(.3,.9,.35,1) forwards}
-@keyframes unfurl{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
-.s-flag .pole{width:108px;margin-top:-80px;opacity:1}
-.scene.on.s-flag .pole{animation:poleIn .7s cubic-bezier(.2,1.5,.4,1) forwards}
-@keyframes poleIn{0%{opacity:0;transform:translateY(24px) scale(.6)}100%{opacity:1;transform:none}}
 
 /* ---------- Kopfzeile ---------- */
 .topbar{
@@ -253,26 +170,22 @@ p{margin:0}
 }
 .topbar.stuck{border-bottom-color:var(--line)}
 .topbar .in{max-width:var(--shell);margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand{display:flex;align-items:baseline;text-decoration:none}
 .brand b{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.14rem;letter-spacing:-.03em;font-variation-settings:"SOFT" 65,"WONK" 0}
-.brand span{font-size:.76rem;color:var(--muted);letter-spacing:.02em}
 .topbar .btn{padding:10px 19px;font-size:.87rem}
 .prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--flame)}
-@media (max-width:640px){ .brand span{display:none} }
+@media (max-width:640px){
+  .brand b{font-size:.96rem;line-height:1.08;max-width:19ch}
+  .topbar .btn{padding:9px 12px;font-size:.79rem}
+}
+@media (max-width:430px){ .topbar .btn{display:none} }
 
 /* ---------- Hero ---------- */
 .hero{padding-top:66px}
 .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
-.hero .kicker{margin-bottom:26px}
 .hero h1 .em{color:var(--flame)}
 .hero .lead{margin-top:26px}
 .hero .acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:34px}
-.hero .note{
-  margin-top:38px;padding:16px 20px;background:var(--tint);
-  border-radius:var(--r-md);border-left:3px solid var(--flame);
-  font-size:.93rem;line-height:1.58;color:var(--ink-2);max-width:50ch;
-}
-.hero .note b{color:var(--ink);font-weight:600}
 @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;gap:38px} }
 
 /* Hero-Illustration */
@@ -324,7 +237,6 @@ p{margin:0}
 section{position:relative}
 .sec{padding-top:118px}
 .sec-head{max-width:52ch}
-.sec-head .kicker{margin-bottom:20px}
 .sec-head .lead{margin-top:20px}
 
 /* Problem */
@@ -415,6 +327,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 
 /* Über uns */
 .person{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;margin-top:52px}
+.person.flip{grid-template-columns:1.2fr .8fr}
 .person + .person{margin-top:64px}
 .person .tx{display:flex;flex-direction:column;gap:15px}
 .person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.1rem;line-height:1.02;letter-spacing:-.035em;font-variation-settings:"SOFT" 65,"WONK" 0}
@@ -426,9 +339,9 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
   font-variation-settings:"SOFT" 65,"WONK" 0;
 }
 .ph{position:relative;aspect-ratio:4/5;background:var(--tint);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--e2)}
-.ph em{position:absolute;left:0;right:0;bottom:20px;text-align:center;font-style:normal;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#A9A093}
-.ph::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 10%,rgba(255,255,255,.7),transparent 60%)}
-@media (max-width:860px){ .person{grid-template-columns:1fr;gap:24px} .person.flip .ph{order:-1} .ph{aspect-ratio:3/2} }
+.ph img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent 38%);pointer-events:none}
+@media (max-width:860px){ .person,.person.flip{grid-template-columns:1fr;gap:24px} .person.flip .ph{order:-1} .ph{aspect-ratio:4/5;max-width:480px;width:100%;margin-inline:auto} }
 
 /* Vergleich */
 .cmp{margin-top:48px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--e2)}
@@ -452,26 +365,13 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
   .cmp-row .a::before{content:"Übliche Agentur: ";font-weight:600;color:var(--ink)}
   .cmp-row .b::before{content:"Bei uns: ";font-weight:600;color:var(--flame-deep)}
 }
-.fit{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
-.fit > div{border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 24px;display:flex;flex-direction:column;gap:14px;background:var(--surface);box-shadow:var(--e1)}
-.fit h3{font-size:1.08rem}
-.fit ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
-.fit li{font-size:.95rem;line-height:1.52;color:var(--ink-2);padding-left:27px;position:relative}
-.fit li::before{position:absolute;left:0;top:0;font-weight:700}
-.fit .yes li::before{content:"✓";color:var(--flame)}
-.fit .no li::before{content:"—";color:var(--muted)}
-@media (max-width:760px){ .fit{grid-template-columns:1fr} }
-
 /* Kontakt */
-.contact{margin-top:48px;display:grid;grid-template-columns:.85fr 1.15fr;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--e3)}
-.contact .side{padding:34px 32px;background:var(--tint);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:17px}
+.contact{max-width:940px;margin:48px auto 0;display:grid;grid-template-columns:.9fr 1.1fr;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--e3)}
+.contact .side{min-height:480px;padding:28px;background:linear-gradient(180deg,rgba(20,26,31,.04) 38%,rgba(20,26,31,.78) 100%),url("Katrin&Martin-242.webp") center 32%/cover no-repeat;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;gap:17px}
 .contact .side h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.65rem;line-height:1.08;letter-spacing:-.03em;font-variation-settings:"SOFT" 65,"WONK" 0}
 .contact .side p{font-size:.95rem;line-height:1.6;color:var(--ink-2)}
-.contact .side .direct{margin-top:auto;padding-top:20px;border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:6px}
-.contact .side .direct span{font-size:.76rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
-.contact .side .direct a{font-size:1.02rem;font-weight:600;color:var(--flame-deep);text-decoration:none;border-bottom:1px solid currentColor;align-self:start;padding-bottom:2px}
-.form{padding:34px 32px;display:flex;flex-direction:column;gap:17px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.form{padding:28px 26px;display:flex;flex-direction:column;gap:14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .f{display:flex;flex-direction:column;gap:7px}
 .f label{font-size:.85rem;font-weight:600;color:var(--ink-2)}
 .f input,.f textarea{
@@ -480,7 +380,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
   transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
 }
 .f input:focus,.f textarea:focus{border-color:var(--flame);background:var(--surface);outline:none;box-shadow:0 0 0 3px var(--flame-wash)}
-.f textarea{resize:vertical;min-height:94px}
+.f textarea{resize:vertical;min-height:82px}
 .consent{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;line-height:1.52;color:var(--ink-2)}
 .consent input{margin-top:3px;accent-color:var(--flame);width:16px;height:16px;flex:none}
 .form .btn{align-self:start}
@@ -488,7 +388,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 .form-msg.show{display:block}
 .form-msg.ok{color:#1F6B4A}
 .form-msg.err{color:var(--flame-deep)}
-@media (max-width:860px){ .contact{grid-template-columns:1fr} .contact .side{border-right:0;border-bottom:1px solid var(--line)} .row2{grid-template-columns:1fr} }
+@media (max-width:860px){ .contact{grid-template-columns:1fr} .contact .side{min-height:420px;border-right:0;border-bottom:1px solid var(--line)} .row2{grid-template-columns:1fr} }
 
 /* Fuß */
 footer{margin-top:112px;border-top:1px solid var(--line);background:var(--tint);position:relative;z-index:1}
@@ -518,27 +418,28 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
 
 <header class="topbar" id="topbar">
   <div class="in">
-    <a class="brand" href="#top"><b>Thun&nbsp;Hotel&nbsp;Partner</b><span>Katrin &amp; Martin Thun</span></a>
+    <a class="brand" href="#top"><b>Katrin &amp; Martin Hotel Consulting</b></a>
     <a class="btn" href="#kontakt">Erstgespräch <span class="arw">→</span></a>
   </div>
   <div class="prog" id="prog"></div>
 </header>
 
 <div id="page">
-  <svg class="route" id="route" aria-hidden="true" focusable="false">
-    <path class="bg" id="routeBg"></path>
-    <path class="fg" id="routeFg"></path>
-    <circle class="mrk" id="mrk" r="6" cx="-99" cy="-99"></circle>
+  <svg class="map-route" id="mapRoute" aria-hidden="true" focusable="false">
+    <path class="route-base" id="mapRouteBase"></path>
+    <path class="route-ink" id="mapRouteInk"></path>
+    <g id="mapRouteStops"></g>
+    <g class="route-traveler" id="mapRouteTraveler">
+      <circle class="outer" r="9"></circle>
+      <circle class="inner" r="4"></circle>
+    </g>
   </svg>
-  <div class="stations" id="stations" aria-hidden="true"></div>
-
   <main class="shell" id="top">
 
     <!-- ================= 1 · Hero ================= -->
-    <section class="hero" data-station data-scene="plane">
+    <section class="hero" data-route-stop>
       <div class="hero-grid">
         <div>
-          <p class="kicker"><i></i>Für inhabergeführte Häuser mit 20 bis 35 Zimmern</p>
           <h1 class="display">
             <span class="rvl"><span>Volles Haus.</span></span>
             <span class="rvl"><span class="em">Volle Marge.</span></span>
@@ -548,7 +449,6 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
             <a class="btn" href="#kontakt">Kostenloses Erstgespräch <span class="arw">→</span></a>
             <a class="btn-ghost" href="#rechner">Erst mal nachrechnen</a>
           </div>
-          <p class="note fade d3"><b>Beraten von jemandem, der bei Booking.com selbst auf der anderen Seite des Tisches saß.</b> Wir wissen ziemlich genau, wie Portale mit Häusern wie Ihrem umgehen, und was das jeden Monat kostet.</p>
         </div>
 
         <div class="viz fade d1">
@@ -617,9 +517,8 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 2 · Rechner ================= -->
-    <section class="sec" data-station data-scene="money" id="rechner">
+    <section class="sec" id="rechner" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Fangen wir mit der Zahl an</p>
         <h2 class="display">Was Ihr Haus jedes Jahr an die Portale überweist</h2>
         <p class="lead">Vier Angaben, die Sie im Kopf haben. Kein Formular, kein Login, keine E-Mail-Adresse. Wir rechnen mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme überhaupt dazukommen.</p>
       </div>
@@ -666,9 +565,8 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 3 · Problem ================= -->
-    <section class="sec" data-station data-scene="coin" id="problem">
+    <section class="sec" id="problem" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Das Problem</p>
         <h2 class="display">Ihr Haus ist voll. Ihre Marge nicht.</h2>
         <p class="lead">Die Zahl oben ist nur der sichtbare Teil. Drei Dinge kosten inhabergeführte Häuser jedes Jahr richtig Geld, und keines davon fällt im Tagesgeschäft auf, weil niemand an der Rezeption steht und sagt: „Ich hätte auch direkt gebucht."</p>
       </div>
@@ -706,9 +604,8 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 4 · Weg ================= -->
-    <section class="sec" data-station data-scene="rocket" id="weg">
+    <section class="sec" id="weg" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Unser Weg</p>
         <h2 class="display">Vier Etappen zum eigenen Buchungskanal</h2>
         <p class="lead">Wir verkaufen keine Einzelteile aus dem Katalog. Wir haben ein Ziel, den Anteil Ihrer Direktbuchungen, und suchen die Werkzeuge danach aus, was Ihr Haus wirklich braucht.</p>
       </div>
@@ -736,55 +633,45 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
             <p>Wer einmal direkt gebucht hat, darf beim nächsten Mal nicht wieder über ein Portal kommen. Dafür braucht es keinen großen Aufwand, sondern einen sauberen Direktkontakt: Newsletter, ein Anlass zur Wiederbuchung, ein Grund, sich zu melden, bevor die Saison anfängt.</p>
           </div>
         </div>
-        <div class="step fade">
-          <div class="no">04</div>
-          <div class="tx">
-            <h3>Nachrechnen statt behaupten</h3>
-            <p>Wir messen genau eine Zahl: den Anteil der Buchungen, die direkt bei Ihnen ankommen. Alles andere ist Beiwerk. Sie sehen jeden Monat, wohin sich diese Zahl bewegt, und wir reden auch dann darüber, wenn sie sich mal nicht bewegt.</p>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- ================= 5 · Über uns ================= -->
-    <section class="sec" data-station data-scene="shake" id="ueber-uns">
+    <section class="sec" id="ueber-uns" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Wer wir sind</p>
-        <h2 class="display">Zwei Menschen. Kein Account Manager.</h2>
-        <p class="lead">Sie arbeiten mit uns beiden. Keine Weitergabe an ein Team, das Sie nie zu Gesicht bekommen, und keine Nummer in einem Ticketsystem.</p>
+        <h2 class="display">Über Katrin &amp; Martin</h2>
+        <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, unzertrennlich und mit gebündelter Expertise aus Hotellerie und Plattformgeschäft, die es in dieser Kombination kein zweites Mal gibt.</p>
       </div>
 
       <article class="person fade">
-        <div class="ph"><em>Bild Katrin</em></div>
+        <div class="ph"><img src="Katrin.jpg" alt="Katrin Thun" loading="lazy" decoding="async"></div>
         <div class="tx">
           <p class="role">Hotellerie und Beratung</p>
           <h3>Katrin Thun</h3>
-          <p>Katrin hat bei Booking.com gearbeitet und die Hotellerie von der Plattformseite kennengelernt. Sie weiß, wie Portale mit Häusern arbeiten, worauf dort geschaut wird, und warum so viele Betreiber das Gefühl haben, im eigenen Geschäft nur noch zu reagieren.</p>
-          <blockquote>„Ich habe lange auf der anderen Seite des Tisches gesessen. Deshalb weiß ich ziemlich genau, wo bei einem Haus wie Ihrem das Geld liegen bleibt."</blockquote>
+          <p>Ich habe in meiner Zeit bei Booking.com mit Tausenden von Hotelinhabern gesprochen, Hunderte Hotelpartner vor Ort besucht und beraten. Ich weiß, wo der Schuh drückt und welche Hebel am meisten bewirken, um als Hotel mehr Gäste zu gewinnen.</p>
         </div>
       </article>
 
       <article class="person flip fade">
         <div class="tx">
-          <p class="role">Website und Online-Marketing</p>
+          <p class="role">KI-Services &amp; Online-Marketing</p>
           <h3>Martin Thun</h3>
-          <p>Martin baut seit sieben Jahren Websites und Kampagnen für Selbstständige und kleine Unternehmen und hat dabei über tausend Kunden begleitet. Er setzt alles selbst um, was auf Ihrer Seite passiert. Kein Zwischenhändler, keine Weiterreichung.</p>
+          <p>Ich bin seit sieben Jahren im Online-Marketing tätig und habe mittlerweile Hunderten von Selbstständigen und kleinen Unternehmen bei der Kundengewinnung geholfen. Mit meinem Projekt „business.einfach.smart“ erreiche ich über 100.000 Follower und biete digitale Produkte rund um Social Media, Online-Marketing und KI an.</p>
           <blockquote>„Diese Seite hier ist die Arbeitsprobe. Wenn Sie die gut finden, wissen Sie ungefähr, was Ihr Haus bekommt."</blockquote>
         </div>
-        <div class="ph"><em>Bild Martin</em></div>
+        <div class="ph"><img src="Martin.webp" alt="Martin Thun" loading="lazy" decoding="async"></div>
       </article>
     </section>
 
     <!-- ================= 6 · Vergleich ================= -->
-    <section class="sec" data-station data-scene="scale" id="unterschied">
+    <section class="sec" id="unterschied" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Der Unterschied</p>
         <h2 class="display">Nicht die sechste Agentur mit derselben Mappe</h2>
       </div>
 
       <div class="cmp">
         <div class="cmp-head">
-          <div>&nbsp;</div><div>Übliche Hotel-Agentur</div><div>Thun Hotel Partner</div>
+          <div>&nbsp;</div><div>Übliche Hotel-Agentur</div><div>Katrin &amp; Martin Hotel Consulting</div>
         </div>
         <div class="cmp-row"><div class="k">Wer Sie berät</div><div class="a">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="b">Katrin, die die Branche von der Plattformseite kennt, und Martin, der es selbst baut</div></div>
         <div class="cmp-row"><div class="k">Was verkauft wird</div><div class="a">Website, Ads und Social Media als getrennte Posten auf der Rechnung</div><div class="b">Ein Ziel: mehr Direktbuchungen. Die Werkzeuge folgen daraus, nicht umgekehrt</div></div>
@@ -793,54 +680,25 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
         <div class="cmp-row"><div class="k">Woran Erfolg gemessen wird</div><div class="a">Reichweite, Klicks und ein Bericht, den niemand liest</div><div class="b">Anteil der Direktbuchungen. Eine Zahl, jeden Monat</div></div>
       </div>
 
-      <div class="fit">
-        <div>
-          <h3>Wir passen zu Ihnen, wenn</h3>
-          <ul class="yes">
-            <li>Sie Ihr Haus selbst führen und Entscheidungen selbst treffen</li>
-            <li>zwischen 20 und 35 Zimmer zu vermieten sind</li>
-            <li>die Übernachtung Ihr Hauptgeschäft ist, nicht Tagung oder Restaurant</li>
-            <li>Sie wissen, dass Portale bleiben, und trotzdem mehr selbst in der Hand haben wollen</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Wir passen nicht, wenn</h3>
-          <ul class="no">
-            <li>Sie zu einer Kette gehören oder eine Marketingabteilung mitredet</li>
-            <li>eine neue Website reichen soll und danach niemand weiterarbeitet</li>
-            <li>Ergebnisse schon im ersten Monat erwartet werden</li>
-            <li>der Preis das einzige Kriterium ist</li>
-          </ul>
-        </div>
-      </div>
     </section>
 
     <!-- ================= 7 · Kontakt ================= -->
-    <section class="sec" data-station data-scene="mail" id="kontakt">
+    <section class="sec" id="kontakt" data-route-stop>
       <div class="sec-head">
-        <p class="kicker"><i></i>Erster Schritt</p>
         <h2 class="display">Reden wir zwanzig Minuten</h2>
         <p class="lead">Kein Verkaufstermin, keine dreißig Folien, kein Angebot am Telefon. Wir wollen erst wissen, wie Ihr Haus läuft und wo es hakt. Danach sagen wir Ihnen ehrlich, ob wir etwas beitragen können.</p>
       </div>
 
       <div class="contact fade">
-        <div class="side">
-          <h3>Was dann passiert</h3>
-          <p>Sie schicken uns ein paar Zeilen. Wir schauen uns Ihr Haus vorher an, damit das Gespräch nicht mit „Erzählen Sie doch mal" anfängt, und melden uns innerhalb von zwei Werktagen mit einem Terminvorschlag.</p>
-          <p>Und wenn wir dabei merken, dass sich das für Ihr Haus nicht lohnt, sagen wir Ihnen das. Ist für alle billiger.</p>
-          <div class="direct"><span>Lieber direkt</span><a href="mailto:mt@martinthun.com">mt@martinthun.com</a></div>
-        </div>
+        <div class="side"></div>
 
         <form class="form" id="checkForm" novalidate>
           <div class="row2">
             <div class="f"><label for="hotel">Name des Hauses</label><input type="text" id="hotel" name="hotel" autocomplete="organization" required></div>
             <div class="f"><label for="name">Ihr Name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
           </div>
-          <div class="row2">
-            <div class="f"><label for="mail">E-Mail</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
-            <div class="f"><label for="tel">Telefon, optional</label><input type="tel" id="tel" name="tel" autocomplete="tel"></div>
-          </div>
-          <div class="f"><label for="msg">Wo drückt es gerade am meisten?</label><textarea id="msg" name="msg" rows="4"></textarea></div>
+          <div class="f"><label for="mail">E-Mail-Adresse</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
+          <div class="f"><label for="msg">Nachricht</label><textarea id="msg" name="msg" rows="3"></textarea></div>
           <label class="consent"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span></label>
           <button class="btn" type="submit">Gespräch anfragen <span class="arw">→</span></button>
           <p class="form-msg" id="formMsg" role="status"></p>
@@ -850,10 +708,10 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
   </main>
 
   <!-- ================= 8 · Fußzeile ================= -->
-  <footer data-station data-scene="flag">
+  <footer data-route-stop>
     <div class="in">
       <div class="who">
-        <b>Thun Hotel Partner</b>
+        <b>Katrin &amp; Martin Hotel Consulting</b>
         <p>Direktbuchungen für inhabergeführte Häuser mit 20 bis 35 Zimmern im deutschsprachigen Raum. Katrin und Martin Thun.</p>
       </div>
       <nav aria-label="Fußzeile">
@@ -895,6 +753,13 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     var max = document.documentElement.scrollHeight - window.innerHeight;
     prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
   }
+  var topTick = false;
+  window.addEventListener("scroll", function(){
+    if(topTick) return;
+    topTick = true;
+    requestAnimationFrame(function(){ onTop(); drawMapRoute(); topTick = false; });
+  }, { passive:true });
+  onTop();
 
   /* ---------- Zahlen ---------- */
   var nf0 = new Intl.NumberFormat("de-DE",{ maximumFractionDigits:0 });
@@ -916,183 +781,127 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     });
   },{ threshold:.45 }).observe(band);
 
-  /* ---------- Comic-Szenen an den Haltepunkten ---------- */
-  /* Große Bühnen-Szenen. Jede läuft einmal quer über die volle Seitenbreite,
-     sobald die Route den zugehörigen Haltepunkt erreicht hat. */
-  function o(cls, style, inhalt){
-    return '<span class="o ' + cls + '"' + (style ? ' style="' + style + '"' : '') + '>' + (inhalt || '') + '</span>';
+  /* ---------- Ruhige Schatzkarten-Route ---------- */
+  var routePage = document.getElementById("page"),
+      routeSvg = document.getElementById("mapRoute"),
+      routeBase = document.getElementById("mapRouteBase"),
+      routeInk = document.getElementById("mapRouteInk"),
+      routeStopsLayer = document.getElementById("mapRouteStops"),
+      routeTraveler = document.getElementById("mapRouteTraveler"),
+      routeLength = 0,
+      routeHeight = 0,
+      routeStops = [],
+      routeResizeTimer = 0;
+
+  function routeX(width, index){
+    var contentWidth = Math.min(width,1080);
+    var margin = Math.max(0,(width - contentWidth) / 2);
+    var base = width < 1200 ? 12 : Math.min(110,Math.max(46,margin * .48));
+    var pattern = [-7,9,-3,7,-9,4,0,8];
+    var bend = width < 1200 ? pattern[index % pattern.length] * .18 : pattern[index % pattern.length];
+    return Math.max(9,base + bend);
   }
-  var SCHEIN = '<svg viewBox="0 0 82 46"><rect x="1.5" y="1.5" width="79" height="43" rx="5" fill="#FFC531" stroke="#141A1F" stroke-width="3"/><circle cx="41" cy="23" r="11" fill="#141A1F" opacity=".16"/><path d="M45 16 a8 8 0 1 0 0 14 M34 20 h11 M34 26 h11" stroke="#141A1F" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>';
 
-  var SZENEN = {
-    plane:
-      '<span class="streak"></span>' +
-      o('plane','','<svg viewBox="0 0 104 62"><path d="M2 40 L100 6 L74 60 L60 44 Z" fill="#F0400F"/><path d="M60 44 L100 6" stroke="#FCFAF7" stroke-width="3.4" stroke-linecap="round"/><path d="M2 40 L60 44" stroke="#C22F06" stroke-width="2" opacity=".5"/></svg>'),
-
-    money:
-      o('note','margin-top:-70px;animation-delay:0s',SCHEIN) +
-      o('note','margin-top:-18px;animation-delay:.24s',SCHEIN) +
-      o('note','margin-top:12px;animation-delay:.48s',SCHEIN) +
-      o('note','margin-top:-44px;animation-delay:.72s',SCHEIN) +
-      o('note','margin-top:26px;animation-delay:.96s',SCHEIN) +
-      o('note','margin-top:-6px;animation-delay:1.2s',SCHEIN),
-
-    coin:
-      '<span class="grnd"></span>' +
-      o('coin','','<svg viewBox="0 0 78 78"><circle cx="39" cy="39" r="35" fill="#FFC531" stroke="#141A1F" stroke-width="4"/><circle cx="39" cy="39" r="27" fill="none" stroke="#141A1F" stroke-width="2" opacity=".35"/><path d="M48 26 a15 15 0 1 0 0 26 M28 34 h20 M28 44 h20" stroke="#141A1F" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'),
-
-    rocket:
-      o('puff','left:14%;animation-delay:.5s') + o('puff','left:32%;animation-delay:.95s') +
-      o('puff','left:52%;animation-delay:1.4s') + o('puff','left:72%;animation-delay:1.85s') +
-      o('rk','','<svg viewBox="0 0 172 92"><path d="M8 46 C30 34 44 34 62 46 C44 58 30 58 8 46 Z" fill="#FFC531"/><path d="M24 46 C40 39 50 39 62 46 C50 53 40 53 24 46 Z" fill="#F0400F" opacity=".55"/><path d="M56 46 C56 30 84 12 132 8 C160 22 166 40 166 46 C166 52 160 70 132 84 C84 80 56 62 56 46 Z" fill="#F0400F"/><circle cx="126" cy="46" r="15" fill="#FCFAF7"/><circle cx="126" cy="46" r="8" fill="#9FC5CC"/><path d="M74 34 L60 10 L92 22 Z M74 58 L60 82 L92 70 Z" fill="#141A1F"/></svg>'),
-
-    shake:
-      o('burst') +
-      o('hand hL','','<svg viewBox="0 0 180 92"><path d="M4 46 h96" stroke="#141A1F" stroke-width="18" stroke-linecap="round"/><path d="M84 46 c14 -12 30 -12 44 0 c-14 12 -30 12 -44 0 z" fill="#141A1F"/></svg>') +
-      o('hand hR','','<svg viewBox="0 0 180 92"><path d="M176 46 h-96" stroke="#F0400F" stroke-width="18" stroke-linecap="round"/><path d="M96 46 c-14 -12 -30 -12 -44 0 c14 12 30 12 44 0 z" fill="#F0400F"/></svg>'),
-
-    scale:
-      o('wt wtL','','<svg viewBox="0 0 104 62"><rect x="2" y="14" width="100" height="46" rx="8" fill="#D8CFC1"/><path d="M30 14 v-6 h44 v6" stroke="#141A1F" stroke-width="5" fill="none" stroke-linecap="round"/></svg>') +
-      o('wt wtR','','<svg viewBox="0 0 104 62"><rect x="2" y="14" width="100" height="46" rx="8" fill="#F0400F"/><path d="M30 14 v-6 h44 v6" stroke="#141A1F" stroke-width="5" fill="none" stroke-linecap="round"/></svg>') +
-      o('beam','','<svg viewBox="0 0 340 116"><path d="M170 34 v60 M136 98 h68" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><g class="arm"><path d="M16 34 h308" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><circle cx="170" cy="34" r="11" fill="#FFC531" stroke="#141A1F" stroke-width="5"/></g></svg>'),
-
-    mail:
-      o('zip','margin-top:-6px;animation-delay:.12s') +
-      o('zip','margin-top:26px;width:102px;animation-delay:0s') +
-      o('env','','<svg viewBox="0 0 132 92"><rect x="3" y="3" width="126" height="86" rx="9" fill="#FFFFFF" stroke="#141A1F" stroke-width="4"/><path d="M3 12 L66 58 L129 12" stroke="#F0400F" stroke-width="4" fill="none" stroke-linejoin="round"/></svg>'),
-
-    flag:
-      '<span class="banner"></span>' +
-      o('pole','','<svg viewBox="0 0 78 116"><path d="M12 8 v104" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><path d="M12 12 h58 l-16 20 l16 20 h-58 z" fill="#F0400F"/><circle cx="12" cy="6" r="6" fill="#FFC531" stroke="#141A1F" stroke-width="3"/></svg>')
-  };
-
-  var svg  = document.getElementById("route"),
-      bg   = document.getElementById("routeBg"),
-      fg   = document.getElementById("routeFg"),
-      mrk  = document.getElementById("mrk"),
-      wrap = document.getElementById("stations"),
-      page = document.getElementById("page"),
-      stops = [], len = 0, H = 0, W = 0;
-
-  /* Weiche Kurve durch die Haltepunkte (Catmull-Rom als Bezier) */
-  function kurve(p){
-    if(p.length < 2) return "";
-    var d = "M " + p[0].x.toFixed(1) + " " + p[0].y.toFixed(1);
-    for(var i = 0; i < p.length - 1; i++){
-      var p0 = p[i-1] || p[i], p1 = p[i], p2 = p[i+1], p3 = p[i+2] || p2;
-      d += " C " + (p1.x + (p2.x - p0.x)/6).toFixed(1) + " " + (p1.y + (p2.y - p0.y)/6).toFixed(1)
-         + ", " + (p2.x - (p3.x - p1.x)/6).toFixed(1) + " " + (p2.y - (p3.y - p1.y)/6).toFixed(1)
-         + ", " + p2.x.toFixed(1) + " " + p2.y.toFixed(1);
+  function routeCurve(points){
+    if(points.length < 2) return "";
+    var d = "M " + points[0].x.toFixed(1) + " " + points[0].y.toFixed(1);
+    for(var i = 1; i < points.length; i++){
+      var a = points[i-1], b = points[i], middle = (a.y + b.y) / 2;
+      d += " C " + a.x.toFixed(1) + " " + middle.toFixed(1)
+         + ", " + b.x.toFixed(1) + " " + middle.toFixed(1)
+         + ", " + b.x.toFixed(1) + " " + b.y.toFixed(1);
     }
     return d;
   }
 
-  function bauen(){
-    if(!page || getComputedStyle(svg).display === "none"){ wrap.innerHTML = ""; stops = []; return; }
-    H = page.offsetHeight; W = page.offsetWidth;
-    if(H < 300 || W < 600) return;
+  function makeRouteStop(x,y){
+    var ns = "http://www.w3.org/2000/svg";
+    var group = document.createElementNS(ns,"g");
+    group.setAttribute("class","route-stop");
+    group.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(-8)");
 
-    /* Die Haltepunkte liegen abwechselnd im linken und rechten Seitenrand,
-       damit die Szenen nie mit dem Text kollidieren. */
-    var spalte = Math.min(W - 48, 1080);
-    var rand = (W - spalte) / 2;
-    var linksX = Math.max(58, rand / 2 + 6);
-    var rechtsX = W - linksX;
+    var circle = document.createElementNS(ns,"circle");
+    circle.setAttribute("r","13");
+    group.appendChild(circle);
 
-    var top = page.getBoundingClientRect().top + window.scrollY;
-    var punkte = [], daten = [];
-
-    /* Pro Sektion zwei Punkte im selben Seitenrand, oben und unten. Die Seite
-       gewechselt wird nur im Zwischenraum, sonst liefe die Linie durch den Text. */
-    document.querySelectorAll("[data-station]").forEach(function(sec, i){
-      var r = sec.getBoundingClientRect();
-      var oben = r.top + window.scrollY - top;
-      var unten = oben + r.height;
-      var x = (i % 2 === 0) ? linksX : rechtsX;
-
-      var yStation = Math.max(70, Math.min(H - 70, oben + 130));
-      var yAus = Math.max(yStation + 60, unten - 40);
-
-      /* Die Bühne sitzt im Polster über der Sektion, dort ist die Seite leer. */
-      var polster = parseFloat(getComputedStyle(sec).paddingTop) || 0;
-      var yBuehne = Math.max(60, oben + polster / 2);
-
-      /* Der Hero hat kein Polster über sich, sonst liefe die Szene hinter der
-         Kopfzeile. Sie kommt stattdessen in die Lücke über das Zahlenband. */
-      var band = sec.querySelector("#band");
-      if(band) yBuehne = band.getBoundingClientRect().top + window.scrollY - top - 36;
-
-      punkte.push({ x:x, y:yStation });
-      punkte.push({ x:x, y:Math.min(yAus, H - 20) });
-      daten.push({ x:x, y:yStation, yScene:yBuehne, scene: sec.getAttribute("data-scene") });
+    [[-8,-8,8,8],[-8,8,8,-8]].forEach(function(v){
+      var line = document.createElementNS(ns,"line");
+      line.setAttribute("x1",v[0]); line.setAttribute("y1",v[1]);
+      line.setAttribute("x2",v[2]); line.setAttribute("y2",v[3]);
+      group.appendChild(line);
     });
-    if(!punkte.length) return;
-
-    punkte.unshift({ x: punkte[0].x, y: 0 });
-    punkte.push({ x: punkte[punkte.length-1].x, y: H });
-
-    var d = kurve(punkte);
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    svg.setAttribute("height", H);
-    bg.setAttribute("d", d); fg.setAttribute("d", d);
-    len = fg.getTotalLength();
-    fg.style.strokeDasharray = len;
-    fg.style.strokeDashoffset = len;
-
-    wrap.innerHTML = "";
-    stops = daten.map(function(p){
-      var dot = document.createElement("div");
-      dot.className = "pin-dot";
-      dot.style.left = p.x + "px";
-      dot.style.top = p.y + "px";
-      wrap.appendChild(dot);
-
-      var buehne = document.createElement("div");
-      buehne.className = "scene s-" + p.scene;
-      buehne.style.top = (p.yScene - 95) + "px";
-      buehne.innerHTML = SZENEN[p.scene] || SZENEN.plane;
-      wrap.appendChild(buehne);
-
-      return { dot:dot, buehne:buehne, y:p.y };
-    });
-    zeichnen();
+    routeStopsLayer.appendChild(group);
+    return group;
   }
 
-  function zeichnen(){
-    if(!len || !H) return;
-    var top = page.getBoundingClientRect().top + window.scrollY;
-    var gesehen = window.scrollY + window.innerHeight * 0.68 - top;
-    var p = Math.max(0, Math.min(1, gesehen / H));
-    fg.style.strokeDashoffset = len * (1 - p);
+  function buildMapRoute(){
+    if(!routePage || !routeSvg || !routeInk) return;
+    var width = routePage.clientWidth;
+    routeHeight = routePage.offsetHeight;
+    if(width < 280 || routeHeight < 400) return;
 
-    var marke = p * H;
-    stops.forEach(function(s){
-      var erreicht = s.y <= marke;
-      s.dot.classList.toggle("on", erreicht);
-      /* Die Szene läuft genau einmal, sie wird nie zurückgesetzt. */
-      if(erreicht) s.buehne.classList.add("on");
+    var pageTop = routePage.getBoundingClientRect().top + window.scrollY;
+    var nodes = [].slice.call(document.querySelectorAll("[data-route-stop]"));
+    var points = [{ x:routeX(width,0), y:0 }];
+    var markerData = [];
+
+    nodes.forEach(function(node,index){
+      var rect = node.getBoundingClientRect();
+      var top = rect.top + window.scrollY - pageTop;
+      var y = Math.max(64,Math.min(routeHeight - 42,top + Math.min(132,rect.height * .18)));
+      var x = routeX(width,index + 1);
+      points.push({ x:x, y:y });
+      markerData.push({ x:x, y:y });
     });
+    points.push({ x:routeX(width,nodes.length + 1), y:routeHeight });
 
-    if(p > .002 && p < .999){
-      var pt = fg.getPointAtLength(len * p);
-      mrk.setAttribute("cx", pt.x); mrk.setAttribute("cy", pt.y);
-      mrk.style.opacity = 1;
-    } else { mrk.style.opacity = 0; }
+    var path = routeCurve(points);
+    routeSvg.setAttribute("viewBox","0 0 " + width + " " + routeHeight);
+    routeSvg.setAttribute("height",routeHeight);
+    routeBase.setAttribute("d",path);
+    routeInk.setAttribute("d",path);
+    routeLength = routeInk.getTotalLength();
+    routeInk.style.strokeDasharray = routeLength;
+    routeInk.style.strokeDashoffset = routeLength;
+
+    routeStopsLayer.replaceChildren();
+    routeStops = markerData.map(function(marker){
+      return { element:makeRouteStop(marker.x,marker.y), y:marker.y, reached:false };
+    });
+    drawMapRoute();
   }
 
-  var tick = false;
-  window.addEventListener("scroll", function(){
-    if(tick) return;
-    tick = true;
-    requestAnimationFrame(function(){ onTop(); zeichnen(); tick = false; });
-  }, { passive:true });
+  function drawMapRoute(){
+    if(!routeLength || !routeHeight) return;
+    var pageTop = routePage.getBoundingClientRect().top + window.scrollY;
+    var walkedY = window.scrollY + window.innerHeight * .62 - pageTop;
+    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) walkedY = routeHeight;
+    walkedY = Math.max(0,Math.min(routeHeight,walkedY));
 
-  var rt;
-  window.addEventListener("resize", function(){ clearTimeout(rt); rt = setTimeout(bauen, 160); });
-  window.addEventListener("load", bauen);
-  if(document.fonts && document.fonts.ready) document.fonts.ready.then(bauen);
-  if(window.ResizeObserver) new ResizeObserver(function(){ bauen(); }).observe(page);
-  onTop(); bauen();
+    var progress = walkedY / routeHeight;
+    var walkedLength = routeLength * progress;
+    routeInk.style.strokeDashoffset = routeLength - walkedLength;
+
+    var point = routeInk.getPointAtLength(walkedLength);
+    routeTraveler.setAttribute("transform","translate(" + point.x.toFixed(1) + " " + point.y.toFixed(1) + ")");
+    routeTraveler.classList.toggle("visible",progress > .004 && progress < .998);
+
+    routeStops.forEach(function(stop){
+      var reached = stop.y <= walkedY;
+      if(reached !== stop.reached){
+        stop.reached = reached;
+        stop.element.classList.toggle("reached",reached);
+      }
+    });
+  }
+
+  window.addEventListener("resize",function(){
+    clearTimeout(routeResizeTimer);
+    routeResizeTimer = setTimeout(buildMapRoute,180);
+  });
+  window.addEventListener("load",buildMapRoute);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(buildMapRoute);
+  buildMapRoute();
 
   /* ---------- Provisionsrechner ---------- */
   var euro = new Intl.NumberFormat("de-DE",{ style:"currency", currency:"EUR", maximumFractionDigits:0 });
