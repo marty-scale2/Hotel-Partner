@@ -119,67 +119,130 @@ p{margin:0}
 .route .fg{fill:none;stroke:var(--flame);stroke-width:2.6;stroke-linecap:round;opacity:.9}
 .route .mrk{fill:var(--flame);stroke:var(--ground);stroke-width:3}
 
-.stations{position:absolute;inset:0;pointer-events:none;z-index:2;display:none}
-.stop{
-  position:absolute;width:84px;height:84px;margin:-42px 0 0 -42px;
-  display:grid;place-items:center;
-  background:var(--surface);border:1px solid var(--line);border-radius:50%;
-  box-shadow:var(--e2);
-  opacity:0;transform:scale(.6);
-  transition:opacity .45s ease,transform .5s cubic-bezier(.2,1.5,.4,1),border-color .45s ease;
-}
-.stop.on{opacity:1;transform:scale(1);border-color:var(--flame-wash)}
-.stop svg{width:46px;height:46px;overflow:visible}
+.stations{position:absolute;inset:0;pointer-events:none;z-index:3;display:none}
 @media (min-width:1200px){ .route,.stations{display:block} }
 
-/* Szene: Papierflieger */
-.sc-plane .body{transform-origin:32px 32px}
-.stop.on .sc-plane .body{animation:planeGo 1.5s cubic-bezier(.3,.9,.4,1) forwards}
-@keyframes planeGo{0%{transform:translate(-10px,10px) rotate(-12deg)}60%{transform:translate(4px,-4px) rotate(2deg)}100%{transform:translate(2px,-2px) rotate(0)}}
-.stop.on .sc-plane .trail{animation:dash 1.5s ease forwards}
-@keyframes dash{from{stroke-dashoffset:40}to{stroke-dashoffset:0}}
+/* Haltepunkt auf der Route, dezent. Die Show macht die Szene. */
+.pin-dot{
+  position:absolute;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  background:var(--surface);border:3px solid var(--line-2);
+  transition:border-color .4s ease,transform .5s cubic-bezier(.2,1.6,.4,1);
+}
+.pin-dot.on{border-color:var(--flame);transform:scale(1.25)}
 
-/* Szene: Geld fliegt weg */
-.sc-money .note{opacity:0}
-.stop.on .sc-money .note{animation:flyOff 1.9s ease-out forwards}
-.stop.on .sc-money .n2{animation-delay:.22s}
-.stop.on .sc-money .n3{animation-delay:.44s}
-@keyframes flyOff{
-  0%{opacity:0;transform:translate(0,6px) rotate(0)}
-  22%{opacity:1}
-  100%{opacity:0;transform:translate(24px,-30px) rotate(26deg)}
+/* Bühne: volle Seitenbreite, sitzt im Zwischenraum zweier Sektionen */
+.scene{position:absolute;left:0;width:100%;height:190px;overflow:visible}
+.scene .o{position:absolute;top:50%;left:0;opacity:0;will-change:transform,opacity}
+.scene .o svg{display:block;overflow:visible}
+
+/* — Papierflieger, quer über die Seite — */
+.s-plane .streak{
+  position:absolute;top:50%;left:0;width:100%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 18px);
+  transform:scaleX(0);transform-origin:left;opacity:.9;
+}
+.scene.on.s-plane .streak{animation:streakOut 3.1s cubic-bezier(.3,.5,.4,1) forwards}
+@keyframes streakOut{0%{transform:scaleX(0)}70%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+.s-plane .plane{width:158px;margin-top:-50px}
+.scene.on.s-plane .plane{animation:planeCross 3.1s cubic-bezier(.3,.5,.4,1) forwards}
+@keyframes planeCross{
+  0%{opacity:0;transform:translate(-20vw,54px) rotate(9deg)}
+  9%{opacity:1}
+  88%{opacity:1}
+  100%{opacity:0;transform:translate(118vw,-56px) rotate(-9deg)}
 }
 
-/* Szene: Münze fällt durch */
-.stop.on .sc-coin .coin{animation:coinDrop 1.6s cubic-bezier(.5,0,.75,0) forwards}
-@keyframes coinDrop{0%{transform:translateY(-16px);opacity:0}20%{opacity:1}100%{transform:translateY(22px);opacity:0}}
+/* — Geldscheine, die wegwehen — */
+.s-money .note{width:112px;margin-top:-34px}
+.scene.on.s-money .note{animation:noteBlow 3.6s cubic-bezier(.35,.1,.5,1) forwards}
+@keyframes noteBlow{
+  0%{opacity:0;transform:translate(-16vw,52px) rotate(-10deg) scale(.85)}
+  10%{opacity:1}
+  85%{opacity:1}
+  100%{opacity:0;transform:translate(116vw,-104px) rotate(276deg) scale(1.08)}
+}
 
-/* Szene: Rakete */
-.stop.on .sc-rocket .rk{animation:rocketUp 1.7s cubic-bezier(.4,0,.3,1) forwards}
-@keyframes rocketUp{0%{transform:translateY(12px)}100%{transform:translateY(-8px)}}
-.stop.on .sc-rocket .fire{animation:flicker .18s steps(2) infinite}
-@keyframes flicker{0%{transform:scaleY(1)}100%{transform:scaleY(.66)}}
+/* — Münze rollt quer durch und fällt raus — */
+.s-coin .coin{width:112px;margin-top:-56px}
+.scene.on.s-coin .coin{animation:coinRoll 3.4s cubic-bezier(.25,.5,.4,1) forwards}
+@keyframes coinRoll{
+  0%{opacity:0;transform:translate(-14vw,0) rotate(0)}
+  7%{opacity:1}
+  74%{opacity:1;transform:translate(88vw,0) rotate(1620deg)}
+  100%{opacity:0;transform:translate(112vw,180px) rotate(2040deg)}
+}
+.s-coin .grnd{position:absolute;top:50%;left:0;width:100%;height:3px;border-radius:2px;background:var(--line);transform:scaleX(0);transform-origin:left;margin-top:38px}
+.scene.on.s-coin .grnd{animation:streakOut 3.4s ease-out forwards}
 
-/* Szene: Handschlag */
-.stop.on .sc-shake .hL{animation:inL .7s cubic-bezier(.2,1.3,.4,1) forwards}
-.stop.on .sc-shake .hR{animation:inR .7s cubic-bezier(.2,1.3,.4,1) forwards}
-@keyframes inL{0%{transform:translateX(-18px)}100%{transform:translateX(0)}}
-@keyframes inR{0%{transform:translateX(18px)}100%{transform:translateX(0)}}
-.stop.on .sc-shake .pop{animation:pop .9s .5s ease-out forwards}
-@keyframes pop{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+/* — Rakete quer über den Bildschirm — */
+.s-rocket .rk{width:250px;margin-top:-67px}
+.scene.on.s-rocket .rk{animation:rocketCross 3.3s cubic-bezier(.42,.02,.45,1) forwards}
+@keyframes rocketCross{
+  0%{opacity:0;transform:translate(-24vw,132px) rotate(-19deg) scale(.72)}
+  8%{opacity:1}
+  88%{opacity:1}
+  100%{opacity:0;transform:translate(120vw,-148px) rotate(-19deg) scale(1.12)}
+}
+.s-rocket .puff{width:82px;height:82px;margin-top:-41px;border-radius:50%;background:var(--line);opacity:0}
+.scene.on.s-rocket .puff{animation:puffOut 1.5s ease-out forwards}
+@keyframes puffOut{
+  0%{opacity:0;transform:translateY(30px) scale(.3)}
+  25%{opacity:.55}
+  100%{opacity:0;transform:translateY(-10px) scale(1.5)}
+}
 
-/* Szene: Waage */
-.stop.on .sc-scale .beam{animation:tip 1.4s .2s cubic-bezier(.3,1.4,.5,1) forwards;transform-origin:32px 22px}
-@keyframes tip{0%{transform:rotate(0)}100%{transform:rotate(11deg)}}
+/* — Handschlag in der Mitte — */
+.s-shake .hand{width:250px;margin-top:-64px;left:50%}
+.scene.on.s-shake .hL{animation:shakeL 1.5s cubic-bezier(.2,1.15,.35,1) forwards}
+.scene.on.s-shake .hR{animation:shakeR 1.5s cubic-bezier(.2,1.15,.35,1) forwards}
+@keyframes shakeL{0%{opacity:0;transform:translateX(-62vw)}14%{opacity:1}100%{opacity:1;transform:translateX(-244px)}}
+@keyframes shakeR{0%{opacity:0;transform:translateX(62vw)}14%{opacity:1}100%{opacity:1;transform:translateX(-4px)}}
+.s-shake .burst{width:210px;height:210px;margin:-105px 0 0 -105px;left:50%;border-radius:50%;border:5px solid var(--sun)}
+.scene.on.s-shake .burst{animation:burstOut 1.1s .95s ease-out forwards}
+@keyframes burstOut{0%{opacity:.95;transform:scale(.24)}100%{opacity:0;transform:scale(1.75)}}
 
-/* Szene: Brief */
-.stop.on .sc-mail .env{animation:mailGo 1.5s cubic-bezier(.3,.9,.4,1) forwards}
-@keyframes mailGo{0%{transform:translate(-8px,6px)}100%{transform:translate(6px,-4px)}}
-.stop.on .sc-mail .zip{animation:dash 1.4s .1s ease forwards}
+/* — Waage, Gewichte kommen von beiden Rändern — */
+.s-scale .beam{width:420px;margin:-72px 0 0 -210px;left:50%;opacity:1}
+.scene.on.s-scale .beam .arm{animation:beamTip 1.3s .95s cubic-bezier(.3,1.5,.5,1) forwards;transform-origin:210px 42px}
+@keyframes beamTip{0%{transform:rotate(0)}100%{transform:rotate(9deg)}}
+.s-scale .wt{width:140px;margin-top:-40px}
+.scene.on.s-scale .wtL{animation:wtIn 1.2s cubic-bezier(.25,1.1,.4,1) forwards}
+.scene.on.s-scale .wtR{animation:wtInR 1.2s .18s cubic-bezier(.25,1.1,.4,1) forwards}
+@keyframes wtIn{0%{opacity:0;transform:translateX(-58vw)}18%{opacity:1}100%{opacity:1;transform:translate(calc(50vw - 330px),0)}}
+@keyframes wtInR{0%{opacity:0;transform:translateX(58vw)}18%{opacity:1}100%{opacity:1;transform:translate(calc(50vw + 196px),28px)}}
 
-/* Szene: Zielflagge */
-.stop.on .sc-flag .cloth{animation:wave 1.6s ease-in-out infinite;transform-origin:20px 16px}
-@keyframes wave{0%,100%{transform:skewY(0)}50%{transform:skewY(-7deg)}}
+/* — Brief fliegt quer durch — */
+.s-mail .env{width:186px;margin-top:-58px}
+.scene.on.s-mail .env{animation:mailCross 3s cubic-bezier(.3,.4,.4,1) forwards}
+@keyframes mailCross{
+  0%{opacity:0;transform:translate(-20vw,40px) rotate(-13deg)}
+  9%{opacity:1}
+  88%{opacity:1}
+  100%{opacity:0;transform:translate(118vw,-52px) rotate(9deg)}
+}
+.s-mail .zip{position:absolute;top:50%;left:0;height:5px;width:158px;border-radius:3px;background:var(--flame);opacity:0}
+.scene.on.s-mail .zip{animation:zipBy 3s cubic-bezier(.3,.4,.4,1) forwards}
+@keyframes zipBy{
+  0%{opacity:0;transform:translate(-26vw,44px) scaleX(.2)}
+  14%{opacity:.5}
+  88%{opacity:.5}
+  100%{opacity:0;transform:translate(112vw,-48px) scaleX(1.3)}
+}
+
+/* — Zielbanner rollt über die volle Breite auf — */
+.s-flag .banner{
+  position:absolute;top:50%;left:0;width:100%;height:62px;margin-top:-31px;
+  transform:scaleX(0);transform-origin:left;opacity:1;
+  background:
+    repeating-linear-gradient(90deg,var(--ink) 0 31px,#fff 31px 62px) 0 0/100% 31px no-repeat,
+    repeating-linear-gradient(90deg,#fff 0 31px,var(--ink) 31px 62px) 0 31px/100% 31px no-repeat;
+  border-radius:3px;
+}
+.scene.on.s-flag .banner{animation:unfurl 1.5s cubic-bezier(.3,.9,.35,1) forwards}
+@keyframes unfurl{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+.s-flag .pole{width:108px;margin-top:-80px;opacity:1}
+.scene.on.s-flag .pole{animation:poleIn .7s cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes poleIn{0%{opacity:0;transform:translateY(24px) scale(.6)}100%{opacity:1;transform:none}}
 
 /* ---------- Kopfzeile ---------- */
 .topbar{
@@ -854,15 +917,53 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
   },{ threshold:.45 }).observe(band);
 
   /* ---------- Comic-Szenen an den Haltepunkten ---------- */
+  /* Große Bühnen-Szenen. Jede läuft einmal quer über die volle Seitenbreite,
+     sobald die Route den zugehörigen Haltepunkt erreicht hat. */
+  function o(cls, style, inhalt){
+    return '<span class="o ' + cls + '"' + (style ? ' style="' + style + '"' : '') + '>' + (inhalt || '') + '</span>';
+  }
+  var SCHEIN = '<svg viewBox="0 0 82 46"><rect x="1.5" y="1.5" width="79" height="43" rx="5" fill="#FFC531" stroke="#141A1F" stroke-width="3"/><circle cx="41" cy="23" r="11" fill="#141A1F" opacity=".16"/><path d="M45 16 a8 8 0 1 0 0 14 M34 20 h11 M34 26 h11" stroke="#141A1F" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>';
+
   var SZENEN = {
-    plane:'<svg class="sc-plane" viewBox="0 0 64 64" fill="none"><path class="trail" d="M6 52 C18 48 22 40 30 34" stroke="#D8CFC1" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="40" stroke-dashoffset="40"/><g class="body"><path d="M20 34 L54 14 L45 50 L37 40 Z" fill="#F0400F"/><path d="M37 40 L54 14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></g></svg>',
-    money:'<svg class="sc-money" viewBox="0 0 64 64" fill="none"><rect x="14" y="38" width="36" height="16" rx="4" fill="#141A1F" opacity=".08"/><g class="note n1"><rect x="16" y="30" width="26" height="15" rx="3" fill="#FFC531" stroke="#141A1F" stroke-width="1.6"/><circle cx="29" cy="37.5" r="4" fill="#141A1F" opacity=".22"/></g><g class="note n2"><rect x="20" y="26" width="26" height="15" rx="3" fill="#FFC531" stroke="#141A1F" stroke-width="1.6"/><circle cx="33" cy="33.5" r="4" fill="#141A1F" opacity=".22"/></g><g class="note n3"><rect x="24" y="22" width="26" height="15" rx="3" fill="#FFC531" stroke="#141A1F" stroke-width="1.6"/><circle cx="37" cy="29.5" r="4" fill="#141A1F" opacity=".22"/></g></svg>',
-    coin:'<svg class="sc-coin" viewBox="0 0 64 64" fill="none"><path d="M12 42 h16 M36 42 h16" stroke="#141A1F" stroke-width="3" stroke-linecap="round"/><g class="coin"><circle cx="32" cy="26" r="11" fill="#FFC531" stroke="#141A1F" stroke-width="2"/><path d="M35 21 a6 6 0 1 0 0 10 M28 24 h8 M28 28 h8" stroke="#141A1F" stroke-width="1.8" stroke-linecap="round" fill="none"/></g></svg>',
-    rocket:'<svg class="sc-rocket" viewBox="0 0 64 64" fill="none"><g class="rk"><path class="fire" d="M32 46 c-5 5 -5 10 0 14 c5 -4 5 -9 0 -14 z" fill="#FFC531"/><path d="M32 8 c8 8 12 18 12 28 h-24 c0 -10 4 -20 12 -28 z" fill="#F0400F"/><circle cx="32" cy="26" r="5" fill="#FCFAF7"/><path d="M20 36 l-7 9 h9 z M44 36 l7 9 h-9 z" fill="#141A1F"/></g></svg>',
-    shake:'<svg class="sc-shake" viewBox="0 0 64 64" fill="none" stroke-linecap="round"><circle class="pop" cx="32" cy="32" r="10" fill="none" stroke="#FFC531" stroke-width="3"/><path class="hL" d="M6 24 h14 l10 8" stroke="#141A1F" stroke-width="5"/><path class="hR" d="M58 24 h-14 l-10 8" stroke="#F0400F" stroke-width="5"/><circle cx="32" cy="32" r="5" fill="#F0400F"/></svg>',
-    scale:'<svg class="sc-scale" viewBox="0 0 64 64" fill="none" stroke-linecap="round"><path d="M32 18 v30 M22 50 h20" stroke="#141A1F" stroke-width="3"/><g class="beam"><path d="M10 22 h44" stroke="#141A1F" stroke-width="3"/><path d="M16 22 l-6 12 h12 z" fill="#D8CFC1"/><path d="M48 22 l-6 12 h12 z" fill="#F0400F"/></g><circle cx="32" cy="18" r="3.5" fill="#FFC531" stroke="#141A1F" stroke-width="2"/></svg>',
-    mail:'<svg class="sc-mail" viewBox="0 0 64 64" fill="none"><path class="zip" d="M4 40 h14 M4 48 h9" stroke="#D8CFC1" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="40" stroke-dashoffset="40"/><g class="env"><rect x="20" y="18" width="36" height="26" rx="4" fill="#fff" stroke="#141A1F" stroke-width="2.4"/><path d="M20 22 l18 13 l18 -13" stroke="#F0400F" stroke-width="2.4" fill="none" stroke-linejoin="round"/></g></svg>',
-    flag:'<svg class="sc-flag" viewBox="0 0 64 64" fill="none"><path d="M20 12 v42" stroke="#141A1F" stroke-width="3.4" stroke-linecap="round"/><path class="cloth" d="M20 14 h26 l-7 9 l7 9 h-26 z" fill="#F0400F"/><circle cx="20" cy="10" r="3.5" fill="#FFC531"/></svg>'
+    plane:
+      '<span class="streak"></span>' +
+      o('plane','','<svg viewBox="0 0 104 62"><path d="M2 40 L100 6 L74 60 L60 44 Z" fill="#F0400F"/><path d="M60 44 L100 6" stroke="#FCFAF7" stroke-width="3.4" stroke-linecap="round"/><path d="M2 40 L60 44" stroke="#C22F06" stroke-width="2" opacity=".5"/></svg>'),
+
+    money:
+      o('note','margin-top:-70px;animation-delay:0s',SCHEIN) +
+      o('note','margin-top:-18px;animation-delay:.24s',SCHEIN) +
+      o('note','margin-top:12px;animation-delay:.48s',SCHEIN) +
+      o('note','margin-top:-44px;animation-delay:.72s',SCHEIN) +
+      o('note','margin-top:26px;animation-delay:.96s',SCHEIN) +
+      o('note','margin-top:-6px;animation-delay:1.2s',SCHEIN),
+
+    coin:
+      '<span class="grnd"></span>' +
+      o('coin','','<svg viewBox="0 0 78 78"><circle cx="39" cy="39" r="35" fill="#FFC531" stroke="#141A1F" stroke-width="4"/><circle cx="39" cy="39" r="27" fill="none" stroke="#141A1F" stroke-width="2" opacity=".35"/><path d="M48 26 a15 15 0 1 0 0 26 M28 34 h20 M28 44 h20" stroke="#141A1F" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'),
+
+    rocket:
+      o('puff','left:14%;animation-delay:.5s') + o('puff','left:32%;animation-delay:.95s') +
+      o('puff','left:52%;animation-delay:1.4s') + o('puff','left:72%;animation-delay:1.85s') +
+      o('rk','','<svg viewBox="0 0 172 92"><path d="M8 46 C30 34 44 34 62 46 C44 58 30 58 8 46 Z" fill="#FFC531"/><path d="M24 46 C40 39 50 39 62 46 C50 53 40 53 24 46 Z" fill="#F0400F" opacity=".55"/><path d="M56 46 C56 30 84 12 132 8 C160 22 166 40 166 46 C166 52 160 70 132 84 C84 80 56 62 56 46 Z" fill="#F0400F"/><circle cx="126" cy="46" r="15" fill="#FCFAF7"/><circle cx="126" cy="46" r="8" fill="#9FC5CC"/><path d="M74 34 L60 10 L92 22 Z M74 58 L60 82 L92 70 Z" fill="#141A1F"/></svg>'),
+
+    shake:
+      o('burst') +
+      o('hand hL','','<svg viewBox="0 0 180 92"><path d="M4 46 h96" stroke="#141A1F" stroke-width="18" stroke-linecap="round"/><path d="M84 46 c14 -12 30 -12 44 0 c-14 12 -30 12 -44 0 z" fill="#141A1F"/></svg>') +
+      o('hand hR','','<svg viewBox="0 0 180 92"><path d="M176 46 h-96" stroke="#F0400F" stroke-width="18" stroke-linecap="round"/><path d="M96 46 c-14 -12 -30 -12 -44 0 c14 12 30 12 44 0 z" fill="#F0400F"/></svg>'),
+
+    scale:
+      o('wt wtL','','<svg viewBox="0 0 104 62"><rect x="2" y="14" width="100" height="46" rx="8" fill="#D8CFC1"/><path d="M30 14 v-6 h44 v6" stroke="#141A1F" stroke-width="5" fill="none" stroke-linecap="round"/></svg>') +
+      o('wt wtR','','<svg viewBox="0 0 104 62"><rect x="2" y="14" width="100" height="46" rx="8" fill="#F0400F"/><path d="M30 14 v-6 h44 v6" stroke="#141A1F" stroke-width="5" fill="none" stroke-linecap="round"/></svg>') +
+      o('beam','','<svg viewBox="0 0 340 116"><path d="M170 34 v60 M136 98 h68" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><g class="arm"><path d="M16 34 h308" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><circle cx="170" cy="34" r="11" fill="#FFC531" stroke="#141A1F" stroke-width="5"/></g></svg>'),
+
+    mail:
+      o('zip','margin-top:-6px;animation-delay:.12s') +
+      o('zip','margin-top:26px;width:102px;animation-delay:0s') +
+      o('env','','<svg viewBox="0 0 132 92"><rect x="3" y="3" width="126" height="86" rx="9" fill="#FFFFFF" stroke="#141A1F" stroke-width="4"/><path d="M3 12 L66 58 L129 12" stroke="#F0400F" stroke-width="4" fill="none" stroke-linejoin="round"/></svg>'),
+
+    flag:
+      '<span class="banner"></span>' +
+      o('pole','','<svg viewBox="0 0 78 116"><path d="M12 8 v104" stroke="#141A1F" stroke-width="7" stroke-linecap="round"/><path d="M12 12 h58 l-16 20 l16 20 h-58 z" fill="#F0400F"/><circle cx="12" cy="6" r="6" fill="#FFC531" stroke="#141A1F" stroke-width="3"/></svg>')
   };
 
   var svg  = document.getElementById("route"),
@@ -912,9 +1013,18 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       var yStation = Math.max(70, Math.min(H - 70, oben + 130));
       var yAus = Math.max(yStation + 60, unten - 40);
 
+      /* Die Bühne sitzt im Polster über der Sektion, dort ist die Seite leer. */
+      var polster = parseFloat(getComputedStyle(sec).paddingTop) || 0;
+      var yBuehne = Math.max(60, oben + polster / 2);
+
+      /* Der Hero hat kein Polster über sich, sonst liefe die Szene hinter der
+         Kopfzeile. Sie kommt stattdessen in die Lücke über das Zahlenband. */
+      var band = sec.querySelector("#band");
+      if(band) yBuehne = band.getBoundingClientRect().top + window.scrollY - top - 36;
+
       punkte.push({ x:x, y:yStation });
       punkte.push({ x:x, y:Math.min(yAus, H - 20) });
-      daten.push({ x:x, y:yStation, scene: sec.getAttribute("data-scene") });
+      daten.push({ x:x, y:yStation, yScene:yBuehne, scene: sec.getAttribute("data-scene") });
     });
     if(!punkte.length) return;
 
@@ -931,13 +1041,19 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
 
     wrap.innerHTML = "";
     stops = daten.map(function(p){
-      var el = document.createElement("div");
-      el.className = "stop";
-      el.style.left = p.x + "px";
-      el.style.top = p.y + "px";
-      el.innerHTML = SZENEN[p.scene] || SZENEN.plane;
-      wrap.appendChild(el);
-      return { el:el, y:p.y };
+      var dot = document.createElement("div");
+      dot.className = "pin-dot";
+      dot.style.left = p.x + "px";
+      dot.style.top = p.y + "px";
+      wrap.appendChild(dot);
+
+      var buehne = document.createElement("div");
+      buehne.className = "scene s-" + p.scene;
+      buehne.style.top = (p.yScene - 95) + "px";
+      buehne.innerHTML = SZENEN[p.scene] || SZENEN.plane;
+      wrap.appendChild(buehne);
+
+      return { dot:dot, buehne:buehne, y:p.y };
     });
     zeichnen();
   }
@@ -950,7 +1066,12 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     fg.style.strokeDashoffset = len * (1 - p);
 
     var marke = p * H;
-    stops.forEach(function(s){ s.el.classList.toggle("on", s.y <= marke); });
+    stops.forEach(function(s){
+      var erreicht = s.y <= marke;
+      s.dot.classList.toggle("on", erreicht);
+      /* Die Szene läuft genau einmal, sie wird nie zurückgesetzt. */
+      if(erreicht) s.buehne.classList.add("on");
+    });
 
     if(p > .002 && p < .999){
       var pt = fg.getPointAtLength(len * p);
