@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Mehr Direktbuchungen fuer dein inhabergefuehrtes Hotel mit 20 bis 35 Zimmern. Ohne Pflicht-Werbebudget. Katrin und Martin Thun.">
+<meta name="description" content="Mehr Direktbuchungen und hoehere Auslastung fuer dein inhabergefuehrtes Hotel im DACH-Raum, ohne Werbekosten. Katrin und Martin Thun.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FDFBF8">
 <meta property="og:title" content="Katrin &amp; Martin Hotel Consulting">
-<meta property="og:description" content="Volles Haus, volle Marge. Mehr Direktbuchungen fuer dein inhabergefuehrtes Hotel, ohne Pflicht-Werbebudget.">
+<meta property="og:description" content="Mehr Direktbuchungen und hoehere Auslastung, ohne Werbekosten. KI-gestuetzte Marketing-Systeme fuer inhabergefuehrte Hotels.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.hotel-partner.martinthun.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,39 +18,32 @@
 <body>
 <style>
 /* ============================================================
-   Ein System, keine Sammlung. Alles darunter leitet sich aus
-   diesen Werten ab: eine Skala, eine Kartenform, ein Akzent.
+   Formensprache: Kante statt Kissen.
+   Struktur entsteht durch Linien und eine sichtbare Marginal-
+   spalte, nicht durch schwebende Kacheln mit weichem Schatten.
    ============================================================ */
 :root{
-  /* Farbe */
   --paper:#FDFBF8;
-  --paper-2:#F7F2EA;
+  --paper-2:#F5EFE6;
   --surface:#FFFFFF;
-  --ink:#161A1D;
-  --ink-2:#535C62;
-  --muted:#8B9298;
-  --line:#E8E2DA;
-  --line-2:#D6CCC0;
+  --ink:#14181B;
+  --ink-2:#4E585E;
+  --muted:#8A9298;
+  --linie:#DDD4C7;          /* Haarlinie */
+  --kante:#14181B;          /* tragende Linie */
   --flame:#EE3D0E;
   --flame-deep:#BE2E06;
-  --flame-wash:#FDEEE9;
+  --flame-wash:#FDEDE7;
   --sun:#FFC531;
   --sun-wash:#FFF6E2;
 
-  /* Abstände, alles Vielfache von 4 */
   --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
   --s7:48px; --s8:64px; --s9:96px; --s10:128px;
 
-  /* Form */
-  --r:14px;
-  --r-s:9px;
-  --shell:1100px;
-  --band:300px;          /* leeres Band für den Seitenwechsel */
-
-  /* Tiefe, drei Stufen und nicht mehr */
-  --e1:0 1px 2px rgba(22,26,29,.04);
-  --e2:0 1px 2px rgba(22,26,29,.04), 0 12px 26px -16px rgba(22,26,29,.28);
-  --e3:0 1px 2px rgba(22,26,29,.04), 0 28px 56px -30px rgba(22,26,29,.34);
+  --r:3px;                  /* fast eckig, nur die Härte gebrochen */
+  --rand:104px;             /* Marginalspalte für die Etappennummer */
+  --shell:1120px;
+  --band:300px;
 }
 
 *{box-sizing:border-box}
@@ -58,7 +51,7 @@ html{scroll-behavior:smooth;background:var(--paper)}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
-  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -70,81 +63,68 @@ button{font:inherit;cursor:pointer}
 /* ---------- Typografie ---------- */
 .display{
   font-family:"Fraunces",Georgia,"Times New Roman",serif;
-  font-weight:700;letter-spacing:-.028em;line-height:1.04;
-  text-wrap:balance;font-variation-settings:"SOFT" 60,"WONK" 0;margin:0;
+  font-weight:700;letter-spacing:-.032em;line-height:1.02;
+  text-wrap:balance;font-variation-settings:"SOFT" 55,"WONK" 0;margin:0;
 }
-h1.display{font-size:clamp(2.8rem,6vw,4.4rem);line-height:.98;letter-spacing:-.036em}
-h2.display{font-size:clamp(1.95rem,4.2vw,3rem)}
+h1.display{font-size:clamp(3rem,6.6vw,4.9rem);line-height:.95;letter-spacing:-.042em}
+h2.display{font-size:clamp(2.1rem,4.6vw,3.25rem)}
 h3{font-family:"Archivo",Arial,sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin:0;text-wrap:balance}
 p{margin:0}
 
 .eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--flame-deep);
+  display:inline-block;font-size:.72rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
 }
-.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--flame)}
-.lead{font-size:clamp(1.03rem,1.5vw,1.16rem);line-height:1.62;color:var(--ink-2);max-width:58ch}
+.lead{font-size:clamp(1.03rem,1.5vw,1.15rem);line-height:1.6;color:var(--ink-2);max-width:58ch}
 
-/* ---------- Bedienelemente ---------- */
+/* ---------- Bedienelemente: kantig, ohne Schwebeschatten ---------- */
 .btn{
   display:inline-flex;align-items:center;gap:9px;
   background:var(--flame);color:#fff;font-size:.95rem;font-weight:600;
-  padding:15px 26px;border:1px solid var(--flame);border-radius:var(--r-s);
-  text-decoration:none;box-shadow:var(--e2);
-  transition:transform .2s cubic-bezier(.2,.7,.3,1),background .2s ease,box-shadow .2s ease;
+  padding:15px 26px;border:1px solid var(--flame-deep);border-radius:var(--r);
+  text-decoration:none;transition:background .18s ease,transform .18s ease;
 }
-.btn:hover{transform:translateY(-2px);background:var(--flame-deep);border-color:var(--flame-deep);box-shadow:var(--e3)}
-.btn .arw{transition:transform .2s cubic-bezier(.2,.7,.3,1)}
+.btn:hover{background:var(--flame-deep);transform:translateY(-1px)}
+.btn .arw{transition:transform .18s cubic-bezier(.2,.7,.3,1)}
 .btn:hover .arw{transform:translateX(4px)}
 .btn-ghost{
   display:inline-flex;align-items:center;gap:8px;font-size:.95rem;font-weight:600;
-  color:var(--ink);text-decoration:none;padding:14px 22px;
-  border:1px solid var(--line-2);border-radius:var(--r-s);background:var(--surface);
-  transition:border-color .2s ease,color .2s ease,transform .2s cubic-bezier(.2,.7,.3,1);
+  color:var(--ink);text-decoration:none;padding:15px 24px;
+  border:1px solid var(--kante);border-radius:var(--r);background:transparent;
+  transition:background .18s ease,color .18s ease;
 }
-.btn-ghost:hover{border-color:var(--flame);color:var(--flame-deep);transform:translateY(-2px)}
-:where(a,button,input,textarea):focus-visible{outline:2px solid var(--flame);outline-offset:3px;border-radius:var(--r-s)}
-
-/* ---------- Karte, eine Form für alles ---------- */
-.card{
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-  box-shadow:var(--e1);
-}
+.btn-ghost:hover{background:var(--kante);color:var(--paper)}
+:where(a,button,input,textarea):focus-visible{outline:2px solid var(--flame);outline-offset:2px;border-radius:var(--r)}
 
 /* ---------- Kopfzeile ---------- */
 .topbar{
-  position:sticky;top:0;z-index:40;background:rgba(253,251,248,.88);
+  position:sticky;top:0;z-index:40;background:rgba(253,251,248,.9);
   backdrop-filter:saturate(150%) blur(12px);
   border-bottom:1px solid transparent;transition:border-color .3s ease;
 }
-.topbar.stuck{border-bottom-color:var(--line)}
+.topbar.stuck{border-bottom-color:var(--kante)}
 .topbar .in{max-width:var(--shell);margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.1rem;letter-spacing:-.028em;text-decoration:none;font-variation-settings:"SOFT" 60,"WONK" 0}
+.brand{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.1rem;letter-spacing:-.03em;text-decoration:none;font-variation-settings:"SOFT" 55,"WONK" 0}
 .topbar .btn{padding:10px 19px;font-size:.87rem}
 .prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--flame)}
 @media (max-width:620px){ .brand{font-size:.94rem;line-height:1.1;display:inline-block;max-width:18ch} .topbar .btn{padding:9px 13px;font-size:.8rem} }
 
 /* ============================================================
-   Die Route. Liegt hinter dem Inhalt (z-index 0) und wechselt
-   die Seite ausschließlich im leeren Band zwischen zwei
-   Sektionen. Sie kreuzt deshalb nie Text.
+   Route: hinter dem Inhalt, Seitenwechsel nur im leeren Band
    ============================================================ */
 .route{position:absolute;inset:0;width:100%;z-index:0;pointer-events:none;overflow:visible;display:none}
-.route .weg{fill:none;stroke:var(--line-2);stroke-width:2.5;stroke-dasharray:1 11;stroke-linecap:round;opacity:.9}
-.route .gegangen{fill:none;stroke:var(--flame);stroke-width:3.5;stroke-linecap:round;opacity:.9}
-.route .halt{fill:var(--paper);stroke:var(--line-2);stroke-width:2.5;transition:stroke .4s ease,fill .4s ease}
+.route .weg{fill:none;stroke:#C9BFB0;stroke-width:2.5;stroke-dasharray:1 11;stroke-linecap:round;opacity:.9}
+.route .gegangen{fill:none;stroke:var(--flame);stroke-width:3.5;stroke-linecap:round;opacity:.92}
+.route .halt{fill:var(--paper);stroke:#C9BFB0;stroke-width:2.5;transition:stroke .4s ease,fill .4s ease}
 .route .halt.da{fill:var(--sun);stroke:var(--flame)}
 .route .laeufer{opacity:0;transition:opacity .25s ease}
 .route .laeufer.sichtbar{opacity:1}
 .route .laeufer .ring{fill:rgba(238,61,14,.14);stroke:var(--flame);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:puls 2s ease-in-out infinite}
 .route .laeufer .kern{fill:var(--flame);stroke:var(--paper);stroke-width:2.5}
 @keyframes puls{50%{transform:scale(1.3);opacity:.5}}
-
-/* Ziel */
-.route .ziel .mast{stroke:var(--line-2);stroke-width:4;stroke-linecap:round;transition:stroke .4s ease}
-.route .ziel .tuch{fill:var(--line-2);transform-box:fill-box;transform-origin:left center;transform:scaleX(.14);transition:fill .4s ease}
-.route .ziel .fuss{fill:var(--line-2);transition:fill .4s ease}
+.route .ziel .mast{stroke:#C9BFB0;stroke-width:4;stroke-linecap:round;transition:stroke .4s ease}
+.route .ziel .tuch{fill:#C9BFB0;transform-box:fill-box;transform-origin:left center;transform:scaleX(.14);transition:fill .4s ease}
+.route .ziel .fuss{fill:#C9BFB0;transition:fill .4s ease}
 .route .ziel .puff{fill:none;stroke:var(--flame);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center}
 .route .ziel.da .mast{stroke:var(--flame-deep)}
 .route .ziel.da .fuss{fill:var(--flame-deep)}
@@ -154,33 +134,46 @@ p{margin:0}
 @keyframes wehen{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.95) skewY(-6deg)}}
 @keyframes zielPuff{0%{opacity:.8;transform:scale(.3)}100%{opacity:0;transform:scale(1.5)}}
 
-/* Szenen im Übergangsband */
 .szenen{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:visible;display:none}
 .szene{position:absolute;width:0;height:0;overflow:visible}
 .szene .schein{position:absolute;width:88px;margin:-28px 0 0 -44px;opacity:0}
 .szene.los .schein{animation:scheinWeg 3.6s cubic-bezier(.32,.12,.5,1) forwards}
 @keyframes scheinWeg{
   0%{opacity:0;transform:translate(0,22px) rotate(-6deg) scale(.7)}
-  14%{opacity:1}
-  78%{opacity:1}
+  14%{opacity:1} 78%{opacity:1}
   100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.04)}
 }
 @media (min-width:1180px){ .route,.szenen{display:block} }
 
 /* ============================================================
-   Rhythmus: jede Sektion hat denselben Abstand, und zwischen
-   je zwei Sektionen liegt das leere Band für den Seitenwechsel.
+   Sektionsraster: eine schmale Marginalspalte traegt die Nummer,
+   darueber liegt eine tragende Linie. Das ist die Kante, die
+   der Seite bisher gefehlt hat.
    ============================================================ */
 .sec{position:relative;padding-top:var(--s9)}
 .sec + .sec{padding-top:0;margin-top:var(--band)}
-.sec-head{max-width:54ch;display:flex;flex-direction:column;gap:var(--s4)}
-.sec-head .lead{margin-top:var(--s2)}
+.sec-head{
+  display:grid;grid-template-columns:var(--rand) 1fr;gap:0;
+  border-top:2px solid var(--kante);padding-top:var(--s5);
+}
+.sec-head .etappe{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.05rem;
+  letter-spacing:-.02em;color:var(--flame);font-variant-numeric:tabular-nums;
+  font-variation-settings:"SOFT" 55,"WONK" 0;padding-top:2px;
+}
+.sec-head .kopfzeile{display:flex;flex-direction:column;gap:var(--s4);max-width:56ch}
+.sec-head .eyebrow{margin-bottom:2px}
+@media (max-width:820px){
+  .sec-head{grid-template-columns:1fr;gap:var(--s3)}
+  .sec-head .etappe{padding-top:0}
+}
 
 /* Einblendungen */
 .rvl{display:block;overflow:hidden;padding-bottom:.06em}
 .js .rvl > span{display:block;transform:translateY(106%);opacity:0}
 .js .ready .rvl > span{animation:auf .95s cubic-bezier(.16,.84,.32,1) forwards}
 .js .ready .rvl:nth-of-type(2) > span{animation-delay:.1s}
+.js .ready .rvl:nth-of-type(3) > span{animation-delay:.2s}
 @keyframes auf{to{transform:translateY(0);opacity:1}}
 .js .fade{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,.84,.32,1)}
 .js .fade.in{opacity:1;transform:none}
@@ -188,201 +181,217 @@ p{margin:0}
 
 /* ---------- Hero ---------- */
 .hero{padding-top:var(--s8)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s7);align-items:center}
-.hero .eyebrow{margin-bottom:var(--s5)}
+.hero-strich{border-top:2px solid var(--kante);margin-bottom:var(--s6)}
+.hero-grid{display:grid;grid-template-columns:var(--rand) 1.02fr .98fr;gap:0 var(--s7);align-items:center}
+.hero .etappe{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.05rem;color:var(--flame);
+  font-variation-settings:"SOFT" 55,"WONK" 0;align-self:start;
+}
+.hero .eyebrow{display:block;margin-bottom:var(--s5)}
 .hero h1 .em{color:var(--flame)}
 .hero .lead{margin-top:var(--s5)}
 .hero .acts{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
 .hero .ohne{
   display:inline-flex;align-items:center;gap:10px;margin-top:var(--s5);
-  font-size:.92rem;font-weight:500;color:var(--ink-2);
-  background:var(--sun-wash);border:1px solid #F1DFB4;border-radius:999px;padding:9px 17px;
+  font-size:.92rem;color:var(--ink-2);
+  border-left:3px solid var(--sun);padding:2px 0 2px 14px;
 }
-.hero .ohne b{color:var(--ink);font-weight:600}
-@media (max-width:900px){ .hero-grid{grid-template-columns:1fr;gap:var(--s6)} }
-
+.hero .ohne b{color:var(--ink);font-weight:700}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .hero .etappe{display:none}
+}
 .viz svg{width:100%;height:auto;display:block}
 .viz .fenster{opacity:0}
 .ready .viz .fenster{animation:licht .5s ease forwards}
 @keyframes licht{to{opacity:1}}
 .viz .fahne{transform-box:fill-box;transform-origin:left center;animation:wehen 3.4s ease-in-out infinite}
 
-/* ---------- Zahlenband ---------- */
-.zahlen{margin-top:var(--s8);display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden}
-.zahlen > div{padding:var(--s5) var(--s6);border-right:1px solid var(--line)}
+/* ---------- Zahlenband: Linien statt Kachel ---------- */
+.zahlen{
+  margin-top:var(--s8);display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--kante);border-bottom:1px solid var(--kante);
+}
+.zahlen > div{padding:var(--s5) var(--s6) var(--s5) 0;border-right:1px solid var(--linie)}
+.zahlen > div:not(:first-child){padding-left:var(--s6)}
 .zahlen > div:last-child{border-right:0}
 .zahlen b{
   display:block;font-family:"Fraunces",Georgia,serif;font-weight:700;
-  font-size:clamp(1.9rem,4vw,2.7rem);line-height:1;letter-spacing:-.03em;color:var(--flame);
-  font-variation-settings:"SOFT" 60,"WONK" 0;
+  font-size:clamp(2rem,4.2vw,2.9rem);line-height:1;letter-spacing:-.035em;color:var(--flame);
+  font-variation-settings:"SOFT" 55,"WONK" 0;
 }
-.zahlen span{display:block;margin-top:var(--s2);font-size:.9rem;color:var(--ink-2)}
+.zahlen span{display:block;margin-top:var(--s2);font-size:.89rem;color:var(--ink-2)}
 @media (max-width:760px){
   .zahlen{grid-template-columns:1fr}
-  .zahlen > div{border-right:0;border-bottom:1px solid var(--line)}
+  .zahlen > div{border-right:0;border-bottom:1px solid var(--linie);padding-left:0 !important}
   .zahlen > div:last-child{border-bottom:0}
 }
 
 /* ---------- Rechner ---------- */
-.rechner{margin-top:var(--s7);overflow:hidden;box-shadow:var(--e3)}
+.rechner{margin-top:var(--s7);border:1px solid var(--kante);border-radius:var(--r);overflow:hidden;background:var(--surface)}
 .rechner-grid{display:grid;grid-template-columns:1fr 1fr}
-.rechner-in{padding:var(--s6);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s5)}
-.rechner-out{padding:var(--s6);background:var(--paper-2);display:flex;flex-direction:column;gap:var(--s5)}
+.rechner-in{padding:var(--s6);border-right:1px solid var(--kante);display:flex;flex-direction:column;gap:var(--s5)}
+.rechner-out{padding:var(--s6);background:var(--ink);color:var(--paper);display:flex;flex-direction:column;gap:var(--s5)}
 @media (max-width:820px){
   .rechner-grid{grid-template-columns:1fr}
-  .rechner-in{border-right:0;border-bottom:1px solid var(--line)}
+  .rechner-in{border-right:0;border-bottom:1px solid var(--kante)}
 }
 .feld{display:flex;flex-direction:column;gap:var(--s2)}
 .feld .kopf{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .feld label{font-size:.92rem;color:var(--ink-2)}
-.feld output{font-size:1.05rem;font-weight:600;font-variant-numeric:tabular-nums}
+.feld output{font-size:1.05rem;font-weight:700;font-variant-numeric:tabular-nums}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;cursor:grab;margin:0}
 input[type=range]:active{cursor:grabbing}
-input[type=range]::-webkit-slider-runnable-track{height:4px;background:var(--line-2);border-radius:99px}
-input[type=range]::-moz-range-track{height:4px;background:var(--line-2);border-radius:99px}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--kante)}
+input[type=range]::-moz-range-track{height:3px;background:var(--kante)}
 input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;width:20px;height:20px;margin-top:-8px;border-radius:50%;
-  background:var(--surface);border:2px solid var(--flame);box-shadow:var(--e1);transition:transform .16s ease;
+  -webkit-appearance:none;width:18px;height:18px;margin-top:-8px;border-radius:2px;
+  background:var(--flame);border:1px solid var(--flame-deep);transition:transform .16s ease;
 }
-input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--surface);border:2px solid var(--flame)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:2px;background:var(--flame);border:1px solid var(--flame-deep)}
 input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
-.marke{font-size:.76rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.marke{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sun)}
+.rechner-in .marke{color:var(--muted)}
 .summe{
   font-family:"Fraunces",Georgia,serif;font-weight:700;
-  font-size:clamp(2.4rem,5.4vw,3.4rem);line-height:1;letter-spacing:-.04em;
-  color:var(--flame);font-variant-numeric:tabular-nums;margin-top:var(--s2);
-  font-variation-settings:"SOFT" 60,"WONK" 0;
+  font-size:clamp(2.6rem,5.8vw,3.8rem);line-height:1;letter-spacing:-.045em;
+  color:#fff;font-variant-numeric:tabular-nums;margin-top:var(--s3);
+  font-variation-settings:"SOFT" 55,"WONK" 0;
 }
-.rechner-out .dazu{margin-top:var(--s3);font-size:.87rem;color:var(--muted)}
-.rechner-out .teil{padding-top:var(--s5);border-top:1px solid var(--line-2);display:flex;flex-direction:column;gap:var(--s2)}
+.rechner-out .dazu{margin-top:var(--s3);font-size:.87rem;color:#A7B0B5}
+.rechner-out .teil{padding-top:var(--s5);border-top:1px solid #333B41;display:flex;flex-direction:column;gap:var(--s3)}
 .rechner-out .teil .wert{
-  align-self:start;font-size:1.35rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
-  background:var(--sun-wash);border:1px solid #F1DFB4;border-radius:999px;padding:6px 16px;
+  align-self:start;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
+  color:var(--sun);border-bottom:2px solid var(--sun);padding-bottom:3px;
 }
-.rechner-out .fuss{padding-top:var(--s4);border-top:1px solid var(--line-2);font-size:.84rem;line-height:1.55;color:var(--muted)}
-.rechner .leiste{padding:var(--s4) var(--s6);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between}
+.rechner-out .fuss{padding-top:var(--s4);border-top:1px solid #333B41;font-size:.83rem;line-height:1.55;color:#8F989E}
+.rechner .leiste{padding:var(--s4) var(--s6);border-top:1px solid var(--kante);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;background:var(--paper-2)}
 .rechner .leiste p{font-size:.88rem;color:var(--ink-2);max-width:54ch}
-.rechner .leiste a{font-size:.92rem;font-weight:600;color:var(--flame-deep);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.rechner .leiste a{font-size:.92rem;font-weight:700;color:var(--flame-deep);text-decoration:none;border-bottom:2px solid var(--flame);padding-bottom:2px}
 
-/* ---------- Problem ---------- */
-.probleme{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-top:var(--s7)}
-.problem{padding:var(--s6) var(--s5);display:flex;flex-direction:column;gap:var(--s3);
-  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s ease,border-color .22s ease}
-.problem:hover{transform:translateY(-3px);box-shadow:var(--e2);border-color:var(--line-2)}
-.problem .zeichen{width:40px;height:40px;color:var(--flame)}
-.problem h3{font-size:1.14rem;line-height:1.28}
-.problem p{font-size:.95rem;line-height:1.6;color:var(--ink-2)}
-.problem .schluss{margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--line);font-size:.92rem;font-weight:600;color:var(--flame-deep)}
-@media (max-width:880px){ .probleme{grid-template-columns:1fr} }
+/* ---------- Problem: Spalten mit Kante oben ---------- */
+.probleme{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:var(--s7)}
+.problem{
+  padding:var(--s5) var(--s5) var(--s6) 0;display:flex;flex-direction:column;gap:var(--s3);
+  border-right:1px solid var(--linie);border-top:3px solid var(--kante);
+  transition:border-top-color .25s ease;
+}
+.problem:not(:first-child){padding-left:var(--s5)}
+.problem:last-child{border-right:0}
+.problem:hover{border-top-color:var(--flame)}
+.problem .zeichen{width:34px;height:34px;color:var(--flame)}
+.problem h3{font-size:1.13rem;line-height:1.28}
+.problem p{font-size:.94rem;line-height:1.58;color:var(--ink-2)}
+.problem .schluss{margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--linie);font-size:.91rem;font-weight:700;color:var(--flame-deep)}
+@media (max-width:880px){ .probleme{grid-template-columns:1fr} .problem{border-right:0;padding-left:0 !important;padding-right:0} }
 
-/* ---------- Lösungen als Wegstationen ---------- */
-#loesungen .sec-head{max-width:40ch}
+/* ---------- Loesungen ---------- */
 .loesungen{margin-top:var(--s7);display:grid;gap:var(--s4)}
-.loesung{padding:var(--s6);display:grid;grid-template-columns:auto 1fr;gap:var(--s5);align-items:start;
-  transition:border-color .5s ease,box-shadow .5s ease,opacity .75s ease,transform .75s cubic-bezier(.16,.84,.32,1)}
+#loesungen .sec-head .kopfzeile{max-width:40ch}
+.loesung{
+  padding:var(--s6);display:grid;grid-template-columns:auto 1fr;gap:var(--s5);align-items:start;
+  background:var(--surface);border:1px solid var(--linie);border-left:3px solid var(--linie);border-radius:var(--r);
+  transition:border-color .5s ease,border-left-color .5s ease,opacity .75s ease,transform .75s cubic-bezier(.16,.84,.32,1);
+}
 .loesung .nr{
-  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;flex:none;
-  background:var(--flame-wash);color:var(--flame-deep);font-weight:700;font-size:.95rem;
-  font-variant-numeric:tabular-nums;transition:background .45s ease,color .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1);
+  width:40px;height:40px;display:grid;place-items:center;flex:none;border-radius:2px;
+  background:transparent;border:1px solid var(--kante);color:var(--ink);font-weight:700;font-size:.95rem;
+  font-variant-numeric:tabular-nums;transition:background .45s ease,color .45s ease,border-color .45s ease;
 }
 .loesung .tx{display:flex;flex-direction:column;gap:var(--s3)}
-.loesung h3{font-size:1.32rem;line-height:1.2;transition:color .5s ease}
-.loesung > .tx > p{font-size:1rem;line-height:1.6;color:var(--ink-2);max-width:60ch}
-.loesung ul{margin:var(--s2) 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.loesung li{position:relative;padding-left:26px;font-size:.95rem;line-height:1.5;color:var(--ink-2)}
-.loesung li::before{content:"";position:absolute;left:2px;top:.5em;width:9px;height:9px;border-radius:50%;background:var(--flame-wash);border:2px solid var(--flame)}
-.loesung.an{border-color:rgba(238,61,14,.4);box-shadow:0 0 0 4px rgba(238,61,14,.06),var(--e2)}
-.loesung.an .nr{background:var(--flame);color:#fff;transform:scale(1.06)}
+.loesung h3{font-size:1.3rem;line-height:1.2;transition:color .5s ease}
+.loesung > .tx > p{font-size:1rem;line-height:1.58;color:var(--ink-2);max-width:60ch}
+.loesung ul{margin:var(--s2) 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0}
+.loesung li{position:relative;padding:9px 0 9px 22px;font-size:.94rem;line-height:1.45;color:var(--ink-2);border-top:1px solid var(--linie)}
+.loesung li::before{content:"";position:absolute;left:0;top:1.15em;width:9px;height:2px;background:var(--flame)}
+.loesung.an{border-color:var(--kante);border-left-color:var(--flame)}
+.loesung.an .nr{background:var(--flame);border-color:var(--flame-deep);color:#fff}
 .loesung.an h3{color:var(--flame-deep)}
 @media (max-width:700px){ .loesung{grid-template-columns:1fr;gap:var(--s4)} }
 
-/* Zickzack an der Route, nur wo Platz dafür ist */
 @media (min-width:1180px){
   .loesungen{grid-template-columns:1fr 1fr;column-gap:180px;row-gap:0;align-items:start}
   .loesung{position:relative}
   .loesung:nth-child(1){grid-column:1;grid-row:1}
   .loesung:nth-child(2){grid-column:2;grid-row:2;margin-top:-56px}
   .loesung:nth-child(3){grid-column:1;grid-row:3;margin-top:-56px}
-  .loesung::after{content:"";position:absolute;top:53px;width:90px;border-top:2px dashed var(--line-2);opacity:0;transition:opacity .5s ease .2s}
+  .loesung::after{content:"";position:absolute;top:53px;width:90px;border-top:1px dashed #C9BFB0;opacity:0;transition:opacity .5s ease .2s}
   .loesung::before{
-    content:"";position:absolute;top:46px;width:15px;height:15px;border-radius:50%;
-    background:var(--paper);border:3px solid var(--line-2);opacity:0;transform:scale(.3);
+    content:"";position:absolute;top:47px;width:13px;height:13px;
+    background:var(--paper);border:3px solid #C9BFB0;opacity:0;transform:scale(.3);
     transition:opacity .45s ease .35s,transform .5s cubic-bezier(.2,1.6,.4,1) .35s,border-color .45s ease;
   }
   .loesung:nth-child(odd)::after{left:100%}
   .loesung:nth-child(even)::after{right:100%}
-  .loesung:nth-child(odd)::before{left:calc(100% + 83px)}
-  .loesung:nth-child(even)::before{right:calc(100% + 83px)}
+  .loesung:nth-child(odd)::before{left:calc(100% + 84px)}
+  .loesung:nth-child(even)::before{right:calc(100% + 84px)}
   .loesung.in::after{opacity:1}
   .loesung.in::before{opacity:1;transform:scale(1)}
-  .loesung.an::before{border-color:var(--flame);box-shadow:0 0 0 5px rgba(238,61,14,.12)}
+  .loesung.an::before{border-color:var(--flame)}
   .js .loesungen .loesung{opacity:0;transform:translateX(-48px)}
   .js .loesungen .loesung:nth-child(even){transform:translateX(48px)}
   .js .loesungen .loesung.in{opacity:1;transform:none}
 }
 
-/* ---------- Über uns ---------- */
-.person{display:grid;grid-template-columns:.78fr 1.22fr;gap:var(--s7);align-items:center;margin-top:var(--s7)}
-.person + .person{margin-top:var(--s8)}
+/* ---------- Ueber uns ---------- */
+.person{display:grid;grid-template-columns:.72fr 1.28fr;gap:var(--s7);align-items:start;margin-top:var(--s7);padding-top:var(--s6);border-top:1px solid var(--linie)}
 .person .tx{display:flex;flex-direction:column;gap:var(--s3)}
-.person .rolle{font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--flame-deep)}
-.person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2rem;line-height:1.04;letter-spacing:-.03em;font-variation-settings:"SOFT" 60,"WONK" 0}
-.person p{font-size:1rem;line-height:1.62;color:var(--ink-2)}
-.bild{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--e2);aspect-ratio:4/5;background:var(--paper-2)}
+.person .rolle{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--flame-deep)}
+.person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.05rem;line-height:1.02;letter-spacing:-.032em;font-variation-settings:"SOFT" 55,"WONK" 0}
+.person p{font-size:1rem;line-height:1.6;color:var(--ink-2)}
+.bild{overflow:hidden;border:1px solid var(--kante);border-radius:var(--r);aspect-ratio:4/5;background:var(--paper-2)}
 .bild img{width:100%;height:100%;object-fit:cover}
 @media (max-width:860px){ .person{grid-template-columns:1fr;gap:var(--s5)} .person.gedreht .bild{order:-1} .bild{aspect-ratio:3/2} }
 
-/* ---------- Vergleich ---------- */
-.vergleich{margin-top:var(--s7);overflow:hidden;box-shadow:var(--e2)}
-.vergleich .kopf,.vergleich .zeile{display:grid;grid-template-columns:.9fr 1fr 1.05fr}
-.vergleich .kopf{background:var(--paper-2);border-bottom:1px solid var(--line)}
-.vergleich .kopf div{padding:var(--s4) var(--s5);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.vergleich .kopf div:last-child{border-right:0;background:var(--flame-wash);color:var(--flame-deep)}
-.vergleich .zeile{border-bottom:1px solid var(--line)}
-.vergleich .zeile:last-child{border-bottom:0}
-.vergleich .zeile > div{padding:var(--s5);border-right:1px solid var(--line);font-size:.95rem;line-height:1.55}
-.vergleich .zeile > div:last-child{border-right:0;background:#FFFCF7}
-.vergleich .merkmal{font-weight:600}
-.vergleich .andere{color:var(--muted)}
+/* ---------- Vergleich: dunkler Anker ---------- */
+.vergleich{margin-top:var(--s7);border:1px solid var(--kante);border-radius:var(--r);overflow:hidden;background:var(--ink);color:var(--paper)}
+.vergleich .kopf,.vergleich .zeile{display:grid;grid-template-columns:.85fr 1fr 1.05fr}
+.vergleich .kopf div{padding:var(--s4) var(--s5);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8F989E;border-right:1px solid #2A3238;border-bottom:1px solid #2A3238}
+.vergleich .kopf div:last-child{border-right:0;color:var(--sun)}
+.vergleich .zeile > div{padding:var(--s5);border-right:1px solid #2A3238;border-bottom:1px solid #2A3238;font-size:.94rem;line-height:1.55;color:#C3CBD0}
+.vergleich .zeile > div:last-child{border-right:0;background:#191E22;color:#fff}
+.vergleich .zeile:last-child > div{border-bottom:0}
+.vergleich .merkmal{font-weight:700;color:#fff}
 .js .vergleich .zeile{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s cubic-bezier(.16,.84,.32,1)}
 .js .vergleich .zeile.in{opacity:1;transform:none}
 @media (max-width:860px){
   .vergleich .kopf{display:none}
   .vergleich .zeile{grid-template-columns:1fr}
-  .vergleich .zeile > div{border-right:0;border-bottom:1px solid var(--line)}
-  .vergleich .zeile > div:last-child{border-bottom:0}
-  .vergleich .andere::before{content:"Übliche Agentur: ";font-weight:600;color:var(--ink)}
-  .vergleich .wir::before{content:"Bei uns: ";font-weight:600;color:var(--flame-deep)}
+  .vergleich .zeile > div{border-right:0}
+  .vergleich .andere::before{content:"Übliche Agentur: ";font-weight:700;color:#fff}
+  .vergleich .wir::before{content:"Bei uns: ";font-weight:700;color:var(--sun)}
 }
 
 /* ---------- Ablauf und Kontakt ---------- */
-.ablauf{list-style:none;margin:var(--s7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
-.ablauf li{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s5);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--e1)}
-.ablauf .nr{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--flame);color:#fff;font-size:.92rem;font-weight:700}
-.ablauf .tx{display:flex;flex-direction:column;gap:2px;font-size:.9rem;line-height:1.45;color:var(--ink-2)}
-.ablauf .tx b{font-size:.99rem;font-weight:600;color:var(--ink)}
-@media (max-width:820px){ .ablauf{grid-template-columns:1fr} }
+.ablauf{list-style:none;margin:var(--s7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--kante)}
+.ablauf li{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s5) var(--s5) var(--s5) 0;border-right:1px solid var(--linie)}
+.ablauf li:not(:first-child){padding-left:var(--s5)}
+.ablauf li:last-child{border-right:0}
+.ablauf .nr{flex:none;width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--kante);border-radius:2px;font-size:.85rem;font-weight:700}
+.ablauf .tx{display:flex;flex-direction:column;gap:2px;font-size:.89rem;line-height:1.45;color:var(--ink-2)}
+.ablauf .tx b{font-size:.98rem;font-weight:700;color:var(--ink)}
+@media (max-width:820px){ .ablauf{grid-template-columns:1fr} .ablauf li{border-right:0;border-bottom:1px solid var(--linie);padding-left:0 !important} .ablauf li:last-child{border-bottom:0} }
 
-.kontakt{margin-top:var(--s5);display:grid;grid-template-columns:.85fr 1.15fr;overflow:hidden;box-shadow:var(--e3)}
+.kontakt{margin-top:var(--s6);display:grid;grid-template-columns:.82fr 1.18fr;border:1px solid var(--kante);border-radius:var(--r);overflow:hidden;background:var(--surface)}
 .kontakt .seite{
-  min-height:460px;padding:var(--s6);border-right:1px solid var(--line);
+  min-height:460px;padding:var(--s6);border-right:1px solid var(--kante);
   display:flex;flex-direction:column;justify-content:flex-end;gap:var(--s3);
-  background:linear-gradient(180deg,rgba(22,26,29,.05) 34%,rgba(22,26,29,.76) 100%),url("Katrin&Martin-242.webp") center 32%/cover no-repeat;
+  background:linear-gradient(180deg,rgba(20,24,27,.05) 34%,rgba(20,24,27,.8) 100%),url("Katrin&Martin-242.webp") center 32%/cover no-repeat;
   color:#fff;
 }
-.kontakt .seite b{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.5rem;letter-spacing:-.028em;font-variation-settings:"SOFT" 60,"WONK" 0}
-.kontakt .seite p{font-size:.95rem;line-height:1.55;color:rgba(255,255,255,.88)}
-.kontakt .seite a{align-self:start;margin-top:var(--s2);font-weight:600;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:2px}
+.kontakt .seite b{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.45rem;letter-spacing:-.03em;font-variation-settings:"SOFT" 55,"WONK" 0}
+.kontakt .seite p{font-size:.94rem;line-height:1.5;color:rgba(255,255,255,.88)}
+.kontakt .seite a{align-self:start;margin-top:var(--s2);font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid var(--sun);padding-bottom:2px}
 .formular{padding:var(--s6);display:flex;flex-direction:column;gap:var(--s4)}
 .zwei{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
-.f{display:flex;flex-direction:column;gap:7px}
-.f label{font-size:.85rem;font-weight:600;color:var(--ink-2)}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .f input,.f textarea{
   font:inherit;font-size:.96rem;color:var(--ink);background:var(--paper);
-  border:1px solid var(--line-2);border-radius:var(--r-s);padding:12px 13px;width:100%;
+  border:1px solid var(--kante);border-radius:var(--r);padding:12px 13px;width:100%;
   transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;
 }
-.f input:focus,.f textarea:focus{border-color:var(--flame);background:var(--surface);outline:none;box-shadow:0 0 0 3px var(--flame-wash)}
+.f input:focus,.f textarea:focus{border-color:var(--flame);background:var(--surface);outline:none;box-shadow:inset 0 -2px 0 var(--flame)}
 .f textarea{resize:vertical;min-height:92px}
 .zustimmung{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;line-height:1.5;color:var(--ink-2)}
 .zustimmung input{margin-top:3px;accent-color:var(--flame);width:16px;height:16px;flex:none}
@@ -391,16 +400,16 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 .hinweis.zeig{display:block}
 .hinweis.gut{color:#1F6B4A}
 .hinweis.schlecht{color:var(--flame-deep)}
-@media (max-width:860px){ .kontakt{grid-template-columns:1fr} .kontakt .seite{border-right:0;border-bottom:1px solid var(--line);min-height:320px} .zwei{grid-template-columns:1fr} }
+@media (max-width:860px){ .kontakt{grid-template-columns:1fr} .kontakt .seite{border-right:0;border-bottom:1px solid var(--kante);min-height:320px} .zwei{grid-template-columns:1fr} }
 
-/* ---------- Fußzeile ---------- */
-footer{margin-top:var(--s10);border-top:1px solid var(--line);background:var(--paper-2);position:relative;z-index:1}
+/* ---------- Fusszeile ---------- */
+footer{margin-top:var(--s10);border-top:2px solid var(--kante);background:var(--paper);position:relative;z-index:1}
 footer .in{max-width:var(--shell);margin:0 auto;padding:var(--s7) 24px;display:flex;flex-wrap:wrap;gap:var(--s5);justify-content:space-between;align-items:flex-start}
 footer .wer{display:flex;flex-direction:column;gap:var(--s2);max-width:40ch}
-footer .wer b{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.15rem;letter-spacing:-.028em;font-variation-settings:"SOFT" 60,"WONK" 0}
-footer .wer p{font-size:.89rem;color:var(--ink-2);line-height:1.55}
+footer .wer b{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.15rem;letter-spacing:-.03em;font-variation-settings:"SOFT" 55,"WONK" 0}
+footer .wer p{font-size:.88rem;color:var(--ink-2);line-height:1.55}
 footer nav{display:flex;flex-wrap:wrap;gap:10px 20px}
-footer nav a{font-size:.89rem;color:var(--ink-2);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s ease}
+footer nav a{font-size:.88rem;color:var(--ink-2);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s ease}
 footer nav a:hover{border-bottom-color:var(--flame)}
 
 .nur-fuer-screenreader{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -413,6 +422,74 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   .js .vergleich .zeile{opacity:1;transform:none}
   .js .loesungen .loesung{opacity:1;transform:none}
   .viz .fenster{opacity:1}
+}
+
+/* ============================================================
+   Nachtrag: Hero mit Rechner, Schmerz-Sektion mit stehendem Kopf
+   ============================================================ */
+
+/* Der Rechner sitzt jetzt in der rechten Hero-Spalte und ist dort
+   schmaler, deshalb untereinander statt nebeneinander. */
+.hero .rechner{margin-top:0}
+.hero .rechner-grid{grid-template-columns:1fr}
+.hero .rechner-in{border-right:0;border-bottom:1px solid var(--kante);padding:var(--s5);gap:var(--s4)}
+.hero .rechner-out{padding:var(--s5);gap:var(--s4)}
+.hero .summe{font-size:clamp(2.2rem,4vw,2.9rem);margin-top:var(--s2)}
+.hero .rechner .leiste{padding:var(--s3) var(--s5)}
+.hero .rechner .leiste p{font-size:.82rem}
+.hero .rechner-out .fuss{font-size:.79rem}
+.hero-grid{align-items:start;grid-template-columns:var(--rand) 1fr 1.06fr}
+.hero .lead{max-width:44ch}
+.hero h1.display{font-size:clamp(2.3rem,3.6vw,3.35rem);line-height:1;letter-spacing:-.035em}
+.hero .feld label{font-size:.85rem}
+.hero .feld output{font-size:.98rem}
+.hero .marke{font-size:.68rem;letter-spacing:.16em}
+
+/* ---------- Das tut weh: Kopf bleibt stehen, Karten laufen durch ---------- */
+.weh{display:grid;grid-template-columns:var(--rand) minmax(280px,340px) 1fr;gap:0 var(--s7);align-items:start}
+.weh .etappe{
+  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.05rem;color:var(--flame);
+  font-variation-settings:"SOFT" 55,"WONK" 0;padding-top:var(--s5);
+}
+.weh .steht{position:sticky;top:112px;padding-top:var(--s5);display:flex;flex-direction:column;gap:var(--s4)}
+.weh .steht .lead{font-size:1rem;max-width:38ch}
+.weh .liste{display:flex;flex-direction:column;gap:0;padding-top:var(--s5)}
+.punkt{
+  display:grid;grid-template-columns:auto 1fr;gap:var(--s5);
+  padding:var(--s5) 0;border-top:1px solid var(--linie);
+}
+.punkt:first-child{border-top:0;padding-top:0}
+.punkt .zahl{
+  width:38px;height:38px;display:grid;place-items:center;flex:none;border-radius:2px;
+  border:1px solid var(--kante);font-weight:700;font-size:.9rem;font-variant-numeric:tabular-nums;
+  transition:background .4s ease,color .4s ease,border-color .4s ease;
+}
+.punkt.in .zahl{background:var(--flame);border-color:var(--flame-deep);color:#fff}
+.punkt .tx{display:flex;flex-direction:column;gap:var(--s2)}
+.punkt h3{font-size:1.12rem;line-height:1.28}
+.punkt p{font-size:.95rem;line-height:1.55;color:var(--ink-2);max-width:56ch}
+.js .punkt{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.16,.84,.32,1)}
+.js .punkt.in{opacity:1;transform:none}
+/* Die tragende Linie liegt über der ganzen Sektion, nicht über jeder Spalte */
+#weh{border-top:2px solid var(--kante)}
+@media (max-width:1000px){
+  .weh{grid-template-columns:1fr;gap:var(--s6)}
+  .weh .etappe{padding-top:var(--s5)}
+  .weh .steht{position:static;padding-top:0}
+  .weh .liste{padding-top:0}
+}
+
+/* Bei Martin lag das Bild in der breiten Spalte und war dadurch größer
+   als das von Katrin. Beide Blöcke haben jetzt dieselbe Bildbreite. */
+.person.gedreht{grid-template-columns:1.28fr .72fr}
+@media (max-width:860px){ .person.gedreht{grid-template-columns:1fr} }
+
+/* Muss nach der Hero-Spaltenregel oben stehen, sonst gewinnt die
+   Dreispaltigkeit auch auf schmalen Fenstern. */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .hero h1.display{font-size:clamp(2.3rem,7.4vw,3.2rem)}
+  .hero .lead{max-width:58ch}
 }
 </style>
 
@@ -445,168 +522,152 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
   <main class="shell" id="oben">
 
-    <!-- ===== 1 · Hero ===== -->
+    <!-- ===== 01 · Hero mit Rechner ===== -->
     <section class="sec hero" data-halt data-seite="left">
+      <div class="hero-strich"></div>
       <div class="hero-grid">
+        <span class="etappe">01</span>
         <div>
-          <p class="eyebrow">Für inhabergeführte Häuser mit 20 bis 35 Zimmern</p>
+          <p class="eyebrow">Für inhabergeführte Hotels im DACH-Raum</p>
           <h1 class="display">
-            <span class="rvl"><span>Volles Haus.</span></span>
-            <span class="rvl"><span class="em">Volle Marge.</span></span>
+            <span class="rvl"><span>Mehr Direktbuchungen</span></span>
+            <span class="rvl"><span>&amp; höhere Auslastung</span></span>
+            <span class="rvl"><span class="em">ohne Werbekosten</span></span>
           </h1>
-          <p class="lead fade d1">Wir bauen dir deinen eigenen Buchungskanal auf. Mehr Gäste buchen direkt bei dir, und ein deutlich größerer Teil vom Zimmerpreis bleibt auch da, wo er hingehört.</p>
+          <p class="lead fade d1">Wir bauen dir KI-gestützte Marketing-Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Sichtbarkeit deines Hauses erhöhst.</p>
           <div class="acts fade d2">
             <a class="btn" href="#kontakt">Kostenloses Erstgespräch <span class="arw">→</span></a>
-            <a class="btn-ghost" href="#rechner">Erst mal nachrechnen</a>
+            <a class="btn-ghost" href="#loesungen">Unsere Lösungen</a>
           </div>
-          <p class="ohne fade d3"><b>Ohne Pflicht-Werbebudget.</b> Was wir aufbauen, gehört dir.</p>
+          <p class="ohne fade d3"><span><b>Ohne Pflicht-Werbebudget.</b> Was wir aufbauen, gehört dir.</span></p>
         </div>
 
-        <div class="viz fade d1">
-          <svg viewBox="0 0 440 400" role="img" aria-label="Illustration eines inhabergeführten Hotels mit beleuchteten Zimmern">
-            <rect x="48" y="352" width="344" height="3" rx="1.5" fill="#E8E2DA"/>
+        <div class="fade d1">
+          <div class="rechner">
+            <div class="rechner-grid">
+              <div class="rechner-in">
+                <p class="marke">Was dein Haus an die Portale zahlt</p>
+                <div class="feld">
+                  <div class="kopf"><label for="zimmer">Zimmer</label><output id="oZimmer" for="zimmer">28</output></div>
+                  <input type="range" id="zimmer" min="5" max="80" step="1" value="28">
+                </div>
+                <div class="feld">
+                  <div class="kopf"><label for="auslastung">Auslastung im Jahresschnitt</label><output id="oAuslastung" for="auslastung">65 %</output></div>
+                  <input type="range" id="auslastung" min="30" max="95" step="1" value="65">
+                </div>
+                <div class="feld">
+                  <div class="kopf"><label for="preis">Zimmerpreis im Schnitt</label><output id="oPreis" for="preis">120 €</output></div>
+                  <input type="range" id="preis" min="50" max="300" step="5" value="120">
+                </div>
+                <div class="feld">
+                  <div class="kopf"><label for="anteil">Anteil Buchungen über Portale</label><output id="oAnteil" for="anteil">55 %</output></div>
+                  <input type="range" id="anteil" min="10" max="90" step="1" value="55">
+                </div>
+              </div>
 
-            <!-- Nebenhaus -->
-            <rect x="62" y="252" width="74" height="100" rx="12" fill="#F7F2EA" stroke="#E8E2DA"/>
-            <rect x="78" y="272" width="17" height="21" rx="4" fill="#E8E2DA"/>
-            <rect x="104" y="272" width="17" height="21" rx="4" fill="#E8E2DA"/>
-            <rect x="78" y="306" width="17" height="21" rx="4" fill="#E8E2DA"/>
-            <rect x="104" y="306" width="17" height="21" rx="4" fill="#E8E2DA"/>
-
-            <!-- Haupthaus -->
-            <rect x="152" y="150" width="220" height="202" rx="16" fill="#FFFFFF" stroke="#E8E2DA"/>
-            <rect x="142" y="134" width="240" height="20" rx="10" fill="#161A1D"/>
-
-            <!-- Fahne auf dem Dach -->
-            <path d="M262 134 v-52" stroke="#161A1D" stroke-width="4" stroke-linecap="round"/>
-            <path class="fahne" d="M264 84 h44 l-13 13 l13 13 h-44 z" fill="#EE3D0E"/>
-
-            <!-- Fenster -->
-            <rect class="fenster" style="animation-delay:.30s" x="176" y="178" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.40s" x="226" y="178" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.50s" x="276" y="178" width="34" height="30" rx="6" fill="#F7F2EA"/>
-            <rect class="fenster" style="animation-delay:.60s" x="326" y="178" width="26" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.45s" x="176" y="226" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.55s" x="226" y="226" width="34" height="30" rx="6" fill="#F7F2EA"/>
-            <rect class="fenster" style="animation-delay:.65s" x="276" y="226" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.75s" x="326" y="226" width="26" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.60s" x="176" y="274" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.70s" x="226" y="274" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.80s" x="276" y="274" width="34" height="30" rx="6" fill="#FFC531"/>
-            <rect class="fenster" style="animation-delay:.90s" x="326" y="274" width="26" height="30" rx="6" fill="#F7F2EA"/>
-
-            <!-- Eingang -->
-            <rect x="238" y="316" width="48" height="36" rx="7" fill="#161A1D" opacity=".07"/>
-            <rect x="244" y="322" width="36" height="30" rx="5" fill="#EE3D0E" opacity=".18"/>
-          </svg>
+              <div class="rechner-out">
+                <div>
+                  <p class="marke">Provision pro Jahr, geschätzt</p>
+                  <p class="summe" id="oSumme">65.766 €</p>
+                  <p class="dazu" id="oMonat">Im Schnitt 5.481 € pro Monat, saisonal sehr ungleich verteilt.</p>
+                </div>
+                <div class="teil">
+                  <p class="marke">Davon realistisch verlagerbar</p>
+                  <p class="wert" id="oVerlagerbar">6.577 bis 16.442 €</p>
+                </div>
+                <p class="fuss">Gerechnet mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme dazukommen. Realistisch verlagerbar sind 10 bis 25 Prozent des Portalvolumens.</p>
+              </div>
+            </div>
+            <div class="leiste">
+              <p>Die genaue Rechnung für dein Haus machen wir im Gespräch.</p>
+              <a href="#kontakt">Darüber reden</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="zahlen card fade" id="zahlen">
-        <div><b data-zahl="7" data-suffix="+">7+</b><span>Jahre Online-Marketing</span></div>
-        <div><b data-zahl="1000" data-suffix="+">1.000+</b><span>begleitete Kunden</span></div>
+      <div class="zahlen fade" id="zahlen">
+        <div><b data-zahl="7" data-suffix="+">7+</b><span>Jahre Online-Marketing-Expertise</span></div>
         <div><b data-zahl="2" data-suffix="+">2+</b><span>Jahre OTA-Insiderwissen</span></div>
+        <div><b data-zahl="1000" data-suffix="+">1.000+</b><span>beratene Hotels</span></div>
       </div>
     </section>
 
-    <!-- ===== 2 · Rechner ===== -->
-    <section class="sec" id="rechner" data-halt data-seite="right" data-szene="geld">
-      <div class="sec-head">
-        <p class="eyebrow">Fangen wir mit der Zahl an</p>
-        <h2 class="display">Was dein Haus jedes Jahr an die Portale überweist</h2>
-        <p class="lead">Vier Angaben, die du im Kopf hast. Kein Formular, kein Login, keine E-Mail-Adresse. Wir rechnen mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme überhaupt dazukommen.</p>
-      </div>
-
-      <div class="rechner card fade">
-        <div class="rechner-grid">
-          <div class="rechner-in">
-            <div class="feld">
-              <div class="kopf"><label for="zimmer">Zimmer</label><output id="oZimmer" for="zimmer">28</output></div>
-              <input type="range" id="zimmer" min="5" max="80" step="1" value="28">
-            </div>
-            <div class="feld">
-              <div class="kopf"><label for="auslastung">Auslastung im Jahresschnitt</label><output id="oAuslastung" for="auslastung">65 %</output></div>
-              <input type="range" id="auslastung" min="30" max="95" step="1" value="65">
-            </div>
-            <div class="feld">
-              <div class="kopf"><label for="preis">Zimmerpreis im Schnitt</label><output id="oPreis" for="preis">120 €</output></div>
-              <input type="range" id="preis" min="50" max="300" step="5" value="120">
-            </div>
-            <div class="feld">
-              <div class="kopf"><label for="anteil">Anteil Buchungen über Portale</label><output id="oAnteil" for="anteil">55 %</output></div>
-              <input type="range" id="anteil" min="10" max="90" step="1" value="55">
-            </div>
-          </div>
-
-          <div class="rechner-out">
-            <div>
-              <p class="marke">Provision pro Jahr, geschätzt</p>
-              <p class="summe" id="oSumme">65.766 €</p>
-              <p class="dazu" id="oMonat">Im Schnitt 5.481 € pro Monat, saisonal sehr ungleich verteilt.</p>
-            </div>
-            <div class="teil">
-              <p class="marke">Davon realistisch verlagerbar</p>
-              <p class="wert" id="oVerlagerbar">6.577 bis 16.442 €</p>
-            </div>
-            <p class="fuss">Kein Haus verlagert alles, und das soll es auch gar nicht. Realistisch sind 10 bis 25 Prozent des Portalvolumens. Alle Werte sind Schätzungen auf Basis deiner Angaben.</p>
-          </div>
+    <!-- ===== 02 · Das tut weh ===== -->
+    <section class="sec" id="weh" data-halt data-seite="right" data-szene="geld">
+      <div class="weh">
+        <span class="etappe">02</span>
+        <div class="steht">
+          <p class="eyebrow">Das Problem</p>
+          <h2 class="display">Das tut weh</h2>
+          <p class="lead">Portale sind nicht der Gegner. Sie sind ein bezahlter Akquisekanal und bringen dir Gäste, die dich sonst nie gefunden hätten. Das Problem ist, was danach passiert.</p>
         </div>
-        <div class="leiste">
-          <p>Die genaue Rechnung für dein Haus, mit Zahlungsgebühr und Programmen, machen wir im Gespräch.</p>
-          <a href="#kontakt">Darüber reden</a>
+
+        <div class="liste">
+          <article class="punkt">
+            <div class="zahl">1</div>
+            <div class="tx">
+              <h3>Hohe Provisionskosten</h3>
+              <p>Du zahlst vier- bis fünfstellige Summen pro Monat an die Portale. Auf eine einzelne Buchung wirkt das harmlos, aufs Jahr gerechnet ist es keine Gebühr mehr, sondern eine Personalstelle. Zahlungsgebühr und Rabattprogramme kommen obendrauf, und die rechnet fast niemand mit.</p>
+            </div>
+          </article>
+
+          <article class="punkt">
+            <div class="zahl">2</div>
+            <div class="tx">
+              <h3>Fehlende Gästedaten</h3>
+              <p>Du hast keine Adresse, keinen Kontakt, keinen Weg, den Gast selbst zurückzuholen. Im schlimmsten Fall zahlst du für denselben Gast zweimal.</p>
+            </div>
+          </article>
+
+          <article class="punkt">
+            <div class="zahl">3</div>
+            <div class="tx">
+              <h3>Kaum Folgebuchungen</h3>
+              <p>Gäste kommen oft nur einmal und nicht wieder. Ein Neugast kostet Geld, ein Stammgast kostet dich nichts.</p>
+            </div>
+          </article>
+
+          <article class="punkt">
+            <div class="zahl">4</div>
+            <div class="tx">
+              <h3>Eigene Kanäle laufen nicht</h3>
+              <p>Die Website hat wenig Besucher. Das Social-Media-Profil zu pflegen ist mühsam und bringt kaum Follower. Also bleibst du abhängig von Booking.com.</p>
+            </div>
+          </article>
+
+          <article class="punkt">
+            <div class="zahl">5</div>
+            <div class="tx">
+              <h3>OTA-Unklarheit</h3>
+              <p>Alle Kanäle zu pflegen bringt Unsicherheit und kostet Zeit. Die wenigsten Hotels wissen, welche einfachen und schnellen Maßnahmen sie ergreifen können, um OTAs zu ihrem Vorteil zu nutzen und ihre Umsätze zu erhöhen, ohne mehr zu zahlen.</p>
+            </div>
+          </article>
+
+          <article class="punkt">
+            <div class="zahl">6</div>
+            <div class="tx">
+              <h3>Wenig Geschäft in der Nebensaison</h3>
+              <p>Von November bis März steht das Haus halb leer, und genau dann bringen die Portale am wenigsten. Ohne eigenen Kanal fehlt dir das Werkzeug, um Nachfrage selbst zu erzeugen, wenn sie nicht von allein kommt.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== 3 · Problem ===== -->
-    <section class="sec" id="problem" data-halt data-seite="left">
-      <div class="sec-head">
-        <p class="eyebrow">Das Problem</p>
-        <h2 class="display">Dein Haus ist voll. Deine Marge nicht.</h2>
-        <p class="lead">Damit eines klar ist: Portale sind nicht der Gegner. Sie sind ein bezahlter Akquisekanal, und sie bringen dir Gäste, die dich sonst nie gefunden hätten. Das Problem ist nicht, dass jemand über ein Portal kommt. Das Problem ist, was danach passiert.</p>
-      </div>
-
-      <div class="probleme">
-        <article class="problem card fade">
-          <svg class="zeichen" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M5 33h30M10 33V18M18 33V8M26 33V22M34 33V14"/>
-          </svg>
-          <h3>Der Gast bleibt beim Portal, nicht bei dir</h3>
-          <p>Wer einmal über ein Portal gebucht hat, bucht beim nächsten Mal wieder darüber. Du hast keine Adresse, keinen Kontakt, keinen Weg, den Gast selbst zurückzuholen. Für denselben Menschen zahlst du also zweimal Provision.</p>
-          <p class="schluss">Wiederkehrer wären deine günstigsten Gäste.</p>
-        </article>
-
-        <article class="problem card fade d1">
-          <svg class="zeichen" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="6" y="5" width="19" height="30" rx="3"/>
-            <path d="M6 12h19M6 28h19"/><path d="M31 16l4 4-4 4"/>
-          </svg>
-          <h3>Deine eigene Seite hält niemanden</h3>
-          <p>Die meisten Gäste sehen dein Haus zuerst im Portal und schauen dann bei dir nach. Was sie dort finden, entscheidet alles. Ist die Seite alt, langsam oder auf dem Handy unbedienbar, gehen sie zurück und buchen da, wo es leicht ist.</p>
-          <p class="schluss">Der teuerste Klick ist der zurück.</p>
-        </article>
-
-        <article class="problem card fade d2">
-          <svg class="zeichen" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <circle cx="20" cy="20" r="14"/><path d="M20 12v8l6 4"/>
-          </svg>
-          <h3>Der Mix stimmt nicht, und keiner steuert ihn</h3>
-          <p>Kaum ein Haus entscheidet bewusst, wie viel über Portale laufen soll und wie viel direkt. Es ergibt sich einfach. Genau deshalb liegt der Anteil bei vielen dauerhaft zu hoch, und niemand rechnet nach, was das im Jahr bedeutet.</p>
-          <p class="schluss">Du hast es oben gerade selbst ausgerechnet.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== 4 · Lösungen ===== -->
+    <!-- ===== 03 · Lösungen ===== -->
     <section class="sec" id="loesungen" data-halt data-seite="center" data-karten>
       <div class="sec-head">
-        <p class="eyebrow">Unsere Lösungen</p>
-        <h2 class="display">Drei Bereiche, aus denen wir zusammenstellen</h2>
-        <p class="lead">Kein Paket von der Stange. Wir schauen uns dein Haus an und nehmen davon das, was bei dir tatsächlich etwas bewegt.</p>
+        <span class="etappe">03</span>
+        <div class="kopfzeile">
+          <p class="eyebrow">Unsere Lösungen</p>
+          <h2 class="display">Drei Bereiche, aus denen wir zusammenstellen</h2>
+          <p class="lead">Kein Paket von der Stange. Wir schauen uns dein Haus an und nehmen davon das, was bei dir tatsächlich etwas bewegt.</p>
+        </div>
       </div>
 
       <div class="loesungen">
-        <article class="loesung card fade">
+        <article class="loesung fade">
           <div class="nr">01</div>
           <div class="tx">
             <h3>Strategische Beratung</h3>
@@ -619,7 +680,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           </div>
         </article>
 
-        <article class="loesung card fade">
+        <article class="loesung fade">
           <div class="nr">02</div>
           <div class="tx">
             <h3>Digitale Marketing-Lösungen</h3>
@@ -632,7 +693,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           </div>
         </article>
 
-        <article class="loesung card fade">
+        <article class="loesung fade">
           <div class="nr">03</div>
           <div class="tx">
             <h3>Einsatz von OTAs</h3>
@@ -647,12 +708,15 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       </div>
     </section>
 
-    <!-- ===== 5 · Über uns ===== -->
+    <!-- ===== 04 · Über uns ===== -->
     <section class="sec" id="ueber-uns" data-halt data-seite="left" data-ausstieg="14">
       <div class="sec-head">
-        <p class="eyebrow">Wer wir sind</p>
-        <h2 class="display">Über Katrin und Martin</h2>
-        <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, unzertrennlich und mit gebündelter Expertise aus Hotellerie und Plattformgeschäft, die es in dieser Kombination kein zweites Mal gibt.</p>
+        <span class="etappe">04</span>
+        <div class="kopfzeile">
+          <p class="eyebrow">Wer wir sind</p>
+          <h2 class="display">Über Katrin und Martin</h2>
+          <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, unzertrennlich und mit gebündelter Expertise aus Hotellerie und Plattformgeschäft, die es in dieser Kombination kein zweites Mal gibt.</p>
+        </div>
       </div>
 
       <article class="person fade">
@@ -668,38 +732,41 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <div class="tx">
           <p class="rolle">KI-Services und Online-Marketing</p>
           <h3>Martin Thun</h3>
-          <p>Ich bin seit sieben Jahren im Online-Marketing tätig und habe mittlerweile Hunderten von Selbstständigen und kleinen Unternehmen bei der Kundengewinnung geholfen. Mit meinem Projekt „business.einfach.smart" erreiche ich über 100.000 Follower und biete digitale Produkte rund um Social Media, Online-Marketing und KI an.</p>
+          <p>Ich habe selbst an der Hotelrezeption gearbeitet und dort eng mit dem Inhaber zusammengearbeitet, ich kenne den Betrieb also von innen. Heute bin ich seit sieben Jahren im Online-Marketing tätig und habe Hunderten von Selbstständigen und kleinen Unternehmen bei der Kundengewinnung geholfen. Mit meinem Projekt „business.einfach.smart" erreiche ich über 100.000 Follower und biete digitale Produkte rund um Social Media, Online-Marketing und KI an.</p>
         </div>
         <div class="bild"><img src="Martin.webp" alt="Martin Thun" loading="lazy" decoding="async"></div>
       </article>
     </section>
 
-    <!-- ===== 6 · Vergleich ===== -->
+    <!-- ===== 05 · Der Unterschied ===== -->
     <section class="sec" id="unterschied" data-halt data-seite="right">
       <div class="sec-head">
-        <p class="eyebrow">Der Unterschied</p>
-        <h2 class="display">Nicht die sechste Agentur mit derselben Mappe</h2>
+        <span class="etappe">05</span>
+        <div class="kopfzeile">
+          <p class="eyebrow">Der Unterschied</p>
+          <h2 class="display">Nicht die sechste Agentur mit derselben Mappe</h2>
+        </div>
       </div>
 
-      <div class="vergleich card">
+      <div class="vergleich">
         <div class="kopf">
           <div>&nbsp;</div><div>Übliche Hotel-Agentur</div><div>Katrin &amp; Martin</div>
         </div>
-        <div class="zeile"><div class="merkmal">Wer dich berät</div><div class="andere">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="wir">Katrin, die die Branche von der Plattformseite kennt, und Martin, der es selbst baut</div></div>
+        <div class="zeile"><div class="merkmal">Wer dich berät</div><div class="andere">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="wir">Katrin kennt die Branche von der Plattformseite, Martin hat selbst an der Rezeption gearbeitet und eng mit dem Inhaber zusammengearbeitet</div></div>
         <div class="zeile"><div class="merkmal">Was es zusätzlich kostet</div><div class="andere">Pflicht-Werbebudget ab 60 Euro pro Tag und Kanal, also rund 1.800 Euro im Monat obendrauf</div><div class="wir">Kein Werbebudget nötig. Was wir bauen, gehört dir und läuft auch ohne laufende Anzeigenkosten weiter</div></div>
         <div class="zeile"><div class="merkmal">Was verkauft wird</div><div class="andere">Website, Ads und Social Media als getrennte Posten auf der Rechnung</div><div class="wir">Ein Ziel: mehr Direktbuchungen. Die Werkzeuge folgen daraus, nicht umgekehrt</div></div>
-        <div class="zeile"><div class="merkmal">Dein Buchungssystem</div><div class="andere">Soll gegen das System der Agentur getauscht werden</div><div class="wir">Bleibt. Wir binden an, was du hast, und bauen alles davor neu</div></div>
-        <div class="zeile"><div class="merkmal">Haltung zu den Portalen</div><div class="andere">Entweder blind darauf setzen oder pauschal dagegen wettern</div><div class="wir">Ein bewusst gesteuerter Kanal. Wir legen mit dir fest, wie viel darüber laufen soll</div></div>
         <div class="zeile"><div class="merkmal">Hausgröße</div><div class="andere">Ausgelegt auf Häuser ab 30 bis 80 Zimmern samt Marketingabteilung</div><div class="wir">Inhabergeführt, 20 bis 35 Zimmer, Entscheidung am Küchentisch</div></div>
       </div>
     </section>
 
-    <!-- ===== 7 · Kontakt ===== -->
+    <!-- ===== 06 · So geht es weiter ===== -->
     <section class="sec" id="kontakt" data-halt data-seite="center" data-ziel>
       <div class="sec-head">
-        <p class="eyebrow">Erster Schritt</p>
-        <h2 class="display">So geht’s weiter</h2>
-        <p class="lead">Kein Verkaufstermin, keine dreißig Folien, kein Angebot am Telefon. Wir wollen erst wissen, wie dein Haus läuft und wo es hakt. Danach sagen wir dir ehrlich, ob wir etwas beitragen können.</p>
+        <span class="etappe">06</span>
+        <div class="kopfzeile">
+          <p class="eyebrow">Erster Schritt</p>
+          <h2 class="display">So geht’s weiter</h2>
+        </div>
       </div>
 
       <ol class="ablauf fade">
@@ -708,7 +775,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <li><span class="nr">3</span><span class="tx"><b>Zusammenarbeit starten</b>Wenn es für beide Seiten passt</span></li>
       </ol>
 
-      <div class="kontakt card fade">
+      <div class="kontakt fade">
         <div class="seite">
           <b>Katrin und Martin Thun</b>
           <p>Wenn wir merken, dass sich das für dein Haus nicht lohnt, sagen wir dir das. Ist für alle billiger.</p>
@@ -734,10 +801,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     <div class="in">
       <div class="wer">
         <b>Katrin &amp; Martin Hotel Consulting</b>
-        <p>Direktbuchungen für inhabergeführte Häuser mit 20 bis 35 Zimmern im deutschsprachigen Raum. Katrin und Martin Thun.</p>
+        <p>Direktbuchungen für inhabergeführte Hotels mit 20 bis 35 Zimmern im DACH-Raum. Katrin und Martin Thun.</p>
       </div>
       <nav aria-label="Fußzeile">
-        <a href="#rechner">Rechner</a><a href="#problem">Problem</a><a href="#loesungen">Lösungen</a>
+        <a href="#weh">Problem</a><a href="#loesungen">Lösungen</a>
         <a href="#ueber-uns">Über uns</a><a href="#unterschied">Unterschied</a><a href="#kontakt">Kontakt</a>
         <a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a>
       </nav>
