@@ -129,14 +129,18 @@ p{margin:0}
   position:absolute;inset:0;width:100%;height:100%;z-index:2;
   pointer-events:none;overflow:visible;
 }
+/* Der noch nicht gegangene Weg: feine Punktreihe wie auf einer alten Karte. */
 .map-route .route-base{
-  fill:none;stroke:var(--map-path);stroke-width:3.5;stroke-dasharray:3 14;
-  stroke-linecap:round;opacity:.7;
+  fill:none;stroke:var(--map-path);stroke-width:3.5;stroke-dasharray:0.1 13;
+  stroke-linecap:round;opacity:.72;
 }
+/* Der gegangene Weg: kräftige Striche, die über eine Maske von oben
+   aufgedeckt werden. Über strokeDashoffset ginge das nicht, die
+   Strichelung braucht die Dasharray selbst. */
 .map-route .route-ink{
-  fill:none;stroke:var(--map-route);stroke-width:5;stroke-linecap:round;
-  opacity:.96;will-change:stroke-dashoffset;
-  filter:drop-shadow(0 1px 0 rgba(255,255,255,.5));
+  fill:none;stroke:var(--map-route);stroke-width:5.5;stroke-linecap:round;
+  stroke-dasharray:19 14;opacity:.95;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.55));
 }
 .map-route .route-stop line{
   stroke:var(--map-ink);stroke-width:4.5;stroke-linecap:round;
@@ -155,6 +159,19 @@ p{margin:0}
 }
 .map-route .route-traveler .inner{fill:var(--map-route);stroke:#FCFAF7;stroke-width:2}
 @keyframes mapPulse{50%{transform:scale(1.28);opacity:.45}}
+
+/* Szenen an einzelnen Wegpunkten */
+.route-scenes{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:visible}
+.szene{position:absolute;width:0;height:0;overflow:visible}
+.szene .schein{position:absolute;width:96px;margin:-30px 0 0 -48px;opacity:0}
+.szene.laeuft .schein{animation:scheinWeg 3.4s cubic-bezier(.3,.15,.5,1) forwards}
+@keyframes scheinWeg{
+  0%{opacity:0;transform:translate(0,26px) rotate(-8deg) scale(.7)}
+  12%{opacity:1}
+  80%{opacity:1}
+  100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.05)}
+}
+@media (max-width:1199px){ .route-scenes{display:none} }
 
 /* Ziel am Ende der Route */
 .map-route .route-goal .goal-pole{
@@ -299,9 +316,38 @@ section{position:relative}
 }
 @media (max-width:700px){ .step{grid-template-columns:1fr;gap:14px;padding:24px} }
 
+.step .bullets{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.step .bullets li{position:relative;padding-left:26px;font-size:.95rem;line-height:1.5;color:var(--ink-2)}
+.step .bullets li::before{
+  content:"";position:absolute;left:2px;top:.55em;width:9px;height:9px;border-radius:50%;
+  background:var(--flame-wash);border:2px solid var(--flame);
+}
+
+/* Ablauf über dem Kontaktformular */
+.ablauf{
+  list-style:none;margin:44px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:none;
+}
+.ablauf li{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:20px 22px;box-shadow:var(--e1);
+}
+.ablauf .nr{
+  flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--flame);color:#fff;font-size:.95rem;font-weight:700;
+}
+.ablauf .tx{display:flex;flex-direction:column;gap:3px;font-size:.92rem;line-height:1.45;color:var(--ink-2)}
+.ablauf .tx b{font-size:1rem;font-weight:600;color:var(--ink)}
+@media (max-width:820px){ .ablauf{grid-template-columns:1fr} }
+
 /* Etappen als Zickzack links und rechts der Route. Die Karten hängen über
    eine Stichleitung am Weg, deshalb läuft die Route hier mittig. */
 .step .no{transition:background .45s ease,color .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1)}
+.step{transition:border-color .5s ease,box-shadow .5s ease,opacity .7s ease,transform .7s cubic-bezier(.16,.84,.32,1)}
+.step.lit{border-color:rgba(240,64,15,.45);box-shadow:0 0 0 4px rgba(240,64,15,.07),0 20px 44px -26px rgba(240,64,15,.55)}
+.step.lit h3{color:var(--flame-deep)}
+.step h3{transition:color .5s ease}
 @media (min-width:1000px){
   .steps{grid-template-columns:1fr 1fr;column-gap:172px;row-gap:0;align-items:start}
   .step{position:relative}
@@ -325,8 +371,10 @@ section{position:relative}
   .step:nth-child(odd)::before{left:calc(100% + 79px)}
   .step:nth-child(even)::before{right:calc(100% + 79px)}
   .step.in::after{opacity:.95}
-  .step.in::before{opacity:1;transform:scale(1);border-color:var(--map-route)}
-  .step.in .no{background:var(--flame);color:#fff;transform:scale(1.08)}
+  .step.in::before{opacity:1;transform:scale(1);border-color:var(--map-path)}
+  /* Erst wenn die Route den Punkt erreicht, geht die Karte an. */
+  .step.lit::before{border-color:var(--map-route);box-shadow:0 0 0 5px rgba(240,64,15,.14)}
+  .step.lit .no{background:var(--flame);color:#fff;transform:scale(1.08)}
 
   .js .steps .step{opacity:0;transform:translateX(-52px)}
   .js .steps .step:nth-child(even){transform:translateX(52px)}
@@ -480,9 +528,15 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
 </header>
 
 <div id="page">
+  <div class="route-scenes" id="routeScenes" aria-hidden="true"></div>
   <svg class="map-route" id="mapRoute" aria-hidden="true" focusable="false">
+    <defs>
+      <mask id="routeReveal" maskUnits="userSpaceOnUse">
+        <rect id="routeRevealRect" x="0" y="0" width="0" height="0" fill="#fff"></rect>
+      </mask>
+    </defs>
     <path class="route-base" id="mapRouteBase"></path>
-    <path class="route-ink" id="mapRouteInk"></path>
+    <path class="route-ink" id="mapRouteInk" mask="url(#routeReveal)"></path>
     <g id="mapRouteStops"></g>
     <g class="route-traveler" id="mapRouteTraveler">
       <circle class="outer" r="13"></circle>
@@ -572,7 +626,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 2 · Rechner ================= -->
-    <section class="sec" id="rechner" data-route-stop data-route-side="right">
+    <section class="sec" id="rechner" data-route-stop data-route-side="right" data-route-scene="money">
       <div class="sec-head">
         <h2 class="display">Was Ihr Haus jedes Jahr an die Portale überweist</h2>
         <p class="lead">Vier Angaben, die Sie im Kopf haben. Kein Formular, kein Login, keine E-Mail-Adresse. Wir rechnen mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme überhaupt dazukommen.</p>
@@ -661,31 +715,46 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     <!-- ================= 4 · Weg ================= -->
     <section class="sec" id="weg" data-route-stop data-route-side="center" data-route-steps>
       <div class="sec-head">
-        <h2 class="display">Drei Etappen zum eigenen Buchungskanal</h2>
-        <p class="lead">Wir verkaufen keine Einzelteile aus dem Katalog. Wir haben ein Ziel, den Anteil Ihrer Direktbuchungen, und suchen die Werkzeuge danach aus, was Ihr Haus wirklich braucht.</p>
+        <h2 class="display">Unsere Lösungen</h2>
+        <p class="lead">Drei Bereiche, aus denen wir zusammenstellen, was Ihr Haus wirklich braucht. Kein Paket von der Stange, und nichts davon verkaufen wir als Selbstzweck.</p>
       </div>
 
       <div class="steps">
         <div class="step fade">
           <div class="no">01</div>
           <div class="tx">
-            <h3>Gefunden werden, ohne Umweg</h3>
-            <p>Wer Ihr Haus mit Namen sucht, soll bei Ihnen landen. Nicht bei einem Portal, das auf Ihren Namen Anzeigen schaltet und Ihnen die Buchung danach in Rechnung stellt. Google-Eintrag, lokale Sichtbarkeit, die Suchbegriffe Ihrer Region. Die Etappe, die am schnellsten wirkt.</p>
+            <h3>Strategische Beratung</h3>
+            <p>Wo steht Ihr Haus, und wo bleibt Geld liegen? Wir schauen auf Bekanntheit, Umsatz und Auslastung, und zwar übers ganze Jahr, nicht nur in der Hochsaison.</p>
+            <ul class="bullets">
+              <li>Bekanntheit und Umsatz erhöhen</li>
+              <li>Mehr Direktbuchungen statt Portalbuchungen</li>
+              <li>Auslastung ganzjährig anheben, auch in der Nebensaison</li>
+            </ul>
           </div>
         </div>
         <div class="step fade">
           <div class="no">02</div>
           <div class="tx">
-            <h3>Die Buchung lächerlich einfach machen</h3>
-            <p>Ihre Buchungsstrecke bleibt genau so, wie sie ist. Wir tauschen kein System aus und verkaufen Ihnen auch keines. Wir bauen alles davor neu: eine Seite, die auf dem Handy zuerst funktioniert, in unter zwei Sekunden lädt und genau einen Weg zum Kalender kennt.</p>
-            <span class="tag">Ihr System bleibt</span>
+            <h3>Digitale Marketing-Lösungen</h3>
+            <p>Sichtbar werden, wo Ihre Gäste suchen, und danach den Kontakt behalten, statt ihn wieder ans Portal abzugeben.</p>
+            <ul class="bullets">
+              <li>Mehr Sichtbarkeit über Google, Social Media und KI-Suche</li>
+              <li>Aufbau eigener Gästedaten statt Daten beim Portal</li>
+              <li>E-Mail-Marketing für Stammgäste und wiederkehrende Buchungen</li>
+            </ul>
           </div>
         </div>
         <div class="step fade">
           <div class="no">03</div>
           <div class="tx">
-            <h3>Den Gast behalten</h3>
-            <p>Wer einmal direkt gebucht hat, darf beim nächsten Mal nicht wieder über ein Portal kommen. Dafür braucht es keinen großen Aufwand, sondern einen sauberen Direktkontakt: Newsletter, ein Anlass zur Wiederbuchung, ein Grund, sich zu melden, bevor die Saison anfängt.</p>
+            <h3>Website und Buchungsstrecke</h3>
+            <p>Der Ort, an dem die Direktbuchung tatsächlich passiert. Ihr Buchungssystem bleibt, wir bauen alles davor neu.</p>
+            <ul class="bullets">
+              <li>Website, die auf dem Handy zuerst funktioniert und schnell lädt</li>
+              <li>Anbindung an Ihr bestehendes Buchungssystem</li>
+              <li>Digitale Roomtour und KI-Chatbot, der Anfragen zur Buchung führt</li>
+            </ul>
+            <span class="tag">Ihr System bleibt</span>
           </div>
         </div>
       </div>
@@ -740,9 +809,24 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     <!-- ================= 7 · Kontakt ================= -->
     <section class="sec" id="kontakt" data-route-stop data-route-side="center" data-route-goal>
       <div class="sec-head">
-        <h2 class="display">Der nächste Schritt:</h2>
+        <h2 class="display">So geht’s weiter</h2>
         <p class="lead">Kein Verkaufstermin, keine dreißig Folien, kein Angebot am Telefon. Wir wollen erst wissen, wie Ihr Haus läuft und wo es hakt. Danach sagen wir Ihnen ehrlich, ob wir etwas beitragen können.</p>
       </div>
+
+      <ol class="ablauf fade">
+        <li>
+          <span class="nr">1</span>
+          <span class="tx"><b>Formular ausfüllen</b>und Erstberatung sichern</span>
+        </li>
+        <li>
+          <span class="nr">2</span>
+          <span class="tx"><b>Potenzial-Analyse</b>Wir schauen uns Ihr Haus vorher an</span>
+        </li>
+        <li>
+          <span class="nr">3</span>
+          <span class="tx"><b>Zusammenarbeit starten</b>Wenn es für beide Seiten passt</span>
+        </li>
+      </ol>
 
       <div class="contact fade">
         <div class="side"></div>
@@ -842,10 +926,13 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       routeInk = document.getElementById("mapRouteInk"),
       routeStopsLayer = document.getElementById("mapRouteStops"),
       routeTraveler = document.getElementById("mapRouteTraveler"),
+      routeScenes = document.getElementById("routeScenes"),
+      routeRevealRect = document.getElementById("routeRevealRect"),
       routeLength = 0,
       routeHeight = 0,
       routeEndY = 0,
       routeStops = [],
+      routeCards = [],
       routeResizeTimer = 0;
 
   /* Die Seite gibt jede Sektion selbst über data-route-side vor. */
@@ -888,16 +975,69 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     return a.l + (b.l - a.l) * t;
   }
 
+  /* Zittern von Hand: fester Wert pro Position, damit die Linie bei jedem
+     Neuaufbau gleich aussieht und nicht bei jedem Resize herumspringt. */
+  function jitter(seed){
+    var v = Math.sin(seed * 12.9898) * 43758.5453;
+    return (v - Math.floor(v)) * 2 - 1;
+  }
+
   function routeCurve(points){
     if(points.length < 2) return "";
-    var d = "M " + points[0].x.toFixed(1) + " " + points[0].y.toFixed(1);
+    /* Lange gerade Stücke bekommen Zwischenpunkte mit leichtem Versatz,
+       sonst wirkt der Weg wie mit dem Lineal gezogen. */
+    var reich = [points[0]];
     for(var i = 1; i < points.length; i++){
-      var a = points[i-1], b = points[i], middle = (a.y + b.y) / 2;
-      d += " C " + a.x.toFixed(1) + " " + middle.toFixed(1)
-         + ", " + b.x.toFixed(1) + " " + middle.toFixed(1)
-         + ", " + b.x.toFixed(1) + " " + b.y.toFixed(1);
+      var a = points[i-1], b = points[i], dy = b.y - a.y;
+      if(Math.abs(b.x - a.x) < 24 && dy > 200){
+        var teile = Math.min(5,Math.max(2,Math.round(dy / 260)));
+        for(var t = 1; t < teile; t++){
+          var f = t / teile;
+          reich.push({ x:a.x + (b.x - a.x) * f + jitter(a.y + t * 97) * 7, y:a.y + dy * f });
+        }
+      }
+      reich.push(b);
+    }
+
+    var d = "M " + reich[0].x.toFixed(1) + " " + reich[0].y.toFixed(1);
+    for(var k = 1; k < reich.length; k++){
+      var p = reich[k-1], q = reich[k], span = q.y - p.y;
+      /* Bei .5 stünde der Bogen an beiden Enden senkrecht, der Seitenwechsel
+         würde dann in der Mitte zusammengedrückt und wirkt wie ein Ruck.
+         Große Sprünge laufen deshalb fast diagonal über die ganze Strecke,
+         kurze Stücke behalten den weichen Bogen. */
+      var faktor = Math.abs(q.x - p.x) > 200 ? .06 : .42;
+      var f1 = p.y + span * faktor, f2 = q.y - span * faktor;
+      d += " C " + p.x.toFixed(1) + " " + f1.toFixed(1)
+         + ", " + q.x.toFixed(1) + " " + f2.toFixed(1)
+         + ", " + q.x.toFixed(1) + " " + q.y.toFixed(1);
     }
     return d;
+  }
+
+  var SCHEIN_SVG = '<svg viewBox="0 0 96 54"><rect x="2" y="2" width="92" height="50" rx="6" fill="#FFC531" stroke="#141A1F" stroke-width="3"/><circle cx="48" cy="27" r="13" fill="#141A1F" opacity=".15"/><path d="M53 18 a9.5 9.5 0 1 0 0 18 M40 23 h13 M40 31 h13" stroke="#141A1F" stroke-width="3" fill="none" stroke-linecap="round"/></svg>';
+
+  function makeSzene(x,y,art){
+    var box = document.createElement("div");
+    box.className = "szene szene-" + art;
+    box.style.left = x + "px";
+    box.style.top = y + "px";
+    if(art === "money"){
+      /* Die Scheine wehen vom Wegpunkt weg, jeder in eine eigene Richtung. */
+      var bahnen = [[-320,-210,-24,0],[-190,-300,18,.22],[-410,-120,-38,.44],[-120,-250,32,.66],[-300,-330,-14,.88]];
+      bahnen.forEach(function(b){
+        var s = document.createElement("span");
+        s.className = "schein";
+        s.style.setProperty("--dx",b[0] + "px");
+        s.style.setProperty("--dy",b[1] + "px");
+        s.style.setProperty("--rot",b[2] + "deg");
+        s.style.animationDelay = b[3] + "s";
+        s.innerHTML = SCHEIN_SVG;
+        box.appendChild(s);
+      });
+    }
+    routeScenes.appendChild(box);
+    return box;
   }
 
   function makeRouteStop(x,y,ziel){
@@ -943,6 +1083,8 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     var points = [{ x:routeX(width,"left"), y:0 }];
     var markerData = [];
     routeEndY = 0;
+    routeCards = [];
+    routeScenes.replaceChildren();
 
     nodes.forEach(function(node){
       var side = node.getAttribute("data-route-side") || "left";
@@ -950,25 +1092,29 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       var top = rect.top + window.scrollY - pageTop;
       var bottom = top + rect.height;
       var x = routeX(width,side);
-      var y = Math.max(64,Math.min(routeHeight - 42,top + Math.min(132,rect.height * .18)));
+      /* Der Wegpunkt sitzt bewusst tief in der Sektion. Dadurch bekommt der
+         Seitenwechsel mehr Scrollstrecke und wirkt nicht wie ein Ruck. */
+      var y = Math.max(64,Math.min(routeHeight - 42,top + Math.min(520,rect.height * .45)));
 
       points.push({ x:x, y:y });
-      markerData.push({ x:x, y:y, ziel:node.hasAttribute("data-route-goal") });
+      markerData.push({ x:x, y:y, ziel:node.hasAttribute("data-route-goal"), szene:node.getAttribute("data-route-scene") });
 
       /* Am Ziel hört die Route auf, danach kommt kein Pfad mehr. */
       if(node.hasAttribute("data-route-goal")){ routeEndY = y; return; }
 
-      /* Etappen-Sektion: die Route fädelt sich mittig an den drei Karten vorbei. */
+      /* Lösungen-Sektion: die Route fädelt sich mittig an den drei Karten vorbei. */
       if(node.hasAttribute("data-route-steps")){
         [].forEach.call(node.querySelectorAll(".step"),function(step){
           var sr = step.getBoundingClientRect();
-          points.push({ x:x, y:sr.top + window.scrollY - pageTop + sr.height / 2 });
+          var cy = sr.top + window.scrollY - pageTop + 52;
+          points.push({ x:x, y:cy });
+          routeCards.push({ element:step, y:cy, lit:false });
         });
       }
 
       /* Ausfahrt kurz vor Sektionsende, damit der Seitenwechsel in der Lücke
          zwischen zwei Sektionen passiert und nicht quer durch den Text. */
-      var exit = Math.max(y + 40,bottom - 24);
+      var exit = Math.max(y + 40,bottom - 30);
       points.push({ x:x, y:Math.min(exit,routeHeight - 10) });
     });
     if(!routeEndY) routeEndY = routeHeight;
@@ -979,13 +1125,28 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     routeBase.setAttribute("d",path);
     routeInk.setAttribute("d",path);
     routeLength = routeInk.getTotalLength();
-    routeInk.style.strokeDasharray = routeLength;
-    routeInk.style.strokeDashoffset = routeLength;
+    /* Kein strokeDasharray aus dem Skript mehr. Die Strichelung kommt aus dem
+       CSS, aufgedeckt wird über die Maske. */
     buildSamples();
+
+    /* Die Maske braucht ihre Fläche ausdrücklich, sonst greift der Standard
+       von -10% bis 110% der Objektbox und der Weg verschwindet ganz. */
+    var maske = document.getElementById("routeReveal");
+    maske.setAttribute("maskUnits","userSpaceOnUse");
+    maske.setAttribute("x","-40");
+    maske.setAttribute("y","-40");
+    maske.setAttribute("width",width + 80);
+    maske.setAttribute("height",routeHeight + 80);
+    routeRevealRect.setAttribute("x","-40");
+    routeRevealRect.setAttribute("width",width + 80);
 
     routeStopsLayer.replaceChildren();
     routeStops = markerData.map(function(marker){
-      return { element:makeRouteStop(marker.x,marker.y,marker.ziel), y:marker.y, reached:false };
+      return {
+        element:makeRouteStop(marker.x,marker.y,marker.ziel),
+        szene:marker.szene ? makeSzene(marker.x,marker.y,marker.szene) : null,
+        y:marker.y, reached:false
+      };
     });
     drawMapRoute();
   }
@@ -999,7 +1160,8 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
 
     var progress = routeEndY ? walkedY / routeEndY : 0;
     var walkedLength = lengthAtY(walkedY);
-    routeInk.style.strokeDashoffset = routeLength - walkedLength;
+    /* Die Maske deckt den gestrichelten Weg von oben nach unten auf. */
+    routeRevealRect.setAttribute("height",walkedY.toFixed(1));
 
     var point = routeInk.getPointAtLength(walkedLength);
     routeTraveler.setAttribute("transform","translate(" + point.x.toFixed(1) + " " + point.y.toFixed(1) + ")");
@@ -1010,6 +1172,16 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       if(reached !== stop.reached){
         stop.reached = reached;
         stop.element.classList.toggle("reached",reached);
+      }
+      /* Die Szene läuft genau einmal, sie wird beim Zurückscrollen nicht zurückgesetzt. */
+      if(reached && stop.szene) stop.szene.classList.add("laeuft");
+    });
+
+    routeCards.forEach(function(card){
+      var lit = card.y <= walkedY;
+      if(lit !== card.lit){
+        card.lit = lit;
+        card.element.classList.toggle("lit",lit);
       }
     });
   }
