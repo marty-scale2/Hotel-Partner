@@ -130,13 +130,13 @@ p{margin:0}
   pointer-events:none;overflow:visible;
 }
 .map-route .route-base{
-  fill:none;stroke:var(--map-path);stroke-width:3;stroke-dasharray:2 12;
-  stroke-linecap:round;opacity:.62;
+  fill:none;stroke:var(--map-path);stroke-width:3.5;stroke-dasharray:3 14;
+  stroke-linecap:round;opacity:.7;
 }
 .map-route .route-ink{
-  fill:none;stroke:var(--map-route);stroke-width:3.5;stroke-linecap:round;
-  opacity:.94;will-change:stroke-dashoffset;
-  filter:drop-shadow(0 1px 0 rgba(255,255,255,.45));
+  fill:none;stroke:var(--map-route);stroke-width:5;stroke-linecap:round;
+  opacity:.96;will-change:stroke-dashoffset;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.5));
 }
 .map-route .route-stop line{
   stroke:var(--map-ink);stroke-width:4.5;stroke-linecap:round;
@@ -155,9 +155,30 @@ p{margin:0}
 }
 .map-route .route-traveler .inner{fill:var(--map-route);stroke:#FCFAF7;stroke-width:2}
 @keyframes mapPulse{50%{transform:scale(1.28);opacity:.45}}
+
+/* Ziel am Ende der Route */
+.map-route .route-goal .goal-pole{
+  stroke:var(--map-ink);stroke-width:4.5;stroke-linecap:round;opacity:.5;
+  transition:stroke .35s ease,opacity .35s ease;
+}
+.map-route .route-goal .goal-cloth{
+  fill:var(--map-path);opacity:.45;
+  transform-box:fill-box;transform-origin:left center;transform:scaleX(.12);
+  transition:transform .55s cubic-bezier(.2,1.35,.4,1),fill .35s ease,opacity .35s ease;
+}
+.map-route .route-goal .goal-foot{fill:var(--map-path);opacity:.35;transition:fill .35s ease,opacity .35s ease}
+.map-route .route-goal .goal-ring{fill:none;stroke:var(--flame);stroke-width:2.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.map-route .route-goal.reached .goal-pole{stroke:var(--map-route);opacity:1}
+.map-route .route-goal.reached .goal-foot{fill:var(--map-route);opacity:.85}
+.map-route .route-goal.reached .goal-cloth{fill:var(--flame);opacity:1;animation:goalUnfurl .6s cubic-bezier(.2,1.35,.4,1) forwards,goalWave 2.6s .7s ease-in-out infinite}
+.map-route .route-goal.reached .goal-ring{animation:goalPop 1.1s .15s ease-out forwards}
+@keyframes goalUnfurl{from{transform:scaleX(.12)}to{transform:scaleX(1)}}
+@keyframes goalWave{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.94) skewY(-6deg)}}
+@keyframes goalPop{0%{opacity:.85;transform:scale(.28)}100%{opacity:0;transform:scale(1.5)}}
+
 @media (max-width:1199px){
   .map-route .route-base{stroke-width:2.5;opacity:.5}
-  .map-route .route-ink{stroke-width:3}
+  .map-route .route-ink{stroke-width:3.5}
   .map-route .route-stop line{stroke-width:4}
 }
 
@@ -277,6 +298,40 @@ section{position:relative}
   border:1px solid #F3DFAE;border-radius:999px;padding:5px 12px;
 }
 @media (max-width:700px){ .step{grid-template-columns:1fr;gap:14px;padding:24px} }
+
+/* Etappen als Zickzack links und rechts der Route. Die Karten hängen über
+   eine Stichleitung am Weg, deshalb läuft die Route hier mittig. */
+.step .no{transition:background .45s ease,color .45s ease,transform .45s cubic-bezier(.2,1.4,.4,1)}
+@media (min-width:1000px){
+  .steps{grid-template-columns:1fr 1fr;column-gap:172px;row-gap:0;align-items:start}
+  .step{position:relative}
+  .step:nth-child(1){grid-column:1;grid-row:1}
+  .step:nth-child(2){grid-column:2;grid-row:2;margin-top:-58px}
+  .step:nth-child(3){grid-column:1;grid-row:3;margin-top:-58px}
+
+  .step::after{
+    content:"";position:absolute;top:51px;width:86px;
+    border-top:2px dashed var(--map-path);
+    opacity:0;transition:opacity .5s ease .2s;
+  }
+  .step::before{
+    content:"";position:absolute;top:44px;width:15px;height:15px;border-radius:50%;
+    background:var(--ground);border:3px solid var(--map-path);
+    opacity:0;transform:scale(.3);
+    transition:opacity .45s ease .35s,transform .5s cubic-bezier(.2,1.6,.4,1) .35s,border-color .45s ease .35s;
+  }
+  .step:nth-child(odd)::after{left:100%}
+  .step:nth-child(even)::after{right:100%}
+  .step:nth-child(odd)::before{left:calc(100% + 79px)}
+  .step:nth-child(even)::before{right:calc(100% + 79px)}
+  .step.in::after{opacity:.95}
+  .step.in::before{opacity:1;transform:scale(1);border-color:var(--map-route)}
+  .step.in .no{background:var(--flame);color:#fff;transform:scale(1.08)}
+
+  .js .steps .step{opacity:0;transform:translateX(-52px)}
+  .js .steps .step:nth-child(even){transform:translateX(52px)}
+  .js .steps .step.in{opacity:1;transform:none}
+}
 
 /* Rechner */
 .calc{
@@ -430,14 +485,14 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     <path class="route-ink" id="mapRouteInk"></path>
     <g id="mapRouteStops"></g>
     <g class="route-traveler" id="mapRouteTraveler">
-      <circle class="outer" r="9"></circle>
-      <circle class="inner" r="4"></circle>
+      <circle class="outer" r="13"></circle>
+      <circle class="inner" r="5.5"></circle>
     </g>
   </svg>
   <main class="shell" id="top">
 
     <!-- ================= 1 · Hero ================= -->
-    <section class="hero" data-route-stop>
+    <section class="hero" data-route-stop data-route-side="left">
       <div class="hero-grid">
         <div>
           <h1 class="display">
@@ -517,7 +572,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 2 · Rechner ================= -->
-    <section class="sec" id="rechner" data-route-stop>
+    <section class="sec" id="rechner" data-route-stop data-route-side="right">
       <div class="sec-head">
         <h2 class="display">Was Ihr Haus jedes Jahr an die Portale überweist</h2>
         <p class="lead">Vier Angaben, die Sie im Kopf haben. Kein Formular, kein Login, keine E-Mail-Adresse. Wir rechnen mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme überhaupt dazukommen.</p>
@@ -565,7 +620,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 3 · Problem ================= -->
-    <section class="sec" id="problem" data-route-stop>
+    <section class="sec" id="problem" data-route-stop data-route-side="left">
       <div class="sec-head">
         <h2 class="display">Ihr Haus ist voll. Ihre Marge nicht.</h2>
         <p class="lead">Die Zahl oben ist nur der sichtbare Teil. Drei Dinge kosten inhabergeführte Häuser jedes Jahr richtig Geld, und keines davon fällt im Tagesgeschäft auf, weil niemand an der Rezeption steht und sagt: „Ich hätte auch direkt gebucht."</p>
@@ -604,9 +659,9 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 4 · Weg ================= -->
-    <section class="sec" id="weg" data-route-stop>
+    <section class="sec" id="weg" data-route-stop data-route-side="center" data-route-steps>
       <div class="sec-head">
-        <h2 class="display">Vier Etappen zum eigenen Buchungskanal</h2>
+        <h2 class="display">Drei Etappen zum eigenen Buchungskanal</h2>
         <p class="lead">Wir verkaufen keine Einzelteile aus dem Katalog. Wir haben ein Ziel, den Anteil Ihrer Direktbuchungen, und suchen die Werkzeuge danach aus, was Ihr Haus wirklich braucht.</p>
       </div>
 
@@ -637,7 +692,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 5 · Über uns ================= -->
-    <section class="sec" id="ueber-uns" data-route-stop>
+    <section class="sec" id="ueber-uns" data-route-stop data-route-side="left">
       <div class="sec-head">
         <h2 class="display">Über Katrin &amp; Martin</h2>
         <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, unzertrennlich und mit gebündelter Expertise aus Hotellerie und Plattformgeschäft, die es in dieser Kombination kein zweites Mal gibt.</p>
@@ -664,7 +719,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 6 · Vergleich ================= -->
-    <section class="sec" id="unterschied" data-route-stop>
+    <section class="sec" id="unterschied" data-route-stop data-route-side="right">
       <div class="sec-head">
         <h2 class="display">Nicht die sechste Agentur mit derselben Mappe</h2>
       </div>
@@ -683,9 +738,9 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     </section>
 
     <!-- ================= 7 · Kontakt ================= -->
-    <section class="sec" id="kontakt" data-route-stop>
+    <section class="sec" id="kontakt" data-route-stop data-route-side="center" data-route-goal>
       <div class="sec-head">
-        <h2 class="display">Reden wir zwanzig Minuten</h2>
+        <h2 class="display">Der nächste Schritt:</h2>
         <p class="lead">Kein Verkaufstermin, keine dreißig Folien, kein Angebot am Telefon. Wir wollen erst wissen, wie Ihr Haus läuft und wo es hakt. Danach sagen wir Ihnen ehrlich, ob wir etwas beitragen können.</p>
       </div>
 
@@ -708,7 +763,7 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
   </main>
 
   <!-- ================= 8 · Fußzeile ================= -->
-  <footer data-route-stop>
+  <footer>
     <div class="in">
       <div class="who">
         <b>Katrin &amp; Martin Hotel Consulting</b>
@@ -720,7 +775,6 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
         <a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a>
       </nav>
     </div>
-    <p class="fine">Alle Beträge im Rechner sind Schätzungen auf Basis der eingegebenen Werte und ersetzen keine betriebswirtschaftliche Auswertung. Booking.com ist eine Marke der Booking.com B.V., wir stehen in keiner Verbindung zu diesem Unternehmen.</p>
   </footer>
 </div>
 
@@ -790,16 +844,48 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
       routeTraveler = document.getElementById("mapRouteTraveler"),
       routeLength = 0,
       routeHeight = 0,
+      routeEndY = 0,
       routeStops = [],
       routeResizeTimer = 0;
 
-  function routeX(width, index){
+  /* Die Seite gibt jede Sektion selbst über data-route-side vor. */
+  function routeX(width, side){
     var contentWidth = Math.min(width,1080);
     var margin = Math.max(0,(width - contentWidth) / 2);
-    var base = width < 1200 ? 12 : Math.min(110,Math.max(46,margin * .48));
-    var pattern = [-7,9,-3,7,-9,4,0,8];
-    var bend = width < 1200 ? pattern[index % pattern.length] * .18 : pattern[index % pattern.length];
-    return Math.max(9,base + bend);
+    if(width < 1200){
+      /* Schmale Fenster haben keinen Seitenrand, dort bleibt die Route links. */
+      return side === "center" ? 24 : 13;
+    }
+    var links = Math.min(120,Math.max(52,margin * .52));
+    if(side === "right") return width - links;
+    if(side === "center") return width / 2;
+    return links;
+  }
+
+  /* Der Fortschritt hängt an der Scrollhöhe, die Pfadlänge nicht. Ohne diese
+     Tabelle würde der Läufer bei jedem Seitenwechsel vor- und zurückspringen. */
+  var routeSamples = [];
+  function buildSamples(){
+    routeSamples = [];
+    var n = 700;
+    for(var i = 0; i <= n; i++){
+      var l = routeLength * i / n;
+      routeSamples.push({ y:routeInk.getPointAtLength(l).y, l:l });
+    }
+  }
+  function lengthAtY(y){
+    var s = routeSamples;
+    if(s.length < 2) return 0;
+    if(y <= s[0].y) return 0;
+    if(y >= s[s.length-1].y) return routeLength;
+    var lo = 0, hi = s.length - 1;
+    while(hi - lo > 1){
+      var mid = (lo + hi) >> 1;
+      if(s[mid].y < y) lo = mid; else hi = mid;
+    }
+    var a = s[lo], b = s[hi];
+    var t = (b.y - a.y) ? (y - a.y) / (b.y - a.y) : 0;
+    return a.l + (b.l - a.l) * t;
   }
 
   function routeCurve(points){
@@ -814,22 +900,34 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     return d;
   }
 
-  function makeRouteStop(x,y){
+  function makeRouteStop(x,y,ziel){
     var ns = "http://www.w3.org/2000/svg";
     var group = document.createElementNS(ns,"g");
-    group.setAttribute("class","route-stop");
-    group.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(-8)");
 
-    var circle = document.createElementNS(ns,"circle");
-    circle.setAttribute("r","13");
-    group.appendChild(circle);
+    function el(name,attrs){
+      var e = document.createElementNS(ns,name);
+      Object.keys(attrs).forEach(function(k){ e.setAttribute(k,attrs[k]); });
+      group.appendChild(e);
+      return e;
+    }
 
-    [[-8,-8,8,8],[-8,8,8,-8]].forEach(function(v){
-      var line = document.createElementNS(ns,"line");
-      line.setAttribute("x1",v[0]); line.setAttribute("y1",v[1]);
-      line.setAttribute("x2",v[2]); line.setAttribute("y2",v[3]);
-      group.appendChild(line);
-    });
+    if(ziel){
+      /* Ende der Route: eine Zielflagge statt eines weiteren Kreuzes. */
+      group.setAttribute("class","route-stop route-goal");
+      group.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ")");
+      el("circle",{ "class":"goal-ring", r:"34" });
+      el("ellipse",{ "class":"goal-foot", cx:"0", cy:"17", rx:"11", ry:"4" });
+      el("path",{ "class":"goal-pole", d:"M0 16 L0 -38" });
+      el("path",{ "class":"goal-cloth", d:"M3 -36 L40 -27 L3 -18 Z" });
+    } else {
+      group.setAttribute("class","route-stop");
+      group.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(-8)");
+      el("circle",{ r:"13" });
+      [[-8,-8,8,8],[-8,8,8,-8]].forEach(function(v){
+        el("line",{ x1:v[0], y1:v[1], x2:v[2], y2:v[3] });
+      });
+    }
+
     routeStopsLayer.appendChild(group);
     return group;
   }
@@ -842,18 +940,38 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
 
     var pageTop = routePage.getBoundingClientRect().top + window.scrollY;
     var nodes = [].slice.call(document.querySelectorAll("[data-route-stop]"));
-    var points = [{ x:routeX(width,0), y:0 }];
+    var points = [{ x:routeX(width,"left"), y:0 }];
     var markerData = [];
+    routeEndY = 0;
 
-    nodes.forEach(function(node,index){
+    nodes.forEach(function(node){
+      var side = node.getAttribute("data-route-side") || "left";
       var rect = node.getBoundingClientRect();
       var top = rect.top + window.scrollY - pageTop;
+      var bottom = top + rect.height;
+      var x = routeX(width,side);
       var y = Math.max(64,Math.min(routeHeight - 42,top + Math.min(132,rect.height * .18)));
-      var x = routeX(width,index + 1);
+
       points.push({ x:x, y:y });
-      markerData.push({ x:x, y:y });
+      markerData.push({ x:x, y:y, ziel:node.hasAttribute("data-route-goal") });
+
+      /* Am Ziel hört die Route auf, danach kommt kein Pfad mehr. */
+      if(node.hasAttribute("data-route-goal")){ routeEndY = y; return; }
+
+      /* Etappen-Sektion: die Route fädelt sich mittig an den drei Karten vorbei. */
+      if(node.hasAttribute("data-route-steps")){
+        [].forEach.call(node.querySelectorAll(".step"),function(step){
+          var sr = step.getBoundingClientRect();
+          points.push({ x:x, y:sr.top + window.scrollY - pageTop + sr.height / 2 });
+        });
+      }
+
+      /* Ausfahrt kurz vor Sektionsende, damit der Seitenwechsel in der Lücke
+         zwischen zwei Sektionen passiert und nicht quer durch den Text. */
+      var exit = Math.max(y + 40,bottom - 24);
+      points.push({ x:x, y:Math.min(exit,routeHeight - 10) });
     });
-    points.push({ x:routeX(width,nodes.length + 1), y:routeHeight });
+    if(!routeEndY) routeEndY = routeHeight;
 
     var path = routeCurve(points);
     routeSvg.setAttribute("viewBox","0 0 " + width + " " + routeHeight);
@@ -863,10 +981,11 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     routeLength = routeInk.getTotalLength();
     routeInk.style.strokeDasharray = routeLength;
     routeInk.style.strokeDashoffset = routeLength;
+    buildSamples();
 
     routeStopsLayer.replaceChildren();
     routeStops = markerData.map(function(marker){
-      return { element:makeRouteStop(marker.x,marker.y), y:marker.y, reached:false };
+      return { element:makeRouteStop(marker.x,marker.y,marker.ziel), y:marker.y, reached:false };
     });
     drawMapRoute();
   }
@@ -875,11 +994,11 @@ footer .fine{max-width:var(--shell);margin:0 auto;padding:0 24px 34px;font-size:
     if(!routeLength || !routeHeight) return;
     var pageTop = routePage.getBoundingClientRect().top + window.scrollY;
     var walkedY = window.scrollY + window.innerHeight * .62 - pageTop;
-    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) walkedY = routeHeight;
-    walkedY = Math.max(0,Math.min(routeHeight,walkedY));
+    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) walkedY = routeEndY;
+    walkedY = Math.max(0,Math.min(routeEndY,walkedY));
 
-    var progress = walkedY / routeHeight;
-    var walkedLength = routeLength * progress;
+    var progress = routeEndY ? walkedY / routeEndY : 0;
+    var walkedLength = lengthAtY(walkedY);
     routeInk.style.strokeDashoffset = routeLength - walkedLength;
 
     var point = routeInk.getPointAtLength(walkedLength);
