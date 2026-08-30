@@ -186,6 +186,7 @@ p{margin:0}
 .route .halt.da{fill:#59442F;opacity:.68}
 .route .tritt{color:#5B4631;fill:currentColor;opacity:0}
 .route .tritt.da{animation:trittAuf .34s cubic-bezier(.2,.8,.25,1) forwards}
+.route .tritt.sofort{animation:none;opacity:.72}
 @keyframes trittAuf{0%{opacity:0}55%{opacity:.92}100%{opacity:.72}}
 .route{display:block}
 /* Auf schmalen Fenstern bekommt der Inhalt links eine Bahn fuer die Spur. */
@@ -194,7 +195,6 @@ p{margin:0}
   .hero{padding-right:34px}
   .route .weg{stroke-width:2}
 }
-
 /* Handgezeichnete Motive aus einem kompakten 4×2-Sprite. */
 .kartenmotiv{
   --fund-hue:0deg;--fund-sat:4.5;--fund-glow:rgba(255,197,49,.55);
@@ -679,6 +679,17 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   .hero h1.display{font-size:2.05rem;overflow-wrap:normal}
   .hero .rechner-in,.hero .rechner-out,.formular,.loesung{padding:var(--s5)}
 }
+/* ---------- Mobile Performance ---------- */
+@media (max-width:700px){
+  .kartenmotiv{background-image:url("kartenmotive-mobile.webp")}
+  /* Mobil entsteht die Laufbewegung bereits durch das gestaffelte Einblenden.
+     Ohne hunderte parallele SVG-Keyframes bleibt Scrollen deutlich leichter. */
+  .route .tritt.da{animation:none;opacity:.72}
+}
+@media (max-width:700px) and (prefers-reduced-motion:no-preference){
+  .js .fade{transform:translateY(10px);transition-duration:.45s}
+  .js .punkt{transform:translateY(12px);transition-duration:.42s}
+}
 </style>
 
 <script>document.documentElement.classList.add("js");</script>
@@ -1079,7 +1090,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       haltGruppe = document.getElementById("halte"),
       schatz = document.querySelector(".motiv-truhe"),
       laenge = 0, hoehe = 0, endeY = 0,
-      halte = [], karten = [], spuren = [], proben = [], motive = [], neuTimer = 0;
+      halte = [], karten = [], spuren = [], proben = [], motive = [], neuTimer = 0,
+      spurStand = 0, spurZiel = 0, spurRaf = 0, routeNeu = true;
 
   /* Fester Zufall je Position, damit die Linie beim Neuaufbau gleich bleibt. */
   function wackeln(saat){
@@ -1137,9 +1149,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
   function baueSpuren(){
     var ns = "http://www.w3.org/2000/svg";
-    spurGruppe.replaceChildren();
+    var fragment = document.createDocumentFragment();
+    var abstand = window.innerWidth <= 700 ? 54 : 40;
     spuren = [];
-    for(var l = 28, n = 0; l < laenge - 18; l += 40, n++){
+    for(var l = 28, n = 0; l < laenge - 18; l += abstand, n++){
       var p = gegangenPfad.getPointAtLength(l);
       var a = gegangenPfad.getPointAtLength(Math.max(0,l - 3));
       var b = gegangenPfad.getPointAtLength(Math.min(laenge,l + 3));
@@ -1153,10 +1166,11 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       tritt.setAttribute("href","#trittForm");
       tritt.setAttribute("class","tritt");
       tritt.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(" + winkel.toFixed(1) + ") scale(" + seiteFuss + " 1)");
-      tritt.style.animationDelay = ((n % 4) * .035) + "s";
-      spurGruppe.appendChild(tritt);
+      if(window.innerWidth > 700) tritt.style.animationDelay = ((n % 4) * .035) + "s";
+      fragment.appendChild(tritt);
       spuren.push({ element:tritt, laenge:l, da:false });
     }
+    spurGruppe.replaceChildren(fragment);
   }
 
   function laengeBeiY(y){
@@ -1194,8 +1208,11 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   function baueMotive(obenSeite){
     motive = [];
     [].forEach.call(document.querySelectorAll(".kartenmotiv:not(.motiv-truhe)"),function(el){
-      el.classList.remove("gefunden");
-      if(getComputedStyle(el).display === "none") return;
+      var warGefunden = el.classList.contains("gefunden");
+      if(getComputedStyle(el).display === "none"){
+        el.classList.remove("gefunden");
+        return;
+      }
       var r = el.getBoundingClientRect();
       var x = r.left + r.width / 2;
       var y = r.top + window.scrollY - obenSeite + r.height / 2;
@@ -1211,8 +1228,58 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           trigger = laengeBeiY(py);
         }
       }
-      motive.push({ element:el, laenge:trigger, da:false });
+      /* Der Anker liegt am Rand der Ueber-uns-Sektion. Die geometrisch
+         naechste Kurve verlaeuft schon in der Luecke davor an ihm vorbei;
+         farbig wird er deshalb erst an seinem unteren Bereich. */
+      if(el.classList.contains("motiv-anker")){
+        trigger = laengeBeiY(y + r.height * .28);
+      }
+      motive.push({ element:el, laenge:trigger, da:warGefunden });
     });
+  }
+
+  function setzeMotive(stelle){
+    motive.forEach(function(m){
+      var da = m.laenge <= stelle;
+      if(da !== m.da){ m.da = da; m.element.classList.toggle("gefunden",da); }
+    });
+  }
+
+  function setzeSpurStand(neu,sofort){
+    neu = Math.max(0,Math.min(spuren.length,neu));
+    if(neu > spurStand){
+      for(var i = spurStand; i < neu; i++){
+        spuren[i].element.classList.toggle("sofort",!!sofort);
+        spuren[i].element.classList.add("da");
+      }
+    } else if(neu < spurStand){
+      for(var j = spurStand - 1; j >= neu; j--) spuren[j].element.classList.remove("da","sofort");
+    }
+    spurStand = neu;
+    setzeMotive(spurStand ? spuren[spurStand - 1].laenge : 0);
+  }
+
+  /* Seitliche Kurven enthalten viele Schritte auf wenig Seitenhoehe. Statt
+     sie in einem Frame aufblitzen zu lassen, holt die Spur ihr Ziel mit
+     hoechstens drei Abdruecken pro Bild nach. */
+  function animiereSpuren(){
+    var differenz = spurZiel - spurStand;
+    if(!differenz){ spurRaf = 0; return; }
+    var mobil = window.innerWidth <= 700;
+    var maximal = mobil ? 8 : 3;
+    var teiler = mobil ? 10 : 14;
+    var menge = sparsam ? Math.abs(differenz) : Math.min(maximal,Math.max(1,Math.ceil(Math.abs(differenz) / teiler)));
+    setzeSpurStand(spurStand + (differenz > 0 ? menge : -menge));
+    spurRaf = requestAnimationFrame(animiereSpuren);
+  }
+
+  function spurIndexBei(stelle){
+    var lo = 0, hi = spuren.length;
+    while(lo < hi){
+      var mitte = (lo + hi) >> 1;
+      if(spuren[mitte].laenge <= stelle) lo = mitte + 1; else hi = mitte;
+    }
+    return lo;
   }
 
   function baue(){
@@ -1348,6 +1415,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     gegangenPfad.setAttribute("d",d);
     laenge = gegangenPfad.getTotalLength();
     baueSpuren();
+    if(spurRaf) cancelAnimationFrame(spurRaf);
+    spurRaf = 0; spurStand = 0; spurZiel = 0; routeNeu = true;
 
     proben = [];
     for(var i = 0; i <= 700; i++){
@@ -1374,14 +1443,15 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
     var stelle = laengeBeiY(gelaufen);
     if(schatz) schatz.classList.toggle("gefunden",gelaufen >= endeY - 8);
-    motive.forEach(function(m){
-      var da = m.laenge <= stelle;
-      if(da !== m.da){ m.da = da; m.element.classList.toggle("gefunden",da); }
-    });
-    spuren.forEach(function(s){
-      var da = s.laenge <= stelle;
-      if(da !== s.da){ s.da = da; s.element.classList.toggle("da",da); }
-    });
+    spurZiel = spurIndexBei(stelle);
+    if(routeNeu){
+      /* Bei einem Neuaufbau nach Bild- oder Schriftladen waren diese
+         Abdruecke schon sichtbar und duerfen nicht erneut hereinrauschen. */
+      setzeSpurStand(spurZiel,true);
+      routeNeu = false;
+    } else if(!spurRaf && spurStand !== spurZiel){
+      spurRaf = requestAnimationFrame(animiereSpuren);
+    }
 
     halte.forEach(function(h){
       var da = h.y <= gelaufen;
