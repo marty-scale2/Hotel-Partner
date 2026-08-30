@@ -70,7 +70,7 @@ button{font:inherit;cursor:pointer}
   text-wrap:balance;font-variation-settings:"SOFT" 55,"WONK" 0;margin:0;
 }
 h1.display{font-size:clamp(3rem,6.6vw,4.9rem);line-height:.95;letter-spacing:-.042em}
-h2.display{font-size:clamp(2.1rem,4.6vw,3.25rem)}
+h2.display{font-size:clamp(1.6rem,2.75vw,2.2rem);line-height:1.1}
 h3{font-family:"Archivo",Arial,sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin:0;text-wrap:balance}
 p{margin:0}
 
@@ -341,12 +341,19 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 @media (max-width:860px){ .person{grid-template-columns:1fr;gap:var(--s5)} .person.gedreht .bild{order:-1} .bild{aspect-ratio:3/2} }
 
 /* ---------- Vergleich: dunkler Anker ---------- */
-.vergleich{margin-top:var(--s7);border:1px solid var(--kante);border-radius:var(--r);overflow:hidden;background:var(--ink);color:var(--paper)}
-.vergleich .kopf,.vergleich .zeile{display:grid;grid-template-columns:.85fr 1fr 1.05fr}
-.vergleich .kopf div{padding:var(--s4) var(--s5);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8F989E;border-right:1px solid #2A3238;border-bottom:1px solid #2A3238}
+/* Warmes Dunkelbraun statt kaltem Schwarz, damit der Block zum
+   Papierton der Seite gehoert. Schmaler und mittig statt ueber die
+   volle Spaltenbreite gezogen. */
+.vergleich{
+  margin:var(--s7) auto 0;max-width:920px;
+  border:1px solid #2F2620;border-radius:var(--r);overflow:hidden;
+  background:#241E19;color:#EDE5DA;
+}
+.vergleich .kopf,.vergleich .zeile{display:grid;grid-template-columns:.8fr 1fr 1.05fr}
+.vergleich .kopf div{padding:var(--s4) var(--s5);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#A2968A;border-right:1px solid #3A302A;border-bottom:1px solid #3A302A}
 .vergleich .kopf div:last-child{border-right:0;color:var(--sun)}
-.vergleich .zeile > div{padding:var(--s5);border-right:1px solid #2A3238;border-bottom:1px solid #2A3238;font-size:.94rem;line-height:1.55;color:#C3CBD0}
-.vergleich .zeile > div:last-child{border-right:0;background:#191E22;color:#fff}
+.vergleich .zeile > div{padding:var(--s5);border-right:1px solid #3A302A;border-bottom:1px solid #3A302A;font-size:.93rem;line-height:1.55;color:#BCB1A4}
+.vergleich .zeile > div:last-child{border-right:0;background:#2C241D;color:#FFF8F0}
 .vergleich .zeile:last-child > div{border-bottom:0}
 .vergleich .merkmal{font-weight:700;color:#fff}
 .js .vergleich .zeile{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s cubic-bezier(.16,.84,.32,1)}
@@ -358,6 +365,14 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
   .vergleich .andere::before{content:"Übliche Agentur: ";font-weight:700;color:#fff}
   .vergleich .wir::before{content:"Bei uns: ";font-weight:700;color:var(--sun)}
 }
+
+/* Kopf der Vergleichs-Sektion steht mittig über der Tabelle */
+#unterschied .sec-head{grid-template-columns:1fr;justify-items:center;text-align:center}
+#unterschied .sec-head .etappe{margin-bottom:var(--s3)}
+#unterschied .sec-head .kopfzeile{align-items:center;max-width:34ch}
+
+/* Abschluss-Statement über dem Bild im Kontaktblock */
+.kontakt .seite .namen{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sun)}
 
 /* ---------- Ablauf und Kontakt ---------- */
 .ablauf{list-style:none;margin:var(--s7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--kante)}
@@ -667,7 +682,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
             <div class="zahl">6</div>
             <div class="tx">
               <h3>Wenig Geschäft in der Nebensaison</h3>
-              <p>Von November bis März steht das Haus halb leer, und genau dann bringen die Portale am wenigsten. Ohne eigenen Kanal fehlt dir das Werkzeug, um Nachfrage selbst zu erzeugen, wenn sie nicht von allein kommt.</p>
+              <p>In der Nebensaison steht das Haus halb leer, und genau dann bringen die Portale am wenigsten. Ohne eigenen Kanal fehlt dir das Werkzeug, um Nachfrage selbst zu erzeugen, wenn sie nicht von allein kommt.</p>
             </div>
           </article>
         </div>
@@ -772,7 +787,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <div class="kopf">
           <div>&nbsp;</div><div>Übliche Hotel-Agentur</div><div>Katrin &amp; Martin</div>
         </div>
-        <div class="zeile"><div class="merkmal">Wer dich berät</div><div class="andere">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="wir">Katrin kennt die Branche von der Plattformseite, Martin hat selbst an der Rezeption gearbeitet und eng mit dem Inhaber zusammengearbeitet</div></div>
+        <div class="zeile"><div class="merkmal">Wer dich berät</div><div class="andere">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="wir">Martin hat selbst an der Rezeption gearbeitet und eng mit dem Inhaber zusammengearbeitet. Wir kennen die Branche von der Plattformseite und die Denkweise von Hoteliers.</div></div>
         <div class="zeile"><div class="merkmal">Was es zusätzlich kostet</div><div class="andere">Pflicht-Werbebudget ab 60 Euro pro Tag und Kanal, also rund 1.800 Euro im Monat obendrauf</div><div class="wir">Kein Werbebudget nötig. Was wir bauen, gehört dir und läuft auch ohne laufende Anzeigenkosten weiter</div></div>
         <div class="zeile"><div class="merkmal">Strategischer Ansatz</div><div class="andere">Mehr Direktbuchungen – oft unter Einsatz von zusätzlichem Werbebudget</div><div class="wir">Ein Ziel: mehr Profit durch eigene Kanäle und eine eigene Gästedatenbank. OTAs werden nicht um jeden Preis gemieden, sondern smart in die Strategie eingebunden, um den Gesamtprofit zu erhöhen.</div></div>
         <div class="zeile"><div class="merkmal">Hausgröße</div><div class="andere">Bieten die gleichen Lösungen für kleine und große Hotels an</div><div class="wir">Spezialisierung auf Häuser mit 10 bis 50 Zimmern. Andere Größe, andere Herausforderungen.</div></div>
@@ -784,28 +799,33 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       <span class="kartenmotiv motiv-truhe" aria-hidden="true"></span>
       <div class="sec-head">
         <div class="kopfzeile">
-          <p class="eyebrow">Erster Schritt</p>
+          <p class="eyebrow">Dein nächster Schritt</p>
           <h2 class="display">So geht’s weiter</h2>
         </div>
       </div>
 
       <ol class="ablauf fade">
         <li><span class="nr">1</span><span class="tx"><b>Formular ausfüllen</b>und Erstberatung sichern</span></li>
-        <li><span class="nr">2</span><span class="tx"><b>Potenzial-Analyse</b>Wir schauen uns dein Haus vorher an</span></li>
+        <li><span class="nr">2</span><span class="tx"><b>Potenzial-Analyse sichern</b>Wir schauen uns die größten Hebel an</span></li>
         <li><span class="nr">3</span><span class="tx"><b>Zusammenarbeit starten</b>Wenn es für beide Seiten passt</span></li>
       </ol>
 
       <div class="kontakt fade">
-        <div class="seite"></div>
+        <div class="seite">
+          <b>Wir bauen dir etwas auf, das dir gehört.</b>
+          <p>Auch dann noch, wenn du irgendwann nicht mehr mit uns arbeitest.</p>
+          <span class="namen">Katrin und Martin Thun</span>
+        </div>
 
         <form class="formular" id="anfrage" novalidate>
           <div class="zwei">
-            <div class="f"><label for="haus">Name deines Hauses</label><input type="text" id="haus" name="haus" autocomplete="organization" required></div>
+            <div class="f"><label for="haus">Hotel-Name</label><input type="text" id="haus" name="haus" autocomplete="organization" required></div>
             <div class="f"><label for="name">Dein Name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
           </div>
           <div class="f"><label for="mail">E-Mail-Adresse</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
           <div class="f"><label for="nachricht">Nachricht</label><textarea id="nachricht" name="nachricht" rows="3"></textarea></div>
           <label class="zustimmung"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span></label>
+          <input type="checkbox" name="botcheck" class="nur-fuer-screenreader" tabindex="-1" autocomplete="off">
           <button class="btn" type="submit">Gespräch anfragen <span class="arw">→</span></button>
           <p class="hinweis" id="hinweis" role="status"></p>
         </form>
@@ -1159,25 +1179,61 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   aktualisiere();
 
   /* ---------- Formular ----------
-     TODO: ZIEL_ADRESSE eintragen, sobald das Zielsystem steht. */
-  var ZIEL_ADRESSE = "";
+     Versand laeuft ueber Web3Forms, der Schluessel ist oeffentlich und
+     darf im Quelltext stehen. */
+  var WEB3FORMS_KEY = "6bb87cd0-8436-4ad7-8723-d034ab5bcca8";
   var formular = document.getElementById("anfrage"), hinweis = document.getElementById("hinweis");
   if(formular) formular.addEventListener("submit",function(ev){
     ev.preventDefault();
     hinweis.className = "hinweis zeig";
     if(!formular.checkValidity()){
       hinweis.classList.add("schlecht");
-      hinweis.textContent = "Bitte Name, Haus und E-Mail ausfüllen und die Einwilligung bestätigen.";
+      hinweis.textContent = "Bitte Hotel-Name, deinen Namen und die E-Mail ausfüllen und die Einwilligung bestätigen.";
       return;
     }
-    if(!ZIEL_ADRESSE){
+
+    var knopf = formular.querySelector("button[type=submit]");
+    var beschriftung = knopf.innerHTML;
+    knopf.disabled = true;
+    knopf.textContent = "Wird gesendet …";
+    hinweis.classList.remove("schlecht","gut");
+    hinweis.textContent = "";
+
+    var daten = {
+      access_key: WEB3FORMS_KEY,
+      subject: "Anfrage über hotel-partner: " + formular.haus.value,
+      from_name: "Hotel-Partner Website",
+      Hotel: formular.haus.value,
+      Name: formular.name.value,
+      "E-Mail": formular.mail.value,
+      Nachricht: formular.nachricht.value,
+      botcheck: formular.botcheck ? formular.botcheck.checked : false
+    };
+
+    fetch("https://api.web3forms.com/submit",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify(daten)
+    })
+    .then(function(a){ return a.json(); })
+    .then(function(antwort){
+      if(antwort && antwort.success){
+        hinweis.classList.add("gut");
+        hinweis.textContent = "Danke, wir melden uns innerhalb von zwei Werktagen.";
+        formular.reset();
+      } else {
+        hinweis.classList.add("schlecht");
+        hinweis.textContent = "Das hat leider nicht geklappt. Schreib uns bitte direkt an mt@martinthun.com.";
+      }
+    })
+    .catch(function(){
       hinweis.classList.add("schlecht");
-      hinweis.textContent = "Das Formular ist noch nicht angeschlossen. Schreib uns bitte direkt an mt@martinthun.com.";
-      return;
-    }
-    hinweis.classList.add("gut");
-    hinweis.textContent = "Danke, wir melden uns innerhalb von zwei Werktagen.";
-    formular.reset();
+      hinweis.textContent = "Das hat leider nicht geklappt. Schreib uns bitte direkt an mt@martinthun.com.";
+    })
+    .then(function(){
+      knopf.disabled = false;
+      knopf.innerHTML = beschriftung;
+    });
   });
 })();
 </script>
