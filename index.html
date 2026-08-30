@@ -159,9 +159,18 @@ p{margin:0}
   text-transform:uppercase;white-space:nowrap;
 }
 @media (max-width:620px){
-  .brand{gap:8px}
-  .brand .namen{font-size:.66rem}
-  .brand .wort{font-size:1.32rem}
+  /* Die Wortmarke darf den Button nicht aus der Kopfzeile schieben. */
+  /* Die Marke traegt nowrap, darf also nicht schrumpfen. Sonst laeuft
+     der Text aus seinem Kasten heraus in den Button. */
+  .topbar .in{gap:10px}
+  .brand{gap:7px;flex:0 0 auto}
+  .brand .namen{font-size:.58rem}
+  .brand .wort{font-size:1.02rem;letter-spacing:.02em}
+  .topbar .btn{flex:0 1 auto;padding:8px 10px;font-size:.68rem;gap:5px}
+}
+@media (max-width:390px){
+  .brand .wort{font-size:.92rem}
+  .topbar .btn{font-size:.64rem;padding:8px 8px}
 }
 .topbar .btn{padding:10px 19px;font-size:.87rem}
 .prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--flame)}
@@ -182,6 +191,7 @@ p{margin:0}
 /* Auf schmalen Fenstern bekommt der Inhalt links eine Bahn fuer die Spur. */
 @media (max-width:1179px){
   main.shell{padding-left:52px}
+  .hero{padding-right:34px}
   .route .weg{stroke-width:2}
 }
 
@@ -232,6 +242,7 @@ p{margin:0}
   /* Schiff und Berge fallen auf schmalen Fenstern weg. */
   #weh > .motiv-schiff,
   #loesungen > .motiv-berge{display:none !important}
+  #ueber-uns > .motiv-anker{margin-top:6px !important}
 }
 
 /* ============================================================
@@ -282,7 +293,6 @@ p{margin:0}
 /* ---------- Zahlenband: Linien statt Kachel ---------- */
 .zahlen{
   margin-top:var(--s8);display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--kante);border-bottom:1px solid var(--kante);
 }
 .zahlen > div{padding:var(--s5) var(--s6) var(--s5) 0;border-right:1px solid var(--linie)}
 .zahlen > div:not(:first-child){padding-left:var(--s6)}
@@ -1119,6 +1129,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
          Spur am linken Rand, ein Seitenwechsel waere hier nicht lesbar. */
       var spur = 22;
       bahn = { left:spur, right:spur, center:spur };
+      bahn.aussen = breite - spur;
     } else {
       var links = box.left - 54, rechts = box.right + 54, mitte = (box.left + box.right) / 2;
       if(links < 30 || rechts > breite - 30) return;
@@ -1158,6 +1169,36 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
       punkte.push({ x:x, y:yHalt });
       marken.push({ x:x, y:yHalt, ziel:false });
+
+      /* Auf schmalen Fenstern macht die Spur im Hero einen Schlenker:
+         nach dem Rechner an den rechten Rand, am Zahlenband vorbei und
+         danach zurueck an den linken. */
+      if(breite < 1180){
+        var y0 = function(el,anteil){
+          var b = el.getBoundingClientRect();
+          return b.top + window.scrollY - obenSeite + b.height * anteil;
+        };
+        /* Den Rueckweg nach links uebernimmt der normale Ausstiegspunkt
+           der Sektion. Ein eigener Punkt dafuer laege zu dicht darunter
+           und die Kurve wuerde nach oben ausschlagen. */
+        if(sek.classList.contains("hero")){
+          var rechner = sek.querySelector(".rechner"), band = sek.querySelector("#zahlen");
+          if(rechner && band){
+            punkte.push({ x:bahn.aussen, y:y0(rechner,1) + 30 });
+            punkte.push({ x:bahn.aussen, y:y0(band,1) - 6 });
+          }
+        }
+        if(sek.id === "ueber-uns"){
+          var anker = sek.querySelector(".motiv-anker");
+          var letzte = sek.querySelector(".person:last-of-type");
+          if(anker && letzte){
+            /* Nach dem Anker nach rechts, an beiden Portraits vorbei,
+               vor der Palmeninsel geht es ueber den Ausstieg zurueck. */
+            punkte.push({ x:bahn.aussen, y:y0(anker,1) + 34 });
+            punkte.push({ x:bahn.aussen, y:y0(letzte,1) - 10 });
+          }
+        }
+      }
 
       /* Lösungen: die Route fädelt sich mittig an den drei Karten vorbei. */
       if(sek.hasAttribute("data-karten")){
