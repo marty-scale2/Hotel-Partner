@@ -197,17 +197,29 @@ p{margin:0}
 
 /* Handgezeichnete Motive aus einem kompakten 4×2-Sprite. */
 .kartenmotiv{
+  --fund-hue:0deg;--fund-sat:4.5;--fund-glow:rgba(255,197,49,.55);
   display:block;width:150px;aspect-ratio:1;pointer-events:none;user-select:none;
   background-image:url("kartenmotive.webp");background-size:400% 200%;background-repeat:no-repeat;
   opacity:.18;filter:sepia(.55) saturate(.5) contrast(1.15);mix-blend-mode:multiply;
+  transition:opacity .55s ease,filter .65s ease;
 }
-.motiv-totenkopf{background-position:0 0}
-.motiv-kompass{background-position:33.333% 0}
-.motiv-anker{background-position:66.667% 0}
+.kartenmotiv.gefunden:not(.motiv-truhe){
+  opacity:.74;
+  filter:sepia(1) saturate(var(--fund-sat)) hue-rotate(var(--fund-hue)) brightness(1.12) contrast(1.08) drop-shadow(0 0 10px var(--fund-glow));
+  animation:motivFund .7s cubic-bezier(.2,.9,.25,1) both;
+}
+@keyframes motivFund{
+  0%{opacity:.18}
+  60%{opacity:.94}
+  100%{opacity:.74}
+}
+.motiv-totenkopf{background-position:0 0;--fund-hue:330deg;--fund-sat:5.2;--fund-glow:rgba(238,61,14,.5)}
+.motiv-kompass{background-position:33.333% 0;--fund-hue:350deg;--fund-sat:5.2;--fund-glow:rgba(255,197,49,.65)}
+.motiv-anker{background-position:66.667% 0;--fund-hue:175deg;--fund-sat:4.2;--fund-glow:rgba(44,126,164,.5)}
 .motiv-truhe{background-position:100% 0}
-.motiv-schiff{background-position:0 100%}
-.motiv-palmen{background-position:33.333% 100%}
-.motiv-berge{background-position:66.667% 100%}
+.motiv-schiff{background-position:0 100%;--fund-hue:330deg;--fund-sat:4.8;--fund-glow:rgba(191,72,43,.48)}
+.motiv-palmen{background-position:33.333% 100%;--fund-hue:55deg;--fund-sat:4.4;--fund-glow:rgba(64,139,74,.52)}
+.motiv-berge{background-position:66.667% 100%;--fund-hue:170deg;--fund-sat:3.8;--fund-glow:rgba(74,124,146,.48)}
 #weh > .motiv-schiff{position:absolute;top:-118px;left:15%;width:142px;transform:rotate(-4deg)}
 #weh .motiv-totenkopf{width:144px;margin:30px auto 0;transform:rotate(3deg)}
 #loesungen > .motiv-berge{position:absolute;top:-224px;left:7%;width:150px;transform:rotate(-2deg)}
@@ -1067,7 +1079,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       haltGruppe = document.getElementById("halte"),
       schatz = document.querySelector(".motiv-truhe"),
       laenge = 0, hoehe = 0, endeY = 0,
-      halte = [], karten = [], spuren = [], proben = [], neuTimer = 0;
+      halte = [], karten = [], spuren = [], proben = [], motive = [], neuTimer = 0;
 
   /* Fester Zufall je Position, damit die Linie beim Neuaufbau gleich bleibt. */
   function wackeln(saat){
@@ -1159,6 +1171,48 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     var a = proben[lo], b = proben[hi];
     var t = (b.y - a.y) ? (y - a.y) / (b.y - a.y) : 0;
     return a.l + (b.l - a.l) * t;
+  }
+
+  /* Verknuepft jedes sichtbare Kartenmotiv mit dem naechsten Punkt der
+     Fussroute. So funktioniert derselbe Ausloeser fuer Desktop und Mobile,
+     obwohl beide Varianten unterschiedliche Bahnen verwenden. */
+  function naechsteRoutenlaenge(x,y){
+    var beste = 0, besterAbstand = Infinity;
+    var schritt = Math.max(10,laenge / 900);
+    for(var l = 0; l <= laenge; l += schritt){
+      var p = gegangenPfad.getPointAtLength(l);
+      var dx = p.x - x, dy = p.y - y;
+      var abstand = dx * dx + dy * dy;
+      if(abstand < besterAbstand){
+        besterAbstand = abstand;
+        beste = l;
+      }
+    }
+    return beste;
+  }
+
+  function baueMotive(obenSeite){
+    motive = [];
+    [].forEach.call(document.querySelectorAll(".kartenmotiv:not(.motiv-truhe)"),function(el){
+      el.classList.remove("gefunden");
+      if(getComputedStyle(el).display === "none") return;
+      var r = el.getBoundingClientRect();
+      var x = r.left + r.width / 2;
+      var y = r.top + window.scrollY - obenSeite + r.height / 2;
+      var trigger = naechsteRoutenlaenge(x,y);
+
+      /* Am Desktop soll der Totenkopf bewusst erst erscheinen, sobald der
+         sechste Pain Point im sichtbaren Bereich angekommen ist. */
+      if(el.classList.contains("motiv-totenkopf") && window.innerWidth >= 1180){
+        var punkt6 = document.querySelector("#weh .punkt:nth-child(6)");
+        if(punkt6){
+          var pr = punkt6.getBoundingClientRect();
+          var py = pr.top + window.scrollY - obenSeite;
+          trigger = laengeBeiY(py);
+        }
+      }
+      motive.push({ element:el, laenge:trigger, da:false });
+    });
   }
 
   function baue(){
@@ -1300,6 +1354,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       var l = laenge * i / 700;
       proben.push({ y:gegangenPfad.getPointAtLength(l).y, l:l });
     }
+    baueMotive(obenSeite);
 
     halte = marken.map(function(m){
       return {
@@ -1319,6 +1374,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
     var stelle = laengeBeiY(gelaufen);
     if(schatz) schatz.classList.toggle("gefunden",gelaufen >= endeY - 8);
+    motive.forEach(function(m){
+      var da = m.laenge <= stelle;
+      if(da !== m.da){ m.da = da; m.element.classList.toggle("gefunden",da); }
+    });
     spuren.forEach(function(s){
       var da = s.laenge <= stelle;
       if(da !== s.da){ s.da = da; s.element.classList.toggle("da",da); }
