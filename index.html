@@ -425,10 +425,18 @@ footer nav a:hover{border-bottom-color:var(--flame)}
    schmaler, deshalb untereinander statt nebeneinander. */
 .hero .rechner{margin-top:0}
 .hero .rechner-grid{grid-template-columns:1fr}
-.hero .rechner-in{border-right:0;border-bottom:1px solid var(--kante);padding:var(--s5);gap:var(--s4)}
-.hero .rechner-out{padding:var(--s5);gap:var(--s4)}
-.hero .summe{font-size:clamp(2.2rem,4vw,2.9rem);margin-top:var(--s2)}
-.hero .rechner-out .fuss{font-size:.79rem}
+/* Kompakter als in einer eigenen Sektion, damit der Rechner unten
+   bündig mit dem orangenen Button in der linken Spalte abschließt. */
+.hero .rechner-in{border-right:0;border-bottom:1px solid var(--kante);padding:18px var(--s5);gap:10px}
+.hero .rechner-out{padding:18px var(--s5);gap:13px}
+.hero .feld{gap:2px}
+.hero input[type=range]{height:18px}
+.hero .summe{font-size:clamp(2rem,3.3vw,2.45rem);margin-top:5px}
+.hero .rechner-out .dazu{margin-top:6px;font-size:.82rem}
+.hero .rechner-out .teil{padding-top:13px;gap:6px}
+.hero .rechner-out .teil .wert{font-size:1.15rem}
+.hero .rechner .leiste{padding:10px var(--s5)}
+.hero .rechner .leiste p{font-size:.81rem}
 .hero-grid{align-items:start;grid-template-columns:1fr 1.06fr}
 .hero .lead{max-width:44ch}
 .hero h1.display{font-size:clamp(2.3rem,3.6vw,3.35rem);line-height:1;letter-spacing:-.035em}
@@ -501,7 +509,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 <header class="topbar" id="topbar">
   <div class="in">
     <a class="brand" href="#oben">Katrin &amp; Martin Hotel Consulting</a>
-    <a class="btn" href="#kontakt">Erstgespräch <span class="arw">→</span></a>
+    <a class="btn" href="#kontakt">Kostenlose Analyse <span class="arw">→</span></a>
   </div>
   <div class="prog" id="prog"></div>
 </header>
@@ -535,8 +543,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           </h1>
           <p class="lead fade d1">Wir bauen dir KI-gestützte Marketing-Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Sichtbarkeit deines Hauses erhöhst.</p>
           <div class="acts fade d2">
-            <a class="btn" href="#kontakt">Kostenloses Erstgespräch <span class="arw">→</span></a>
-            <a class="btn-ghost" href="#loesungen">Unsere Lösungen</a>
+            <a class="btn" href="#kontakt">Zur kostenlosen Analyse <span class="arw">→</span></a>
           </div>
         </div>
 
@@ -573,7 +580,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
                   <p class="marke">Davon realistisch verlagerbar</p>
                   <p class="wert" id="oVerlagerbar">6.577 bis 16.442 €</p>
                 </div>
-                <p class="fuss">Gerechnet mit 15 Prozent Provision, dem üblichen Ausgangswert, bevor Zahlungsgebühren und Programme dazukommen. Realistisch verlagerbar sind 10 bis 25 Prozent des Portalvolumens.</p>
               </div>
             </div>
           </div>
