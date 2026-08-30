@@ -377,7 +377,11 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 #unterschied .sec-head .kopfzeile{align-items:center;max-width:34ch}
 
 /* Abschluss-Statement über dem Bild im Kontaktblock */
-.kontakt .seite .namen{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sun)}
+.kontakt .seite .ansage{
+  font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:clamp(1.25rem,2vw,1.55rem);line-height:1.35;letter-spacing:-.018em;
+  color:#fff;font-variation-settings:"SOFT" 55,"WONK" 0;
+}
 
 /* ---------- Ablauf und Kontakt ---------- */
 .ablauf{list-style:none;margin:var(--s7) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--kante)}
@@ -831,9 +835,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
       <div class="kontakt fade">
         <div class="seite">
-          <b>Wir bauen dir etwas auf, das dir gehört.</b>
-          <p>Auch dann noch, wenn du irgendwann nicht mehr mit uns arbeitest.</p>
-          <span class="namen">Katrin und Martin Thun</span>
+          <p class="ansage">Wir freuen uns auf deine Nachricht! Fülle das Formular aus und wir melden uns innerhalb von 24 Stunden bei dir.</p>
         </div>
 
         <form class="formular" id="anfrage" novalidate>
@@ -843,7 +845,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           </div>
           <div class="f"><label for="mail">E-Mail-Adresse</label><input type="email" id="mail" name="mail" autocomplete="email" required></div>
           <div class="f"><label for="nachricht">Nachricht</label><textarea id="nachricht" name="nachricht" rows="3"></textarea></div>
-          <label class="zustimmung"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="#datenschutz">Datenschutzerklärung</a>.</span></label>
+          <label class="zustimmung"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
           <input type="checkbox" name="botcheck" class="nur-fuer-screenreader" tabindex="-1" autocomplete="off">
           <button class="btn" type="submit">Gespräch anfragen <span class="arw">→</span></button>
           <p class="hinweis" id="hinweis" role="status"></p>
@@ -859,7 +861,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <p>Beratung &amp; Marketing-Dienstleistungen für inhabergeführte Hotels in Deutschland, Österreich, Schweiz &amp; Süd-Tirol</p>
       </div>
       <nav aria-label="Fußzeile">
-        <a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a>
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a>
       </nav>
     </div>
   </footer>
