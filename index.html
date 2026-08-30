@@ -329,11 +329,13 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 }
 
 /* ---------- Ueber uns ---------- */
-.person{display:grid;grid-template-columns:.72fr 1.28fr;gap:var(--s7);align-items:start;margin-top:var(--s7);padding-top:var(--s6);border-top:1px solid var(--linie)}
-.person .tx{display:flex;flex-direction:column;gap:var(--s3)}
+/* Text mittig zum Bild, kürzere Zeilen und größere Schrift. Sonst klebt
+   der Absatz oben und darunter steht eine halbe Bildhöhe leer. */
+.person{display:grid;grid-template-columns:.72fr 1.28fr;gap:var(--s7);align-items:center;margin-top:var(--s8)}
+.person .tx{display:flex;flex-direction:column;gap:var(--s4);max-width:46ch}
 .person .rolle{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--flame-deep)}
-.person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.05rem;line-height:1.02;letter-spacing:-.032em;font-variation-settings:"SOFT" 55,"WONK" 0}
-.person p{font-size:1rem;line-height:1.6;color:var(--ink-2)}
+.person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.4rem;line-height:1.02;letter-spacing:-.032em;font-variation-settings:"SOFT" 55,"WONK" 0}
+.person p{font-size:1.14rem;line-height:1.62;color:var(--ink-2)}
 .bild{overflow:hidden;border:1px solid var(--kante);border-radius:var(--r);aspect-ratio:4/5;background:var(--paper-2)}
 .bild img{width:100%;height:100%;object-fit:cover}
 @media (max-width:860px){ .person{grid-template-columns:1fr;gap:var(--s5)} .person.gedreht .bild{order:-1} .bild{aspect-ratio:3/2} }
@@ -487,6 +489,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 /* Bei Martin lag das Bild in der breiten Spalte und war dadurch größer
    als das von Katrin. Beide Blöcke haben jetzt dieselbe Bildbreite. */
 .person.gedreht{grid-template-columns:1.28fr .72fr}
+/* Bei Martin steht der Text links, die kürzere Zeile rückt deshalb an
+   das Bild heran statt am linken Rand zu kleben. */
+.person.gedreht .tx{margin-left:auto}
+@media (max-width:860px){ .person.gedreht .tx{margin-left:0} }
 @media (max-width:860px){ .person.gedreht{grid-template-columns:1fr} }
 
 /* Muss nach der Hero-Spaltenregel oben stehen, sonst gewinnt die
@@ -729,7 +735,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <div class="kopfzeile">
           <p class="eyebrow">Wer wir sind</p>
           <h2 class="display">Über Katrin und Martin</h2>
-          <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, Eltern von zwei Kindern und absolute Reiseliebhaber – mit gebündelter Expertise aus Hotellerie und Plattformgeschäft, die es in dieser Kombination kein zweites Mal gibt.</p>
+          <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, Eltern von zwei Kindern und absolute Reiseliebhaber – mit gebündelter Expertise aus Online-Marketing, KI und Plattformgeschäft.</p>
         </div>
       </div>
 
