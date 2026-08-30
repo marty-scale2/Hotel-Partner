@@ -242,7 +242,9 @@ p{margin:0}
   /* Schiff und Berge fallen auf schmalen Fenstern weg. */
   #weh > .motiv-schiff,
   #loesungen > .motiv-berge{display:none !important}
-  #ueber-uns > .motiv-anker{margin-top:0 !important;margin-bottom:var(--s7) !important}
+  /* Der Abstand unter dem Anker traegt den Seitenwechsel der Spur.
+     Mit den urspruenglichen 45px waere der Schwenk viel zu steil. */
+  #ueber-uns > .motiv-anker{margin-top:0 !important;margin-bottom:158px !important}
   /* Die Sektion rutscht als Ganzes nach links, dadurch bekommt die Spur
      am rechten Rand Luft. Gleiche Breite, nur verschoben. */
   #ueber-uns{margin-left:-14px;margin-right:48px}
@@ -1245,14 +1247,12 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           if(anker && letzte){
             /* Nach dem Anker nach rechts, an beiden Portraits vorbei,
                vor der Palmeninsel geht es ueber den Ausstieg zurueck. */
-            /* Erst nach Anker und Überschrift abbiegen. Ohne die beiden
-               Haltepunkte links schert die Kurve schon darüber aus und
-               läuft quer durch Motiv und Sektionskopf. */
-            var kopf = sek.querySelector(".sec-head");
-            var abBei = kopf ? y0(kopf,1) : y0(anker,1) + 26;
+            /* Direkt nach dem Anker nach rechts. Der Haltepunkt auf halber
+               Ankerhöhe haelt die Kurve bis dahin senkrecht, sonst schert
+               sie schon oberhalb aus und laeuft ueber das Motiv. */
             punkte.push({ x:bahn.left,   y:y0(anker,.5) });
-            punkte.push({ x:bahn.left,   y:abBei + 18 });
-            punkte.push({ x:bahn.aussen, y:abBei + 150 });
+            punkte.push({ x:bahn.left,   y:y0(anker,1) + 12 });
+            punkte.push({ x:bahn.aussen, y:y0(anker,1) + 132 });
             punkte.push({ x:bahn.aussen, y:y0(letzte,1) + 10 });
             /* Die Sektion endet rechts. Der Bogen zurueck liegt komplett im
                leeren Band davor, sonst kreuzt er Martins Absatz. */
