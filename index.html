@@ -242,7 +242,10 @@ p{margin:0}
   /* Schiff und Berge fallen auf schmalen Fenstern weg. */
   #weh > .motiv-schiff,
   #loesungen > .motiv-berge{display:none !important}
-  #ueber-uns > .motiv-anker{margin-top:6px !important}
+  #ueber-uns > .motiv-anker{margin-top:0 !important;margin-bottom:var(--s7) !important}
+  /* Die Sektion rutscht als Ganzes nach links, dadurch bekommt die Spur
+     am rechten Rand Luft. Gleiche Breite, nur verschoben. */
+  #ueber-uns{margin-left:-14px;margin-right:48px}
 }
 
 /* ============================================================
@@ -505,6 +508,37 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 .hinweis.gut{color:#1F6B4A}
 .hinweis.schlecht{color:var(--flame-deep)}
 @media (max-width:860px){ .kontakt{grid-template-columns:1fr} .kontakt .seite{border-right:0;border-bottom:1px solid var(--kante);min-height:320px} .zwei{grid-template-columns:1fr} }
+
+/* ============================================================
+   Einwilligung, auf das Noetige reduziert. Es gibt genau einen
+   optionalen Zweck, deshalb reichen Ablehnen und Akzeptieren.
+   Beide sind gleich gross und auf derselben Ebene, so verlangt es
+   die Orientierungshilfe der DSK vom November 2024.
+   ============================================================ */
+.einwilligung{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--surface);border-top:2px solid var(--kante);
+  box-shadow:0 -12px 30px -24px rgba(20,24,27,.45);
+}
+.einwilligung[hidden]{display:none}
+.einw-in{
+  max-width:var(--shell);margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s5);
+}
+.einw-in p{font-size:.86rem;line-height:1.45;color:var(--ink-2);margin:0}
+.einw-in a{color:var(--flame-deep);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap}
+.einw-knoepfe{display:flex;gap:8px;flex:0 0 auto}
+.einw-knoepfe button{
+  font-size:.84rem;font-weight:600;padding:9px 18px;border-radius:var(--r);
+  border:1px solid var(--kante);background:var(--kante);color:var(--paper);
+  min-width:112px;transition:opacity .18s ease;
+}
+.einw-knoepfe button:hover{opacity:.88}
+.einw-knoepfe .ja{background:var(--flame);border-color:var(--flame-deep)}
+@media (max-width:700px){
+  .einw-in{flex-direction:column;align-items:stretch;gap:10px;padding:12px 20px}
+  .einw-knoepfe button{flex:1 1 0;min-width:0;padding:10px 8px}
+}
 
 /* ---------- Fusszeile ---------- */
 footer{margin-top:var(--s10);background:var(--paper);position:relative;z-index:1}
@@ -858,7 +892,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <div class="kopfzeile">
           <p class="eyebrow">Wer wir sind</p>
           <h2 class="display">Über Katrin und Martin</h2>
-          <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, Eltern von zwei Kindern und absolute Reiseliebhaber – mit gebündelter Expertise aus Online-Marketing, KI und Plattformgeschäft.</p>
+          <p class="lead">Wir sind nicht nur Geschäftspartner, sondern auch privat ein eingespieltes Team: verheiratet, Eltern von zwei Kindern und absolute Reiseliebhaber. Mit gebündelter Expertise aus Online-Marketing, KI und Plattformgeschäft gibt’s bei uns die volle Dröhnung für dein Haus, und zwar von uns beiden persönlich.</p>
         </div>
       </div>
 
@@ -947,11 +981,22 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         <p>Beratung &amp; Marketing-Dienstleistungen für inhabergeführte Hotels in Deutschland, Österreich, Schweiz &amp; Süd-Tirol</p>
       </div>
       <nav aria-label="Fußzeile">
-        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="#" id="einwOeffnen">Cookie-Einstellungen</a>
       </nav>
     </div>
   </footer>
 </div>
+
+<div class="einwilligung" id="einwilligung" role="region" aria-label="Einwilligung zur Reichweitenmessung" hidden>
+  <div class="einw-in">
+    <p>Wir messen anonym, wie diese Seite genutzt wird, aber nur wenn du zustimmst. <a href="datenschutz.html">Datenschutz</a></p>
+    <div class="einw-knoepfe">
+      <button type="button" id="einwNein">Ablehnen</button>
+      <button type="button" class="ja" id="einwJa">Akzeptieren</button>
+    </div>
+  </div>
+</div>
+
 
 <script>
 (function(){
@@ -1147,6 +1192,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       var r = sek.getBoundingClientRect();
       var oben = r.top + window.scrollY - obenSeite, unten = oben + r.height;
       var x = bahn[sek.getAttribute("data-seite")] || links;
+      var ausstiegX = x;
       var yHalt = Math.max(50,Math.min(hoehe - 50,oben - 30));
 
       /* Am Ziel laeuft die Spur nicht in die Bahn, sondern direkt zur
@@ -1184,7 +1230,12 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         if(sek.classList.contains("hero")){
           var rechner = sek.querySelector(".rechner"), band = sek.querySelector("#zahlen");
           if(rechner && band){
-            punkte.push({ x:bahn.aussen, y:y0(rechner,1) + 30 });
+            /* Zwei Haltepunkte links auf Höhe des Rechners. Ohne sie beginnt
+               die Kurve schon oben im Hero auszuscheren und die Spur liefe
+               quer durch die Überschrift. */
+            punkte.push({ x:bahn.left, y:y0(rechner,.45) });
+            punkte.push({ x:bahn.left, y:y0(rechner,1) + 8 });
+            punkte.push({ x:bahn.aussen, y:y0(band,0) - 10 });
             punkte.push({ x:bahn.aussen, y:y0(band,1) - 6 });
           }
         }
@@ -1194,8 +1245,18 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           if(anker && letzte){
             /* Nach dem Anker nach rechts, an beiden Portraits vorbei,
                vor der Palmeninsel geht es ueber den Ausstieg zurueck. */
-            punkte.push({ x:bahn.aussen, y:y0(anker,1) + 34 });
-            punkte.push({ x:bahn.aussen, y:y0(letzte,1) - 10 });
+            /* Erst nach Anker und Überschrift abbiegen. Ohne die beiden
+               Haltepunkte links schert die Kurve schon darüber aus und
+               läuft quer durch Motiv und Sektionskopf. */
+            var kopf = sek.querySelector(".sec-head");
+            var abBei = kopf ? y0(kopf,1) : y0(anker,1) + 26;
+            punkte.push({ x:bahn.left,   y:y0(anker,.5) });
+            punkte.push({ x:bahn.left,   y:abBei + 18 });
+            punkte.push({ x:bahn.aussen, y:abBei + 150 });
+            punkte.push({ x:bahn.aussen, y:y0(letzte,1) + 10 });
+            /* Die Sektion endet rechts. Der Bogen zurueck liegt komplett im
+               leeren Band davor, sonst kreuzt er Martins Absatz. */
+            ausstiegX = bahn.aussen;
           }
         }
       }
@@ -1219,7 +1280,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         : hoehe;
       var luecke = Math.max(0,naechsterOben - unten);
       var auslauf = luecke > 40 ? Math.min(72,luecke * .28) : 0;
-      punkte.push({ x:x, y:Math.max(yHalt + 60,Math.min(unten + auslauf,hoehe - 10)) });
+      punkte.push({ x:ausstiegX, y:Math.max(yHalt + 60,Math.min(unten + auslauf,hoehe - 10)) });
     });
     if(!punkte.length) return;
     if(!endeY) endeY = hoehe;
@@ -1395,6 +1456,68 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       knopf.disabled = false;
       knopf.innerHTML = beschriftung;
     });
+  });
+
+  /* ============================================================
+     Einwilligung. Analytics wird erst geladen, wenn zugestimmt wurde.
+     Die Entscheidung liegt im lokalen Speicher, das ist nach
+     § 25 Abs. 2 TDDDG ohne Einwilligung zulaessig, weil sie fuer die
+     ausdruecklich gewuenschte Funktion noetig ist.
+     ============================================================ */
+  var GA_MESS_ID = "";            /* <- Mess-ID eintragen, z.B. G-XXXXXXX */
+  var EINW_SCHLUESSEL = "hp-einwilligung-1";
+  var kasten = document.getElementById("einwilligung");
+
+  function einwLesen(){
+    try{
+      var roh = localStorage.getItem(EINW_SCHLUESSEL);
+      return roh ? JSON.parse(roh) : null;
+    }catch(e){ return null; }
+  }
+  function einwSchreiben(statistik){
+    try{
+      localStorage.setItem(EINW_SCHLUESSEL, JSON.stringify({
+        statistik: !!statistik, zeit: new Date().toISOString(), fassung: 1
+      }));
+    }catch(e){}
+  }
+  function analyticsLaden(){
+    if(!GA_MESS_ID || window.__gaGeladen) return;
+    window.__gaGeladen = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MESS_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MESS_ID, { anonymize_ip:true });
+  }
+  function einwZeigen(){
+    if(!kasten) return;
+    kasten.hidden = false;
+  }
+  function einwSchliessen(statistik){
+    einwSchreiben(statistik);
+    if(statistik) analyticsLaden();
+    if(kasten) kasten.hidden = true;
+  }
+
+  if(kasten){
+    document.getElementById("einwNein").addEventListener("click", function(){ einwSchliessen(false); });
+    document.getElementById("einwJa").addEventListener("click", function(){ einwSchliessen(true); });
+
+    var stand = einwLesen();
+    if(!stand) einwZeigen();
+    else if(stand.statistik) analyticsLaden();
+  }
+
+  /* Widerruf jederzeit ueber den Link in der Fusszeile */
+  var widerruf = document.getElementById("einwOeffnen");
+  if(widerruf) widerruf.addEventListener("click", function(ev){
+    ev.preventDefault();
+    einwZeigen();
+    kasten.scrollIntoView({ block:"nearest" });
   });
 })();
 </script>
