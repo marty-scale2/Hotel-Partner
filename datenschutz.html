@@ -70,18 +70,25 @@ a{color:inherit}
 
 .topbar{position:sticky;top:0;z-index:40;background:rgba(253,251,248,.9);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--linie)}
 .topbar .in{max-width:var(--shell);margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{
-  display:inline-flex;flex-direction:column;gap:1px;text-decoration:none;line-height:1.04;
+/* Wortmarke: die beiden Vornamen stehen klein untereinander, daneben
+   steht HOTEL PARTNER so hoch wie beide Zeilen zusammen. */
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+.brand .namen{
+  display:flex;flex-direction:column;
+  font-family:"Fraunces",Georgia,serif;font-weight:700;
+  font-size:.78rem;line-height:1.16;letter-spacing:-.015em;
+  font-variation-settings:"SOFT" 55,"WONK" 0;
 }
-.brand .zeile1{
-  font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.05rem;
-  letter-spacing:-.03em;font-variation-settings:"SOFT" 55,"WONK" 0;
+.brand .wort{
+  font-family:"Archivo",Arial,sans-serif;font-weight:700;
+  font-size:1.72rem;line-height:1;letter-spacing:.03em;
+  text-transform:uppercase;white-space:nowrap;
 }
-.brand .zeile2{
-  font-family:"Archivo",Arial,sans-serif;font-weight:700;font-size:1.05rem;
-  letter-spacing:.13em;text-transform:uppercase;
+@media (max-width:620px){
+  .brand{gap:8px}
+  .brand .namen{font-size:.66rem}
+  .brand .wort{font-size:1.32rem}
 }
-@media (max-width:620px){ .brand .zeile1,.brand .zeile2{font-size:.86rem} }
 .zurueck{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;text-decoration:none;border:1px solid var(--kante);border-radius:var(--r);padding:9px 17px;transition:background .18s ease,color .18s ease}
 .zurueck:hover{background:var(--kante);color:var(--paper)}
 @media (max-width:620px){  .zurueck{padding:8px 12px;font-size:.82rem} }
@@ -115,7 +122,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
 <header class="topbar">
   <div class="in">
-    <a class="brand" href="index.html"><span class="zeile1">Katrin &amp; Martin</span><span class="zeile2">Hotel Partner</span></a>
+    <a class="brand" href="index.html"><span class="namen"><span>Katrin</span><span>Martin</span></span><span class="wort">Hotel&nbsp;Partner</span></a>
     <a class="zurueck" href="index.html">← Zurück zur Startseite</a>
   </div>
 </header>
