@@ -437,9 +437,22 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 .hero .rechner-out .teil .wert{font-size:1.15rem}
 .hero .rechner .leiste{padding:10px var(--s5)}
 .hero .rechner .leiste p{font-size:.81rem}
-.hero-grid{align-items:start;grid-template-columns:1fr 1.06fr}
+/* Beide Spalten teilen sich die Zeilenhoehe. Der Button haengt unten in
+   der linken Spalte, der Rechner unten in der rechten. Dadurch schliessen
+   beide immer buendig ab, ohne dass Hoehen von Hand abgestimmt werden. */
+.hero-grid{align-items:stretch;grid-template-columns:1.22fr .78fr}
+.hero-grid > div:first-of-type{display:flex;flex-direction:column}
+.hero .acts{margin-top:auto;padding-top:var(--s6)}
+.hero-grid > .fade{display:flex;flex-direction:column;justify-content:flex-end}
+@media (max-width:900px){
+  .hero-grid{align-items:start}
+  .hero .acts{margin-top:var(--s6);padding-top:0}
+}
 .hero .lead{max-width:44ch}
-.hero h1.display{font-size:clamp(2.3rem,3.6vw,3.35rem);line-height:1;letter-spacing:-.035em}
+/* Die laengste Zeile ist rund 14,2em breit. Die Groesse ist so gewaehlt,
+   dass sie in die Textspalte passt, damit keine Zeile umbricht. */
+.hero h1.display{font-size:clamp(1.9rem,2.9vw,2.5rem);line-height:1.03;letter-spacing:-.032em}
+@media (min-width:901px){ .hero h1.display .rvl > span{white-space:nowrap} }
 .hero .feld label{font-size:.85rem}
 .hero .feld output{font-size:.98rem}
 .hero .marke{font-size:.68rem;letter-spacing:.16em}
