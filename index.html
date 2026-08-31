@@ -180,20 +180,17 @@ p{margin:0}
    Route: hinter dem Inhalt, Seitenwechsel nur im leeren Band
    ============================================================ */
 .route{position:absolute;inset:0;width:100%;z-index:0;pointer-events:none;overflow:visible;display:none}
-.route .weg{fill:none;stroke:#B9AA94;stroke-width:2.2;stroke-dasharray:1 12;stroke-linecap:round;opacity:.65}
-.route .gegangen{fill:none;stroke:transparent;stroke-width:1}
+.route .weg{fill:none;stroke:#B9AA94;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.42}
+.route .gegangen{fill:none;stroke:#5B4631;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:.78;transition:stroke-dashoffset .12s linear}
 .route .halt{fill:#806B52;stroke:var(--paper);stroke-width:4;opacity:.3;transition:opacity .35s ease,fill .35s ease}
 .route .halt.da{fill:#59442F;opacity:.68}
-.route .tritt{color:#5B4631;fill:currentColor;opacity:0}
-.route .tritt.da{animation:trittAuf .34s cubic-bezier(.2,.8,.25,1) forwards}
-.route .tritt.sofort{animation:none;opacity:.72}
-@keyframes trittAuf{0%{opacity:0}55%{opacity:.92}100%{opacity:.72}}
 .route{display:block}
 /* Auf schmalen Fenstern bekommt der Inhalt links eine Bahn fuer die Spur. */
 @media (max-width:1179px){
   main.shell{padding-left:52px}
   .hero{padding-right:34px}
   .route .weg{stroke-width:2}
+  .route .gegangen{stroke-width:2.5}
 }
 /* Handgezeichnete Motive aus einem kompakten 4×2-Sprite. */
 .kartenmotiv{
@@ -213,15 +210,11 @@ p{margin:0}
   60%{opacity:.94}
   100%{opacity:.74}
 }
-.motiv-totenkopf{background-position:0 0;--fund-hue:330deg;--fund-sat:5.2;--fund-glow:rgba(238,61,14,.5)}
 .motiv-kompass{background-position:33.333% 0;--fund-hue:350deg;--fund-sat:5.2;--fund-glow:rgba(255,197,49,.65)}
 .motiv-anker{background-position:66.667% 0;--fund-hue:175deg;--fund-sat:4.2;--fund-glow:rgba(44,126,164,.5)}
 .motiv-truhe{background-position:100% 0}
-.motiv-schiff{background-position:0 100%;--fund-hue:330deg;--fund-sat:4.8;--fund-glow:rgba(191,72,43,.48)}
 .motiv-palmen{background-position:33.333% 100%;--fund-hue:55deg;--fund-sat:4.4;--fund-glow:rgba(64,139,74,.52)}
 .motiv-berge{background-position:66.667% 100%;--fund-hue:170deg;--fund-sat:3.8;--fund-glow:rgba(74,124,146,.48)}
-#weh > .motiv-schiff{position:absolute;top:-118px;left:15%;width:142px;transform:rotate(-4deg)}
-#weh .motiv-totenkopf{width:144px;margin:30px auto 0;transform:rotate(3deg)}
 #loesungen > .motiv-berge{position:absolute;top:-224px;left:7%;width:150px;transform:rotate(-2deg)}
 #loesungen > .motiv-kompass{position:absolute;top:392px;right:130px;width:184px;transform:rotate(7deg)}
 #ueber-uns > .motiv-anker{position:absolute;top:38px;right:82px;width:170px;transform:rotate(-8deg)}
@@ -251,8 +244,7 @@ p{margin:0}
     top:auto !important;right:auto !important;left:auto !important;bottom:auto !important;
   }
   #kontakt > .motiv-truhe{width:124px !important;opacity:.3}
-  /* Schiff und Berge fallen auf schmalen Fenstern weg. */
-  #weh > .motiv-schiff,
+  /* Die Berge fallen auf schmalen Fenstern weg. */
   #loesungen > .motiv-berge{display:none !important}
   /* Der Abstand unter dem Anker traegt den Seitenwechsel der Spur.
      Mit den urspruenglichen 45px waere der Schwenk viel zu steil. */
@@ -361,11 +353,6 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
   font-variation-settings:"SOFT" 55,"WONK" 0;
 }
 .rechner-out .dazu{margin-top:var(--s3);font-size:.87rem;color:#A7B0B5}
-.rechner-out .teil{padding-top:var(--s5);border-top:1px solid #333B41;display:flex;flex-direction:column;gap:var(--s3)}
-.rechner-out .teil .wert{
-  align-self:start;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;
-  color:var(--sun);border-bottom:2px solid var(--sun);padding-bottom:3px;
-}
 .rechner-out .fuss{padding-top:var(--s4);border-top:1px solid #333B41;font-size:.83rem;line-height:1.55;color:#8F989E}
 
 /* ---------- Problem: Spalten mit Kante oben ---------- */
@@ -576,7 +563,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   .js .fade,.js .punkt{opacity:1;transform:none}
   .js .vergleich .zeile{opacity:1;transform:none}
   .js .loesungen .loesung{opacity:1;transform:none}
-  .route .tritt.da{animation:none;opacity:.72}
   .viz .fenster{opacity:1}
 }
 
@@ -596,8 +582,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 .hero input[type=range]{height:18px}
 .hero .summe{font-size:clamp(2rem,3.3vw,2.45rem);margin-top:5px}
 .hero .rechner-out .dazu{margin-top:6px;font-size:.82rem}
-.hero .rechner-out .teil{padding-top:13px;gap:6px}
-.hero .rechner-out .teil .wert{font-size:1.15rem}
 .hero .rechner .leiste{padding:10px var(--s5)}
 .hero .rechner .leiste p{font-size:.81rem}
 /* Beide Spalten teilen sich die Zeilenhoehe. Der Button haengt unten in
@@ -685,9 +669,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 /* ---------- Mobile Performance ---------- */
 @media (max-width:700px){
   .kartenmotiv{background-image:url("kartenmotive-mobile.webp")}
-  /* Mobil entsteht die Laufbewegung bereits durch das gestaffelte Einblenden.
-     Ohne hunderte parallele SVG-Keyframes bleibt Scrollen deutlich leichter. */
-  .route .tritt.da{animation:none;opacity:.72}
 }
 @media (max-width:700px) and (prefers-reduced-motion:no-preference){
   .js .fade{transform:translateY(10px);transition-duration:.45s}
@@ -707,16 +688,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
 <div id="page">
   <svg class="route" id="route" aria-hidden="true" focusable="false">
-    <defs>
-      <g id="trittForm">
-        <path d="M-3.3 6.7C-5 3.5-4.7-2.2-2.8-7.2C-1.8-9.8 1.7-9.8 2.8-7.1C4.8-2.3 5.1 3.4 3.3 6.7C2 9-2 9-3.3 6.7Z"></path>
-        <circle cx="-3.9" cy="-10.4" r="1.45"></circle><circle cx="-.9" cy="-11.8" r="1.65"></circle>
-        <circle cx="2.3" cy="-11.3" r="1.55"></circle><circle cx="4.8" cy="-9.5" r="1.2"></circle>
-      </g>
-    </defs>
     <path class="weg" id="wegPfad"></path>
     <path class="gegangen" id="gegangenPfad"></path>
-    <g id="spuren"></g>
     <g id="halte"></g>
   </svg>
 
@@ -764,12 +737,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
               <div class="rechner-out">
                 <div>
                   <p class="marke">Provision pro Jahr, geschätzt</p>
-                  <p class="summe" id="oSumme">65.766 €</p>
-                  <p class="dazu" id="oMonat">Im Schnitt 5.481 € pro Monat, saisonal sehr ungleich verteilt.</p>
-                </div>
-                <div class="teil">
-                  <p class="marke">Davon realistisch verlagerbar</p>
-                  <p class="wert" id="oVerlagerbar">6.577 bis 16.442 €</p>
+                  <p class="summe" id="oSumme">52.613 €</p>
+                  <p class="dazu" id="oMonat">Im Schnitt 4.384 € pro Monat, saisonal sehr ungleich verteilt.</p>
                 </div>
               </div>
             </div>
@@ -779,19 +748,17 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
       <div class="zahlen fade" id="zahlen">
         <div><b data-zahl="7" data-suffix="+">7+</b><span>Jahre Online-Marketing-Expertise</span></div>
-        <div><b class="wort-zahl">Booking.com</b><span>Insiderwissen aus erster Hand</span></div>
+        <div><b class="wort-zahl">OTA Insiderwissen</b><span>Insiderwissen aus erster Hand</span></div>
         <div><b data-zahl="1000" data-suffix="+">1.000+</b><span>beratene Hotels</span></div>
       </div>
     </section>
 
     <!-- ===== Das tut weh ===== -->
     <section class="sec" id="weh" data-halt data-seite="right">
-      <span class="kartenmotiv motiv-schiff" aria-hidden="true"></span>
       <div class="weh">
         <div class="steht">
           <p class="eyebrow">Das tut weh</p>
           <h2 class="display">Die bittere Realität</h2>
-          <span class="kartenmotiv motiv-totenkopf" aria-hidden="true"></span>
         </div>
 
         <div class="liste">
@@ -806,29 +773,21 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           <article class="punkt">
             <div class="zahl">2</div>
             <div class="tx">
-              <h3>Fehlende Gästedaten</h3>
-              <p>Du hast keine Adresse, keinen Kontakt, keinen Weg, den Gast selbst zurückzuholen. Im schlimmsten Fall zahlst du für denselben Gast zweimal.</p>
-            </div>
-          </article>
-
-          <article class="punkt">
-            <div class="zahl">3</div>
-            <div class="tx">
               <h3>Kaum Folgebuchungen</h3>
               <p>Gäste kommen bei dir oft nur einmal und nicht wieder. Dabei könntest du mit simplen Hebeln die Anzahl der Folgebuchungen erhöhen (die Gewinnung von Neugästen kostet dich Geld, ein Stammgast kostet dich mit den richtigen Schritten nichts).</p>
             </div>
           </article>
 
           <article class="punkt">
-            <div class="zahl">4</div>
+            <div class="zahl">3</div>
             <div class="tx">
               <h3>Eigene Kanäle laufen nicht</h3>
-              <p>Die Website hat wenig Besucher. Das Social-Media-Profil zu pflegen ist mühsam und bringt kaum Follower. Also bleibst du abhängig von Booking.com.</p>
+              <p>Die Website hat wenig Besucher. Das Social-Media-Profil zu pflegen ist mühsam und bringt kaum Follower. Also bleibst du abhängig von Buchungsportalen.</p>
             </div>
           </article>
 
           <article class="punkt">
-            <div class="zahl">5</div>
+            <div class="zahl">4</div>
             <div class="tx">
               <h3>Viel Arbeit mit OTA-Plattformen</h3>
               <p>Du bist auf allen möglichen Plattformen gelistet, nach dem Motto „viel hilft viel". Die Pflege der Kanäle kostet dich Zeit und du weißt nicht wirklich, was genau funktioniert. Die wenigsten Hotels wissen, welche einfachen Maßnahmen sie ergreifen können, um Plattformen wirklich profit-orientiert zu nutzen.</p>
@@ -836,10 +795,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           </article>
 
           <article class="punkt">
-            <div class="zahl">6</div>
+            <div class="zahl">5</div>
             <div class="tx">
               <h3>Wenig Geschäft in der Nebensaison</h3>
-              <p>In der Nebensaison steht das Haus halb leer, und genau dann bringen die Portale am wenigsten. Ohne eigenen Kanal fehlt dir das Werkzeug, um Nachfrage selbst zu erzeugen, wenn sie nicht von allein kommt.</p>
+              <p>In der Nebensaison steht das Haus halb leer. Ohne eigenen Kanal fehlt dir das Werkzeug, um Nachfrage selbst zu erzeugen, wenn sie nicht von allein kommt.</p>
             </div>
           </article>
         </div>
@@ -1089,12 +1048,10 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       svg = document.getElementById("route"),
       wegPfad = document.getElementById("wegPfad"),
       gegangenPfad = document.getElementById("gegangenPfad"),
-      spurGruppe = document.getElementById("spuren"),
       haltGruppe = document.getElementById("halte"),
       schatz = document.querySelector(".motiv-truhe"),
       laenge = 0, hoehe = 0, endeY = 0,
-      halte = [], karten = [], spuren = [], proben = [], motive = [], neuTimer = 0,
-      spurStand = 0, spurZiel = 0, spurRaf = 0, routeNeu = true;
+      halte = [], karten = [], proben = [], motive = [], neuTimer = 0;
 
   /* Fester Zufall je Position, damit die Linie beim Neuaufbau gleich bleibt. */
   function wackeln(saat){
@@ -1150,32 +1107,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     return g;
   }
 
-  function baueSpuren(){
-    var ns = "http://www.w3.org/2000/svg";
-    var fragment = document.createDocumentFragment();
-    var abstand = window.innerWidth <= 700 ? 54 : 40;
-    spuren = [];
-    for(var l = 28, n = 0; l < laenge - 18; l += abstand, n++){
-      var p = gegangenPfad.getPointAtLength(l);
-      var a = gegangenPfad.getPointAtLength(Math.max(0,l - 3));
-      var b = gegangenPfad.getPointAtLength(Math.min(laenge,l + 3));
-      var dx = b.x - a.x, dy = b.y - a.y;
-      var norm = Math.sqrt(dx * dx + dy * dy) || 1;
-      var seiteFuss = n % 2 ? 1 : -1;
-      var x = p.x + (-dy / norm) * seiteFuss * 7;
-      var y = p.y + (dx / norm) * seiteFuss * 7;
-      var winkel = Math.atan2(dy,dx) * 180 / Math.PI + 90;
-      var tritt = document.createElementNS(ns,"use");
-      tritt.setAttribute("href","#trittForm");
-      tritt.setAttribute("class","tritt");
-      tritt.setAttribute("transform","translate(" + x.toFixed(1) + " " + y.toFixed(1) + ") rotate(" + winkel.toFixed(1) + ") scale(" + seiteFuss + " 1)");
-      if(window.innerWidth > 700) tritt.style.animationDelay = ((n % 4) * .035) + "s";
-      fragment.appendChild(tritt);
-      spuren.push({ element:tritt, laenge:l, da:false });
-    }
-    spurGruppe.replaceChildren(fragment);
-  }
-
   function laengeBeiY(y){
     if(proben.length < 2) return 0;
     if(y <= proben[0].y) return 0;
@@ -1191,7 +1122,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   }
 
   /* Verknuepft jedes sichtbare Kartenmotiv mit dem naechsten Punkt der
-     Fussroute. So funktioniert derselbe Ausloeser fuer Desktop und Mobile,
+     Route. So funktioniert derselbe Ausloeser fuer Desktop und Mobile,
      obwohl beide Varianten unterschiedliche Bahnen verwenden. */
   function naechsteRoutenlaenge(x,y){
     var beste = 0, besterAbstand = Infinity;
@@ -1221,16 +1152,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       var y = r.top + window.scrollY - obenSeite + r.height / 2;
       var trigger = naechsteRoutenlaenge(x,y);
 
-      /* Am Desktop soll der Totenkopf bewusst erst erscheinen, sobald der
-         sechste Pain Point im sichtbaren Bereich angekommen ist. */
-      if(el.classList.contains("motiv-totenkopf") && window.innerWidth >= 1180){
-        var punkt6 = document.querySelector("#weh .punkt:nth-child(6)");
-        if(punkt6){
-          var pr = punkt6.getBoundingClientRect();
-          var py = pr.top + window.scrollY - obenSeite;
-          trigger = laengeBeiY(py);
-        }
-      }
       /* Der Anker liegt am Rand der Ueber-uns-Sektion. Die geometrisch
          naechste Kurve verlaeuft schon in der Luecke davor an ihm vorbei;
          farbig wird er deshalb erst an seinem unteren Bereich. */
@@ -1246,43 +1167,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       var da = m.laenge <= stelle;
       if(da !== m.da){ m.da = da; m.element.classList.toggle("gefunden",da); }
     });
-  }
-
-  function setzeSpurStand(neu,sofort){
-    neu = Math.max(0,Math.min(spuren.length,neu));
-    if(neu > spurStand){
-      for(var i = spurStand; i < neu; i++){
-        spuren[i].element.classList.toggle("sofort",!!sofort);
-        spuren[i].element.classList.add("da");
-      }
-    } else if(neu < spurStand){
-      for(var j = spurStand - 1; j >= neu; j--) spuren[j].element.classList.remove("da","sofort");
-    }
-    spurStand = neu;
-    setzeMotive(spurStand ? spuren[spurStand - 1].laenge : 0);
-  }
-
-  /* Seitliche Kurven enthalten viele Schritte auf wenig Seitenhoehe. Statt
-     sie in einem Frame aufblitzen zu lassen, holt die Spur ihr Ziel mit
-     hoechstens drei Abdruecken pro Bild nach. */
-  function animiereSpuren(){
-    var differenz = spurZiel - spurStand;
-    if(!differenz){ spurRaf = 0; return; }
-    var mobil = window.innerWidth <= 700;
-    var maximal = mobil ? 8 : 3;
-    var teiler = mobil ? 10 : 14;
-    var menge = sparsam ? Math.abs(differenz) : Math.min(maximal,Math.max(1,Math.ceil(Math.abs(differenz) / teiler)));
-    setzeSpurStand(spurStand + (differenz > 0 ? menge : -menge));
-    spurRaf = requestAnimationFrame(animiereSpuren);
-  }
-
-  function spurIndexBei(stelle){
-    var lo = 0, hi = spuren.length;
-    while(lo < hi){
-      var mitte = (lo + hi) >> 1;
-      if(spuren[mitte].laenge <= stelle) lo = mitte + 1; else hi = mitte;
-    }
-    return lo;
   }
 
   function baue(){
@@ -1311,7 +1195,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     var knoten = [].slice.call(document.querySelectorAll("[data-halt]"));
     var punkte = [], marken = [];
     endeY = 0; karten = [];
-    spurGruppe.replaceChildren();
     haltGruppe.replaceChildren();
 
     knoten.forEach(function(sek,index){
@@ -1417,9 +1300,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     wegPfad.setAttribute("d",d);
     gegangenPfad.setAttribute("d",d);
     laenge = gegangenPfad.getTotalLength();
-    baueSpuren();
-    if(spurRaf) cancelAnimationFrame(spurRaf);
-    spurRaf = 0; spurStand = 0; spurZiel = 0; routeNeu = true;
+    gegangenPfad.style.strokeDasharray = laenge + " " + laenge;
+    gegangenPfad.style.strokeDashoffset = laenge;
 
     proben = [];
     for(var i = 0; i <= 700; i++){
@@ -1446,15 +1328,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 
     var stelle = laengeBeiY(gelaufen);
     if(schatz) schatz.classList.toggle("gefunden",gelaufen >= endeY - 8);
-    spurZiel = spurIndexBei(stelle);
-    if(routeNeu){
-      /* Bei einem Neuaufbau nach Bild- oder Schriftladen waren diese
-         Abdruecke schon sichtbar und duerfen nicht erneut hereinrauschen. */
-      setzeSpurStand(spurZiel,true);
-      routeNeu = false;
-    } else if(!spurRaf && spurStand !== spurZiel){
-      spurRaf = requestAnimationFrame(animiereSpuren);
-    }
+    gegangenPfad.style.strokeDashoffset = Math.max(0,laenge - stelle).toFixed(1);
+    setzeMotive(stelle);
 
     halte.forEach(function(h){
       var da = h.y <= gelaufen;
@@ -1482,7 +1357,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
      Provisionsrechner
      ============================================================ */
   var euro = new Intl.NumberFormat("de-DE",{ style:"currency", currency:"EUR", maximumFractionDigits:0 });
-  var PROVISION = .15, VERLAGERUNG_MIN = .10, VERLAGERUNG_MAX = .25;
+  var PROVISION = .12;
 
   var ein = {
     zimmer:document.getElementById("zimmer"), auslastung:document.getElementById("auslastung"),
@@ -1491,17 +1366,16 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   var aus = {
     zimmer:document.getElementById("oZimmer"), auslastung:document.getElementById("oAuslastung"),
     preis:document.getElementById("oPreis"), anteil:document.getElementById("oAnteil"),
-    summe:document.getElementById("oSumme"), monat:document.getElementById("oMonat"),
-    verlagerbar:document.getElementById("oVerlagerbar")
+    summe:document.getElementById("oSumme"), monat:document.getElementById("oMonat")
   };
 
-  /* rechne(28, 65, 120, 55) -> summe  65.766 €
-     rechne(12, 55, 90,  50) -> summe  16.256 €
-     rechne(45, 75, 160, 60) -> summe 177.390 € */
+  /* rechne(28, 65, 120, 55) -> summe  52.613 €
+     rechne(12, 55, 90,  50) -> summe  13.009 €
+     rechne(45, 75, 160, 60) -> summe 141.912 € */
   function rechne(zimmer,auslastung,preis,anteil){
     var portal = zimmer * 365 * (auslastung/100) * preis * (anteil/100);
     var summe = portal * PROVISION;
-    return { summe:summe, monat:summe/12, min:summe*VERLAGERUNG_MIN, max:summe*VERLAGERUNG_MAX };
+    return { summe:summe, monat:summe/12 };
   }
 
   var rollen = null, letzte = 0;
@@ -1527,7 +1401,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     rolleZu(aus.summe,letzte,r.summe);
     letzte = r.summe;
     aus.monat.textContent = "Im Schnitt " + euro.format(r.monat) + " pro Monat, saisonal sehr ungleich verteilt.";
-    aus.verlagerbar.textContent = euro.format(r.min).replace(/\s?€$/,"") + " bis " + euro.format(r.max);
   }
   Object.keys(ein).forEach(function(k){ if(ein[k]) ein[k].addEventListener("input",aktualisiere); });
   aktualisiere();
