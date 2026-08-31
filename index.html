@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Mehr Direktbuchungen und hoehere Auslastung fuer dein inhabergefuehrtes Hotel im DACH-Raum, ohne Werbekosten. Katrin Goeschl und Martin Thun.">
+  <meta name="description" content="Digitale Systeme für Hotels: Kosten sparen, Abhängigkeit von Reise-Plattformen reduzieren und die Auslastung ganzjährig erhöhen.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#FDFBF8">
 <meta property="og:title" content="Katrin &amp; Martin Hotel Partner">
-<meta property="og:description" content="Mehr Direktbuchungen und hoehere Auslastung, ohne Werbekosten. KI-gestuetzte Marketing-Systeme fuer inhabergefuehrte Hotels.">
+  <meta property="og:description" content="Digitale Systeme für Hotels: Kosten sparen, Abhängigkeit von Reise-Plattformen reduzieren und die Auslastung ganzjährig erhöhen.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.hotel-partner.martinthun.com/">
 <title>Katrin &amp; Martin Hotel Partner</title>
@@ -213,12 +213,10 @@ p{margin:0}
 .motiv-kompass{background-position:33.333% 0;--fund-hue:350deg;--fund-sat:5.2;--fund-glow:rgba(255,197,49,.65)}
 .motiv-anker{background-position:66.667% 0;--fund-hue:175deg;--fund-sat:4.2;--fund-glow:rgba(44,126,164,.5)}
 .motiv-truhe{background-position:100% 0}
-.motiv-palmen{background-position:33.333% 100%;--fund-hue:55deg;--fund-sat:4.4;--fund-glow:rgba(64,139,74,.52)}
 .motiv-berge{background-position:66.667% 100%;--fund-hue:170deg;--fund-sat:3.8;--fund-glow:rgba(74,124,146,.48)}
 #loesungen > .motiv-berge{position:absolute;top:-224px;left:7%;width:150px;transform:rotate(-2deg)}
 #loesungen > .motiv-kompass{position:absolute;top:392px;right:130px;width:184px;transform:rotate(7deg)}
 #ueber-uns > .motiv-anker{position:absolute;top:38px;right:82px;width:170px;transform:rotate(-8deg)}
-#unterschied > .motiv-palmen{position:absolute;top:-212px;left:9%;width:142px;transform:rotate(3deg)}
 #kontakt > .motiv-truhe{position:absolute;top:-126px;left:50%;width:146px;transform:translateX(-50%) rotate(-2deg);opacity:.28}
 #kontakt > .motiv-truhe.gefunden{
   opacity:.92;
@@ -298,28 +296,6 @@ p{margin:0}
 @keyframes licht{to{opacity:1}}
 .viz .fahne{transform-box:fill-box;transform-origin:left center;animation:wehen 3.4s ease-in-out infinite}
 @keyframes wehen{0%,100%{transform:scaleX(1) skewY(0)}50%{transform:scaleX(.95) skewY(-6deg)}}
-
-/* ---------- Zahlenband: Linien statt Kachel ---------- */
-.zahlen{
-  margin-top:var(--s8);display:grid;grid-template-columns:repeat(3,1fr);
-}
-.zahlen > div{padding:var(--s5) var(--s6) var(--s5) 0;border-right:1px solid var(--linie)}
-.zahlen > div:not(:first-child){padding-left:var(--s6)}
-.zahlen > div:last-child{border-right:0}
-.zahlen b{
-  display:block;font-family:"Fraunces",Georgia,serif;font-weight:700;
-  font-size:clamp(2rem,4.2vw,2.9rem);line-height:1;letter-spacing:-.035em;color:var(--flame);
-  font-variation-settings:"SOFT" 55,"WONK" 0;
-}
-/* Diese Kachel traegt keinen Zahlwert, der Schriftzug braucht deshalb
-   eine Stufe weniger als die Ziffern daneben. */
-.zahlen b.wort-zahl{font-size:clamp(1.5rem,3vw,2.05rem);letter-spacing:-.028em}
-.zahlen span{display:block;margin-top:var(--s2);font-size:.89rem;color:var(--ink-2)}
-@media (max-width:760px){
-  .zahlen{grid-template-columns:1fr}
-  .zahlen > div{border-right:0;border-bottom:1px solid var(--linie);padding-left:0 !important}
-  .zahlen > div:last-child{border-bottom:0}
-}
 
 /* ---------- Rechner ---------- */
 .rechner{margin-top:var(--s7);border:1px solid var(--kante);border-radius:var(--r);overflow:hidden;background:var(--surface)}
@@ -429,45 +405,15 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
    der Absatz oben und darunter steht eine halbe Bildhöhe leer. */
 .person{display:grid;grid-template-columns:.72fr 1.28fr;gap:var(--s7);align-items:center;margin-top:var(--s8)}
 .person .tx{display:flex;flex-direction:column;gap:var(--s4);max-width:46ch}
-.person .rolle{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--flame-deep)}
 .person h3{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2.4rem;line-height:1.02;letter-spacing:-.032em;font-variation-settings:"SOFT" 55,"WONK" 0}
 .person p{font-size:1.14rem;line-height:1.62;color:var(--ink-2)}
+.person p a{color:var(--flame-deep);text-decoration:none;border-bottom:1px solid currentColor}
+.person p a:hover{color:var(--flame)}
 .bild{overflow:hidden;border:1px solid var(--kante);border-radius:var(--r);aspect-ratio:4/5;background:var(--paper-2)}
 /* Der Ausschnitt sitzt oberhalb der Mitte, sonst schneidet cover die
    Gesichter an. */
 .bild img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
 @media (max-width:860px){ .person{grid-template-columns:1fr;gap:var(--s5)} .person.gedreht .bild{order:-1} }
-
-/* ---------- Vergleich: dunkler Anker ---------- */
-/* Warmes Dunkelbraun statt kaltem Schwarz, damit der Block zum
-   Papierton der Seite gehoert. Schmaler und mittig statt ueber die
-   volle Spaltenbreite gezogen. */
-.vergleich{
-  margin:var(--s7) auto 0;max-width:920px;
-  border:1px solid #2F2620;border-radius:var(--r);overflow:hidden;
-  background:#241E19;color:#EDE5DA;
-}
-.vergleich .kopf,.vergleich .zeile{display:grid;grid-template-columns:.8fr 1fr 1.05fr}
-.vergleich .kopf div{padding:var(--s4) var(--s5);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#A2968A;border-right:1px solid #3A302A;border-bottom:1px solid #3A302A}
-.vergleich .kopf div:last-child{border-right:0;color:var(--sun)}
-.vergleich .zeile > div{padding:var(--s5);border-right:1px solid #3A302A;border-bottom:1px solid #3A302A;font-size:.93rem;line-height:1.55;color:#BCB1A4}
-.vergleich .zeile > div:last-child{border-right:0;background:#2C241D;color:#FFF8F0}
-.vergleich .zeile:last-child > div{border-bottom:0}
-.vergleich .merkmal{font-weight:700;color:#fff}
-.js .vergleich .zeile{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s cubic-bezier(.16,.84,.32,1)}
-.js .vergleich .zeile.in{opacity:1;transform:none}
-@media (max-width:860px){
-  .vergleich .kopf{display:none}
-  .vergleich .zeile{grid-template-columns:1fr}
-  .vergleich .zeile > div{border-right:0}
-  .vergleich .andere::before{content:"Übliche Agentur: ";font-weight:700;color:#fff}
-  .vergleich .wir::before{content:"Bei uns: ";font-weight:700;color:var(--sun)}
-}
-
-/* Kopf der Vergleichs-Sektion steht mittig über der Tabelle */
-#unterschied .sec-head{grid-template-columns:1fr;justify-items:center;text-align:center}
-#unterschied .sec-head .etappe{margin-bottom:var(--s3)}
-#unterschied .sec-head .kopfzeile{align-items:center;max-width:34ch}
 
 /* Abschluss-Statement über dem Bild im Kontaktblock */
 .kontakt .seite .ansage{
@@ -561,7 +507,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;animation-delay:0ms !important;transition-duration:.001ms !important}
   .js .rvl > span{transform:none;opacity:1}
   .js .fade,.js .punkt{opacity:1;transform:none}
-  .js .vergleich .zeile{opacity:1;transform:none}
   .js .loesungen .loesung{opacity:1;transform:none}
   .viz .fenster{opacity:1}
 }
@@ -703,9 +648,9 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           <h1 class="display">
             <span class="rvl"><span>Mehr Direktbuchungen</span></span>
             <span class="rvl"><span>&amp; höheren Profit</span></span>
-            <span class="rvl"><span class="em">ohne Werbekosten</span></span>
+            <span class="rvl"><span class="em">mit Online Marketing</span></span>
           </h1>
-          <p class="lead fade d1">Wir bauen dir KI-gestützte Marketing-Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Sichtbarkeit deines Hauses erhöhst.</p>
+        <p class="lead fade d1">Wir bauen dir digitale Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Auslastung ganzjährig erhöhst.</p>
           <div class="acts fade d2">
             <a class="btn" href="#kontakt">Zur kostenlosen Analyse <span class="arw">→</span></a>
           </div>
@@ -746,11 +691,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         </div>
       </div>
 
-      <div class="zahlen fade" id="zahlen">
-        <div><b data-zahl="7" data-suffix="+">7+</b><span>Jahre Online-Marketing-Expertise</span></div>
-        <div><b class="wort-zahl">OTA Insiderwissen</b><span>Insiderwissen aus erster Hand</span></div>
-        <div><b data-zahl="1000" data-suffix="+">1.000+</b><span>beratene Hotels</span></div>
-      </div>
     </section>
 
     <!-- ===== Das tut weh ===== -->
@@ -886,42 +826,18 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       <article class="person fade">
         <div class="bild"><img src="Katrin.jpg" alt="Katrin Göschl" loading="lazy" decoding="async"></div>
         <div class="tx">
-          <p class="rolle">Hotellerie und Beratung</p>
           <h3>Katrin Göschl</h3>
-          <p>Ich habe in meiner Zeit bei Booking.com mit Tausenden von Hotelinhabern gesprochen, Hunderte Hotelpartner vor Ort besucht und beraten. Ich weiß, wo der Schuh drückt und welche Hebel am meisten bewirken, um als Hotel mehr Gäste zu gewinnen.</p>
+          <p>Ich habe in meiner Zeit bei einem der größten OTAs mit Tausenden von Hotelinhabern gesprochen, Hunderte Hotelpartner vor Ort besucht und beraten. Ich weiß, wo der Schuh drückt und welche Hebel am meisten bewirken, um als Hotel mehr Gäste zu gewinnen.</p>
         </div>
       </article>
 
       <article class="person gedreht fade">
         <div class="tx">
-          <p class="rolle">KI-Services und Online-Marketing</p>
           <h3>Martin Thun</h3>
-          <p>Ich bin seit sieben Jahren im Online-Marketing tätig und habe Hunderten von Selbstständigen und kleinen Unternehmen bei der Kundengewinnung geholfen. Mit meinem Projekt „business.einfach.smart" erreiche ich über 100.000 Follower und biete digitale Produkte rund um Social Media, Online-Marketing und KI an.</p>
+          <p>Ich bin seit sieben Jahren im Online-Marketing tätig und habe Hunderten von Selbstständigen und kleinen Unternehmen bei der Kundengewinnung geholfen. Als Co-Founder von „<a href="https://instagram.com/business.einfach.smart" target="_blank" rel="noopener noreferrer">business.einfach.smart</a>“ erreiche ich über 100.000 Follower und biete digitale Produkte rund um Social Media, Online-Marketing und KI an.</p>
         </div>
         <div class="bild"><img src="Martin.webp" alt="Martin Thun" loading="lazy" decoding="async"></div>
       </article>
-    </section>
-
-    <!-- ===== Der Unterschied ===== -->
-    <section class="sec" id="unterschied" data-halt data-seite="right">
-      <span class="kartenmotiv motiv-palmen" aria-hidden="true"></span>
-      <div class="sec-head">
-        <div class="kopfzeile">
-          <p class="eyebrow">Im Vergleich</p>
-          <h2 class="display">Wir sind mit Herzblut dabei und liefern</h2>
-        </div>
-      </div>
-
-      <div class="vergleich">
-        <div class="kopf">
-          <div>&nbsp;</div><div>Übliche Hotel-Agentur</div><div>Katrin &amp; Martin</div>
-        </div>
-        <div class="zeile"><div class="merkmal">Wer dich berät</div><div class="andere">Ein Account Manager, der noch nie hinter einer Rezeption gestanden hat</div><div class="wir">Wir kennen die Branche von der Plattformseite und die Denkweise von Hoteliers durch jahrelange enge Zusammenarbeit.</div></div>
-        <div class="zeile"><div class="merkmal">Was es zusätzlich kostet</div><div class="andere">Pflicht-Werbebudget ab 60 Euro pro Tag und Kanal, also rund 1.800 Euro im Monat obendrauf</div><div class="wir">Kein Werbebudget nötig. Was wir bauen, gehört dir und läuft auch ohne laufende Anzeigenkosten weiter</div></div>
-        <div class="zeile"><div class="merkmal">Strategischer Ansatz</div><div class="andere">Mehr Direktbuchungen – oft unter Einsatz von zusätzlichem Werbebudget</div><div class="wir">Ein Ziel: mehr Profit durch eigene Kanäle und eine eigene Gästedatenbank. OTAs werden nicht um jeden Preis gemieden, sondern smart in die Strategie eingebunden, um den Gesamtprofit zu erhöhen.</div></div>
-        <div class="zeile"><div class="merkmal">Hausgröße</div><div class="andere">Bieten die gleichen Lösungen für kleine und große Hotels an</div><div class="wir">Spezialisierung auf Häuser mit 10 bis 50 Zimmern. Andere Größe, andere Herausforderungen.</div></div>
-        <div class="zeile"><div class="merkmal">Philosophie</div><div class="andere">Du bist ein Kunde von vielen. Reines Fließbandgeschäft.</div><div class="wir">Wir arbeiten nur mit wenigen selektierten Partnern zusammen, bei denen das Zwischenmenschliche zu 100 Prozent stimmt. Unsere Lösungen sind maßgeschneidert auf DICH.</div></div>
-      </div>
     </section>
 
     <!-- ===== So geht es weiter ===== -->
@@ -1001,17 +917,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   },{ threshold:.14, rootMargin:"0px 0px -60px 0px" });
   document.querySelectorAll(".fade, .punkt").forEach(function(el){ beobachter.observe(el); });
 
-  var zeilen = [].slice.call(document.querySelectorAll(".vergleich .zeile"));
-  var zeilenBeobachter = new IntersectionObserver(function(eintraege){
-    eintraege.forEach(function(e){
-      if(!e.isIntersecting) return;
-      e.target.style.transitionDelay = (zeilen.indexOf(e.target) * 80) + "ms";
-      e.target.classList.add("in");
-      zeilenBeobachter.unobserve(e.target);
-    });
-  },{ threshold:.3 });
-  zeilen.forEach(function(z){ zeilenBeobachter.observe(z); });
-
   /* ---------- Kopfzeile und Fortschritt ---------- */
   var topbar = document.getElementById("topbar"), prog = document.getElementById("prog");
   function kopfzeile(){
@@ -1019,26 +924,6 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     var max = document.documentElement.scrollHeight - window.innerHeight;
     prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
   }
-
-  /* ---------- Zahlen hochzählen ---------- */
-  var format0 = new Intl.NumberFormat("de-DE",{ maximumFractionDigits:0 });
-  var zahlenBlock = document.getElementById("zahlen"), gezaehlt = false;
-  if(zahlenBlock) new IntersectionObserver(function(eintraege){
-    eintraege.forEach(function(e){
-      if(!e.isIntersecting || gezaehlt) return;
-      gezaehlt = true;
-      zahlenBlock.querySelectorAll("[data-zahl]").forEach(function(el){
-        var ziel = parseFloat(el.getAttribute("data-zahl")), suffix = el.getAttribute("data-suffix") || "";
-        if(sparsam){ el.textContent = format0.format(ziel) + suffix; return; }
-        var start = performance.now();
-        (function schritt(jetzt){
-          var p = Math.min(1,(jetzt - start)/1150);
-          el.textContent = format0.format(Math.round(ziel * (1 - Math.pow(1 - p,3)))) + suffix;
-          if(p < 1) requestAnimationFrame(schritt);
-        })(start);
-      });
-    });
-  },{ threshold:.45 }).observe(zahlenBlock);
 
   /* ============================================================
      Die Route
@@ -1225,9 +1110,8 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       punkte.push({ x:x, y:yHalt });
       marken.push({ x:x, y:yHalt, ziel:false });
 
-      /* Auf schmalen Fenstern macht die Spur im Hero einen Schlenker:
-         nach dem Rechner an den rechten Rand, am Zahlenband vorbei und
-         danach zurueck an den linken. */
+      /* Auf schmalen Fenstern bleibt die Spur im Hero links neben dem
+         Rechner, damit sie nicht durch die Überschrift oder Eingaben läuft. */
       if(breite < 1180){
         var y0 = function(el,anteil){
           var b = el.getBoundingClientRect();
@@ -1237,15 +1121,13 @@ footer nav a:hover{border-bottom-color:var(--flame)}
            der Sektion. Ein eigener Punkt dafuer laege zu dicht darunter
            und die Kurve wuerde nach oben ausschlagen. */
         if(sek.classList.contains("hero")){
-          var rechner = sek.querySelector(".rechner"), band = sek.querySelector("#zahlen");
-          if(rechner && band){
+          var rechner = sek.querySelector(".rechner");
+          if(rechner){
             /* Zwei Haltepunkte links auf Höhe des Rechners. Ohne sie beginnt
                die Kurve schon oben im Hero auszuscheren und die Spur liefe
                quer durch die Überschrift. */
             punkte.push({ x:bahn.left, y:y0(rechner,.45) });
             punkte.push({ x:bahn.left, y:y0(rechner,1) + 8 });
-            punkte.push({ x:bahn.aussen, y:y0(band,0) - 10 });
-            punkte.push({ x:bahn.aussen, y:y0(band,1) - 6 });
           }
         }
         if(sek.id === "ueber-uns"){
@@ -1253,7 +1135,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
           var letzte = sek.querySelector(".person:last-of-type");
           if(anker && letzte){
             /* Nach dem Anker nach rechts, an beiden Portraits vorbei,
-               vor der Palmeninsel geht es ueber den Ausstieg zurueck. */
+               vor der folgenden Sektion geht es ueber den Ausstieg zurueck. */
             /* Direkt nach dem Anker nach rechts. Der Haltepunkt auf halber
                Ankerhöhe haelt die Kurve bis dahin senkrecht, sonst schert
                sie schon oberhalb aus und laeuft ueber das Motiv. */
