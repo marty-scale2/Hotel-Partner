@@ -9,7 +9,7 @@
 <meta property="og:title" content="Hotelfreunde">
   <meta property="og:description" content="Digitale Systeme für Hotels: Kosten sparen, Abhängigkeit von Reise-Plattformen reduzieren und die Auslastung ganzjährig erhöhen.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.hotel-partner.martinthun.com/">
+<meta property="og:url" content="https://hotelfreunde.com/">
 <title>Hotelfreunde</title>
 </head>
 <body>
@@ -503,7 +503,8 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.15)}
 .einw-knoepfe .ja{background:var(--flame);border-color:var(--flame-deep)}
 @media (max-width:700px){
   .einw-in{flex-direction:column;align-items:stretch;gap:10px;padding:12px 20px}
-  .einw-knoepfe button{flex:1 1 0;min-width:0;padding:10px 8px}
+  .einw-knoepfe{gap:6px}
+  .einw-knoepfe button{flex:1 1 0;min-width:0;padding:10px 4px;font-size:.78rem;white-space:nowrap}
 }
 
 /* ---------- Fusszeile ---------- */
@@ -909,11 +910,12 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   </footer>
 </div>
 
-<div class="einwilligung" id="einwilligung" role="region" aria-label="Einwilligung zur Reichweitenmessung" hidden>
+<div class="einwilligung" id="einwilligung" role="region" aria-label="Einwilligung zu Messung und Werbung" hidden>
   <div class="einw-in">
-    <p>Wir messen anonym, wie diese Seite genutzt wird, aber nur wenn du zustimmst. <a href="datenschutz.html">Datenschutz</a></p>
+    <p>Wir messen die Nutzung dieser Seite und werten unsere Werbeanzeigen aus, beides nur mit deiner Zustimmung. <a href="datenschutz.html">Datenschutz</a></p>
     <div class="einw-knoepfe">
       <button type="button" id="einwNein">Ablehnen</button>
+      <button type="button" id="einwNurStat">Nur Statistik</button>
       <button type="button" class="ja" id="einwJa">Akzeptieren</button>
     </div>
   </div>
@@ -1349,6 +1351,12 @@ footer nav a:hover{border-bottom-color:var(--flame)}
         hinweis.classList.add("gut");
         hinweis.textContent = "Danke, wir melden uns innerhalb von zwei Werktagen.";
         formular.reset();
+        /* Die eigentliche Conversion. Ein Seitenaufruf sagt nichts
+           darueber, ob die Anzeige funktioniert hat, eine abgeschickte
+           Anfrage schon. Laeuft nur, wenn der Pixel geladen ist, also
+           nur mit Einwilligung. */
+        if(window.oaiq) window.oaiq("measure", "registration_completed", { type:"customer_action" });
+        if(window.gtag) window.gtag("event", "generate_lead");
       } else {
         hinweis.classList.add("schlecht");
         hinweis.textContent = "Das hat leider nicht geklappt. Schreib uns bitte direkt an mt@martinthun.com.";
@@ -1365,13 +1373,22 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   });
 
   /* ============================================================
-     Einwilligung. Analytics wird erst geladen, wenn zugestimmt wurde.
-     Die Entscheidung liegt im lokalen Speicher, das ist nach
+     Einwilligung. Zwei getrennte Zwecke, weil Reichweitenmessung und
+     Werbung rechtlich nicht dasselbe sind und einzeln waehlbar sein
+     muessen. Vor der Zustimmung wird nichts geladen und nichts
+     gesetzt, weder Google noch OpenAI.
+
+     Der Schluessel traegt die Fassung im Namen. Wer frueher nur der
+     anonymen Messung zugestimmt hat, hat damit nicht in Werbe-
+     Tracking eingewilligt, deshalb wird bei Fassung 2 neu gefragt.
+
+     Die Entscheidung selbst liegt im lokalen Speicher, das ist nach
      § 25 Abs. 2 TDDDG ohne Einwilligung zulaessig, weil sie fuer die
      ausdruecklich gewuenschte Funktion noetig ist.
      ============================================================ */
-  var GA_MESS_ID = "G-Y8N1RDLZ04";
-  var EINW_SCHLUESSEL = "hp-einwilligung-1";
+  var GA_MESS_ID   = "G-Y8N1RDLZ04";                /* Google Analytics 4  */
+  var OAI_PIXEL_ID = "XrSjt7ukd6VXH8t2fLC3FD";      /* ChatGPT Ads (OpenAI) */
+  var EINW_SCHLUESSEL = "hp-einwilligung-2";
   var kasten = document.getElementById("einwilligung");
 
   function einwLesen(){
@@ -1380,10 +1397,12 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       return roh ? JSON.parse(roh) : null;
     }catch(e){ return null; }
   }
-  function einwSchreiben(statistik){
+  function einwSchreiben(statistik, marketing){
     try{
+      localStorage.removeItem("hp-einwilligung-1");   /* Leiche der Vorfassung */
       localStorage.setItem(EINW_SCHLUESSEL, JSON.stringify({
-        statistik: !!statistik, zeit: new Date().toISOString(), fassung: 1
+        statistik: !!statistik, marketing: !!marketing,
+        zeit: new Date().toISOString(), fassung: 2
       }));
     }catch(e){}
   }
@@ -1399,32 +1418,52 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     window.gtag("js", new Date());
     window.gtag("config", GA_MESS_ID, { anonymize_ip:true });
   }
+  /* OpenAI-Pixel. Der Einrichtungscode gehoert laut OpenAI in den Kopf
+     der Seite, das geht hier bewusst nicht: dort wuerde er vor der
+     Zustimmung laden. Stattdessen erst hier, nach der Entscheidung.
+     debug ist absichtlich nicht gesetzt, das ist ein Testschalter. */
+  function pixelLaden(){
+    if(!OAI_PIXEL_ID || window.__oaiGeladen) return;
+    window.__oaiGeladen = true;
+    !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+    window.oaiq("init", { pixelId: OAI_PIXEL_ID });
+    window.oaiq("measure", "page_viewed", { type:"contents" });
+  }
   function einwZeigen(){
     if(!kasten) return;
     kasten.hidden = false;
   }
-  function einwSchliessen(statistik){
-    einwSchreiben(statistik);
-    if(statistik) analyticsLaden();
+  function einwAnwenden(stand){
+    if(!stand) return;
+    if(stand.statistik) analyticsLaden();
+    if(stand.marketing) pixelLaden();
+  }
+  function einwSchliessen(statistik, marketing){
+    einwSchreiben(statistik, marketing);
+    einwAnwenden({ statistik:statistik, marketing:marketing });
     if(kasten) kasten.hidden = true;
   }
 
   if(kasten){
-    document.getElementById("einwNein").addEventListener("click", function(){ einwSchliessen(false); });
-    document.getElementById("einwJa").addEventListener("click", function(){ einwSchliessen(true); });
+    document.getElementById("einwNein").addEventListener("click", function(){ einwSchliessen(false, false); });
+    document.getElementById("einwNurStat").addEventListener("click", function(){ einwSchliessen(true, false); });
+    document.getElementById("einwJa").addEventListener("click", function(){ einwSchliessen(true, true); });
 
     var stand = einwLesen();
     if(!stand) einwZeigen();
-    else if(stand.statistik) analyticsLaden();
+    else einwAnwenden(stand);
   }
 
-  /* Widerruf jederzeit ueber den Link in der Fusszeile */
+  /* Widerruf jederzeit ueber den Link in der Fusszeile. Impressum und
+     Datenschutz zeigen mit #cookie hierher, damit der Widerruf auch von
+     dort aus erreichbar ist und nicht nur von der Startseite. */
   var widerruf = document.getElementById("einwOeffnen");
   if(widerruf) widerruf.addEventListener("click", function(ev){
     ev.preventDefault();
     einwZeigen();
     kasten.scrollIntoView({ block:"nearest" });
   });
+  if(location.hash === "#cookie") einwZeigen();
 })();
 </script>
 </body>

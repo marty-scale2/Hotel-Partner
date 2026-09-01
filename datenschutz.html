@@ -114,6 +114,9 @@ address{font-style:normal;color:var(--ink-2);line-height:1.75}
 .stand{margin-top:var(--s3);font-size:.88rem;color:var(--muted)}
 .recht code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:var(--paper-2);padding:1px 5px;border-radius:3px}
 .merke{border-left:3px solid var(--flame);padding:var(--s3) 0 var(--s3) var(--s4);color:var(--ink);font-weight:500}
+.recht ul{margin:0;padding-left:1.15em;color:var(--ink-2);display:flex;flex-direction:column;gap:var(--s2)}
+.recht li::marker{color:var(--flame)}
+.recht li b{color:var(--ink)}
 
 footer{margin-top:var(--s8);border-top:2px solid var(--kante);background:var(--paper)}
 footer .in{max-width:var(--shell);margin:0 auto;padding:var(--s6) 24px;display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between;align-items:center}
@@ -134,7 +137,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
   <div class="kopf">
     <p class="eyebrow">Rechtliches</p>
     <h1>Datenschutzerklärung</h1>
-    <p class="stand">Stand: 30. August 2026</p>
+    <p class="stand">Stand: 1. September 2026</p>
   </div>
 
   <div class="recht">
@@ -191,8 +194,13 @@ footer nav a:hover{border-bottom-color:var(--flame)}
     <section class="block">
       <h2>Cookies und Einwilligung</h2>
       <p class="merke">Ohne Ihre Zustimmung wird nichts geladen und nichts auf Ihrem Gerät gespeichert.</p>
-      <p>Technisch notwendig ist einzig Ihre Entscheidung selbst: Wenn Sie im Hinweis unten auf der Seite zustimmen oder ablehnen, speichern wir diese Entscheidung im lokalen Speicher Ihres Browsers (Schlüssel <code>hp-einwilligung-1</code>) zusammen mit dem Zeitpunkt. Nur so müssen wir Sie nicht bei jedem Aufruf erneut fragen. Rechtsgrundlage ist § 25 Abs. 2 TDDDG, da diese Speicherung für die von Ihnen gewünschte Funktion unbedingt erforderlich ist.</p>
-      <p>Alles Weitere ist freiwillig und wird ausschließlich nach Ihrer ausdrücklichen Einwilligung geladen (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können Ihre Entscheidung jederzeit ändern, über den Link „Cookie-Einstellungen" in der Fußzeile. Ein Widerruf wirkt für die Zukunft.</p>
+      <p>Technisch notwendig ist einzig Ihre Entscheidung selbst: Wenn Sie im Hinweis unten auf der Seite zustimmen oder ablehnen, speichern wir diese Entscheidung im lokalen Speicher Ihres Browsers (Schlüssel <code>hp-einwilligung-2</code>) zusammen mit dem Zeitpunkt. Nur so müssen wir Sie nicht bei jedem Aufruf erneut fragen. Rechtsgrundlage ist § 25 Abs. 2 TDDDG, da diese Speicherung für die von Ihnen gewünschte Funktion unbedingt erforderlich ist.</p>
+      <p>Alles Weitere ist freiwillig und wird ausschließlich nach Ihrer ausdrücklichen Einwilligung geladen (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Wir unterscheiden dabei zwei Zwecke, denen Sie getrennt zustimmen können:</p>
+      <ul>
+        <li><b>Statistik.</b> Auswertung, wie diese Website genutzt wird, um sie zu verbessern. Betrifft Google Analytics, siehe unten.</li>
+        <li><b>Marketing.</b> Messung, ob unsere Werbeanzeigen zu einer Anfrage führen. Betrifft das Messinstrument von OpenAI, siehe unten.</li>
+      </ul>
+      <p>Mit der Schaltfläche „Nur Statistik" stimmen Sie ausschließlich dem ersten Zweck zu. Sie können Ihre Entscheidung jederzeit ändern, über den Link „Cookie-Einstellungen" in der Fußzeile. Ein Widerruf wirkt für die Zukunft.</p>
 
     </section>
 
@@ -202,6 +210,15 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       <p>Google Analytics verarbeitet dabei unter anderem Ihre gekürzte IP-Adresse, die aufgerufenen Seiten, Verweildauer sowie Angaben zu Browser und Endgerät. Die IP-Anonymisierung ist aktiviert. Zweck ist die Auswertung der Nutzung dieser Website, um sie zu verbessern.</p>
       <p>Eine Übermittlung von Daten in die USA kann dabei nicht ausgeschlossen werden. Google hat sich dem EU-US Data Privacy Framework unterworfen. Mit Google besteht ein Vertrag zur Auftragsverarbeitung.</p>
       <p>Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Google</a> und <a href="https://support.google.com/analytics/answer/6004245?hl=de" target="_blank" rel="noopener noreferrer">Hinweise zu Google Analytics</a>.</p>
+    </section>
+
+    <section class="block">
+      <h2>OpenAI Messinstrument (ChatGPT Ads)</h2>
+      <p>Sofern Sie im Einwilligungshinweis der Kategorie „Marketing" zustimmen, setzen wir ein Messinstrument der OpenAI OpCo, LLC, 1455 3rd Street, San Francisco, CA 94158, USA, ein. Es gehört zum Werbeprogramm von ChatGPT. Ohne Ihre Zustimmung wird das Skript nicht geladen und es werden keine Werbe-Cookies gesetzt. Wenn Sie „Ablehnen" oder „Nur Statistik" wählen, findet keinerlei Verbindung zu OpenAI statt.</p>
+      <p>Zweck ist ausschließlich die Erfolgsmessung unserer Werbung: Wir möchten erkennen, ob Besucher, die über eine unserer Anzeigen kommen, anschließend eine Anfrage über das Kontaktformular stellen. Verarbeitet werden dabei unter anderem Ihre IP-Adresse, Angaben zu Browser und Endgerät, die aufgerufene Seite, der Zeitpunkt sowie eine im Browser gespeicherte Kennung, über die ein Seitenaufruf einer Anzeige zugeordnet werden kann.</p>
+      <p>Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen, über den Link „Cookie-Einstellungen" in der Fußzeile.</p>
+      <p>OpenAI hat seinen Sitz in den USA, eine Übermittlung Ihrer Daten dorthin findet statt. Die USA gelten nach einem Angemessenheitsbeschluss der EU-Kommission grundsätzlich als sicheres Drittland, soweit sich das empfangende Unternehmen dem EU-US Data Privacy Framework unterworfen hat. Wir weisen darauf hin, dass US-Behörden unter bestimmten Voraussetzungen Zugriff auf dort gespeicherte Daten nehmen können und dass Ihnen insoweit möglicherweise nicht dieselben Rechtsmittel zur Verfügung stehen wie in der EU.</p>
+      <p>Weitere Informationen: <a href="https://openai.com/policies/row-privacy-policy/" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von OpenAI</a>.</p>
     </section>
 
     <section class="block">
@@ -256,6 +273,7 @@ footer nav a:hover{border-bottom-color:var(--flame)}
       <a href="index.html">Startseite</a>
       <a href="impressum.html">Impressum</a>
       <a href="datenschutz.html">Datenschutz</a>
+      <a href="index.html#cookie">Cookie-Einstellungen</a>
     </nav>
   </div>
 </footer>
