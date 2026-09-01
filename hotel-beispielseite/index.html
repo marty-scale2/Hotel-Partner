@@ -1,248 +1,103 @@
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="de" class="has-js">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Landhotel Sonnenhof</title>
-<style>
-  :root{
-    --grün:#1f5c4a; --grün-dunkel:#163f33; --creme:#f7f3ea; --text:#2b2b28; --linie:#e6ddc9;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--creme);color:var(--text);
-    font-family:Georgia,"Times New Roman",serif;line-height:1.65}
-  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
-
-  header.top{position:sticky;top:0;z-index:10;background:var(--creme);border-bottom:1px solid var(--linie);
-    padding:16px 0}
-  header.top .wrap{display:flex;align-items:center;justify-content:space-between}
-  .logo{font-size:19px;letter-spacing:.03em;white-space:nowrap}
-  .logo b{color:var(--grün-dunkel)}
-  nav a{color:var(--text);text-decoration:none;margin-left:22px;font-size:15px}
-  nav a:hover{color:var(--grün-dunkel)}
-
-  .hero{background:linear-gradient(160deg,var(--grün) 0%,var(--grün-dunkel) 100%);color:#f3f0e6;
-    padding:88px 0 76px;text-align:center}
-  .hero h1{margin:0 0 14px;font-size:40px;font-weight:400;letter-spacing:.01em}
-  .hero p{margin:0 auto;max-width:480px;font-size:17px;opacity:.9}
-  .hero .pfeil{margin-top:34px;font-size:13px;opacity:.7}
-
-  section{padding:56px 0}
-  section h2{font-size:26px;font-weight:400;margin:0 0 8px;color:var(--grün-dunkel)}
-  section .kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#8a8265;margin:0 0 6px}
-  section > p.lead{max-width:620px;font-size:16.5px}
-
-  .zimmer{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
-  .zimmer .karte{background:#fff;border:1px solid var(--linie);border-radius:10px;padding:22px}
-  .zimmer h3{margin:0 0 6px;font-size:18px;color:var(--grün-dunkel)}
-  .zimmer .preis{font-size:14px;color:#8a8265;margin:0 0 10px}
-  .zimmer p{font-size:14.5px;margin:0}
-
-  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
-
-  #buchen{background:#fff;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
-  form.buchung{background:var(--creme);border:1px solid var(--linie);border-radius:12px;padding:26px;margin-top:26px}
-  .zeile{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-  label{display:block;font-size:13px;margin-bottom:5px;color:#5c5646}
-  input,select,textarea{width:100%;padding:10px 12px;border:1px solid #d5cdb4;border-radius:7px;
-    background:#fff;color:var(--text);font-family:inherit;font-size:15px}
-  textarea{resize:vertical;min-height:80px;transition:background .5s,border-color .5s}
-  textarea.gefuellt{background:#eaf5ef;border-color:var(--grün)}
-  .hinweis-feld{font-size:12px;color:#8a8265;margin:5px 0 0}
-  button.absenden{margin-top:6px;padding:14px 22px;border:0;border-radius:8px;background:var(--grün-dunkel);
-    color:#fff;font-family:inherit;font-size:15.5px;cursor:pointer}
-  button.absenden:hover{background:var(--grün)}
-  .bestaetigung{display:none;margin-top:14px;padding:12px 14px;background:#eaf5ef;border:1px solid var(--grün);
-    border-radius:8px;font-size:14px;color:var(--grün-dunkel)}
-  .bestaetigung.zeigen{display:block}
-
-  footer{padding:36px 0 60px;text-align:center;font-size:13.5px;color:#8a8265}
-  footer .logo{color:#5c5646;margin-bottom:6px}
-
-  @media (max-width:720px){
-    .zimmer{grid-template-columns:1fr}
-    .zeile{grid-template-columns:1fr}
-    .split{grid-template-columns:1fr}
-    .hero h1{font-size:30px}
-    .wrap{padding:0 16px}
-    .logo{font-size:15px}
-    nav a{margin-left:10px;font-size:12px}
-  }
-
-  /* Demo-Auslöser für Vorführzwecke, kein Teil des Widgets */
-  .demo-trigger{position:fixed;right:18px;bottom:18px;z-index:999;background:#fff;color:var(--grün-dunkel);
-    border:1px solid var(--grün);border-radius:999px;padding:12px 18px;font-family:-apple-system,sans-serif;
-    font-size:13.5px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.15);cursor:pointer}
-  .demo-trigger span{display:block;font-weight:400;font-size:11px;color:#8a8265;margin-top:1px}
-</style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101a14">
+  <meta name="description" content="Landhotel Sonnenhof – ein stiller Rückzugsort zwischen Wald, Weite und warmer Gastlichkeit.">
+  <title>Landhotel Sonnenhof — Wo die Welt leiser wird</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23101a14'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23c9ad83'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="landhotel-sonnenhof.css">
 </head>
-<body>
-
-<header class="top">
-  <div class="wrap">
-    <div class="logo"><b>Landhotel</b> Sonnenhof</div>
-    <nav>
-      <a href="#zimmer">Zimmer</a>
-      <a href="#haus">Das Haus</a>
-      <a href="#buchen">Buchen</a>
-    </nav>
-  </div>
-</header>
-
-<div class="hero">
-  <div class="wrap">
-    <h1>Landhotel Sonnenhof</h1>
-    <p>Zwölf Zimmer am Waldrand, seit 1963 in Familienhand. Ruhe, gutes Essen und der Wald direkt vor der Tür.</p>
-    <div class="pfeil">↓ Zimmer und Preise</div>
-  </div>
-</div>
-
-<section id="zimmer">
-  <div class="wrap">
-    <p class="kicker">Übernachten</p>
-    <h2>Drei Zimmerarten, alle mit Frühstück</h2>
-    <div class="zimmer">
-      <div class="karte">
-        <h3>Einzelzimmer</h3>
-        <p class="preis">ab 89 € / Nacht</p>
-        <p>Zum Garten gelegen, ruhig, mit eigenem Bad und Schreibtisch.</p>
+<body class="is-loading">
+  <div class="preloader" aria-hidden="true"><div><i></i><span>Landhotel Sonnenhof</span></div></div>
+  <div class="scroll-progress" aria-hidden="true"></div><div class="cursor" aria-hidden="true"></div><div class="cursor-dot" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Hauptnavigation"><a href="#erleben">Erleben</a><a href="#zimmer">Zimmer</a><a href="#genuss">Genuss</a></nav>
+    <a class="brand" href="#top"><span>Sonnenhof</span><small>Landhotel · Seit 1963</small></a>
+    <a class="header-action" href="#buchen"><span>Aufenthalt planen</span></a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true"><img src="img/hero-1.webp" alt="" fetchpriority="high"></div>
+      <span class="hero-side">48° Nord · direkt am Waldrand</span><span class="hero-scroll">Entdecken</span>
+      <div class="hero-content"><p class="eyebrow">Ein Hideaway zwischen Wald und Weite</p><h1 id="hero-title">Wo die Welt <em>leiser wird.</em></h1><p class="hero-lead">Zwölf Zimmer. Ein weiter Blick. Und Gastgeber, die wissen, dass wahrer Luxus manchmal einfach nur Ruhe bedeutet.</p></div>
+      <form class="quick-book" id="quickBook">
+        <label><span>Anreise</span><input type="date" id="quick-arrival" required></label><label><span>Abreise</span><input type="date" id="quick-departure" required></label>
+        <label class="quick-guests"><span>Gäste</span><select id="quick-guests"><option>2 Gäste</option><option>1 Gast</option><option>3 Gäste</option><option>4 Gäste</option></select></label><button type="submit">Verfügbarkeit prüfen</button>
+      </form>
+    </section>
+    <section class="intro" aria-labelledby="intro-title"><div class="intro-grid">
+      <p class="section-tag reveal">Der Sonnenhof</p><div class="intro-copy"><h2 class="reveal" id="intro-title">Kein Ort zum <em>Abhaken.</em> Ein Ort zum Ankommen.</h2><div class="intro-bottom">
+        <p class="intro-text reveal d1">Dort, wo die Straße aufhört und der Wald beginnt, liegt ein Haus, das nie versucht hat, ein Resort zu sein. Bei uns riecht der Morgen nach Kaffee und Tannenholz, das Abendessen nach der Jahreszeit – und die Zeit nach gar nichts.</p>
+        <div class="signature reveal d2"><strong>Schön, dass Sie da sind.</strong><span>Familie Reuter · Gastgeber in dritter Generation</span></div>
+      </div></div>
+    </div></section>
+    <section class="mosaic" aria-label="Eindrücke vom Sonnenhof">
+      <figure class="mosaic-main reveal"><img src="img/h-f.webp" alt="Der Sonnenhof vor eindrucksvoller Bergkulisse" loading="lazy" data-parallax=".08"></figure>
+      <div class="mosaic-aside"><p class="mosaic-number reveal">1963</p><div><figure class="mosaic-small reveal d1"><img src="img/n1.webp" alt="Sonnenlicht fällt durch den stillen Wald" loading="lazy" data-parallax=".06"></figure><div class="mosaic-caption"><span>Am Waldrand</span><span>Ruhe inklusive</span></div><p class="mosaic-quote reveal">„Das beste Geräusch hier ist das, das fehlt.“</p></div></div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div><span>Waldluft <i></i> Langschläferfrühstück <i></i> Hausgemachte Küche <i></i> Zwölf Lieblingszimmer <i></i> Echte Gastfreundschaft <i></i></span><span>Waldluft <i></i> Langschläferfrühstück <i></i> Hausgemachte Küche <i></i> Zwölf Lieblingszimmer <i></i> Echte Gastfreundschaft <i></i></span></div></div>
+    <section class="experiences" id="erleben" aria-labelledby="experiences-title">
+      <header class="section-head">
+        <div><p class="section-tag reveal">Draußen sein</p><h2 class="reveal" id="experiences-title">Mehr Natur.<br>Weniger Müssen.</h2></div>
+        <p class="section-head-text reveal d1">Manche Tage brauchen keinen Plan. Nur feste Schuhe, eine Thermoskanne und die Gewissheit, dass abends ein warmer Platz auf Sie wartet.</p>
+      </header>
+      <div class="experience-grid">
+        <article class="experience reveal"><img src="img/n4.webp" alt="Wanderweg über den Bergen im Morgenlicht" loading="lazy"><div><span>01 · Direkt vom Haus</span><h3>Wege, die nichts verlangen.</h3><p>Drei markierte Routen beginnen vor unserer Haustür – vom stillen Waldspaziergang bis zur aussichtsreichen Tagestour.</p></div></article>
+        <article class="experience reveal d1"><img src="img/p1.webp" alt="Klarer Bergsee zwischen steilen Felsen" loading="lazy"><div><span>02 · 18 Minuten entfernt</span><h3>Wildes Wasser.</h3><p>Im Sommer kristallklar und kühl, im Herbst beinahe menschenleer. Wir verraten Ihnen die schönste Badestelle.</p></div></article>
+        <article class="experience reveal d2"><img src="img/p2.webp" alt="Sanfte Berglandschaft im goldenen Abendlicht" loading="lazy"><div><span>03 · Für Frühaufsteher</span><h3>Der erste Blick ins Tal.</h3><p>Kaffee in die Hand, Jacke über die Schultern, zehn Minuten bergauf. Mehr braucht es für einen guten Morgen nicht.</p></div></article>
       </div>
-      <div class="karte">
-        <h3>Doppelzimmer</h3>
-        <p class="preis">ab 129 € / Nacht</p>
-        <p>Vier Zimmer mit kleinem Balkon zur Talseite, der Rest zum Garten.</p>
+    </section>
+    <section class="rooms" id="zimmer" aria-labelledby="rooms-title">
+      <header class="section-head">
+        <p class="section-tag reveal">Unsere Zimmer</p>
+        <div><h2 class="reveal" id="rooms-title">Zwölfmal anders.<br>Immer Sonnenhof.</h2><p class="section-head-text reveal d1">Leinen, warmes Holz, gute Matratzen und der Blick dorthin, wo nichts blinkt. Jedes Zimmer ist ruhig. Einige sind ein bisschen ruhiger.</p></div>
+      </header>
+      <div class="room-grid">
+        <article class="room-card reveal" data-tilt><img src="img/z1.webp" alt="Helles Doppelzimmer mit großer Fensterfront" loading="lazy"><div class="room-top"><span>20–24 m²</span><span>2 Personen</span></div><div class="room-bottom"><h3>Waldzimmer</h3><div class="room-meta"><span>ab <strong>129 €</strong> / Nacht</span><a href="#buchen">Anfragen →</a></div></div></article>
+        <article class="room-card reveal d1" data-tilt><img src="img/z2.webp" alt="Gemütliches Zimmer mit warmen Holztönen" loading="lazy"><div class="room-top"><span>28–32 m²</span><span>2 Personen</span></div><div class="room-bottom"><h3>Talblick</h3><div class="room-meta"><span>ab <strong>159 €</strong> / Nacht</span><a href="#buchen">Anfragen →</a></div></div></article>
+        <article class="room-card reveal d2" data-tilt><img src="img/z3.webp" alt="Großzügige Suite mit Holzinterieur" loading="lazy"><div class="room-top"><span>38–45 m²</span><span>Bis 4 Personen</span></div><div class="room-bottom"><h3>Familiensuite</h3><div class="room-meta"><span>ab <strong>189 €</strong> / Nacht</span><a href="#buchen">Anfragen →</a></div></div></article>
       </div>
-      <div class="karte">
-        <h3>Familienzimmer</h3>
-        <p class="preis">ab 179 € / Nacht</p>
-        <p>Für bis zu vier Personen, Kinderbett auf Wunsch kostenlos.</p>
+      <div class="room-note reveal"><span>Alle Preise inklusive Frühstück, Parkplatz und ehrlicher Empfehlungen.</span><a class="text-link" href="#buchen">Mein Zimmer finden</a></div>
+    </section>
+    <section class="cinema" aria-label="Ausblick und Atmosphäre">
+      <img src="img/hero-4.webp" alt="Stiller Bergsee mit Hütte und Bergpanorama" loading="lazy" data-parallax=".055">
+      <div><h2 class="reveal">Einchecken. Ausatmen. Den Rest macht die Aussicht.</h2><p class="reveal d1">Kein Filter nötig · Blick vom Sonnenhof</p></div>
+    </section>
+    <section class="table-section" id="genuss" aria-labelledby="table-title"><div class="table-grid">
+      <div class="table-images reveal"><img src="img/e3.webp" alt="Warme, einladende Gaststube des Sonnenhofs" loading="lazy"><img src="img/e1.webp" alt="Sorgfältig angerichtetes saisonales Gericht" loading="lazy"></div>
+      <div class="table-copy">
+        <p class="section-tag reveal">Unsere Küche</p><h2 class="reveal" id="table-title">Vom Wald.<br><em>Auf den Tisch.</em></h2>
+        <p class="reveal d1">Abends kochen wir, was die Region und die Jahreszeit gerade am besten können. Ohne Chichi, aber mit guten Zutaten, viel Handwerk und der festen Überzeugung, dass Nachschlag ein Kompliment ist.</p>
+        <ul class="table-facts reveal d2"><li><strong>Morgens</strong><span>Frühstück von 7:30 bis 11:00 Uhr</span></li><li><strong>Abends</strong><span>Kleine Karte, täglich frisch gekocht</span></li><li><strong>Regional</strong><span>Produzenten aus höchstens 35 Kilometern</span></li></ul>
+        <a class="text-link reveal d3" href="#buchen">Einen Tisch mitbuchen</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="haus">
-  <div class="wrap split">
-    <div>
-      <p class="kicker">Das Haus</p>
-      <h2>Dort, wo die Straße aufhört</h2>
-      <p class="lead">Der Sonnenhof liegt am Rand des Dorfs, dahinter beginnt der Wald. Kein Fahrstuhl, keine
-      Konferenzräume, dafür eine Wirtsstube, in der abends noch selbst gekocht wird. Die Hälfte unserer Gäste
-      im Frühjahr war schon einmal da, manche seit über zwanzig Jahren.</p>
-      <p class="lead">Direkt am Haus beginnen drei markierte Wanderwege. Parkplätze sind kostenfrei und liegen
-      unmittelbar vor der Tür.</p>
-    </div>
-    <div>
-      <p class="kicker">Anreise</p>
-      <h2 style="font-size:20px">Kurz gefasst</h2>
-      <p class="lead">Über die B31 bis Abfahrt Waldshof, danach vier Kilometer bergauf. Vom Bahnhof holen wir
-      Sie nach Absprache ab. Telefon werktags 8 bis 19 Uhr, wir gehen selbst ran.</p>
-    </div>
-  </div>
-</section>
-
-<section id="buchen">
-  <div class="wrap">
-    <p class="kicker">Anfrage</p>
-    <h2>Zimmer anfragen</h2>
-    <p class="lead">Unverbindlich, wir melden uns innerhalb eines Tages mit einem Angebot zurück.</p>
-
-    <form class="buchung" onsubmit="return zeigeBestaetigung(event)">
-      <div class="zeile">
-        <div>
-          <label for="anreise">Anreise</label>
-          <input type="date" id="anreise" required>
+    </div></section>
+    <section class="voices" aria-label="Gästestimme"><div>
+      <p class="section-tag reveal">Stimmen aus dem Gästebuch</p><blockquote class="reveal">„Wir wollten drei Nächte bleiben. Am zweiten Morgen haben wir auf fünf verlängert.“</blockquote>
+      <cite class="reveal d1">Anna &amp; Henrik · Hamburg · Zu Gast im Mai</cite><div class="voice-dots"><i></i><i></i><i></i></div>
+    </div></section>
+    <section class="booking" id="buchen" aria-labelledby="booking-title"><div class="booking-inner">
+      <header class="booking-head"><h2 class="reveal" id="booking-title">Wann dürfen wir Sie erwarten?</h2><p class="reveal d1">Schicken Sie uns Ihre Wünsche. Wir antworten persönlich – meistens noch am selben Tag, immer mit dem besten verfügbaren Direktpreis.</p></header>
+      <form class="booking-form" onsubmit="return zeigeBestaetigung(event)">
+        <div class="booking-fields">
+          <label><span>Anreise</span><input type="date" id="anreise" required></label><label><span>Abreise</span><input type="date" id="abreise" required></label>
+          <label><span>Gäste</span><input type="number" id="personen" min="1" max="6" value="2" required></label><label><span>Lieblingszimmer</span><select id="kategorie"><option>Waldzimmer</option><option selected>Talblick</option><option>Familiensuite</option></select></label>
+          <label><span>Ihr Name</span><input type="text" id="name" autocomplete="name" required></label><label><span>E-Mail-Adresse</span><input type="email" id="email" autocomplete="email" required></label>
+          <label class="wide"><span>Was dürfen wir für Sie wissen?</span><textarea id="nachricht" placeholder="Ankunftszeit, Wünsche, Rabattcode …"></textarea></label>
         </div>
-        <div>
-          <label for="abreise">Abreise</label>
-          <input type="date" id="abreise" required>
-        </div>
-      </div>
-      <div class="zeile">
-        <div>
-          <label for="personen">Personen</label>
-          <input type="number" id="personen" min="1" max="6" value="2" required>
-        </div>
-        <div>
-          <label for="kategorie">Zimmerkategorie</label>
-          <select id="kategorie">
-            <option>Einzelzimmer</option>
-            <option selected>Doppelzimmer</option>
-            <option>Familienzimmer</option>
-          </select>
-        </div>
-      </div>
-      <div class="zeile">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" required>
-        </div>
-        <div>
-          <label for="email">E-Mail</label>
-          <input type="email" id="email" required>
-        </div>
-      </div>
-      <label for="nachricht">Nachricht / Bemerkungen</label>
-      <textarea id="nachricht" placeholder="Wünsche, Ankunftszeit, Rabattcode …"></textarea>
-      <p class="hinweis-feld">Hier hinein trägt sich ein Rabattcode automatisch ein, sobald einer eingelöst wird.</p>
-
-      <button class="absenden" type="submit">Anfrage senden</button>
-      <div class="bestaetigung" id="bestaetigung">
-        Danke für Ihre Anfrage. Diese Seite ist eine Demo, es wird nichts tatsächlich versendet.
-      </div>
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="logo">Landhotel Sonnenhof</div>
-  Talstraße 4 · Telefon werktags 8–19 Uhr · info@landhotel-sonnenhof-beispiel.de
-</footer>
-
-<button class="demo-trigger" type="button" id="demoBtn">
-  Popup jetzt zeigen
-  <span>Demo-Steuerung</span>
-</button>
-
-<!-- Einbindung des Direktbucher-Widgets -->
-<script src="widget.js" defer></script>
-
-<script>
-  // Nur für diese Beispielseite: Anfrageformular tut so, als würde es senden
-  function zeigeBestaetigung(e) {
-    e.preventDefault();
-    document.getElementById('bestaetigung').classList.add('zeigen');
-    return false;
-  }
-
-  // Nur für diese Beispielseite, nicht Teil des Widgets: sobald im Popup auf
-  // "Jetzt Code einlösen" geklickt wird, den Code automatisch ins Nachrichtenfeld
-  // der Buchungsanfrage übernehmen. Das Widget selbst kennt dieses Feld nicht,
-  // die Verknüpfung übernimmt die Website. Klick-Events aus dem Shadow DOM des
-  // Widgets laufen (composed) ganz normal bis zum document durch.
-  document.addEventListener('click', function (e) {
-    var pfad = e.composedPath ? e.composedPath() : [e.target];
-    var istCta = pfad.some(function (el) { return el.classList && el.classList.contains('dbw-cta'); });
-    if (!istCta) return;
-
-    var feld = document.getElementById('nachricht');
-    if (!feld) return;
-    if (feld.value.indexOf('DIREKT') === -1) {
-      feld.value = feld.value ? feld.value + '\nRabattcode: DIREKT' : 'Rabattcode: DIREKT';
-    }
-    feld.classList.add('gefuellt');
-    setTimeout(function () { feld.classList.remove('gefuellt'); }, 1800);
-  }, true);
-
-  // Demo-Steuerung: löst das Popup manuell aus, ohne auf Exit-Intent zu warten.
-  // Gehört nicht zum Widget und würde auf der echten Hotel-Website entfallen.
-  document.getElementById('demoBtn').addEventListener('click', function () {
-    // verhindert, dass ein zufälliger Exit-Intent während der Vorführung
-    // (Maus Richtung Tab-Leiste) das Popup ein zweites Mal aufreißt
-    try { sessionStorage.setItem('dbw_seen', '1'); } catch (e) {}
-    if (window.Direktbucher) window.Direktbucher.open();
-  });
-</script>
-
+        <aside class="booking-aside">
+          <ul><li>Bester Preis bei Direktanfrage</li><li>Kostenfreier Parkplatz am Haus</li><li>Persönliche Antwort statt Buchungsroboter</li><li>Kostenfrei stornierbar bis 7 Tage vorher</li></ul>
+          <div><button class="submit-button" type="submit">Unverbindlich anfragen</button><p class="form-note">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu. Dies ist eine Demo – es werden keine Daten übertragen.</p><div class="confirmation" id="bestaetigung" role="status">Vielen Dank. In einer echten Hotelwebsite wäre Ihre Anfrage jetzt persönlich bei Familie Reuter angekommen. Diese Demo versendet keine Daten.</div></div>
+        </aside>
+      </form>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-top"><div class="footer-brand">Landhotel<br>Sonnenhof<small>Wo die Welt leiser wird.</small></div><div><h3>Hier finden Sie uns</h3><p>Talstraße 4</p><p>79800 Waldshof</p><p>Schwarzwald</p></div><div><h3>Persönlich erreichbar</h3><a href="tel:+497700123456">+49 7700 123 456</a><a href="mailto:hallo@sonnenhof-demo.de">hallo@sonnenhof-demo.de</a><p>Werktags 8–19 Uhr</p></div></div>
+    <div class="footer-bottom"><span>© 2026 Landhotel Sonnenhof · Konzeptwebsite</span><span>Impressum · Datenschutz</span></div>
+  </footer>
+  <button class="demo-trigger" type="button" id="demoBtn">Direktbucher öffnen<small>Demo-Steuerung</small></button>
+  <script src="widget.js" defer></script><script src="landhotel-sonnenhof.js"></script>
 </body>
 </html>
