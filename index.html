@@ -3,15 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Digitale Systeme für Hotels: Kosten sparen, Abhängigkeit von Reise-Plattformen reduzieren und die Auslastung ganzjährig erhöhen.">
+  <meta name="description" content="Digitale Marketing-Systeme für inhabergeführte Hotels im DACH-Raum: mehr Direktbuchungen, weniger Portal-Abhängigkeit, ganzjährig höhere Auslastung, ganz ohne Pflicht-Werbebudget.">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#10181C">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='11' y='22' width='42' height='34' rx='5' fill='%2310181C'/%3E%3Cpath d='M17 28h30v22H17z' fill='%23FCFAF6'/%3E%3Cpath d='M32 22V8m0 2h18l-6 7 6 7H32' fill='none' stroke='%23F44316' stroke-width='5' stroke-linejoin='round'/%3E%3Crect x='22' y='34' width='7' height='8' fill='%23F44316'/%3E%3Crect x='35' y='34' width='7' height='8' fill='%23FFD04A'/%3E%3C/svg%3E">
-<meta property="og:title" content="Hotelfreunde">
-  <meta property="og:description" content="Digitale Systeme für Hotels: Kosten sparen, Abhängigkeit von Reise-Plattformen reduzieren und die Auslastung ganzjährig erhöhen.">
+<link rel="canonical" href="https://www.hotelfreunde.com/">
+<meta name="theme-color" content="#FCFAF6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F44316'/%3E%3Cpath d='M17 16h8v12h14V16h8v32h-8V35H25v13h-8z' fill='white'/%3E%3C/svg%3E">
+<meta property="og:site_name" content="Hotelfreunde">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Hotelfreunde – Mehr Direktbuchungen für Hotels">
+<meta property="og:description" content="Digitale Marketing-Systeme für inhabergeführte Hotels im DACH-Raum: mehr Direktbuchungen, weniger Portal-Abhängigkeit, ganz ohne Pflicht-Werbebudget.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.hotelfreunde.com/">
-<title>HOTELFREUNDE – Online-Marketing für Hotels</title>
+<meta property="og:image" content="https://www.hotelfreunde.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hotelfreunde – Mehr Direktbuchungen und höheren Profit mit Online Marketing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hotelfreunde – Mehr Direktbuchungen für Hotels">
+<meta name="twitter:description" content="Digitale Marketing-Systeme für inhabergeführte Hotels im DACH-Raum, ganz ohne Pflicht-Werbebudget.">
+<meta name="twitter:image" content="https://www.hotelfreunde.com/og-image.png">
+<title>HOTELFREUNDE – Mehr Direktbuchungen für Hotels</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Hotelfreunde",
+  "url": "https://www.hotelfreunde.com/",
+  "image": "https://www.hotelfreunde.com/og-image.png",
+  "description": "Digitale Marketing-Systeme für inhabergeführte Hotels im DACH-Raum: mehr Direktbuchungen, weniger Portal-Abhängigkeit.",
+  "areaServed": ["Deutschland", "Österreich", "Schweiz"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bahnhofstr. 2a",
+    "postalCode": "86500",
+    "addressLocality": "Kutzenhausen",
+    "addressCountry": "DE"
+  },
+  "founder": [
+    { "@type": "Person", "name": "Martin Thun" },
+    { "@type": "Person", "name": "Katrin Göschl" }
+  ]
+}
+</script>
 </head>
 <body>
 <style>
@@ -583,38 +616,34 @@ footer nav a:hover{border-bottom-color:var(--flame)}
 :root{--shell:1240px;--band:220px;--ink:#10181C;--ink-2:#48545B;--paper:#FCFAF6;--paper-2:#F2EADF;--flame:#F44316;--flame-deep:#B92B08;--sun:#FFD04A}
 body{background-color:var(--paper);background-image:radial-gradient(circle at 18% 24%,rgba(89,63,35,.055) 0 1px,transparent 1.45px),radial-gradient(circle at 78% 67%,rgba(89,63,35,.04) 0 1px,transparent 1.4px)}
 
-/* Kopfzeile: ruhig am Start, markant beim Scrollen. Kein Blur – das spart
-   auf Mobilgeraeten einen dauerhaft teuren Compositing-Effekt. */
+/* Kopfzeile: durchgehend hell und ruhig. */
 .topbar{backdrop-filter:none;background:rgba(252,250,246,.97);transition:background .25s ease,color .25s ease,border-color .25s ease}
-.topbar.stuck{background:rgba(16,24,28,.98);color:#fff;border-bottom-color:var(--flame)}
-.topbar.stuck .brand .wort .w1,.topbar.stuck .brand .logo-mark{color:#fff}
+.topbar.stuck{background:rgba(252,250,246,.98);color:var(--ink);border-bottom-color:var(--flame)}
 .topbar .in{padding-top:14px;padding-bottom:14px}
-.brand .wort{font-weight:800;letter-spacing:.07em}
+.brand{gap:0}
+.brand .wort{font-family:"Fraunces",Georgia,serif;font-size:1.72rem;font-weight:750;line-height:1;letter-spacing:-.045em;text-transform:none}
+.brand .wort .w1{color:var(--ink)}
+.brand .wort .w2{color:var(--flame)}
+.brand .brand-dot{color:var(--sun)}
 .btn{border:0;border-radius:5px;box-shadow:4px 4px 0 rgba(16,24,28,.24);font-weight:700;transition:background .18s ease,transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translate(-1px,-2px);box-shadow:6px 6px 0 rgba(16,24,28,.28)}
 .topbar.stuck .btn{box-shadow:3px 3px 0 rgba(255,208,74,.72)}
 
-/* Hero: ein eigener, dunkler Markenraum statt einer weiteren Papiersektion. */
-.hero{isolation:isolate;min-height:calc(100svh - 72px);padding-top:clamp(64px,8vw,112px);padding-bottom:clamp(72px,9vw,128px);display:flex;align-items:center;color:#fff}
-.hero::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 12% 18%,rgba(244,67,22,.23),transparent 32%),radial-gradient(circle at 88% 78%,rgba(255,208,74,.12),transparent 27%),linear-gradient(135deg,#172329 0%,#10181C 58%,#091014 100%);border-bottom:4px solid var(--flame)}
-.hero::after{content:"";position:absolute;z-index:-1;left:42%;right:calc(50% - 50vw);bottom:18%;height:1px;background:linear-gradient(90deg,rgba(255,208,74,.7),transparent)}
+/* Hero: heller Markenraum mit warmer, energiegeladener Tiefe. */
+.hero{isolation:isolate;min-height:calc(100svh - 72px);padding-top:clamp(64px,8vw,112px);padding-bottom:clamp(72px,9vw,128px);display:flex;align-items:center;color:var(--ink)}
+.hero::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 10% 16%,rgba(244,67,22,.12),transparent 30%),radial-gradient(circle at 92% 76%,rgba(255,208,74,.28),transparent 32%),linear-gradient(135deg,#FFFDF9 0%,#FFF9EF 56%,#FFF2D7 100%);border-bottom:4px solid var(--flame)}
+.hero::after{content:"";position:absolute;z-index:-1;left:42%;right:calc(50% - 50vw);bottom:18%;height:1px;background:linear-gradient(90deg,rgba(185,43,8,.28),transparent)}
 .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(400px,.65fr);gap:clamp(48px,5vw,72px);align-items:center}
-.hero-logo svg{width:74px;height:74px;color:#fff}
-.hero .eyebrow{color:var(--sun);font-size:.76rem}
+.hero .eyebrow{color:var(--flame-deep);font-size:.76rem}
 .hero h1.display{font-size:clamp(2.8rem,4vw,4rem);line-height:.94;letter-spacing:-.044em}
 .hero h1 .em{color:var(--flame)}
-.hero .lead{color:#CDD5D8;font-size:clamp(1.08rem,1.35vw,1.24rem);line-height:1.62;max-width:43ch}
+.hero .lead{color:var(--ink-2);font-size:clamp(1.08rem,1.35vw,1.24rem);line-height:1.62;max-width:43ch}
 .hero .acts{margin-top:var(--s5);padding-top:0}
 .hero .btn{padding:17px 27px;box-shadow:5px 5px 0 var(--sun)}
 .hero .btn:hover{box-shadow:8px 8px 0 var(--sun)}
-.hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:var(--s6);border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}
-.hero-proof span{padding:15px 15px 15px 0;border-right:1px solid rgba(255,255,255,.18);font-size:.73rem;line-height:1.38;letter-spacing:.045em;text-transform:uppercase;color:#AEB8BC}
-.hero-proof span:not(:first-child){padding-left:15px}
-.hero-proof span:last-child{border-right:0}
-.hero-proof b{display:block;color:#fff;font-size:.92rem;letter-spacing:0;text-transform:none;margin-bottom:2px}
 
 /* Rechner: klare Interaktionsflaeche mit starkem Ergebnis-Moment. */
-.hero .rechner{border:0;border-radius:10px;box-shadow:12px 12px 0 var(--sun),0 28px 70px rgba(0,0,0,.32);background:#fff;transform:rotate(.35deg)}
+.hero .rechner{border:1px solid rgba(16,24,28,.14);border-radius:10px;box-shadow:12px 12px 0 var(--sun),0 28px 70px rgba(16,24,28,.14);background:#fff;transform:rotate(.35deg)}
 .hero .rechner-in{padding:24px 28px;background:#fff;color:var(--ink);border-bottom:0;gap:12px}
 .hero .rechner-out{padding:24px 28px;background:var(--flame);color:#fff;position:relative;overflow:hidden}
 .hero .rechner-out::after{content:"";position:absolute;width:180px;height:180px;border:36px solid rgba(255,255,255,.08);border-radius:50%;right:-92px;bottom:-110px}
@@ -624,20 +653,20 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 .hero input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:10px}
 .hero input[type=range]::-moz-range-track{height:4px;border-radius:10px}
 
-/* Problemsektion: maximaler Kontrast als dramaturgischer Wendepunkt. */
-#weh{isolation:isolate;padding-top:clamp(78px,8vw,118px);padding-bottom:clamp(78px,8vw,118px);color:#fff}
-#weh::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:linear-gradient(135deg,#111B20,#0B1215);border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+/* Problemsektion: warmer Kontrast ohne dunkle Vollflaeche. */
+#weh{isolation:isolate;padding-top:clamp(78px,8vw,118px);padding-bottom:clamp(78px,8vw,118px);color:var(--ink)}
+#weh::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 8% 12%,rgba(244,67,22,.1),transparent 28%),linear-gradient(135deg,#FFF8ED,#F6E8D4);border-top:1px solid rgba(16,24,28,.1);border-bottom:1px solid rgba(16,24,28,.1)}
 .weh{grid-template-columns:minmax(320px,430px) 1fr;gap:clamp(48px,7vw,104px)}
 .weh .steht{top:120px;padding-top:0}
-#weh .eyebrow{color:var(--sun)}
-#weh h2.display{font-size:clamp(2.9rem,4.65vw,4.3rem);line-height:.95;color:#fff;max-width:8ch}
+#weh .eyebrow{color:var(--flame-deep)}
+#weh h2.display{font-size:clamp(2.9rem,4.65vw,4.3rem);line-height:.95;color:var(--ink);max-width:8ch}
 .weh .liste{gap:12px;padding-top:0}
-.punkt,.punkt:first-child{padding:24px;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:rgba(255,255,255,.035);transition:background .25s ease,border-color .25s ease,transform .25s ease}
-.punkt:hover{background:rgba(255,255,255,.07);border-color:rgba(255,208,74,.48);transform:translateX(5px)}
+.punkt,.punkt:first-child{padding:24px;border:1px solid rgba(16,24,28,.14);border-radius:8px;background:rgba(255,255,255,.72);box-shadow:0 12px 28px rgba(89,63,35,.06);transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.punkt:hover{background:#fff;border-color:rgba(244,67,22,.5);transform:translateX(5px)}
 .punkt .zahl{width:42px;height:42px;border:0;background:var(--flame);color:#fff;box-shadow:3px 3px 0 var(--sun)}
 .punkt.in .zahl{border:0;background:var(--flame)}
-.punkt h3{font-size:1.18rem;color:#fff}
-.punkt p{color:#AEB9BE;font-size:.97rem}
+.punkt h3{font-size:1.18rem;color:var(--ink)}
+.punkt p{color:var(--ink-2);font-size:.97rem}
 
 /* Loesungen: groessere Editorial-Ueberschrift und substanziellere Karten. */
 #loesungen .sec-head .kopfzeile{max-width:570px}
@@ -659,13 +688,13 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 .person,.person.gedreht{grid-template-columns:1fr 1fr;gap:0;margin-top:clamp(72px,9vw,118px)}
 .person .bild{border:0;border-radius:12px;box-shadow:-16px 16px 0 var(--flame);position:relative;z-index:1}
 .person.gedreht .bild{box-shadow:16px 16px 0 var(--sun)}
-.person .tx,.person.gedreht .tx{max-width:none;margin:0;padding:clamp(34px,4.5vw,58px);background:var(--ink);color:#fff;border-radius:10px;position:relative;z-index:2;box-shadow:0 24px 60px rgba(16,24,28,.16)}
+.person .tx,.person.gedreht .tx{max-width:none;margin:0;padding:clamp(34px,4.5vw,58px);background:#fff;color:var(--ink);border:1px solid rgba(16,24,28,.14);border-radius:10px;position:relative;z-index:2;box-shadow:0 24px 60px rgba(16,24,28,.12)}
 .person .tx{margin-left:-34px}
 .person.gedreht .tx{margin-right:-34px}
-.person h3{font-size:clamp(2.5rem,4.2vw,4rem);color:#fff}
-.person p{color:#C3CDD1;font-size:1.08rem}
-.person p a{color:var(--sun)}
-.person .rolle{font-family:"Archivo",Arial,sans-serif;font-size:.73rem;font-weight:700;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;color:var(--sun)}
+.person h3{font-size:clamp(2.5rem,4.2vw,4rem);color:var(--ink)}
+.person p{color:var(--ink-2);font-size:1.08rem}
+.person p a{color:var(--flame-deep)}
+.person .rolle{font-family:"Archivo",Arial,sans-serif;font-size:.73rem;font-weight:700;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;color:var(--flame-deep)}
 
 /* Abschluss: klare Schritte, starkes Foto, ruhiges Formular. */
 #kontakt .sec-head .kopfzeile{max-width:800px}
@@ -684,15 +713,15 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 .formular .btn{padding:16px 25px}
 
 /* Cookie-Entscheidung als kompakte, hochwertige Leiste statt Seitenwand. */
-.einwilligung{left:50%;right:auto;bottom:14px;width:min(1120px,calc(100% - 28px));transform:translateX(-50%);background:var(--ink);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;box-shadow:0 22px 70px rgba(0,0,0,.28)}
+.einwilligung{left:50%;right:auto;bottom:14px;width:min(1120px,calc(100% - 28px));transform:translateX(-50%);background:#fff;color:var(--ink);border:1px solid rgba(16,24,28,.18);border-radius:10px;box-shadow:0 22px 70px rgba(16,24,28,.2)}
 .einw-in{padding:14px 16px}
-.einw-in p{color:#C7D0D4}
-.einw-in a{color:var(--sun)}
-.einw-knoepfe button{border:1px solid rgba(255,255,255,.28);border-radius:5px;background:transparent;color:#fff;min-width:108px}
+.einw-in p{color:var(--ink-2)}
+.einw-in a{color:var(--flame-deep)}
+.einw-knoepfe button{border:1px solid rgba(16,24,28,.3);border-radius:5px;background:transparent;color:var(--ink);min-width:108px}
 .einw-knoepfe .ja{background:var(--flame);border-color:var(--flame)}
 
-footer{background:var(--ink);color:#fff;border-top:4px solid var(--flame)}
-footer .wer p,footer nav a{color:#AFBABF}
+footer{background:#FFF7E9;color:var(--ink);border-top:4px solid var(--flame)}
+footer .wer p,footer nav a{color:var(--ink-2)}
 footer .wer b{font-size:1.45rem}
 
 @media (max-width:1179px){
@@ -718,11 +747,9 @@ footer .wer b{font-size:1.45rem}
 }
 @media (max-width:700px){
   main.shell{padding-left:52px;padding-right:20px}
+  .brand .wort{font-size:1.45rem}
   .hero{padding-right:0}
   .hero-logo svg{width:56px;height:56px}
-  .hero-proof{grid-template-columns:1fr}
-  .hero-proof span,.hero-proof span:not(:first-child){padding:11px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}
-  .hero-proof span:last-child{border-bottom:0}
   #weh{padding-top:70px;padding-bottom:74px}
   #weh h2.display,#loesungen h2.display,#ueber-uns h2.display,#kontakt h2.display{font-size:clamp(2.2rem,9.4vw,2.9rem)}
   .punkt,.punkt:first-child{padding:20px;gap:16px}
@@ -741,6 +768,7 @@ footer .wer b{font-size:1.45rem}
 }
 @media (max-width:420px){
   .topbar .in{padding-left:16px;padding-right:16px}
+  .brand .wort{font-size:1.28rem}
   .topbar .btn{font-size:.7rem;padding:9px 10px}
   .hero h1.display{font-size:2.2rem}
   .hero .lead{font-size:1.03rem}
@@ -753,7 +781,7 @@ footer .wer b{font-size:1.45rem}
 
 <header class="topbar" id="topbar">
   <div class="in">
-    <a class="brand" href="#oben"><svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 18V5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/><path d="M25.8 5.6h11.4l-3.7 3.5 3.7 3.5H25.8z" fill="var(--flame)"/><rect x="6" y="16.5" width="36" height="5" rx="2.5" fill="currentColor"/><path d="M10.5 21.5v18.2c0 1.3 1 2.3 2.3 2.3h22.4c1.3 0 2.3-1 2.3-2.3V21.5" fill="none" stroke="currentColor" stroke-width="2.8"/><rect x="15.5" y="27" width="6.5" height="6.5" rx="1.6" fill="var(--flame)"/><rect x="26" y="27" width="6.5" height="6.5" rx="1.6" fill="var(--flame)"/></svg><span class="wort"><span class="w1">Hotel</span><span class="w2">freunde</span></span></a>
+    <a class="brand" href="#oben" aria-label="Hotelfreunde – nach oben"><span class="wort"><span class="w1">Hotel</span><span class="w2">freunde</span><span class="brand-dot">.</span></span></a>
     <a class="btn" href="#kontakt">Kostenlose Analyse <span class="arw">→</span></a>
   </div>
   <div class="prog" id="prog"></div>
@@ -772,9 +800,6 @@ footer .wer b{font-size:1.45rem}
     <section class="sec hero" data-halt data-seite="left">
       <div class="hero-grid">
         <div>
-          <div class="hero-logo fade">
-            <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 18V5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" fill="none"/><path class="wimpel" d="M25.8 5.6h11.4l-3.7 3.5 3.7 3.5H25.8z" fill="var(--flame)"/><rect x="6" y="16.5" width="36" height="5" rx="2.5" fill="currentColor"/><path d="M10.5 21.5v18.2c0 1.3 1 2.3 2.3 2.3h22.4c1.3 0 2.3-1 2.3-2.3V21.5" fill="none" stroke="currentColor" stroke-width="2.8"/><rect class="fenster-a" x="15.5" y="27" width="6.5" height="6.5" rx="1.6" fill="var(--flame)"/><rect class="fenster-b" x="26" y="27" width="6.5" height="6.5" rx="1.6" fill="var(--flame)"/></svg>
-          </div>
           <p class="eyebrow">Für inhabergeführte Hotels im DACH-Raum</p>
           <h1 class="display">
             <span class="rvl"><span>Mehr Direktbuchungen</span></span>
@@ -784,11 +809,6 @@ footer .wer b{font-size:1.45rem}
         <p class="lead fade d1">Wir bauen dir digitale Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Auslastung ganzjährig erhöhst.</p>
           <div class="acts fade d2">
             <a class="btn" href="#kontakt">Zur kostenlosen Analyse <span class="arw">→</span></a>
-          </div>
-          <div class="hero-proof fade d3" aria-label="Unsere Erfahrung">
-            <span><b>7+ Jahre</b>Online-Marketing</span>
-            <span><b>OTA-Insiderwissen</b>aus der Hotellerie</span>
-            <span><b>100.000+</b>Menschen in der Community</span>
           </div>
         </div>
 
@@ -944,7 +964,7 @@ footer .wer b{font-size:1.45rem}
       </div>
 
       <article class="person fade">
-        <div class="bild"><img src="Katrin.jpg" alt="Katrin Göschl" loading="lazy" decoding="async"></div>
+        <div class="bild"><img src="Katrin.webp" alt="Katrin Göschl" loading="lazy" decoding="async"></div>
         <div class="tx">
           <p class="rolle">OTA &amp; Hotellerie</p>
           <h3>Katrin Göschl</h3>

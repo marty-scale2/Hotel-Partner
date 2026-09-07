@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /hotel-beispielseite/
+Disallow: /motive-archiv/
+
+Sitemap: https://www.hotelfreunde.com/sitemap.xml
