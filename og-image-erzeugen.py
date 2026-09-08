@@ -109,7 +109,7 @@ def bauen():
 
         # Eyebrow
         zeichne_getrackt(
-            d, (content_x, 168), "FÜR INHABERGEFÜHRTE HOTELS IM DACH-RAUM",
+            d, (content_x, 168), "INHABERGEFÜHRTE BOUTIQUE- & PRIVATHOTELS",
             archivo_bold_s, INK, tracking=3.2,
         )
 
