@@ -631,7 +631,7 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 
 /* Hero: heller Markenraum mit warmer, energiegeladener Tiefe. */
 .hero{isolation:isolate;min-height:calc(100svh - 72px);padding-top:clamp(64px,8vw,112px);padding-bottom:clamp(72px,9vw,128px);display:flex;align-items:center;color:var(--ink)}
-.hero::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 10% 16%,rgba(244,67,22,.12),transparent 30%),radial-gradient(circle at 92% 76%,rgba(255,208,74,.28),transparent 32%),linear-gradient(135deg,#FFFDF9 0%,#FFF9EF 56%,#FFF2D7 100%);border-bottom:4px solid var(--flame)}
+.hero::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 10% 16%,rgba(244,67,22,.12),transparent 30%),radial-gradient(circle at 92% 76%,rgba(255,208,74,.28),transparent 32%),linear-gradient(135deg,#FFFDF9 0%,#FFF9EF 56%,#FFF2D7 100%)}
 .hero::after{content:"";position:absolute;z-index:-1;left:42%;right:calc(50% - 50vw);bottom:18%;height:1px;background:linear-gradient(90deg,rgba(185,43,8,.28),transparent)}
 .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(400px,.65fr);gap:clamp(48px,5vw,72px);align-items:center}
 .hero .eyebrow{color:var(--flame-deep);font-size:.76rem}
@@ -655,7 +655,8 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 
 /* Problemsektion: warmer Kontrast ohne dunkle Vollflaeche. */
 #weh{isolation:isolate;padding-top:clamp(78px,8vw,118px);padding-bottom:clamp(78px,8vw,118px);color:var(--ink)}
-#weh::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 8% 12%,rgba(244,67,22,.1),transparent 28%),linear-gradient(135deg,#FFF8ED,#F6E8D4);border-top:1px solid rgba(16,24,28,.1);border-bottom:1px solid rgba(16,24,28,.1)}
+#weh::after{content:"";position:absolute;z-index:-2;pointer-events:none;top:calc(-1 * var(--band));height:calc(var(--band) + 8px);left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 88% 0,rgba(255,208,74,.24),transparent 38%),radial-gradient(circle at 8% 100%,rgba(244,67,22,.08),transparent 36%),linear-gradient(180deg,#FFF4DE 0%,#FFF9F1 46%,#FFF8ED 100%)}
+#weh::before{content:"";position:absolute;z-index:-1;top:-4px;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 8% 12%,rgba(244,67,22,.1),transparent 28%),linear-gradient(135deg,#FFF8ED,#F6E8D4);border-bottom:1px solid rgba(16,24,28,.1)}
 .weh{grid-template-columns:minmax(320px,430px) 1fr;gap:clamp(48px,7vw,104px)}
 .weh .steht{top:120px;padding-top:0}
 #weh .eyebrow{color:var(--flame-deep)}
