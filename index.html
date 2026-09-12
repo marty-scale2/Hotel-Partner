@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://www.hotelfreunde.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Hotelfreunde – Mehr Direktbuchungen und höheren Profit mit Online Marketing">
+<meta property="og:image:alt" content="Hotelfreunde – Mehr Direktbuchungen und weniger Kosten mit Online Marketing und KI">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hotelfreunde – Mehr Direktbuchungen für Hotels">
 <meta name="twitter:description" content="Digitale Marketing-Systeme für inhabergeführte Hotels im DACH-Raum, ganz ohne Pflicht-Werbebudget.">
@@ -212,9 +212,9 @@ p{margin:0}
 @media (max-width:620px){  .topbar .btn{padding:9px 13px;font-size:.8rem} }
 
 /* ============================================================
-   Route: hinter dem Inhalt, Seitenwechsel nur im leeren Band
+   Route: ueber den Flaechen, aber entlang der freien Randbahnen
    ============================================================ */
-.route{position:absolute;inset:0;width:100%;z-index:0;pointer-events:none;overflow:visible;display:none}
+.route{position:absolute;inset:0;width:100%;z-index:2;pointer-events:none;overflow:visible;display:none}
 .route .weg{fill:none;stroke:#B9AA94;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.42}
 .route .gegangen{fill:none;stroke:#5B4631;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:.78;transition:stroke-dashoffset .12s linear}
 .route .halt{fill:#806B52;stroke:var(--paper);stroke-width:4;opacity:.3;transition:opacity .35s ease,fill .35s ease}
@@ -619,19 +619,23 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 /* Kopfzeile: durchgehend hell und ruhig. */
 .topbar{backdrop-filter:none;background:rgba(252,250,246,.97);transition:background .25s ease,color .25s ease,border-color .25s ease}
 .topbar.stuck{background:rgba(252,250,246,.98);color:var(--ink);border-bottom-color:var(--flame)}
-.topbar .in{padding-top:14px;padding-bottom:14px}
+.topbar .in{padding-top:14px;padding-bottom:14px;display:grid;grid-template-columns:auto 1fr auto;align-items:center}
 .brand{gap:0}
 .brand .wort{font-family:"Fraunces",Georgia,serif;font-size:1.72rem;font-weight:750;line-height:1;letter-spacing:-.045em;text-transform:none}
 .brand .wort .w1{color:var(--ink)}
 .brand .wort .w2{color:var(--flame)}
 .brand .brand-dot{color:var(--sun)}
+.main-nav{justify-self:center;display:flex;align-items:center;gap:34px}
+.main-nav a{position:relative;padding:9px 0;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.main-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:2px;background:var(--flame);transition:right .2s ease}
+.main-nav a:hover::after,.main-nav a:focus-visible::after{right:0}
 .btn{border:0;border-radius:5px;box-shadow:4px 4px 0 rgba(16,24,28,.24);font-weight:700;transition:background .18s ease,transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translate(-1px,-2px);box-shadow:6px 6px 0 rgba(16,24,28,.28)}
 .topbar.stuck .btn{box-shadow:3px 3px 0 rgba(255,208,74,.72)}
 
 /* Hero: heller Markenraum mit warmer, energiegeladener Tiefe. */
 .hero{isolation:isolate;min-height:calc(100svh - 72px);padding-top:clamp(64px,8vw,112px);padding-bottom:clamp(72px,9vw,128px);display:flex;align-items:center;color:var(--ink)}
-.hero::before{content:"";position:absolute;z-index:-1;inset:0 calc(50% - 50vw);background:radial-gradient(circle at 10% 16%,rgba(244,67,22,.12),transparent 30%),radial-gradient(circle at 92% 76%,rgba(255,208,74,.28),transparent 32%),linear-gradient(135deg,#FFFDF9 0%,#FFF9EF 56%,#FFF2D7 100%)}
+.hero::before{content:"";position:absolute;z-index:-1;top:0;bottom:calc(-1 * var(--band));left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 10% 16%,rgba(244,67,22,.12),transparent 30%),radial-gradient(circle at 92% 76%,rgba(255,208,74,.28),transparent 32%),linear-gradient(135deg,#FFFDF9 0%,#FFF9EF 56%,#FFF2D7 100%)}
 .hero::after{content:"";position:absolute;z-index:-1;left:42%;right:calc(50% - 50vw);bottom:18%;height:1px;background:linear-gradient(90deg,rgba(185,43,8,.28),transparent)}
 .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(400px,.65fr);gap:clamp(48px,5vw,72px);align-items:center}
 .hero .eyebrow{color:var(--flame-deep);font-size:.76rem}
@@ -655,9 +659,8 @@ body{background-color:var(--paper);background-image:radial-gradient(circle at 18
 
 /* Problemsektion: warmer Kontrast ohne dunkle Vollflaeche. */
 #weh{isolation:isolate;padding-top:clamp(78px,8vw,118px);padding-bottom:clamp(78px,8vw,118px);color:var(--ink)}
-#weh::after{content:"";position:absolute;z-index:-2;pointer-events:none;top:calc(-1 * var(--band));height:calc(var(--band) + 8px);left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 88% 0,rgba(255,208,74,.24),transparent 38%),radial-gradient(circle at 8% 100%,rgba(244,67,22,.08),transparent 36%),linear-gradient(180deg,#FFF4DE 0%,#FFF9F1 46%,#FFF8ED 100%)}
-#weh::before{content:"";position:absolute;z-index:-1;top:-4px;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 8% 12%,rgba(244,67,22,.1),transparent 28%),linear-gradient(135deg,#FFF8ED,#F6E8D4);border-bottom:1px solid rgba(16,24,28,.1)}
-.weh{grid-template-columns:minmax(320px,430px) 1fr;gap:clamp(48px,7vw,104px)}
+#weh::before{content:"";position:absolute;z-index:0;pointer-events:none;top:calc(-1 * var(--band));bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:radial-gradient(circle at 8% 68%,rgba(244,67,22,.1),transparent 32%),linear-gradient(180deg,rgba(246,232,212,0) 0,rgba(246,232,212,.38) calc(var(--band) * .38),#F6E8D4 var(--band),#F6E8D4 100%)}
+.weh{position:relative;z-index:1;grid-template-columns:minmax(320px,430px) 1fr;gap:clamp(48px,7vw,104px)}
 .weh .steht{top:120px;padding-top:0}
 #weh .eyebrow{color:var(--flame-deep)}
 #weh h2.display{font-size:clamp(2.9rem,4.65vw,4.3rem);line-height:.95;color:var(--ink);max-width:8ch}
@@ -748,7 +751,10 @@ footer .wer b{font-size:1.45rem}
 }
 @media (max-width:700px){
   main.shell{padding-left:52px;padding-right:20px}
+  .topbar .in{grid-template-columns:1fr auto;row-gap:5px}
   .brand .wort{font-size:1.45rem}
+  .main-nav{grid-column:1/-1;grid-row:2;justify-self:start;gap:24px}
+  .main-nav a{padding:4px 0;font-size:.72rem}
   .hero{padding-right:0}
   .hero-logo svg{width:56px;height:56px}
   #weh{padding-top:70px;padding-bottom:74px}
@@ -783,6 +789,10 @@ footer .wer b{font-size:1.45rem}
 <header class="topbar" id="topbar">
   <div class="in">
     <a class="brand" href="#oben" aria-label="Hotelfreunde – nach oben"><span class="wort"><span class="w1">Hotel</span><span class="w2">freunde</span><span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <a href="#loesungen">Lösungen</a>
+      <a href="#ueber-uns">Über uns</a>
+    </nav>
     <a class="btn" href="#kontakt">Kostenlose Analyse <span class="arw">→</span></a>
   </div>
   <div class="prog" id="prog"></div>
@@ -804,8 +814,8 @@ footer .wer b{font-size:1.45rem}
           <p class="eyebrow">Für inhabergeführte Boutique- &amp; Privathotels</p>
           <h1 class="display">
             <span class="rvl"><span>Mehr Direktbuchungen</span></span>
-            <span class="rvl"><span>&amp; höheren Profit</span></span>
-            <span class="rvl"><span class="em">mit Online Marketing</span></span>
+            <span class="rvl"><span>&amp; weniger Kosten</span></span>
+            <span class="rvl"><span class="em">mit Online Marketing &amp; KI</span></span>
           </h1>
         <p class="lead fade d1">Wir bauen dir digitale Systeme, mit denen du Kosten sparst, die Abhängigkeit von Reise-Plattformen reduzierst und die Auslastung ganzjährig erhöhst.</p>
           <div class="acts fade d2">
@@ -1251,8 +1261,27 @@ footer .wer b{font-size:1.45rem}
         return;
       }
 
-      punkte.push({ x:x, y:yHalt });
-      marken.push({ x:x, y:yHalt, ziel:false });
+      /* Die Reise beginnt sichtbar direkt unter dem Hero-CTA. Von dort
+         faedelt sie sich weich in die Randbahn ein, statt oben aus dem
+         Browserrand zu kommen. */
+      if(index === 0 && sek.classList.contains("hero")){
+        var start = sek.querySelector(".acts .btn");
+        if(start){
+          var sr = start.getBoundingClientRect();
+          var startX = sr.left + sr.width / 2;
+          var startY = sr.bottom + window.scrollY - obenSeite + 24;
+          var einfaedelY = Math.min(unten - 42,startY + (breite < 1180 ? 72 : 110));
+          punkte.push({ x:startX, y:startY });
+          marken.push({ x:startX, y:startY, ziel:false });
+          punkte.push({ x:x, y:einfaedelY });
+        } else {
+          punkte.push({ x:x, y:yHalt });
+          marken.push({ x:x, y:yHalt, ziel:false });
+        }
+      } else {
+        punkte.push({ x:x, y:yHalt });
+        marken.push({ x:x, y:yHalt, ziel:false });
+      }
 
       /* Auf schmalen Fenstern bleibt die Spur im Hero links neben dem
          Rechner, damit sie nicht durch die Überschrift oder Eingaben läuft. */
@@ -1317,8 +1346,6 @@ footer .wer b{font-size:1.45rem}
     });
     if(!punkte.length) return;
     if(!endeY) endeY = hoehe;
-
-    punkte.unshift({ x:punkte[0].x, y:0 });
 
     var d = kurve(punkte);
     svg.setAttribute("viewBox","0 0 " + breite + " " + hoehe);
