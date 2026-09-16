@@ -7,9 +7,9 @@
   const progress = document.querySelector(".reading-progress");
   const parallaxStage = document.querySelector(".hero-stage");
   const parallaxLayers = [
-    { element: document.querySelector(".float-chat"), strength: 7 },
-    { element: document.querySelector(".float-mail"), strength: -5 },
-    { element: document.querySelector(".float-phone"), strength: 8 }
+    { element: document.querySelector(".float-chat"), strength: 18 },
+    { element: document.querySelector(".float-mail"), strength: -14 },
+    { element: document.querySelector(".float-phone"), strength: 22 }
   ];
   const number = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
   function closeMenu() {
@@ -39,7 +39,7 @@
     if (rect.bottom < 0 || rect.top > innerHeight) return;
     const distance = innerHeight / 2 - (rect.top + rect.height / 2);
     const parallaxProgress = Math.max(-1, Math.min(1, distance / innerHeight));
-    const mobileScale = innerWidth <= 640 ? 0.45 : 1;
+    const mobileScale = innerWidth <= 640 ? 0.55 : 1;
     parallaxLayers.forEach(({ element, strength }) => {
       element?.style.setProperty("--parallax-y", (parallaxProgress * strength * mobileScale).toFixed(2) + "px");
     });
