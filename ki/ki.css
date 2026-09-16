@@ -35,13 +35,14 @@
 
 /* Readability pass: supporting copy remains secondary without becoming tiny. */
 .eyebrow,.index{font-size:11px}
-#navigation a,.brand-division{font-size:13px}
+#navigation a,.brand-division{font-size:14px}
+.hero-lead{font-size:17px}
 .hero-footnote,.hero-footnote>span{font-size:12px}
 .benefit .index,.overview-tag,.metric-prefix,.case-kicker,.care-card .index{font-size:11px}
-.benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:15px}
-.metric a,.case-card .text-link,.care-deliverable,.care-footnote,.calc-formula,.team-company{font-size:11px}
-.source-note,.calculator-copy .calculator-disclaimer,.contact-signoff{font-size:13px!important}
-.case-card p,.care-deliverable span,.range-field label,.range-field output,.calc-result>span,.calc-result p,.form-intro,.contact-card-note,.site-footer>p,.site-footer nav a{font-size:13px}
+.benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.philosophy-copy>p+p,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:16px}
+.metric a,.case-card .text-link,.care-deliverable,.care-footnote,.calc-formula,.team-company{font-size:12px}
+.source-note,.calculator-copy .calculator-disclaimer,.contact-signoff{font-size:14px!important}
+.case-card p,.care-deliverable span,.range-field label,.range-field output,.calc-result>span,.calc-result p,.form-intro,.contact-card-note,.site-footer>p,.site-footer nav a{font-size:14px}
 .window-heading span:not(.online-dot),.chat-followup,.demo-choices button,.demo-footer,.email-toolbar,.mail-meta,.draft-label,.draft-button,.approval-badge,.transcript-label,.phone-transcript button{font-size:11px}
 .chat-bubble,.email-incoming p,.email-draft p{font-size:13px}
 .mini-title small,.mini-reply,.mini-pill{font-size:10px}
@@ -60,8 +61,8 @@
 .einw-knoepfe .ja:hover{background:var(--flame-deep)}
 
 @media(max-width:800px){
-  #navigation a{font-size:12px}
-  .benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:14px}
+  #navigation a{font-size:13px}
+  .benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.philosophy-copy>p+p,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:15px}
   .einw-in{align-items:stretch;flex-direction:column;gap:12px}
   .einw-knoepfe{display:grid;grid-template-columns:repeat(3,1fr)}
   .einw-knoepfe button{min-width:0}
