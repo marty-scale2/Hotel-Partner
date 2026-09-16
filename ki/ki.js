@@ -7,9 +7,9 @@
   const progress = document.querySelector(".reading-progress");
   const parallaxStage = document.querySelector(".hero-stage");
   const parallaxLayers = [
-    { element: document.querySelector(".float-chat"), strength: 18 },
-    { element: document.querySelector(".float-mail"), strength: -14 },
-    { element: document.querySelector(".float-phone"), strength: 22 }
+    { element: document.querySelector(".float-chat"), strength: 55 },
+    { element: document.querySelector(".float-mail"), strength: -40 },
+    { element: document.querySelector(".float-phone"), strength: 65 }
   ];
   const number = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
   function closeMenu() {
