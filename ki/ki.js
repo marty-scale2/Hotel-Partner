@@ -5,6 +5,12 @@
   const menuButton = document.querySelector(".menu-button");
   const navigation = document.getElementById("navigation");
   const progress = document.querySelector(".reading-progress");
+  const parallaxStage = document.querySelector(".hero-stage");
+  const parallaxLayers = [
+    { element: document.querySelector(".float-chat"), strength: 7 },
+    { element: document.querySelector(".float-mail"), strength: -5 },
+    { element: document.querySelector(".float-phone"), strength: 8 }
+  ];
   const number = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
   function closeMenu() {
     header.classList.remove("menu-open");
@@ -24,9 +30,24 @@
   document.addEventListener("click", (event) => { if (!header.contains(event.target)) closeMenu(); });
   window.matchMedia("(min-width: 641px)").addEventListener("change", closeMenu);
   let scrollQueued = false;
+  function updateParallax() {
+    if (reducedMotion.matches || !parallaxStage) {
+      parallaxLayers.forEach(({ element }) => element?.style.setProperty("--parallax-y", "0px"));
+      return;
+    }
+    const rect = parallaxStage.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > innerHeight) return;
+    const distance = innerHeight / 2 - (rect.top + rect.height / 2);
+    const parallaxProgress = Math.max(-1, Math.min(1, distance / innerHeight));
+    const mobileScale = innerWidth <= 640 ? 0.45 : 1;
+    parallaxLayers.forEach(({ element, strength }) => {
+      element?.style.setProperty("--parallax-y", (parallaxProgress * strength * mobileScale).toFixed(2) + "px");
+    });
+  }
   function updateProgress() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = "scaleX(" + (max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0) + ")";
+    updateParallax();
     scrollQueued = false;
   }
   window.addEventListener("scroll", () => {

@@ -73,3 +73,15 @@
   .einw-knoepfe{grid-template-columns:1fr}
   .einw-knoepfe button{padding:10px}
 }
+
+/* Subtle scroll depth for the three hero product cards. */
+.floating-panel{will-change:transform}
+.float-chat{transform:translate3d(0,var(--parallax-y,0px),0) rotate(-6deg) rotateY(8deg)}
+.float-mail{transform:translate3d(0,var(--parallax-y,0px),0) rotate(5deg) rotateY(-7deg)}
+.float-phone{transform:translate3d(0,var(--parallax-y,0px),0) rotate(-3deg)}
+@media(max-width:640px){
+  .float-chat{transform:translate3d(0,var(--parallax-y,0px),0) rotate(-6deg) scale(.92)}
+  .float-mail{transform:translate3d(0,var(--parallax-y,0px),0) rotate(6deg) scale(.9)}
+  .float-phone{transform:translate3d(0,var(--parallax-y,0px),0) rotate(-3deg) scale(.92)}
+}
+@media(prefers-reduced-motion:reduce){.float-chat,.float-mail,.float-phone{transform:none;will-change:auto}}
