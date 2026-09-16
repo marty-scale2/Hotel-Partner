@@ -32,3 +32,44 @@
 /* Allow narrow grid columns to shrink without horizontal overflow. */
 .product-section>*,.calculator-section>*,.contact-grid>*,.team-section>*{min-width:0}
 @media(max-width:360px){.contact-copy .section-title{font-size:34px}.contact-card{padding:24px 19px}.contact-card .form-submit{padding-inline:16px;gap:10px}}
+
+/* Readability pass: supporting copy remains secondary without becoming tiny. */
+.eyebrow,.index{font-size:11px}
+#navigation a,.brand-division{font-size:13px}
+.hero-footnote,.hero-footnote>span{font-size:12px}
+.benefit .index,.overview-tag,.metric-prefix,.case-kicker,.care-card .index{font-size:11px}
+.benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:15px}
+.metric a,.case-card .text-link,.care-deliverable,.care-footnote,.calc-formula,.team-company{font-size:11px}
+.source-note,.calculator-copy .calculator-disclaimer,.contact-signoff{font-size:13px!important}
+.case-card p,.care-deliverable span,.range-field label,.range-field output,.calc-result>span,.calc-result p,.form-intro,.contact-card-note,.site-footer>p,.site-footer nav a{font-size:13px}
+.window-heading span:not(.online-dot),.chat-followup,.demo-choices button,.demo-footer,.email-toolbar,.mail-meta,.draft-label,.draft-button,.approval-badge,.transcript-label,.phone-transcript button{font-size:11px}
+.chat-bubble,.email-incoming p,.email-draft p{font-size:13px}
+.mini-title small,.mini-reply,.mini-pill{font-size:10px}
+.site-footer{flex-wrap:wrap}.site-footer nav{flex-wrap:wrap}
+
+/* Same consent choices and visual hierarchy as on the main website. */
+.einwilligung{position:fixed;left:50%;bottom:14px;z-index:100;width:min(1120px,calc(100% - 28px));transform:translateX(-50%);background:#fff;color:var(--ink);border:1px solid #10181c2e;border-radius:10px;box-shadow:0 22px 70px #10181c33}
+.einwilligung[hidden]{display:none}
+.einw-in{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.einw-in p{font-size:13px;line-height:1.5;color:var(--muted)}
+.einw-in a{color:var(--flame-deep);text-underline-offset:4px;white-space:nowrap}
+.einw-knoepfe{display:flex;gap:8px;flex:0 0 auto}
+.einw-knoepfe button{min-width:108px;padding:11px 13px;border:1px solid #10181c4d;border-radius:5px;background:transparent;color:var(--ink);font-size:12px;font-weight:600}
+.einw-knoepfe button:hover{background:#f5f2ec}
+.einw-knoepfe .ja{background:var(--flame);border-color:var(--flame);color:#fff}
+.einw-knoepfe .ja:hover{background:var(--flame-deep)}
+
+@media(max-width:800px){
+  #navigation a{font-size:12px}
+  .benefit p,.principle p,.overview-card p,.section-heading>p,.product-copy>p:not(.eyebrow),.check-list,.center-heading>p:not(.eyebrow),.care-card>p,.calculator-copy>p:not(.eyebrow),.team-copy>p:not(.eyebrow),.contact-copy>p:not(.eyebrow){font-size:14px}
+  .einw-in{align-items:stretch;flex-direction:column;gap:12px}
+  .einw-knoepfe{display:grid;grid-template-columns:repeat(3,1fr)}
+  .einw-knoepfe button{min-width:0}
+}
+@media(max-width:520px){
+  .einwilligung{bottom:8px;width:calc(100% - 16px)}
+  .einw-in{padding:13px}
+  .einw-in p{font-size:12px}
+  .einw-knoepfe{grid-template-columns:1fr}
+  .einw-knoepfe button{padding:10px}
+}

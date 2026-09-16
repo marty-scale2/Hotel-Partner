@@ -108,4 +108,114 @@
   }
   sliders.forEach((slider) => slider.addEventListener("input", calculate));
   calculate();
+
+  // Shared consent state and services from the main Hotelfreunde website.
+  const consentKey = "hp-einwilligung-2";
+  const gaMeasurementId = "G-Y8N1RDLZ04";
+  const oaiPixelId = "XrSjt7ukd6VXH8t2fLC3FD";
+  const consentBanner = document.getElementById("einwilligung");
+  let activeConsent = { statistik: false, marketing: false };
+  let consentReturnFocus = null;
+  function readConsent() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(consentKey));
+      return saved && saved.fassung === 2 && typeof saved.statistik === "boolean" && typeof saved.marketing === "boolean" ? saved : null;
+    } catch (error) { return null; }
+  }
+  function loadAnalytics() {
+    if (window.__gaGeladen) return;
+    window.__gaGeladen = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", gaMeasurementId, { anonymize_ip: true });
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + gaMeasurementId;
+    document.head.appendChild(script);
+  }
+  function loadMarketing() {
+    if (window.__oaiGeladen) return;
+    window.__oaiGeladen = true;
+    if (!window.oaiq) {
+      const queue = function () { queue.q.push(arguments); };
+      queue.q = [];
+      window.oaiq = queue;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://bzrcdn.openai.com/sdk/oaiq.min.js";
+      document.head.appendChild(script);
+    }
+    window.oaiq("init", { pixelId: oaiPixelId });
+    window.oaiq("measure", "page_viewed", { type: "contents" });
+  }
+  function applyConsent(choice) {
+    if (!choice) return;
+    activeConsent = choice;
+    if (choice.statistik) loadAnalytics();
+    if (choice.marketing) loadMarketing();
+  }
+  function showConsent(moveFocus = false) {
+    if (!consentBanner) return;
+    consentBanner.hidden = false;
+    if (moveFocus) {
+      consentReturnFocus = document.activeElement;
+      document.getElementById("einwNein").focus({ preventScroll: true });
+    }
+  }
+  function clearAnalyticsCookies() {
+    const parts = location.hostname.split(".");
+    const domains = ["", location.hostname];
+    for (let index = 0; index < parts.length - 1; index += 1) domains.push("." + parts.slice(index).join("."));
+    document.cookie.split(";").forEach((cookie) => {
+      const name = cookie.split("=")[0].trim();
+      if (!/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) return;
+      domains.forEach((domain) => {
+        ["/", "/ki", "/ki/"].forEach((path) => {
+          document.cookie = name + "=; Max-Age=0; path=" + path + (domain ? "; domain=" + domain : "") + "; SameSite=Lax";
+        });
+      });
+    });
+  }
+  function saveConsent(statistik, marketing) {
+    const next = { statistik, marketing, zeit: new Date().toISOString(), fassung: 2 };
+    const withdrawal = (activeConsent.statistik && !statistik) || (activeConsent.marketing && !marketing);
+    try {
+      localStorage.removeItem("hp-einwilligung-1");
+      localStorage.setItem(consentKey, JSON.stringify(next));
+    } catch (error) { /* Without storage, the choice is requested again next visit. */ }
+    consentBanner.hidden = true;
+    if (withdrawal) {
+      window["ga-disable-" + gaMeasurementId] = true;
+      clearAnalyticsCookies();
+      location.reload();
+      return;
+    }
+    applyConsent(next);
+    if (consentReturnFocus) consentReturnFocus.focus({ preventScroll: true });
+  }
+  if (consentBanner) {
+    document.getElementById("einwNein").addEventListener("click", () => saveConsent(false, false));
+    document.getElementById("einwNurStat").addEventListener("click", () => saveConsent(true, false));
+    document.getElementById("einwJa").addEventListener("click", () => saveConsent(true, true));
+    document.getElementById("einwOeffnen").addEventListener("click", (event) => {
+      event.preventDefault();
+      showConsent(true);
+    });
+    const savedConsent = readConsent();
+    if (savedConsent) applyConsent(savedConsent); else showConsent();
+    if (location.hash === "#cookie") showConsent(true);
+    window.addEventListener("storage", (event) => {
+      if (event.key !== consentKey && event.key !== null) return;
+      const changedConsent = readConsent();
+      if ((activeConsent.statistik && !changedConsent?.statistik) || (activeConsent.marketing && !changedConsent?.marketing)) {
+        window["ga-disable-" + gaMeasurementId] = true;
+        clearAnalyticsCookies();
+        location.reload();
+      } else if (changedConsent) {
+        consentBanner.hidden = true;
+        applyConsent(changedConsent);
+      } else showConsent();
+    });
+  }
 })();
