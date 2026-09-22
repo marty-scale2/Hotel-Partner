@@ -1,0 +1,39 @@
+# HOTELFREUNDE, Serverregeln für All-Inkl (Apache)
+
+RewriteEngine On
+
+# 1. Immer verschlüsselt ausliefern, direkt auf die www-Adresse.
+#    Die zweite Bedingung fängt den Fall ab, dass SSL vor dem Webserver endet.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://www.hotelfreunde.com/$1 [R=301,L]
+
+# 2. Eine einzige Adresse. Die Seite führt www.hotelfreunde.com als kanonische
+#    Adresse (canonical, og:url, sitemap.xml), ohne www und alle anderen Namen
+#    landen deshalb dort. So hat es auch GitHub Pages bis zum Umzug gemacht.
+RewriteCond %{HTTP_HOST} !^www\.hotelfreunde\.com$ [NC]
+RewriteRule ^(.*)$ https://www.hotelfreunde.com/$1 [R=301,L]
+
+# 3. Keine Verzeichnislisten zeigen, falls mal eine Indexdatei fehlt.
+Options -Indexes
+
+# 4. Startseite festlegen.
+DirectoryIndex index.html
+
+# 5. WebP sicher als Bild ausliefern.
+AddType image/webp .webp
+
+# 6. Schriften und Bilder dürfen länger im Browser-Cache bleiben, HTML nicht.
+#    CSS und JS nur kurz, weil sie direkt in den Seiten stehen oder ohne
+#    Versionsnummer eingebunden sind.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
