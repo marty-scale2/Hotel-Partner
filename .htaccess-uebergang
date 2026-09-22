@@ -1,0 +1,14 @@
+# HOTELFREUNDE, Übergangsregeln für die Zeit zwischen DNS-Umstellung und SSL-Zertifikat
+#
+# Solange All-Inkl noch kein Zertifikat für die Domain hat, leitet der Server
+# https selbst auf http um. Die richtige .htaccess schickt http auf https,
+# zusammen wäre das eine Endlosschleife und die Seite nicht erreichbar.
+# Deshalb hier bewusst gar keine Weiterleitung.
+#
+# Hochladen mit:   python deploy-hotelfreunde.py --uebergang
+# Der nächste normale Deploy ersetzt sie automatisch durch die richtige .htaccess.
+# Diese Datei selbst wird nie ausgeliefert (Apache sperrt alles mit .ht am Anfang).
+
+Options -Indexes
+DirectoryIndex index.html
+AddType image/webp .webp

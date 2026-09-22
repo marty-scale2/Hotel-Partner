@@ -2,6 +2,10 @@
 
 RewriteEngine On
 
+# 0. Die Prüfanfragen von Let's Encrypt nie umleiten, sonst kann das
+#    SSL-Zertifikat nicht ausgestellt oder verlängert werden.
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+
 # 1. Immer verschlüsselt ausliefern, direkt auf die www-Adresse.
 #    Die zweite Bedingung fängt den Fall ab, dass SSL vor dem Webserver endet.
 RewriteCond %{HTTPS} !=on
