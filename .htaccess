@@ -24,8 +24,11 @@ Options -Indexes
 # 4. Startseite festlegen.
 DirectoryIndex index.html
 
-# 5. WebP sicher als Bild ausliefern.
+# 5. WebP sicher als Bild ausliefern, Text immer als UTF-8 (wie vorher bei
+#    GitHub Pages), damit Umlaute nie vom Browser erraten werden müssen.
 AddType image/webp .webp
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .css .js .xml .txt
 
 # 6. Schriften und Bilder dürfen länger im Browser-Cache bleiben, HTML nicht.
 #    CSS und JS nur kurz, weil sie direkt in den Seiten stehen oder ohne
