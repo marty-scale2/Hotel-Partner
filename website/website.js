@@ -152,6 +152,36 @@
     if (consentReturnFocus) consentReturnFocus.focus({ preventScroll: true });
   }
 
+  /* ---------- Umschalter monatlich / jährlich ----------
+     Die Karten tragen ihre Beträge als data-Attribute, damit die Preise
+     an einer Stelle stehen und nicht zwischen HTML und JS aufgeteilt
+     sind. Der Schalter ist im HTML auf hidden und wird erst hier
+     sichtbar: ohne JavaScript bleiben die Monatspreise stehen, statt
+     dass ein toter Schalter herumsteht. */
+  const billing = document.getElementById("abrechnung");
+  const planCards = [...document.querySelectorAll(".plan")];
+
+  function showPrices(mode) {
+    const yearly = mode === "jahr";
+    planCards.forEach((card) => {
+      const amount = card.querySelector(".plan-price strong");
+      const note = card.querySelector(".plan-year");
+      if (!amount) return;
+      amount.textContent = yearly ? card.dataset.jahrMtl : card.dataset.monat;
+      if (!note) return;
+      note.textContent = yearly
+        ? card.dataset.jahr + " einmal im Jahr statt " + card.dataset.vorher
+        : card.dataset.jahr + " statt " + card.dataset.vorher + " bei Vorauszahlung für 12 Monate";
+    });
+  }
+
+  if (billing && planCards.length) {
+    billing.hidden = false;
+    billing.addEventListener("change", (event) => {
+      if (event.target.name === "abrechnung") showPrices(event.target.value);
+    });
+  }
+
   /* ---------- Provisionsrechner ----------
      Gleiche Formel und derselbe vorsichtige Provisionssatz wie auf der
      Hauptseite, damit beide Seiten nie verschiedene Zahlen zeigen.
