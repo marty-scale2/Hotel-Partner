@@ -86,6 +86,8 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .proof-faces{display:flex;flex:0 0 auto}
 .proof-faces img{width:46px;height:46px;border:3px solid #fff;border-radius:50%;object-fit:cover;object-position:center 22%;box-shadow:0 4px 12px rgba(16,24,28,.12)}
 .proof-faces img+img{margin-left:-14px}
+.proof-body{display:flex;flex-direction:column;gap:5px}
+.proof-stars{color:var(--sun);font-size:.95rem;letter-spacing:.14em;line-height:1;text-shadow:0 1px 0 rgba(16,24,28,.14)}
 .hero-proof p{color:var(--ink-2);font-size:.9rem;line-height:1.5}
 .hero-proof strong{color:var(--ink)}
 .hero-acts{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
@@ -106,18 +108,20 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .mock-copy small{display:block;margin-bottom:10px;font-size:.62rem;letter-spacing:.16em}
 .mock-copy strong{font-family:Fraunces,Georgia,serif;font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:600;line-height:1;letter-spacing:-.035em}
 .float-card{position:absolute;border-radius:9px;background:#fff;box-shadow:0 18px 40px rgba(16,24,28,.18)}
-.float-book{right:-8px;bottom:0;display:grid;gap:2px;padding:13px 16px;border-left:4px solid var(--flame)}
-.float-book small{color:var(--flame-deep);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
-.float-book strong{font-size:.95rem}
-.float-book span{color:var(--muted);font-size:.78rem}
 .float-best{top:0;right:0;padding:9px 13px;background:var(--sun);font-family:Fraunces,Georgia,serif;font-size:.9rem;font-weight:700;transform:rotate(2deg)}
 
-.hero-strip{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(52px,7vw,84px);border-top:1px solid var(--line)}
-.hero-strip span,.hero-strip strong{padding:20px 0;color:var(--ink-2);font-size:.86rem;font-weight:500}
-.hero-strip span+span,.hero-strip strong{padding-left:24px;border-left:1px solid var(--line)}
-.hero-strip strong{color:var(--ink);font-weight:700}
+/* ---------- 2. Übergang: die Arbeitsteilung ----------
+   Drei Sätze, groß und untereinander. Jeder Satz fliegt einzeln ein, der
+   Versatz macht aus der Aufzählung eine Abfolge. Der dritte ist die
+   Pointe und steht deshalb in Flame. */
+.split-band{padding-block:clamp(96px,12vw,170px)}
+.split-line{max-width:20ch;font-family:Fraunces,Georgia,serif;font-size:clamp(2.1rem,6.4vw,4.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.08;text-wrap:balance}
+.split-line+.split-line{margin-top:clamp(10px,1.4vw,20px)}
+.split-punch{color:var(--flame)}
+.motion-enabled .split-line:nth-child(2){transition-delay:.13s}
+.motion-enabled .split-line:nth-child(3){transition-delay:.26s}
 
-/* ---------- 2. Hauptnutzen ---------- */
+/* ---------- 3. Hauptnutzen ---------- */
 .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:clamp(40px,5vw,60px)}
 .benefit{position:relative;padding:30px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:0 12px 28px rgba(89,63,35,.06);transition:transform .25s ease,border-color .25s ease}
 .benefit:hover{transform:translateY(-3px);border-color:rgba(244,67,22,.45)}
@@ -359,9 +363,7 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .nav-links,.brand-division{display:none}
   .nav-shell{justify-content:space-between}
   .benefits,.steps{grid-template-columns:1fr}
-  .hero-strip{grid-template-columns:1fr}
-  .hero-strip span,.hero-strip strong{padding:13px 0}
-  .hero-strip span+span,.hero-strip strong{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .split-line{max-width:none}
   /* Beispiele zum Wischen statt drei volle Bildschirme untereinander */
   .work-grid{display:flex;gap:14px;margin-right:calc(var(--side)*-1);padding-right:var(--side);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
   .work-grid::-webkit-scrollbar{display:none}
@@ -383,7 +385,6 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .hero-proof{align-items:flex-start;padding:12px 14px}
   .hero-acts .btn{width:100%}
   .hero-visual{padding:14px 12px 34px 16px}
-  .float-book{right:0}
   .float-best{font-size:.78rem}
   .section{padding-block:64px}
   .benefits,.steps{gap:12px}
