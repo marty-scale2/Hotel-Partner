@@ -132,9 +132,12 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .benefit-tag{display:inline-block;margin-top:16px;padding:4px 10px;border-radius:20px;background:var(--tint);color:var(--ink-2);font-size:.76rem;font-weight:600}
 
 /* ---------- 3. Google als Prüfstand ---------- */
-.google-band{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(36px,6vw,90px);align-items:center}
+/* Zahl und Überschrift starten auf einer Linie. Vorher stand die Zahl
+   vertikal mittig und rutschte bei längerem Text unter die Überschrift,
+   dann war der Zusammenhang zwischen beiden nicht mehr zu sehen. */
+.google-band{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(36px,6vw,80px);align-items:start}
 .google-number strong{display:block;color:var(--flame);font-family:Fraunces,Georgia,serif;font-size:clamp(4rem,9vw,7.6rem);font-weight:700;line-height:.86;letter-spacing:-.06em;white-space:nowrap}
-.google-number span{display:block;margin-top:12px;font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.google-number span{display:block;max-width:16ch;margin-top:14px;color:var(--ink-2);font-size:.95rem;font-weight:600;line-height:1.45}
 .google-copy h2{font-size:clamp(2rem,3.6vw,3rem)}
 .google-copy p{max-width:60ch;margin-top:20px;color:var(--ink-2);font-size:1.05rem;line-height:1.72}
 .google-aside{display:inline-block;margin-top:22px;padding:7px 12px;background:var(--sun);font-family:Fraunces,Georgia,serif;font-size:.95rem;font-weight:700;transform:rotate(-1deg)}
@@ -186,7 +189,6 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .chat-booking b{grid-column:2;grid-row:1/3;color:var(--flame);font-size:1.2rem}
 .chat-demo-input{display:flex;justify-content:space-between;padding:13px 18px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
 .chat-demo-input span{color:var(--flame)}
-.chat-demo-note{position:absolute;right:-10px;bottom:0;padding:8px 12px;background:var(--sun);font-family:Fraunces,Georgia,serif;font-size:.9rem;font-weight:700;transform:rotate(2deg)}
 
 /* ---------- 6. Preise (die eine dunkle Fläche) ---------- */
 .section-dark .section-head h2{font-size:clamp(2.2rem,4.2vw,3.4rem)}
@@ -395,7 +397,6 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .btn-contact{width:100%;padding:17px 18px}
   .form-row{grid-template-columns:1fr;gap:14px;margin-bottom:14px}
   .faq summary{font-size:1.08rem}
-  .chat-demo-note{right:0}
   .einw-in{flex-direction:column;align-items:stretch;gap:12px;padding:13px}
   .einw-knoepfe{display:grid;grid-template-columns:repeat(3,1fr)}
   .einw-knoepfe button{min-width:0;padding:10px 6px}
