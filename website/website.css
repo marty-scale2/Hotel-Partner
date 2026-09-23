@@ -196,7 +196,6 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .payoff-title{color:var(--sun);font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:700;line-height:1.2}
 .payoff p:not(.payoff-title){margin-top:10px;color:#DCE2E4;font-size:.98rem;line-height:1.65}
 .payoff p strong{color:#fff}
-.payoff small{display:block;margin-top:10px;color:var(--dark-muted);font-size:.8rem}
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;margin-top:clamp(44px,5vw,64px)}
 .plan{position:relative;display:flex;flex-direction:column;padding:30px 26px;border:1px solid var(--dark-line);border-radius:var(--r);background:rgba(255,255,255,.03)}
 .plan-featured{border-color:var(--sun);background:rgba(255,208,74,.07);box-shadow:0 0 0 1px var(--sun)}
