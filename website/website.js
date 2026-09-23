@@ -219,9 +219,10 @@
   updateCalc();
 
   /* ---------- Formular ----------
-     Versand über Web3Forms, derselbe Schlüssel wie auf der Hauptseite.
+     Versand über Web3Forms. Eigener Schlüssel für diese Unterseite, nicht
+     der Schlüssel der Hauptseite, damit die Anfragen getrennt ankommen.
      Er ist öffentlich und darf im Quelltext stehen. */
-  const web3formsKey = "6bb87cd0-8436-4ad7-8723-d034ab5bcca8";
+  const web3formsKey = "329020d5-63cc-48c5-aac3-be5d2c3bee38";
   const contactForm = document.getElementById("anfrage");
   const formStatus = document.getElementById("hinweis");
 
