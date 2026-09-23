@@ -152,6 +152,130 @@
     if (consentReturnFocus) consentReturnFocus.focus({ preventScroll: true });
   }
 
+  /* ---------- Provisionsrechner ----------
+     Gleiche Formel und derselbe vorsichtige Provisionssatz wie auf der
+     Hauptseite, damit beide Seiten nie verschiedene Zahlen zeigen.
+     rechne(28, 65, 120, 55) -> 52.613 € im Jahr */
+  const euro = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const commission = 0.12;
+  const directShare = 0.1;
+
+  const calcInputs = {
+    zimmer: document.getElementById("zimmer"),
+    auslastung: document.getElementById("auslastung"),
+    preis: document.getElementById("preis"),
+    anteil: document.getElementById("anteil")
+  };
+  const calcOutputs = {
+    zimmer: document.getElementById("oZimmer"),
+    auslastung: document.getElementById("oAuslastung"),
+    preis: document.getElementById("oPreis"),
+    anteil: document.getElementById("oAnteil"),
+    summe: document.getElementById("oSumme"),
+    monat: document.getElementById("oMonat"),
+    hebel: document.getElementById("oHebel")
+  };
+
+  let countFrame = null;
+  let lastSum = 0;
+
+  function countTo(element, from, to) {
+    if (reducedMotion.matches || Math.abs(to - from) < 1) {
+      element.textContent = euro.format(to);
+      return;
+    }
+    const start = performance.now();
+    if (countFrame) cancelAnimationFrame(countFrame);
+    countFrame = requestAnimationFrame(function step(now) {
+      const progress = Math.min(1, (now - start) / 400);
+      element.textContent = euro.format(from + (to - from) * (1 - Math.pow(1 - progress, 3)));
+      if (progress < 1) countFrame = requestAnimationFrame(step);
+    });
+  }
+
+  function updateCalc() {
+    if (!calcInputs.zimmer) return;
+    const rooms = +calcInputs.zimmer.value;
+    const occupancy = +calcInputs.auslastung.value;
+    const rate = +calcInputs.preis.value;
+    const share = +calcInputs.anteil.value;
+
+    calcOutputs.zimmer.textContent = rooms;
+    calcOutputs.auslastung.textContent = occupancy + " %";
+    calcOutputs.preis.textContent = rate + " €";
+    calcOutputs.anteil.textContent = share + " %";
+
+    const viaPortals = rooms * 365 * (occupancy / 100) * rate * (share / 100);
+    const total = viaPortals * commission;
+    countTo(calcOutputs.summe, lastSum, total);
+    lastSum = total;
+    calcOutputs.monat.textContent = "Im Schnitt " + euro.format(total / 12) + " pro Monat, saisonal sehr ungleich verteilt.";
+    calcOutputs.hebel.textContent = euro.format(total * directShare);
+  }
+
+  Object.values(calcInputs).forEach((input) => {
+    if (input) input.addEventListener("input", updateCalc);
+  });
+  updateCalc();
+
+  /* ---------- Formular ----------
+     Versand über Web3Forms, derselbe Schlüssel wie auf der Hauptseite.
+     Er ist öffentlich und darf im Quelltext stehen. */
+  const web3formsKey = "6bb87cd0-8436-4ad7-8723-d034ab5bcca8";
+  const contactForm = document.getElementById("anfrage");
+  const formStatus = document.getElementById("hinweis");
+
+  if (contactForm && formStatus) contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    formStatus.className = "form-status";
+
+    if (!contactForm.checkValidity()) {
+      formStatus.classList.add("schlecht");
+      formStatus.textContent = "Bitte Hotel, Website, Name und E-Mail ausfüllen und die Einwilligung bestätigen.";
+      return;
+    }
+
+    const button = contactForm.querySelector("button[type=submit]");
+    const label = button.innerHTML;
+    button.disabled = true;
+    button.textContent = "Wird gesendet …";
+    formStatus.textContent = "";
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: web3formsKey,
+          subject: "Website-Check über /website: " + contactForm.haus.value,
+          from_name: "Hotelfreunde, Seite /website",
+          Hotel: contactForm.haus.value,
+          Website: contactForm.seite.value,
+          Name: contactForm.name.value,
+          "E-Mail": contactForm.mail.value,
+          Anfrage: contactForm.anliegen.value,
+          botcheck: contactForm.botcheck ? contactForm.botcheck.checked : false
+        })
+      });
+      const result = await response.json();
+      if (!result || !result.success) throw new Error("abgelehnt");
+
+      formStatus.classList.add("gut");
+      formStatus.textContent = "Danke, wir melden uns innerhalb von zwei Werktagen.";
+      contactForm.reset();
+      /* Die eigentliche Conversion. Läuft nur, wenn der jeweilige
+         Zähler geladen ist, also nur mit Einwilligung. */
+      if (window.oaiq) window.oaiq("measure", "registration_completed", { type: "customer_action" });
+      if (window.gtag) window.gtag("event", "generate_lead");
+    } catch (error) {
+      formStatus.classList.add("schlecht");
+      formStatus.textContent = "Das hat leider nicht geklappt. Schreib uns bitte direkt an info@hotelfreunde.com.";
+    } finally {
+      button.disabled = false;
+      button.innerHTML = label;
+    }
+  });
+
   if (consentBanner && rejectButton && statsButton && acceptButton && openConsent) {
     rejectButton.addEventListener("click", () => saveConsent(false, false));
     statsButton.addEventListener("click", () => saveConsent(true, false));

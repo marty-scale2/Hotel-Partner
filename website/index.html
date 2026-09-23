@@ -20,8 +20,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="website.css?v=20260922-11">
-  <script src="website.js?v=20260922-3" defer></script>
+  <link rel="stylesheet" href="website.css?v=20260923-3">
+  <script src="website.js?v=20260923-2" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Betreute Hotelwebsite für mehr Direktbuchungen","serviceType":"Hotelwebsite, Direktbuchung und laufende Google-Sichtbarkeit","url":"https://www.hotelfreunde.com/website/","provider":{"@type":"Organization","name":"Hotelfreunde","url":"https://www.hotelfreunde.com/"},"areaServed":["Deutschland","Österreich","Schweiz"]}</script>
 </head>
 <body>
@@ -121,11 +121,20 @@
   <!-- ===== 3. Google als Prüfstand ===== -->
   <section class="section section-tint">
     <div class="shell google-band reveal">
-      <div class="google-number"><strong>60 bis 70 %</strong><span>aller Reisenden</span></div>
+      <div class="google-number"><strong>91 %</strong><span>bei der Hotelsuche</span></div>
       <div class="google-copy">
-        <h2>nutzen Google, während sie ihre Reise planen.</h2>
-        <p>Ob sie am Ende direkt bei dir buchen oder beim Portal landen, entscheidet sich oft genau dort: bei deinem Google-Profil, deinen Bewertungen und deiner Website. Wenn das nicht überzeugt, hast du selbst mit dem besten Service schlechte Karten.</p>
+        <h2>starten bei einer Suchmaschine.</h2>
+        <p>Über 70 Prozent aller Reiseplanungen beginnen bei Google. Ob ein Gast am Ende direkt bei dir bucht oder beim Portal landet, entscheidet sich oft genau dort: bei deinem Google-Profil, deinen Bewertungen und deiner Website. Wenn das nicht überzeugt, hast du selbst mit dem besten Service schlechte Karten.</p>
+        <p>Dazu kommt die Suche über KI. Noch ist sie klein, aber sie wächst schnell, und eine Seite von 2018 taucht in diesen Antworten gar nicht erst auf.</p>
         <span class="google-aside">Auch dann, wenn die Suche ganz woanders angefangen hat.</span>
+        <!-- Quellenlage, geprüft am 23.09.2026: Die 91 % stammen von TrustYou,
+             zitiert bei reisevor9 in einem Artikel von April 2019, das Studienjahr
+             wird dort nicht genannt. Für die 70 % gibt es keine auffindbare
+             Primärquelle, die Zahl kursiert in Branchenblogs ohne Beleg.
+             Martin kennt das und hat sich am 23.09.2026 bewusst dafür entschieden.
+             Sauber belegt wäre stattdessen: 17 % der Deutschen haben KI für die
+             Reiseplanung genutzt (Reiseanalyse 2026 der FUR, repräsentativ). -->
+        <p class="source">Quelle: TrustYou, Studie zur Hotelsuche über Suchmaschinen.</p>
       </div>
     </div>
   </section>
@@ -199,7 +208,47 @@
     </div>
   </section>
 
-  <!-- ===== 6. Preise ===== -->
+  <!-- ===== 6. Provisionsrechner ===== -->
+  <section class="section" id="rechner">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Rechne selbst</p>
+        <h2>Was geht bei dir im Jahr an die Portale?</h2>
+      </div>
+
+      <div class="calc reveal">
+        <div class="calc-in">
+          <p class="calc-mark">Deine Zahlen</p>
+          <div class="calc-field">
+            <div class="calc-head"><label for="zimmer">Zimmer</label><output id="oZimmer" for="zimmer">28</output></div>
+            <input type="range" id="zimmer" min="5" max="80" step="1" value="28">
+          </div>
+          <div class="calc-field">
+            <div class="calc-head"><label for="auslastung">Auslastung im Jahresschnitt</label><output id="oAuslastung" for="auslastung">65 %</output></div>
+            <input type="range" id="auslastung" min="30" max="95" step="1" value="65">
+          </div>
+          <div class="calc-field">
+            <div class="calc-head"><label for="preis">Zimmerpreis im Schnitt</label><output id="oPreis" for="preis">120 €</output></div>
+            <input type="range" id="preis" min="50" max="300" step="5" value="120">
+          </div>
+          <div class="calc-field">
+            <div class="calc-head"><label for="anteil">Anteil Buchungen über Portale</label><output id="oAnteil" for="anteil">55 %</output></div>
+            <input type="range" id="anteil" min="10" max="90" step="1" value="55">
+          </div>
+        </div>
+
+        <div class="calc-out">
+          <p class="calc-mark">Provision pro Jahr, geschätzt</p>
+          <p class="calc-sum" id="oSumme">52.613 €</p>
+          <p class="calc-month" id="oMonat">Im Schnitt 4.384 € pro Monat, saisonal sehr ungleich verteilt.</p>
+          <p class="calc-shift">Schon <strong>10 %</strong> davon direkt gebucht statt über ein Portal sind <strong id="oHebel">5.261 €</strong> im Jahr, die bei dir bleiben.</p>
+          <p class="calc-foot">Überschlagsrechnung mit 12 % Provision, bewusst vorsichtig gerechnet. Deine echten Konditionen kennst du besser, und kein Haus verlagert alles weg von den Portalen. Das soll es auch nicht.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. Preise ===== -->
   <section class="section section-dark" id="preise">
     <div class="shell">
       <div class="section-head section-head-split reveal">
@@ -260,11 +309,20 @@
           <p class="plan-note">Eine bestimmte Platzierung kann niemand ehrlich versprechen. Wir zeigen dir jeden Monat, was bei Google ankommt.</p>
         </article>
       </div>
+      <div class="terms reveal">
+        <p class="terms-head">Laufzeit und Jahreszahlung</p>
+        <ul class="terms-list">
+          <li><strong>Website</strong><span>12 Monate</span><em>999 € im Jahr statt 1.188 €</em></li>
+          <li><strong>Website &amp; Gästechat</strong><span>6 oder 12 Monate</span><em>1.999 € im Jahr statt 2.388 €</em></li>
+          <li><strong>Website, Chat &amp; Google</strong><span>6 oder 12 Monate</span><em>3.999 € im Jahr statt 4.788 €</em></li>
+        </ul>
+        <p class="terms-note">Wer im Voraus für ein Jahr zahlt, bekommt zwei Monate geschenkt. Alle Preise zzgl. MwSt.</p>
+      </div>
       <p class="plans-foot">Welches Paket zu deinem Haus passt, klären wir im kostenlosen Website-Check.</p>
     </div>
   </section>
 
-  <!-- ===== 7. Wieso so günstig ===== -->
+  <!-- ===== 8. Wieso so günstig ===== -->
   <section class="section">
     <div class="shell value-grid reveal">
       <div class="value-number"><strong>7</strong><span>Jahre<br>Online-Marketing</span></div>
@@ -277,7 +335,7 @@
     </div>
   </section>
 
-  <!-- ===== 8. Ablauf ===== -->
+  <!-- ===== 9. Ablauf ===== -->
   <section class="section section-tint" id="ablauf">
     <div class="shell">
       <div class="section-head reveal">
@@ -292,7 +350,7 @@
     </div>
   </section>
 
-  <!-- ===== 9. Team ===== -->
+  <!-- ===== 10. Team ===== -->
   <section class="section" id="team">
     <div class="shell team-grid reveal">
       <div class="team-portraits">
@@ -309,7 +367,7 @@
     </div>
   </section>
 
-  <!-- ===== 10. Fragen ===== -->
+  <!-- ===== 11. Fragen ===== -->
   <section class="section section-tint" id="fragen">
     <div class="shell faq-grid">
       <div class="section-head reveal">
@@ -349,14 +407,45 @@
     </div>
   </section>
 
-  <!-- ===== 11. Kontakt ===== -->
+  <!-- ===== 12. Kontakt ===== -->
   <section class="section section-flame" id="kontakt">
     <div class="shell contact-inner reveal">
       <p class="eyebrow">Kostenloser Website-Check</p>
       <h2>Wo verliert deine Website gerade Buchungen?</h2>
       <p>Wir schauen uns Website, Buchungsweg und Google-Auftritt an. Danach bekommst du Klartext: was bremst, was warten kann und welches Paket für dich Sinn ergibt.</p>
-      <a class="btn btn-dark btn-contact" href="mailto:info@hotelfreunde.com?subject=Kostenloser%20Website-Check&amp;body=Hallo%20Katrin%20und%20Martin%2C%0A%0Aunser%20Hotel%3A%20%0AUnsere%20Website%3A%20%0A">Kostenlosen Website-Check anfragen <span aria-hidden="true">→</span></a>
-      <p class="contact-small">Oder schreib uns direkt an <a href="mailto:info@hotelfreunde.com">info@hotelfreunde.com</a>. Wir melden uns innerhalb von zwei Werktagen.</p>
+
+      <form class="contact-form" id="anfrage" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="haus">Dein Hotel</label>
+            <input type="text" id="haus" name="haus" autocomplete="organization" required>
+          </div>
+          <div class="field">
+            <label for="seite">Deine Website</label>
+            <input type="text" id="seite" name="seite" inputmode="url" autocomplete="url" placeholder="hotel-beispiel.de" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Dein Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="mail">E-Mail</label>
+            <input type="email" id="mail" name="mail" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="anliegen">Deine Anfrage <span class="optional">optional</span></label>
+          <textarea id="anliegen" name="anliegen" rows="3" placeholder="Was läuft bei dir gerade nicht rund?"></textarea>
+        </div>
+        <label class="consent"><input type="checkbox" id="ok" required><span>Ich bin damit einverstanden, dass meine Angaben zur Kontaktaufnahme gespeichert werden. Details in der <a href="../datenschutz.html">Datenschutzerklärung</a>.</span></label>
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">
+        <button class="btn btn-dark btn-contact" type="submit">Website-Check anfragen <span aria-hidden="true">→</span></button>
+        <p class="form-status" id="hinweis" role="status"></p>
+      </form>
+
+      <p class="contact-small">Lieber direkt? Schreib an <a href="mailto:info@hotelfreunde.com">info@hotelfreunde.com</a>. Wir melden uns innerhalb von zwei Werktagen.</p>
     </div>
   </section>
 </main>
