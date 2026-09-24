@@ -110,16 +110,21 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .float-card{position:absolute;border-radius:9px;background:#fff;box-shadow:0 18px 40px rgba(16,24,28,.18)}
 .float-best{top:0;right:0;padding:9px 13px;background:var(--sun);font-family:Fraunces,Georgia,serif;font-size:.9rem;font-weight:700;transform:rotate(2deg)}
 
-/* ---------- 2. Übergang: die Arbeitsteilung ----------
-   Drei Sätze, groß und untereinander. Jeder Satz fliegt einzeln ein, der
-   Versatz macht aus der Aufzählung eine Abfolge. Der dritte ist die
-   Pointe und steht deshalb in Flame. */
-.split-band{padding-block:clamp(96px,12vw,170px)}
-.split-line{max-width:20ch;font-family:Fraunces,Georgia,serif;font-size:clamp(2.1rem,6.4vw,4.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.08;text-wrap:balance}
-.split-line+.split-line{margin-top:clamp(10px,1.4vw,20px)}
-.split-punch{color:var(--flame)}
-.motion-enabled .split-line:nth-child(2){transition-delay:.13s}
-.motion-enabled .split-line:nth-child(3){transition-delay:.26s}
+/* ---------- 2. Was Hoteliers über ihre Website sagen ----------
+   Sechs Zitate als Karten. Weiß auf Sandton, damit sie sich abheben,
+   ohne dass sechs Rahmen die Fläche zerschneiden. Der Einflug ist pro
+   Karte leicht versetzt, sonst springt die ganze Wand auf einmal. */
+.voices-head{max-width:860px;margin-inline:auto;text-align:center}
+.voices-head .section-intro{margin-top:18px}
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,22px);margin-top:clamp(40px,5vw,60px)}
+.voice{display:flex;margin:0;padding:clamp(22px,2.4vw,30px);border-radius:var(--r);background:var(--card);box-shadow:0 1px 3px rgba(16,24,28,.05)}
+.voice blockquote{position:relative;margin:0;padding-top:34px;font-size:1.05rem;line-height:1.55;text-wrap:pretty}
+.voice blockquote::before{content:"\201C";position:absolute;top:-6px;left:-2px;color:var(--flame);font-family:Fraunces,Georgia,serif;font-size:3.4rem;font-weight:700;line-height:1}
+.motion-enabled .voice:nth-child(2){transition-delay:.06s}
+.motion-enabled .voice:nth-child(3){transition-delay:.12s}
+.motion-enabled .voice:nth-child(4){transition-delay:.18s}
+.motion-enabled .voice:nth-child(5){transition-delay:.24s}
+.motion-enabled .voice:nth-child(6){transition-delay:.3s}
 
 /* ---------- 3. Hauptnutzen ---------- */
 .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:clamp(40px,5vw,60px)}
@@ -385,7 +390,10 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .nav-links,.brand-division{display:none}
   .nav-shell{justify-content:space-between}
   .benefits,.steps{grid-template-columns:1fr}
-  .split-line{max-width:none}
+  .voices{grid-template-columns:1fr 1fr;gap:12px}
+  .voice{padding:20px}
+  .voice blockquote{padding-top:28px;font-size:.98rem}
+  .voice blockquote::before{font-size:2.8rem}
   /* Beispiele zum Wischen statt drei volle Bildschirme untereinander */
   .work-grid{display:flex;gap:14px;margin-right:calc(var(--side)*-1);padding-right:var(--side);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
   .work-grid::-webkit-scrollbar{display:none}
@@ -411,6 +419,7 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .section{padding-block:64px}
   .benefits,.steps{gap:12px}
   .benefit,.step,.plan{padding:22px 20px}
+  .voices{grid-template-columns:1fr}
   .benefit-kicker{margin-top:16px}
   .work-preview{min-height:330px}
   .check-list li{padding-block:10px}
