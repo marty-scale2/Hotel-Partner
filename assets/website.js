@@ -76,6 +76,44 @@
     updateScrub();
   }
 
+  /* ---------- Stilauswahl von selbst durchwechseln ----------
+     Das Umschalten selbst macht das CSS über den gewählten Radio-Knopf.
+     Hier wird nur weitergeschaltet, solange die Sektion zu sehen ist und
+     niemand eingegriffen hat. Maus drüber hält an, ein Klick, eine Taste
+     oder Fokus beendet das Durchwechseln endgültig. */
+  const styleBox = document.querySelector("[data-stile]");
+  if (styleBox && !reducedMotion.matches && "IntersectionObserver" in window) {
+    const styleInputs = [...styleBox.querySelectorAll("input[name=stil]")];
+    let styleTimer = null;
+    let styleVisible = false;
+    let styleHover = false;
+    let styleStopped = false;
+    const nextStyle = () => {
+      const current = styleInputs.findIndex((input) => input.checked);
+      styleInputs[(current + 1) % styleInputs.length].checked = true;
+    };
+    const stopStyles = () => {
+      clearInterval(styleTimer);
+      styleTimer = null;
+    };
+    const startStyles = () => {
+      if (styleTimer || styleStopped || !styleVisible || styleHover || document.hidden) return;
+      styleTimer = setInterval(nextStyle, 3200);
+    };
+    new IntersectionObserver(([entry]) => {
+      styleVisible = entry.isIntersecting;
+      if (styleVisible) startStyles(); else stopStyles();
+    }, { threshold: 0.35 }).observe(styleBox);
+    styleBox.addEventListener("pointerenter", () => { styleHover = true; stopStyles(); });
+    styleBox.addEventListener("pointerleave", () => { styleHover = false; startStyles(); });
+    ["pointerdown", "keydown", "focusin"].forEach((type) => {
+      styleBox.addEventListener(type, () => { styleStopped = true; stopStyles(); });
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopStyles(); else startStyles();
+    });
+  }
+
   /* ---------- Einwilligung ----------
      Unverändert von der vorherigen Fassung übernommen, gleicher
      Schlüssel wie auf der Hauptseite. Vor der Entscheidung wird

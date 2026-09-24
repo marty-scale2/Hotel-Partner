@@ -22,8 +22,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/website.css?v=20260924-8">
-  <script src="assets/website.js?v=20260924-3" defer></script>
+  <link rel="stylesheet" href="assets/website.css?v=20260924-9">
+  <script src="assets/website.js?v=20260924-4" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://www.hotelfreunde.com/#hotelfreunde","name":"Hotelfreunde","url":"https://www.hotelfreunde.com/","image":"https://www.hotelfreunde.com/og-image.png","description":"Hotelwebsites für Boutique- und Privathotels, gebaut und betreut von Hotelfreunde: mehr Direktbuchungen, weniger Provision.","areaServed":["Deutschland","Österreich","Schweiz"],"address":{"@type":"PostalAddress","streetAddress":"Bahnhofstr. 2a","postalCode":"86500","addressLocality":"Kutzenhausen","addressCountry":"DE"},"founder":[{"@type":"Person","name":"Martin Thun"},{"@type":"Person","name":"Katrin Göschl"}]},{"@type":"Service","name":"Betreute Hotelwebsite für mehr Direktbuchungen","serviceType":"Hotelwebsite, Direktbuchung und laufende Google-Sichtbarkeit","url":"https://www.hotelfreunde.com/","provider":{"@id":"https://www.hotelfreunde.com/#hotelfreunde"},"areaServed":["Deutschland","Österreich","Schweiz"]}]}</script>
 </head>
 <body>
@@ -205,28 +205,100 @@
         </div>
         <p class="section-intro">Wir fangen nicht bei null an, sondern mit einem Aufbau, der sich bewährt hat: klarer Buchungsweg, schnelle Ladezeit, gebaut fürs Handy. Bilder, Farben, Texte und Tonalität kommen von deinem Haus. So klingt jede Website anders, und das Fundament stimmt trotzdem.</p>
       </div>
-      <div class="work-grid">
-        <article class="work-card reveal">
-          <div class="work-preview" style="background-image:linear-gradient(160deg,#0b1a20a0,#0b1a2030),url('assets/img/hotel-bergzeit.webp')">
-            <div class="preview-nav"><span>HOTEL BERGZEIT</span><i>ZIMMER</i></div>
-            <div class="preview-copy"><small>ANKOMMEN AUF 1.200 METERN</small><strong>Oben ankommen.<br>Unten abschalten.</strong><b>Zimmer entdecken</b></div>
+      <!-- Stilauswahl: links eine Beispiel-Startseite, rechts sechs Stile.
+           Umgeschaltet wird über echte Radio-Knöpfe und :has() im CSS, das
+           geht auch ohne JavaScript. website.js wechselt zusätzlich von
+           selbst durch, solange niemand klickt. Hotels und Texte sind
+           erfunden, die Bilder stammen aus der früheren Beispielseite. -->
+      <div class="stile" data-stile>
+        <div class="stil-stage reveal" aria-hidden="true">
+          <div class="stil-browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>dein-hotel.de</span></div>
+            <div class="stil-screens">
+
+              <div class="stil-mock m-rustikal">
+                <div class="sm-nav"><b class="sm-logo">Hotel Bergzeit</b><span class="sm-link">Zimmer</span><span class="sm-link">Wandern</span><span class="sm-link">Stube</span><em class="sm-book">Buchen</em></div>
+                <div class="sm-body">
+                  <small class="sm-eyebrow">Ankommen auf 1.200 Metern</small>
+                  <strong class="sm-title">Oben ankommen.<br>Unten abschalten.</strong>
+                  <span class="sm-cta">Zimmer entdecken</span>
+                </div>
+                <div class="sm-bookbar"><span>Anreise<b>Fr, 10.10.</b></span><span>Abreise<b>So, 12.10.</b></span><span>Gäste<b>2</b></span><em>Verfügbarkeit prüfen</em></div>
+              </div>
+
+              <div class="stil-mock m-elegant">
+                <div class="sm-nav"><span class="sm-link">Suiten</span><span class="sm-link">Salon</span><b class="sm-logo">Palais Amalie</b><span class="sm-link">Anfahrt</span><em class="sm-book">Anfragen</em></div>
+                <div class="sm-body">
+                  <small class="sm-eyebrow">Wien · Erster Bezirk</small>
+                  <i class="sm-line"></i>
+                  <strong class="sm-title">Zeit für<br>das Besondere.</strong>
+                  <span class="sm-cta">Suite anfragen</span>
+                </div>
+              </div>
+
+              <div class="stil-mock m-minimal">
+                <div class="sm-nav"><b class="sm-logo">lumen</b><span class="sm-link">zimmer</span><span class="sm-link">lage</span><em class="sm-book">buchen</em></div>
+                <div class="sm-body">
+                  <div class="sm-text">
+                    <strong class="sm-title">Weniger Lärm.<br>Mehr Schlaf.</strong>
+                    <small class="sm-sub">32 Zimmer mitten in der Stadt.</small>
+                    <span class="sm-cta">Verfügbarkeit prüfen →</span>
+                  </div>
+                  <div class="sm-photo"></div>
+                </div>
+              </div>
+
+              <div class="stil-mock m-kreativ">
+                <div class="sm-nav"><b class="sm-logo">Kolibri<i>.</i></b><span class="sm-link">Zimmer</span><span class="sm-link">Café</span><em class="sm-book">Buchen!</em></div>
+                <div class="sm-body">
+                  <div class="sm-text">
+                    <strong class="sm-title">Hier ist nichts von der Stange.</strong>
+                    <span class="sm-cta">Komm vorbei</span>
+                  </div>
+                  <div class="sm-photo"><span class="sm-sticker">Frühstück bis 14 Uhr</span></div>
+                </div>
+              </div>
+
+              <div class="stil-mock m-maritim">
+                <div class="sm-top">
+                  <div class="sm-nav"><b class="sm-logo">Seehotel Möwe</b><span class="sm-link">Zimmer</span><span class="sm-link">Bootssteg</span><em class="sm-book">Buchen</em></div>
+                </div>
+                <div class="sm-body">
+                  <small class="sm-eyebrow">Direkt am Ufer</small>
+                  <strong class="sm-title">Seeblick inklusive.</strong>
+                  <span class="sm-cta">Zimmer mit Seeblick</span>
+                </div>
+              </div>
+
+              <div class="stil-mock m-natuerlich">
+                <div class="sm-nav"><b class="sm-logo">Waldhof</b><span class="sm-link">Zimmer</span><span class="sm-link">Spa</span><span class="sm-link">Küche</span><em class="sm-book">Buchen</em></div>
+                <div class="sm-body">
+                  <div class="sm-text">
+                    <small class="sm-eyebrow">Landhotel &amp; Spa</small>
+                    <strong class="sm-title">Durchatmen.<br>Ankommen.</strong>
+                    <span class="sm-cta">Auszeit planen</span>
+                  </div>
+                  <div class="sm-photo"></div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div class="work-meta"><span>Alpen · Aktivhotel</span><small>Designbeispiel</small><h3>Hotel Bergzeit</h3></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-preview" style="background-image:linear-gradient(160deg,#0b1a2080,#0b1a2030),url('assets/img/kuestenhaus.webp')">
-            <div class="preview-nav"><span>KÜSTENHAUS</span><i>BUCHEN</i></div>
-            <div class="preview-copy"><small>DIREKT HINTERM DEICH</small><strong>Meer Zeit.<br>Mehr Ruhe.</strong><b>Das Haus ansehen</b></div>
+        </div>
+
+        <div class="stil-panel reveal">
+          <p class="stil-frage" id="stil-frage">Welcher Stil passt zu deinem Haus?</p>
+          <div class="stil-wahl" role="radiogroup" aria-labelledby="stil-frage">
+            <label class="stil-option"><input type="radio" name="stil" value="rustikal" checked><img src="assets/img/stil-mini-rustikal.webp" alt="" width="56" height="56" decoding="async"><span><b>Rustikal</b><small>Berghotel, Gasthof, Chalet</small></span></label>
+            <label class="stil-option"><input type="radio" name="stil" value="elegant"><img src="assets/img/stil-mini-elegant.webp" alt="" width="56" height="56" decoding="async"><span><b>Elegant</b><small>Traditionshaus, Schlosshotel</small></span></label>
+            <label class="stil-option"><input type="radio" name="stil" value="minimal"><img src="assets/img/stil-mini-minimal.webp" alt="" width="56" height="56" decoding="async"><span><b>Minimal</b><small>Design- und Stadthotel</small></span></label>
+            <label class="stil-option"><input type="radio" name="stil" value="kreativ"><img src="assets/img/stil-mini-kreativ.webp" alt="" width="56" height="56" decoding="async"><span><b>Kreativ</b><small>Boutique-Hotel, junges Konzept</small></span></label>
+            <label class="stil-option"><input type="radio" name="stil" value="maritim"><img src="assets/img/stil-mini-maritim.webp" alt="" width="56" height="56" decoding="async"><span><b>Maritim</b><small>Seehotel, Küste, Bodensee</small></span></label>
+            <label class="stil-option"><input type="radio" name="stil" value="natuerlich"><img src="assets/img/stil-mini-natuerlich.webp" alt="" width="56" height="56" decoding="async"><span><b>Natürlich</b><small>Landhotel, Wellness, Biohotel</small></span></label>
           </div>
-          <div class="work-meta"><span>Küste · Boutiquehotel</span><small>Designbeispiel</small><h3>Küstenhaus</h3></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-preview" style="background-image:linear-gradient(160deg,#11151fa0,#11151f40),url('assets/img/stadthotel-lumen.webp')">
-            <div class="preview-nav"><span>STADTHOTEL LUMEN</span><i>DEIN ZIMMER</i></div>
-            <div class="preview-copy"><small>MITTENDRIN UND TROTZDEM RUHIG</small><strong>Mitten im Leben.<br>Ganz bei dir.</strong><b>Aufenthalt planen</b></div>
-          </div>
-          <div class="work-meta"><span>Stadt · Businesshotel</span><small>Designbeispiel</small><h3>Stadthotel Lumen</h3></div>
-        </article>
+          <p class="stil-note">Alle Beispiele mit erfundenen Hotels. Bei dir kommen Bilder, Farben und Texte von deinem Haus. Und wenn keiner der Stile passt, bauen wir deinen eigenen.</p>
+          <a class="text-link" href="#kontakt">Stil im Website-Check besprechen <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -305,8 +377,15 @@
   <!-- ===== 8. Preise ===== -->
   <section class="section section-dark" id="preise">
     <div class="shell">
-      <div class="section-head reveal">
-        <h2>Deine neue Website kostet 3.000 €. <em>Du zahlst nur einen Bruchteil.</em></h2>
+      <div class="section-head section-head-center reveal">
+        <!-- Seit 24.09.2026, vorher „Deine neue Website kostet 3.000 €. Du
+             zahlst nur einen Bruchteil." Die 3.000 € bissen sich mit der
+             Setup-Gebühr von 500 bis 1.000 € im Aktionskasten. Jetzt ist der
+             Vergleich die Einmalsumme bei Agenturen, das passt zur Setup-
+             Gebühr (kleiner, und für die ersten 100 Hotels entfällt sie).
+             Bewusst „schnell 2.000 € und mehr" statt „mindestens", und kein
+             „Bruchteil", weil das 399er aufs Jahr gerechnet darüber liegt. -->
+        <h2>Bei Agenturen zahlst du schnell 2.000 € und mehr. <em>Bei uns startest du ab 99 € im Monat.</em></h2>
       </div>
 
       <!-- Der Schalter steht auf hidden und wird erst per JS sichtbar.
@@ -331,7 +410,7 @@
             <li>Deine Buchungsmaschine sauber angebunden</li>
             <li>Direktvorteil auf jeder wichtigen Seite</li>
             <li>Einmalige Suchmaschinenoptimierung</li>
-            <li>Unbegrenzte Korrekturen nach dem ersten Entwurf, Antwort in zwei Werktagen</li>
+            <li>Unbegrenzte Korrekturen nach dem ersten Entwurf innerhalb von 48 Business Hours</li>
             <li>Hosting, Sicherheit und Updates</li>
             <li>Kleine Änderungen, wenn du sie brauchst</li>
           </ul>
@@ -347,8 +426,7 @@
             <li class="plan-all">Alles aus „Website“</li>
             <li>Gästechat rund um die Uhr</li>
             <li>Führt Gäste direkt zur Buchung</li>
-            <li>Sonderwünsche gehen an dein Team</li>
-            <li>Einmalige Suchmaschinenoptimierung für Google und KI</li>
+            <li>Erweiterte Suchmaschinenoptimierung</li>
           </ul>
           <a class="btn btn-plan" href="#kontakt">Website-Check anfragen <span aria-hidden="true">→</span></a>
         </article>
