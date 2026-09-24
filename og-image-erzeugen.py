@@ -94,7 +94,7 @@ def bauen():
         archivo_reg.set_variation_by_axes([400])
         archivo_bold_s = ImageFont.truetype(archivo_ttf, 17)
         archivo_bold_s.set_variation_by_axes([700])
-        fraunces = ImageFont.truetype(fraunces_ttf, 80)
+        fraunces = ImageFont.truetype(fraunces_ttf, 64)
         fraunces.set_variation_by_axes([144, 700, 55, 0])  # Optical Size, Weight, Softness, Wonky
         fraunces_marke = ImageFont.truetype(fraunces_ttf, 42)
         fraunces_marke.set_variation_by_axes([42, 750, 55, 0])
@@ -109,20 +109,26 @@ def bauen():
 
         # Eyebrow
         zeichne_getrackt(
-            d, (content_x, 168), "FÜR INHABERGEFÜHRTE BOUTIQUE- & PRIVATHOTELS",
+            d, (content_x, 150), "WEBSITES FÜR BOUTIQUE- & PRIVATHOTELS",
             archivo_bold_s, INK, tracking=3.2,
         )
 
-        # Headline, drei Zeilen wie im echten Hero
-        hy = 224
-        d.text((content_x, hy), "Mehr Direktbuchungen", font=fraunces, fill=INK)
-        d.text((content_x, hy + 82), "& höheren Profit", font=fraunces, fill=INK)
-        d.text((content_x, hy + 164), "mit Online Marketing", font=fraunces, fill=FLAME)
+        # Headline, vier Zeilen wie im Hero der Startseite (seit 24.09.2026,
+        # vorher „Mehr Direktbuchungen & höheren Profit mit Online Marketing")
+        hy = 196
+        zeilen = [
+            ("In der Hochsaison", INK),
+            ("weniger Provision.", FLAME),
+            ("In der Nebensaison", INK),
+            ("mehr Gäste.", FLAME),
+        ]
+        for i, (text, farbe) in enumerate(zeilen):
+            d.text((content_x, hy + i * 66), text, font=fraunces, fill=farbe)
 
         # Fusszeile
         foot_y = H - 90
-        d.text((content_x, foot_y), "Digitale Systeme statt Portal-Abhängigkeit,", font=archivo_reg, fill=INK2)
-        d.text((content_x, foot_y + 27), "ohne Pflicht-Werbebudget.", font=archivo_reg, fill=INK2)
+        d.text((content_x, foot_y), "Deine Hotelwebsite, gebaut und betreut von Hotelfreunde.", font=archivo_reg, fill=INK2)
+        d.text((content_x, foot_y + 27), "Deine Buchungsmaschine bleibt.", font=archivo_reg, fill=INK2)
 
         domain = "www.hotelfreunde.com"
         dwidth = getrackte_breite(d, domain, archivo_bold_s, 0.6)

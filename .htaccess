@@ -18,6 +18,11 @@ RewriteRule ^(.*)$ https://www.hotelfreunde.com/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} !^www\.hotelfreunde\.com$ [NC]
 RewriteRule ^(.*)$ https://www.hotelfreunde.com/$1 [R=301,L]
 
+# 2b. Seit 24.09.2026 ist das Website-Angebot die Startseite. Die früheren
+#     Unterseiten sind offline und leiten dauerhaft auf die Startseite, damit
+#     alte Links aus Mails und Gesprächen nicht ins Leere laufen.
+RewriteRule ^(website|ki|hotel-beispielseite)(/.*)?$ https://www.hotelfreunde.com/ [R=301,L]
+
 # 3. Keine Verzeichnislisten zeigen, falls mal eine Indexdatei fehlt.
 Options -Indexes
 

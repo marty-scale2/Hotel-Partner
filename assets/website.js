@@ -40,6 +40,42 @@
     });
   }
 
+  /* ---------- Schleichend einblenden ----------
+     Anders als .reveal nicht einmal ausgelöst, sondern an die Scroll-
+     position gekoppelt: --p läuft von 0 auf 1, während das Element vom
+     unteren Rand (95 %) bis zur Bildschirmmitte wandert. Die 91 zählt
+     dabei mit hoch. Gemessen wird ohne die eigene Verschiebung, sonst
+     schiebt sich das Element beim Messen selbst weg. */
+  const scrubItems = [...document.querySelectorAll(".scrub")];
+  const scrubNumber = document.querySelector("[data-zahl]");
+  if (scrubItems.length && !reducedMotion.matches) {
+    document.body.classList.add("scrub-on");
+    let scrubQueued = false;
+    const updateScrub = () => {
+      const viewport = window.innerHeight;
+      scrubItems.forEach((item) => {
+        const shift = (1 - (item.scrubP ?? 1)) * 48;
+        const top = item.getBoundingClientRect().top - shift;
+        const p = Math.min(1, Math.max(0, (viewport * 0.95 - top) / (viewport * 0.45)));
+        item.scrubP = p;
+        item.style.setProperty("--p", p.toFixed(3));
+        if (scrubNumber && item.contains(scrubNumber)) {
+          const eased = 1 - Math.pow(1 - p, 2);
+          scrubNumber.textContent = Math.round(+scrubNumber.dataset.zahl * eased) + " %";
+        }
+      });
+      scrubQueued = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (!scrubQueued) {
+        scrubQueued = true;
+        requestAnimationFrame(updateScrub);
+      }
+    }, { passive: true });
+    window.addEventListener("resize", updateScrub, { passive: true });
+    updateScrub();
+  }
+
   /* ---------- Einwilligung ----------
      Unverändert von der vorherigen Fassung übernommen, gleicher
      Schlüssel wie auf der Hauptseite. Vor der Entscheidung wird
@@ -251,9 +287,9 @@
   updateCalc();
 
   /* ---------- Formular ----------
-     Versand über Web3Forms. Eigener Schlüssel für diese Unterseite, nicht
-     der Schlüssel der Hauptseite, damit die Anfragen getrennt ankommen.
-     Er ist öffentlich und darf im Quelltext stehen. */
+     Versand über Web3Forms. Der Schlüssel war ursprünglich der eigene der
+     Unterseite /website und ist seit dem Umzug auf die Startseite
+     (24.09.2026) der einzige. Er ist öffentlich und darf im Quelltext stehen. */
   const web3formsKey = "329020d5-63cc-48c5-aac3-be5d2c3bee38";
   const contactForm = document.getElementById("anfrage");
   const formStatus = document.getElementById("hinweis");
@@ -280,8 +316,8 @@
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: web3formsKey,
-          subject: "Website-Check über /website: " + contactForm.haus.value,
-          from_name: "Hotelfreunde, Seite /website",
+          subject: "Website-Check über hotelfreunde.com: " + contactForm.haus.value,
+          from_name: "Hotelfreunde, Startseite",
           Hotel: contactForm.haus.value,
           Website: contactForm.seite.value,
           Name: contactForm.name.value,

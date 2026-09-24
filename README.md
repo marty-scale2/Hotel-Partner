@@ -1,22 +1,21 @@
-# Thun Hotel Partner
+# HOTELFREUNDE
 
-Onepager für `hotel-partner.martinthun.com`.
+Website von Hotelfreunde (Katrin Göschl und Martin Thun) unter `www.hotelfreunde.com`.
 
-Direktbuchungen für inhabergeführte Hotels mit 20 bis 35 Zimmern im deutschsprachigen Raum. Katrin und Martin Thun.
+## Aufbau (seit 24.09.2026)
 
-## Aufbau
+Die Startseite ist das Website-Angebot für Hotels (Website as a Service, drei Pakete). Vorher lag es als Unterseite unter `/website`, die Startseite war die Schatzkarten-Seite. Die steht nur noch in der Git-Historie, letzter Stand Commit `1458eb1`.
 
-Eine einzige statische Datei, `index.html`. Kein Framework, kein Build-Schritt, keine Abhängigkeiten außer zwei Schriften von Google Fonts (Fraunces und Archivo). Öffnen per Doppelklick genügt.
+- `index.html`: die Startseite
+- `assets/`: CSS, JavaScript und Bilder der Startseite. CSS und JS werden mit `?v=` eingebunden, bei jeder Änderung hochzählen
+- `impressum.html`, `datenschutz.html`
+- `fonts/`: Archivo und Fraunces, lokal, kein Aufruf an Google Fonts
+- `archiv/`: frühere Unterseiten (`ki/`, `hotel-beispielseite/`), werden nicht hochgeladen und leiten per `.htaccess` auf die Startseite
+- `motive-archiv/`: Motive der Schatzkarte, werden nicht hochgeladen
+- `og-image-erzeugen.py`: erzeugt `og-image.png`, das Vorschaubild für geteilte Links
 
-Acht Sektionen: Hero, Zahlenband, Problem, Unser Weg, Provisionsrechner, Über uns, Vergleich, Kontakt, Fußzeile.
+Kein Framework, kein Build-Schritt. Öffnen per Doppelklick genügt.
 
-## Offene Punkte vor dem Livegang
+## Veröffentlichen
 
-- `FORM_ENDPOINT` im Script ist leer. Solange dort nichts steht, zeigt das Formular einen Hinweis auf die direkte E-Mail-Adresse statt zu senden.
-- Impressum und Datenschutzerklärung sind Platzhalter-Links (`#impressum`, `#datenschutz`). Beide sind in Deutschland Pflicht.
-- Die Bilder von Katrin und Martin fehlen, dort stehen Platzhalterflächen.
-- Die Zahlen im Band (7+ Jahre, 1.000+ Kunden, 2+ Jahre OTA) stammen aus der Agenturzeit und aus Katrins Booking-Zeit, nicht aus der Hotellerie.
-
-## Rechenlogik im Provisionsrechner
-
-Basis sind 15 Prozent Provision auf den Portalumsatz, ohne Zahlungsgebühr und ohne Programme. Als realistisch verlagerbar gelten 10 bis 25 Prozent davon. Drei Testfälle stehen als Kommentar über der Funktion `rechnen`.
+Gehostet bei All-Inkl. Hochgeladen wird mit `..\deploy-hotelfreunde.py`, und zwar nur der committete Stand. Also erst committen, dann das Skript starten.
