@@ -426,7 +426,9 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
    Markenfarben die Seite nicht auseinanderreißen. */
 .clients{margin-top:clamp(56px,7vw,86px);padding-top:clamp(30px,3.4vw,42px);border-top:1px solid var(--line)}
 .clients-head{max-width:58ch;margin:0 auto clamp(28px,3.4vw,40px);color:var(--muted);font-size:.9rem;line-height:1.55;text-align:center}
-.clients-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;justify-items:center;gap:clamp(30px,4vw,48px) clamp(20px,3vw,40px)}
+/* Zentrierte Reihe statt Raster: bei fünf Logos (seit 24.09.2026, vorher
+   acht) ließe ein Vierer-Raster eines allein in der zweiten Reihe stehen. */
+.clients-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(28px,4vw,56px) clamp(28px,4.4vw,64px)}
 .clients-row img{width:min(var(--w,180px),100%);height:auto;opacity:.72;transition:opacity .2s ease}
 .clients-row img:hover{opacity:1}
 
@@ -598,7 +600,7 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
   .perk{padding:22px 20px}
   .perk-strong{grid-column:auto;box-shadow:4px 4px 0 var(--sun)}
   .benefit-kicker{margin-top:16px}
-  .clients-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .clients-row{gap:26px 30px}
   .clients-row img{width:min(calc(var(--w,180px)*.72),100%)}
   .stil-screens{aspect-ratio:4/5}
   .stil-browser{box-shadow:6px 6px 0 var(--sun),0 20px 44px rgba(16,24,28,.12)}
