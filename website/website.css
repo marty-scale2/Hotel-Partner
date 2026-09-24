@@ -192,10 +192,12 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 
 /* ---------- 8. Preise (die eine dunkle Fläche) ---------- */
 .section-dark .section-head h2{font-size:clamp(2.2rem,4.2vw,3.4rem)}
-.payoff{padding:24px 26px;border:1px solid rgba(255,208,74,.45);border-radius:var(--r);background:rgba(255,208,74,.07)}
-.payoff-title{color:var(--sun);font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:700;line-height:1.2}
-.payoff p:not(.payoff-title){margin-top:10px;color:#DCE2E4;font-size:.98rem;line-height:1.65}
-.payoff p strong{color:#fff}
+/* Lohnt-sich-Rechnung. Stand als zweiter Kasten neben der Überschrift
+   und hat den Kopf des Abschnitts überladen. Jetzt eine ruhige Zeile
+   unter den Karten, ohne Rahmen, damit sie nicht wie ein weiterer
+   Kasten neben der Aktion wirkt. */
+.payoff{max-width:74ch;margin:clamp(32px,4vw,44px) auto 0;color:var(--dark-muted);font-size:1rem;line-height:1.7;text-align:center;text-wrap:pretty}
+.payoff strong{color:var(--sun)}
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;margin-top:clamp(44px,5vw,64px)}
 .plan{position:relative;display:flex;flex-direction:column;padding:30px 26px;border:1px solid var(--dark-line);border-radius:var(--r);background:rgba(255,255,255,.03)}
 .plan-featured{border-color:var(--sun);background:rgba(255,208,74,.07);box-shadow:0 0 0 1px var(--sun)}
@@ -212,15 +214,15 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .plan li.plan-all::before{content:"+"}
 .btn-plan{width:100%}
 .plan-featured .btn-plan{box-shadow:4px 4px 0 var(--sun)}
-/* Jahreszahlung, klein unter dem Knopf der jeweiligen Karte. Stand
-   vorher als eigene Sektion unter den Karten, dort war sie vom Preis
-   getrennt, auf den sie sich bezieht. */
-.plan-year{margin-top:13px;color:var(--dark-muted);font-size:.8rem;line-height:1.5;text-align:center;text-wrap:balance}
+/* „2 Monate geschenkt" hängt am Preis und erscheint nur, wenn jährlich
+   gewählt ist. Vorher stand es dauerhaft am Schalter und galt dort
+   auch für die monatliche Ansicht, wo es nicht zutrifft. */
+.plan-gift{display:block;width:fit-content;margin-top:10px;padding:5px 11px;border-radius:99px;background:rgba(244,67,22,.22);color:var(--sun);font-size:.74rem;font-weight:700;letter-spacing:.04em}
 
 /* Umschalter monatlich / jährlich. Zwei Radios, optisch als ein Schalter.
    Radios, weil Tastatur und Screenreader damit ohne Zusatzcode
    funktionieren. */
-.billing{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 clamp(28px,3.4vw,40px);padding:0;border:0}
+.billing{display:flex;align-items:center;justify-content:center;gap:14px;margin:clamp(34px,4vw,48px) 0 clamp(28px,3.4vw,40px);padding:0;border:0}
 .billing-switch{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--dark-line);border-radius:99px;background:rgba(255,255,255,.06)}
 .billing-switch label{position:relative;cursor:pointer}
 .billing-switch input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}

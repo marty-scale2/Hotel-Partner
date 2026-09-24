@@ -20,8 +20,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="website.css?v=20260923-12">
-  <script src="website.js?v=20260923-6" defer></script>
+  <link rel="stylesheet" href="website.css?v=20260924-1">
+  <script src="website.js?v=20260924-1" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Betreute Hotelwebsite für mehr Direktbuchungen","serviceType":"Hotelwebsite, Direktbuchung und laufende Google-Sichtbarkeit","url":"https://www.hotelfreunde.com/website/","provider":{"@type":"Organization","name":"Hotelfreunde","url":"https://www.hotelfreunde.com/"},"areaServed":["Deutschland","Österreich","Schweiz"]}</script>
 </head>
 <body>
@@ -261,15 +261,8 @@
   <!-- ===== 8. Preise ===== -->
   <section class="section section-dark" id="preise">
     <div class="shell">
-      <div class="section-head section-head-split reveal">
-        <div>
-          <p class="eyebrow">Preise</p>
-          <h2>Drei Pakete. <em>Du entscheidest, wie viel wir übernehmen.</em></h2>
-        </div>
-        <div class="payoff">
-          <p class="payoff-title">Lohnt sich das? Es reicht schon, wenn zwei Gäste im Monat dich überhaupt erst finden.</p>
-          <p>Zwei Buchungen im Monat mit je zwei Nächten sind vier Nächte zu 130 €, also <strong>520 € Umsatz, den es vorher nicht gab</strong>. Damit trägt sich selbst das größte Paket.</p>
-        </div>
+      <div class="section-head reveal">
+        <h2>Deine neue Website kostet 3.000 €. <em>Du zahlst nur einen Bruchteil.</em></h2>
       </div>
 
       <!-- Der Schalter steht auf hidden und wird erst per JS sichtbar.
@@ -281,46 +274,44 @@
           <label><input type="radio" name="abrechnung" value="monat" checked><span>Monatlich</span></label>
           <label><input type="radio" name="abrechnung" value="jahr"><span>Jährlich</span></label>
         </div>
-        <p class="billing-hint">2 Monate geschenkt</p>
       </fieldset>
 
       <div class="plans">
         <article class="plan reveal" data-monat="99 €" data-jahr-mtl="83 €" data-jahr="999 €" data-vorher="1.188 €">
           <p class="plan-name">Website</p>
-          <p class="plan-price"><strong>99 €</strong><span>im Monat</span></p>
+          <p class="plan-price"><strong>99 €</strong><span class="plan-cycle">im Monat</span><span class="plan-gift" hidden>2 Monate geschenkt</span></p>
           <p class="plan-for">Für Hotels, die eine schnelle, moderne Website wollen und sich nie wieder um Technik kümmern möchten.</p>
           <ul>
-            <li>Neue Hotelwebsite, gebaut fürs Handy</li>
+            <li>Hochmoderne Hotelwebsite, optimiert für Desktop und Handy</li>
+            <li>Fertig in spätestens 7 Tagen</li>
             <li>Deine Buchungsmaschine sauber angebunden</li>
             <li>Direktvorteil auf jeder wichtigen Seite</li>
             <li>Einmalige Suchmaschinenoptimierung</li>
+            <li>Unbegrenzte Korrekturen nach dem ersten Entwurf, Antwort in zwei Werktagen</li>
             <li>Hosting, Sicherheit und Updates</li>
             <li>Kleine Änderungen, wenn du sie brauchst</li>
           </ul>
           <a class="btn btn-plan" href="#kontakt">Website-Check anfragen <span aria-hidden="true">→</span></a>
-          <p class="plan-year">999 € statt 1.188 € bei Vorauszahlung für 12 Monate</p>
         </article>
 
         <article class="plan plan-featured reveal" data-monat="199 €" data-jahr-mtl="167 €" data-jahr="1.999 €" data-vorher="2.388 €">
           <span class="plan-badge">Unsere Empfehlung</span>
           <p class="plan-name">Website &amp; Gästechat</p>
-          <p class="plan-price"><strong>199 €</strong><span>im Monat</span></p>
+          <p class="plan-price"><strong>199 €</strong><span class="plan-cycle">im Monat</span><span class="plan-gift" hidden>2 Monate geschenkt</span></p>
           <p class="plan-for">Für Hotels, die Gästefragen sofort beantworten und weniger Buchungen auf dem Weg verlieren wollen.</p>
           <ul>
             <li class="plan-all">Alles aus „Website“</li>
             <li>Gästechat rund um die Uhr</li>
             <li>Führt Gäste direkt zur Buchung</li>
             <li>Sonderwünsche gehen an dein Team</li>
-            <li>Entlastet deine Rezeption spürbar</li>
             <li>Einmalige Suchmaschinenoptimierung für Google und KI</li>
           </ul>
           <a class="btn btn-plan" href="#kontakt">Website-Check anfragen <span aria-hidden="true">→</span></a>
-          <p class="plan-year">1.999 € statt 2.388 € bei Vorauszahlung für 12 Monate</p>
         </article>
 
         <article class="plan reveal" data-monat="399 €" data-jahr-mtl="333 €" data-jahr="3.999 €" data-vorher="4.788 €">
           <p class="plan-name">Website, Chat &amp; Google</p>
-          <p class="plan-price"><strong>399 €</strong><span>im Monat</span></p>
+          <p class="plan-price"><strong>399 €</strong><span class="plan-cycle">im Monat</span><span class="plan-gift" hidden>2 Monate geschenkt</span></p>
           <p class="plan-for">Für Hotels, die auch in den ruhigen Monaten bei mehr passenden Suchen auftauchen wollen.</p>
           <ul>
             <li class="plan-all">Alles aus „Website &amp; Gästechat“</li>
@@ -330,9 +321,10 @@
             <li>Monatsbericht mit deinen Zahlen</li>
           </ul>
           <a class="btn btn-plan" href="#kontakt">Website-Check anfragen <span aria-hidden="true">→</span></a>
-          <p class="plan-year">3.999 € statt 4.788 € bei Vorauszahlung für 12 Monate</p>
         </article>
       </div>
+
+      <p class="payoff">Lohnt sich das? <strong>Zwei zusätzliche Buchungen im Monat reichen.</strong> Zwei Gäste mit je zwei Nächten sind vier Nächte zu 130 €, also 520 € Umsatz, den es vorher nicht gab. Damit trägt sich selbst das größte Paket.</p>
       <!-- ⚠️ Aktion mit Frist. Nach dem 30.09.2026 entfernen oder das
            Datum weiterschieben, sonst steht hier eine abgelaufene
            Aktion und die ganze Seite wirkt unbetreut. -->

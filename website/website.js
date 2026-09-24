@@ -165,13 +165,15 @@
     const yearly = mode === "jahr";
     planCards.forEach((card) => {
       const amount = card.querySelector(".plan-price strong");
-      const note = card.querySelector(".plan-year");
+      const cycle = card.querySelector(".plan-cycle");
+      const gift = card.querySelector(".plan-gift");
       if (!amount) return;
       amount.textContent = yearly ? card.dataset.jahrMtl : card.dataset.monat;
-      if (!note) return;
-      note.textContent = yearly
-        ? card.dataset.jahr + " einmal im Jahr statt " + card.dataset.vorher
-        : card.dataset.jahr + " statt " + card.dataset.vorher + " bei Vorauszahlung für 12 Monate";
+      /* Bei Jahreszahlung steht ein Monatspreis da, abgebucht wird aber
+         einmal im Jahr. Das muss dranstehen, sonst ist die Angabe
+         irreführend. */
+      if (cycle) cycle.textContent = yearly ? "im Monat, jährlich gezahlt" : "im Monat";
+      if (gift) gift.hidden = !yearly;
     });
   }
 
