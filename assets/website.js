@@ -129,12 +129,19 @@
   let activeConsent = { statistik: false, marketing: false };
   let consentReturnFocus = null;
 
+  /* Eine Entscheidung gilt 12 Monate, danach wird neu gefragt
+     (Empfehlung der Datenschutzkonferenz). Einträge ohne gültigen
+     Zeitpunkt zählen als abgelaufen. */
+  const consentMaxAge = 365 * 24 * 60 * 60 * 1000;
+
   function readConsent() {
     try {
       const saved = JSON.parse(localStorage.getItem(consentKey));
+      const age = saved ? Date.now() - Date.parse(saved.zeit) : NaN;
       return saved && saved.fassung === 2 &&
         typeof saved.statistik === "boolean" &&
-        typeof saved.marketing === "boolean" ? saved : null;
+        typeof saved.marketing === "boolean" &&
+        age >= 0 && age < consentMaxAge ? saved : null;
     } catch (error) {
       return null;
     }
@@ -185,7 +192,12 @@
     }
   }
 
-  function clearAnalyticsCookies() {
+  /* Löscht die Cookies der Zwecke, denen nicht (mehr) zugestimmt ist.
+     _ga… kommt von Google Analytics, __ob… vom OpenAI-Messinstrument.
+     Vorher blieb __obref nach einem Widerruf liegen. */
+  function clearTrackingCookies(choice) {
+    const removeStats = !choice || !choice.statistik;
+    const removeMarketing = !choice || !choice.marketing;
     const parts = location.hostname.split(".");
     const domains = ["", location.hostname];
     for (let index = 0; index < parts.length - 1; index += 1) {
@@ -193,7 +205,9 @@
     }
     document.cookie.split(";").forEach((cookie) => {
       const name = cookie.split("=")[0].trim();
-      if (!/^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name)) return;
+      const isStats = /^_ga(?:_|$)|^_gid$|^_gat(?:_|$)/.test(name);
+      const isMarketing = /^__ob/.test(name);
+      if (!(isStats && removeStats) && !(isMarketing && removeMarketing)) return;
       domains.forEach((domain) => {
         ["/", "/website", "/website/"].forEach((path) => {
           document.cookie = name + "=; Max-Age=0; path=" + path +
@@ -217,8 +231,8 @@
     }
     consentBanner.hidden = true;
     if (withdrawal) {
-      window["ga-disable-" + gaMeasurementId] = true;
-      clearAnalyticsCookies();
+      if (!statistik) window["ga-disable-" + gaMeasurementId] = true;
+      clearTrackingCookies(next);
       location.reload();
       return;
     }
@@ -399,8 +413,8 @@
       const changed = readConsent();
       if ((activeConsent.statistik && !changed?.statistik) ||
           (activeConsent.marketing && !changed?.marketing)) {
-        window["ga-disable-" + gaMeasurementId] = true;
-        clearAnalyticsCookies();
+        if (!changed?.statistik) window["ga-disable-" + gaMeasurementId] = true;
+        clearTrackingCookies(changed);
         location.reload();
       } else if (changed) {
         consentBanner.hidden = true;

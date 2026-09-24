@@ -35,6 +35,18 @@ AddType image/webp .webp
 AddDefaultCharset UTF-8
 AddCharset UTF-8 .css .js .xml .txt
 
+# 5b. Sicherheits-Header (technische Maßnahme nach Art. 32 DSGVO), seit
+#     24.09.2026. HSTS bewusst ohne includeSubDomains, damit demo.hotelfreunde.com
+#     unabhängig bleibt. Kein iframe-Einbetten von fremden Seiten, kein
+#     vollständiger Referrer an Dritte, Kamera/Mikro/Standort gesperrt.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
 # 6. Schriften und Bilder dürfen länger im Browser-Cache bleiben, HTML nicht.
 #    CSS und JS nur kurz, weil sie direkt in den Seiten stehen oder ohne
 #    Versionsnummer eingebunden sind.
