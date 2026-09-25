@@ -23,6 +23,12 @@ RewriteRule ^(.*)$ https://www.hotelfreunde.com/$1 [R=301,L]
 #     alte Links aus Mails und Gesprächen nicht ins Leere laufen.
 RewriteRule ^(website|ki|hotel-beispielseite)(/.*)?$ https://www.hotelfreunde.com/ [R=301,L]
 
+# 2c. Die AGB erhalten eine kurze, lesbare URL. Direkte Aufrufe der alten
+#     Dateiadresse werden dauerhaft auf die kanonische Adresse umgeleitet.
+RewriteCond %{THE_REQUEST} \s/+agb\.html(?:[\s?]) [NC]
+RewriteRule ^agb\.html$ https://www.hotelfreunde.com/agb [R=301,L]
+RewriteRule ^agb/?$ agb.html [L]
+
 # 3. Keine Verzeichnislisten zeigen, falls mal eine Indexdatei fehlt.
 Options -Indexes
 
