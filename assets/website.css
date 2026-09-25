@@ -528,6 +528,8 @@ h1 em,h2 em{font-style:normal;color:var(--flame)}
 .footer-in nav a{color:var(--ink-2);font-size:.8rem;text-decoration:none}
 .footer-in nav a:hover{text-decoration:underline;text-underline-offset:4px}
 .back-top{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;text-decoration:none}
+.footer-ai-note{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;line-height:1.65}
+.footer-ai-note strong{color:var(--ink);font-weight:600}
 
 /* ---------- Einwilligung (gleich wie auf der Hauptseite) ---------- */
 .einwilligung{position:fixed;left:50%;bottom:14px;z-index:100;width:min(1120px,calc(100% - 28px));transform:translateX(-50%);border:1px solid rgba(16,24,28,.18);border-radius:10px;background:#fff;color:var(--ink);box-shadow:0 22px 70px rgba(16,24,28,.2)}
